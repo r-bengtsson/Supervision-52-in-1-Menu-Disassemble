@@ -34,8 +34,8 @@ INES_SRAM           = 0             ; 1 = battery backed SRAM at $6000-7FFF
 
 .segment "ZEROPAGE"                 ; $0000 - $00FF MSB[00] (Most Significant Bytte) LSB[FF] (Least Significant Byte)
 
-AdressHigh		    = $01
-AdressLow		    = $00
+AdressHigh          = $01
+AdressLow           = $00
 
 ;$1B      Gets checked in NMI if equal JMP $E20C, else go to NMI_START
 ;$1C      Gets checked in NMI if equal JMP $E20C, else go to NMI_START
@@ -65,7 +65,7 @@ JoyPad2_OLD         = $F4
 JoyPad_Pressed      = $F7           ; Not sure if correct
 
 
-PPUMASKByte		    = $FE
+PPUMASKByte         = $FE
 PPUCNTRLByte        = $FF
 
 
@@ -162,7 +162,7 @@ RTS
 
 
 ; Second part of menu code
-.segment "CODEB"                     ; $D0A3
+.segment "CODEB"                    ; $D0A3
     .org $D0A3
 
 ; ------------------------------
@@ -187,12 +187,12 @@ RTS
 
 ; Clear Name Table
 PPUClearNT:
-    JSR PPUBackgroundSpriteDisable          ; First disable Sprite and Background
+    JSR PPUBackgroundSpriteDisable  ; First disable Sprite and Background
 ; Initialise Adress to clear
-    LDA #$20                                ; MSB
+    LDA #$20                        ; MSB
     STA PPUAddr_2006
-    LDA #$00                                ; LSB
-    STA PPUAddr_2006                        ; $0200
+    LDA #$00                        ; LSB
+    STA PPUAddr_2006                ; $0200
 ; Reset index
     LDA #$00
     LDY #$00
@@ -201,11 +201,11 @@ PPUClearNT:
 ; Clears PPU $0000 - $02FF (PatternTable0/1 & NameTable0-3)
 @Loop:
     STA PPUData_2007
-    DEY                                     ; DEY = #$00 - 1 = #$FF (00 to FF)
-BNE @Loop                                   ; Until Y = #$00
+    DEY                             ; DEY = #$00 - 1 = #$FF (00 to FF)
+BNE @Loop                           ; Until Y = #$00
 
-    DEX                                     ; Decrease X = $03 and start over
-BPL @Loop                                   ; Until X = #$00
+    DEX                             ; Decrease X = $03 and start over
+BPL @Loop                           ; Until X = #$00
 
 RTS
 
@@ -234,7 +234,7 @@ PPUOAMClear:
     INX
     STA OAM, X
     INX                    
-BNE @Loop                                   ; Loop until X = #$FF -> #$00
+BNE @Loop                           ; Loop until X = #$FF -> #$00
 
 RTS
 
@@ -252,10 +252,10 @@ RTS
 ; ===================================================================================================
 
 ROM_START:
-    SEI                                     ; SEt Interrupt
-    CLD                                     ; CLear Decimal
+    SEI                             ; SEt Interrupt
+    CLD                             ; CLear Decimal
     ;     VPHBSINN
-    LDA #%00010000                          ; #$10
+    LDA #%00010000                  ; #$10
     STA PPUControl_2000
     LDX #$FF
     TXS
@@ -284,18 +284,18 @@ BNE @clrmem
 BPL @clrmem
 
     ;     VPHBSINN
-    LDA #%00010000                          ; #$10
+    LDA #%00010000                  ; #$10
     STA PPUCNTRLByte
     ;     BGRsbMmG
-    LDA #%00000110                          ; #$06
+    LDA #%00000110                  ; #$06
     STA PPUMASKByte
     STA PPUMask_2001
 
     ; Reset Scroll
     LDA #$00
-    STA PPUScroll_2005                      ; Write 1 X Scroll
-    STA PPUScroll_2005                      ; Write 2 Y Scroll
-    JSR PPUClearNT                          ; Clear NameTable
+    STA PPUScroll_2005              ; Write 1 X Scroll
+    STA PPUScroll_2005              ; Write 2 Y Scroll
+    JSR PPUClearNT                  ; Clear NameTable
     LDX #$00
 
 
@@ -304,7 +304,7 @@ BPL @clrmem
     LDA PaletteData, X
     STA $0300, X
     INX
-    CPX #$20                                ; Until X < #$20
+    CPX #$20                        ; Until X < #$20
 BCC @LoadPaletteData
 
 ; PaletteData
@@ -319,7 +319,7 @@ BCC @LoadPaletteData
     LDA AttributeTableData, X
     STA $03C0, X
     INX
-    CPX #$40                                ; Until X < #$40
+    CPX #$40                        ; Until X < #$40
 BCC @LoadAttributeTable
 
 ; AttributeTableData
@@ -340,20 +340,20 @@ BCC @LoadAttributeTable
     STA ListPosition
 
     ; What doest it do here? Restore ListSection and ListPosition from CartRAM???===================================
-    LDA $5FF0                               ; Load from CartRAM
+    LDA $5FF0                       ; Load from CartRAM
     AND #$0F
     CMP #$05
 BNE InitializeGame ; Change NAME? ==============================
 
-    LDA $5FF1                               ; Load from CartRAM
+    LDA $5FF1                       ; Load from CartRAM
     AND #$0F
     CMP #$0A
 BNE InitializeGame ; Change NAME? ==============================
 
-    LDA $5FF2                               ; Load from CartRAM
+    LDA $5FF2                       ; Load from CartRAM
     AND #$0F
     STA AdressLow
-    LDA $5FF3                               ; Load from CartRAM
+    LDA $5FF3                       ; Load from CartRAM
     TAY
     AND #$01
     ASL A
@@ -394,7 +394,7 @@ ___L918B:
     STA ListPosition
 
 
-InitializeGame:                             ; Needs Name Change?=================
+InitializeGame:                     ; Needs Name Change?=================
     LDA #$05
     STA $5FF0
     LDA #$0A
@@ -416,8 +416,8 @@ InitializeGame:                             ; Needs Name Change?================
 
 
     LDA #$00
-    STA PPUScroll_2005                      ; Write 1: X Scroll
-    STA PPUScroll_2005                      ; Write 2: Y Scroll
+    STA PPUScroll_2005              ; Write 1: X Scroll
+    STA PPUScroll_2005              ; Write 2: Y Scroll
 
     JSR PPUBackgroundTileSelectDisable
     JSR PPUBackgroundEnable
@@ -429,7 +429,7 @@ InitializeGame:                             ; Needs Name Change?================
 
 ; Main loop to make sure CPU doesn't go on to Subroutines/NMI Vector
 Main_Loop:
-    JMP Main_Loop                             ; Jump forever
+    JMP Main_Loop                   ; Jump forever
 
 
 
@@ -450,7 +450,7 @@ Main_Loop:
 ; Subroutine needs A to be set before entering
 RLEDecoder:
 ; Loads MSB and LSB adress from NameTablePointerData, X
-    ASL A                                   ; Shifts bits Left #$00 = #$00, #$01 = #$02, #$02 = #$04, #$03 = #$06
+    ASL A                           ; Shifts bits Left #$00 = #$00, #$01 = #$02, #$02 = #$04, #$03 = #$06
     TAX
     LDA NameTablePointerData, X
     STA AdressLow
@@ -459,7 +459,7 @@ RLEDecoder:
     LDA NameTablePointerData, X
     STA AdressHigh
 
-    LDY #$00                                ; Reset Y index for next part
+    LDY #$00                        ; Reset Y index for next part
 
 ; Load first byte of newly set adress (MSB+LSB) and check value
 RLEControlByteCheck:
@@ -474,13 +474,13 @@ BMI RLEControlByteFF
 ; Store value from data to NameTable if it doesn't contain instruction byte ($FD, $FE, $FF)
 RLEStoretoPPUData:
     STA PPUData_2007
-    JSR RLEIncreasePointerPosition          ; Increase pointer position
+    JSR RLEIncreasePointerPosition  ; Increase pointer position
 BCC RLEControlByteCheck
 
 ; Controlbyte $FF, Ends function, stops processing bytes in data
 RLEControlByteFF:
     CMP #$FF
-BNE RLEByteDecoder                          ; If not #$FF, goto byte decoder
+BNE RLEByteDecoder                  ; If not #$FF, goto byte decoder
 
 RTS
 
@@ -489,9 +489,9 @@ RTS
 
 
 
-; ----------------------------
+; --------------------------------
 ; --------RLEByteDecoder()--------
-; ----------------------------
+; --------------------------------
 
 ; RLE Byte Decoder
 ; Checks if first byte is $FF, $FE or $FD
@@ -503,7 +503,7 @@ RLEByteDecoder:
 ; Controlbyte $FE, Sets NameTable Adress before writing
 ; $FE $02 $00 ($0200) [Set NameTable adress with PPUAdress_2006], [MSB], [LSB]
     CMP #$FE
-BNE @RLEControlByteFD                       ; if not $FE, check if $FD
+BNE @RLEControlByteFD               ; if not $FE, check if $FD
 
     ; Increase MSB position and store MSB to PPUAddress register, 1nd write
     JSR RLEIncreasePointerPosition
@@ -521,11 +521,11 @@ BNE @RLEControlByteFD                       ; if not $FE, check if $FD
 BCC RLEControlByteCheck
 
 
-@RLEControlByteFD:                          ; 
+@RLEControlByteFD:
 ; Controlbyte $FD, Writes specific tile #$XX times
 ; $FD $09 $61 (9 times, tile 61) [Store tiles to NameTable at previously set adress], [Number of Tiles to store], [Background tile to store]
     CMP #$FD
-BNE RLEStoretoPPUData                       ; If new byte is not $FD, assume it is a tile and store it to PPUData in RLEStoretoPPUData routine
+BNE RLEStoretoPPUData               ; If new byte is not $FD, assume it is a tile and store it to PPUData in RLEStoretoPPUData routine
 
     ; Increase pointer position and loads first byte after $FD to A and transfer to X as index
     JSR RLEIncreasePointerPosition
@@ -579,7 +579,7 @@ RTS
 ; --------LoadPalettes()--------
 ; ------------------------------
 
-LoadPalettes:                               ; Perhaps Change? ==============
+LoadPalettes:                       ; Perhaps Change name? ==============
 
     LDX #$00
 
@@ -666,7 +666,7 @@ UpdateListPositionNewXY:
 
 ; Add #$10 to X Position for each in ListPosition to get X coordinates
 UpdateListPositionAddToX:
-BEQ ___L128A                ; Branch to next part when done
+BEQ ___L128A                        ; Branch to next part when done
 
     CLC
     LDA #$10
@@ -692,7 +692,7 @@ BCC UpdateListPositionColumn2
 ___L128A:
     LDX ListPosition
     INX
-    SED                     ; SEt Decimal
+    SED                             ; SEt Decimal
     LDA #$00
 
 ; Loop: Adds 1 to A until X = 0
@@ -734,7 +734,7 @@ ___L12A8:
     AND #$0F
     ORA #$30
     STA $31
-    LDA ListPositionY       ; $34
+    LDA ListPositionY               ; $34
     STA $0203
     CLC
     ADC #$08
@@ -742,7 +742,7 @@ ___L12A8:
     CLC
     ADC #$08
     STA $020B
-    LDA ListPositionX       ; $35
+    LDA ListPositionX               ; $35
     STA $0200
     STA $0204
     STA $0208
@@ -774,7 +774,7 @@ ScreenAttributesInit:
 BCC @ScreenAttributesClear
 
 ; Not sure
-@ScreenAttributesInitializeStore:           ; NAME? ============================
+@ScreenAttributesInitializeStore:   ; NAME? ============================
     LDA $03C0, X
     AND #$F0
     STA $03C0, X
@@ -836,7 +836,7 @@ PaletteColorSectionChange:
 BCC ScreenAttributesUpdate
     LDX ListSection
     LDA PaletteSectionColors,X
-    STA $030A                           ; swap palette color of top brick color
+    STA $030A                       ; swap palette color of top brick color
 RTS
 
 ; Palettechange for sections, change only color position 2
@@ -870,14 +870,14 @@ BCC ___L1312
 NMI:
     PHA
     LDA #$A5
-    CMP $1B                 ; If not $1B == #$A5 branch to NMI_Logic_START
+    CMP $1B                         ; If not $1B == #$A5 branch to NMI_Logic_START
 BNE NMI_Logic_START
 
     LDA #$5A
-    CMP $1C                 ; If not $1C == #$5A branch to NMI_Logic_START
+    CMP $1C                         ; If not $1C == #$5A branch to NMI_Logic_START
 BNE NMI_Logic_START
     PLA
-    JMP $E20C               ; Jumps to Galaxian which resides in the same 16kb PRG
+    JMP $E20C                       ; Jumps to Galaxian which resides in the same 16kb PRG
 
 NMI_Logic_START:
 ; Save Y and X to stack and pull them at NMI end
@@ -887,7 +887,7 @@ NMI_Logic_START:
     PHA
     LDA PPUCNTRLByte
 ; Disable NMI?
-    AND #%01111111                       ; $7F
+    AND #%01111111                  ; $7F
     STA PPUControl_2000
 
     LDA PPUStatus_2002
@@ -921,8 +921,8 @@ PPUUpdateAttributesPalettes:
     JSR LoadScreenAttributes
 
     LDA #$00
-    STA PPUScroll_2005      ; Write 1: X Scroll
-    STA PPUScroll_2005      ; Write 2: Y Scroll
+    STA PPUScroll_2005              ; Write 1: X Scroll
+    STA PPUScroll_2005              ; Write 2: Y Scroll
 
 
 JoyPadHandleButtonPresses:
@@ -1239,7 +1239,7 @@ JoyPad_Pressed_END:
 
     LDA PPUCNTRLByte
 ; Enable NMI
-    ORA #%10000000                           ; $80
+    ORA #%10000000                  ; $80
     STA PPUControl_2000
 
     PLA
@@ -1248,7 +1248,7 @@ JoyPad_Pressed_END:
     TAY
     PLA
 
-RTI                     ; Return from NMI
+RTI                                 ; Return from NMI
 
 
 
@@ -1359,10 +1359,10 @@ JoyPad_ButtonPressChangeCheck:
 
     LDX #$01
 
-@JoyPad_PressesReleases:                    ; Correct Name?=====================
+@JoyPad_PressesReleases:            ; Correct Name?=====================
     LDA JoyPad1, X
     TAY
-    EOR JoyPad_Pressed, X                   ; Not Sure?
+    EOR JoyPad_Pressed, X           ; Not Sure?
     AND JoyPad1, X
     STA JoyPad1, X
     STY JoyPad_Pressed, X
@@ -1431,7 +1431,7 @@ RTS
 
 
 ; Start of menu data
-.segment "RODATAA"              ; $D550
+.segment "RODATAA"                  ; $D550
     .org $D550
 
 ; Starts at: $9550 - $9553 / $1550 - $1553
@@ -1478,13 +1478,13 @@ NameTablePointerData:
     .word NameTableBackgroundMenuTiles      ; .byte $BC, $D5 | $D5BC
 
     ; Section 1 $D638 / $1638
-    .word NameTableSection1                 ; .byte $38, $D6 | $D638
+    .word NameTableSection1         ; .byte $38, $D6 | $D638
 
     ; Section 2 $D744 / $1744
-    .word NameTableSection2                 ; .byte $44, $D7 | $D744
+    .word NameTableSection2         ; .byte $44, $D7 | $D744
 
     ; Section 3 $D867 / $1867
-    .word NameTableSection3                 ; .byte $67, $D8 | $D867
+    .word NameTableSection3         ; .byte $67, $D8 | $D867
 
 
 
@@ -1846,7 +1846,7 @@ NameTableSection3:
 
 
 ; Start of last portion of menu code
-.segment "CODEC"                ; $D969
+.segment "CODEC"                    ; $D969
     .org $D969
 
 ; ----------------------------------
@@ -1858,7 +1858,7 @@ BootGame:
     LDX #$00
 
 @BootGame_Loop:
-    LDA BootGameSequenceData, X                 ; ======================================
+    LDA BootGameSequenceData, X     ; ======================================
     STA $0180, X
 
 ; BootGameSequenceData Not sure what this actually is
@@ -2308,7 +2308,7 @@ BootGameBootSequencesSection3:
 
 
 ; Include 52-in-1 data Part 3
-.segment "BINC"                    ; $DD41
+.segment "BINC"                     ; $DD41
     .org $DD41
     .incbin "./bin/1D41-3FF1.bin"
 
@@ -2317,9 +2317,9 @@ BootGameBootSequencesSection3:
 .segment "MULTIC"
     .org $FFF2
 RESET:
-    STA $984F           ; Mapper Call
-    JMP ROM_START       ; Jump to beginning
-    .byte $FF, $FF      ; Padding
+    STA $984F                       ; Mapper Call
+    JMP ROM_START                   ; Jump to beginning
+    .byte $FF, $FF                  ; Padding
 
 
 
@@ -2327,11 +2327,11 @@ RESET:
 ; vectors placed at top 6 bytes of memory area
 ;
 
-.segment "VECTORS"      ; Special adresses 6502 needs to operate
-    .word NMI           ; non-maskable interrupt (NMI), $FFFA-$FFFB = NMI vector, https://wiki.nesdev.com/w/index.php/NMI
-    .word RESET         ; Reset vector, $FFFC-$FFFD = Reset vector
+.segment "VECTORS"                  ; Special adresses 6502 needs to operate
+    .word NMI                       ; non-maskable interrupt (NMI), $FFFA-$FFFB = NMI vector, https://wiki.nesdev.com/w/index.php/NMI
+    .word RESET                     ; Reset vector, $FFFC-$FFFD = Reset vector
     .byte $B4, $D3
-;    .word IRQ           ; IRQ vector, $FFFE-$FFFF = IRQ/BRK vector
+;    .word IRQ                      ; IRQ vector, $FFFE-$FFFF = IRQ/BRK vector
 
 
 
@@ -2339,5 +2339,5 @@ RESET:
 ; CHR ROM
 ;
 
-.segment "TILES"        ; CHAracter data
+.segment "TILES"                    ; CHAracter data
     .incbin "52-in-1 Menu.chr"
