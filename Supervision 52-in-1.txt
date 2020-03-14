@@ -228,7 +228,12 @@
  ┌──────────────┐
  │ Information: │
  └──────────────┘
+ 
+  This entry is based on the japanese release of Star Soldier.
+  Copyright information in ROM and Title Screen Logo and
+  copyright has been removed.
 
+  Mapper calls has been changed to fit within the mapper.
 
 ╠=============================================================╣
 ║               52-in-1 info                                  ║
@@ -288,18 +293,25 @@
   Original:  $(8)03A0 20 E6 00 C0 C6 C8 C6 C5 CC CD F1 C5 00 00 00 00 00 DD DA C6 DA DE FE 21 06 00 00 C2 C7 C5 00 CE
   Original:  $(8)03C0 CF D2 D3 00 F1 C6 C5 F0 E4 E5 E6 E7 E8 FE 21 26 00 C0 C9 C3 00 00 D0 D1 D4 D5 C0 D7 D8 00 DB DA
   Original:  $(8)03E0 C6 DA E9 EA FE 21 46 F2 F3 C8 C4 00 C0 D6 C6 C5 00 C1 D9 C4 00 DD DA C6 DA DE 00 FE 21 66 EF F4
-  Original:  $(8)0400 C7 F7 F5 00 F6 C3 00 00 F1 C8 C5 00 EB EC ED EE EA 00 FE 21 CB 02 00 1A 16 0B 23 0F 1C FE 22 0B
-  Original:  $(8)0420 03 00 1A 16 0B 23 0F 1C FE 22 85 2E 00 0C 1C 19 18 1D 19 18 22 12 0B 1C 0B 1E 0F 1E 1D 1F 19 FE
-  Original:  $(8)0440 22 A8 1B 1D 12 1F 0F 13 1D 12 0B 22 10 1F 14 13 00 1E 20 FE 22 C9 22 1E 19 0F 13 00 0B 18 13 17
-  Original:  $(8)0460 0B 1E 13 19 18 FE 22 EB FA FB FE 23 05 02 0A 09 07 00 00 FC FD 1E 19 0F 13 00 0B 18 13 17 0B 1E
-  Original:  $(8)0480 13 19 18 FE 23 2D 1D 12 19 1F 0F 13 00 1D 23 1D 1E 0F 17 FF
+  Original:  $(8)0400 C7 F7 F5 00 F6 C3 00 00 F1 C8 C5 00 EB EC ED EE EA 00 FE 
 
   52-in-1:   $(8)0389 20 C6 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 FE
   52-in-1:   $(8)03A0 20 E6 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 FE 21 06 00 00 00 00 00 00 00
   52-in-1:   $(8)03C0 00 00 00 00 00 00 00 00 00 00 00 00 00 FE 21 26 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
   52-in-1:   $(8)03E0 00 00 00 00 FE 21 46 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 FE 21 66 00 00
-  52-in-1:   $(8)0400 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 FE 21 CB 02 00 1A 16 0B 23 0F 1C FE 22 0B
-  52-in-1:   $(8)0420 03 00 1A 16 0B 23 0F 1C FE 22 85 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 FE
+  52-in-1:   $(8)0400 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 FE 
+
+  # Title Screen - Copyright
+                           (c)     B  R  O  N  S  O  N  .  H  A  R  A  T  E  T  S  U  O
+  Original:  $(8)0429 22 85 2E 00 0C 1C 19 18 1D 19 18 22 12 0B 1C 0B 1E 0F 1E 1D 1F 19 FE
+                             /  S  H  U  E  I  S  H  A  .  F  U  J  I     T  V           .  T  O  E  I     A  N  I  M
+  Original:  $(8)0440 22 A8 1B 1D 12 1F 0F 13 1D 12 0B 22 10 1F 14 13 00 1E 20 FE 22 C9 22 1E 19 0F 13 00 0B 18 13 17
+                       A  T  I  O  N          [CAT]           1  9  8  6       [CAT]  T  O  E  I     A  N  I  M  A  T
+  Original:  $(8)0460 0B 1E 13 19 18 FE 22 EB FA FB FE 23 05 02 0A 09 07 00 00 FC FD 1E 19 0F 13 00 0B 18 13 17 0B 1E
+                       I  O  N           S  H  O  U  E  I     S  Y  S  T  E  M
+  Original:  $(8)0480 13 19 18 FE 23 2D 1D 12 19 1F 0F 13 00 1D 23 1D 1E 0F 17 FF
+
+  52-in-1:   $(8)0429 22 85 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 FE
   52-in-1:   $(8)0440 22 A8 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 FE 22 C9 00 00 00 00 00 00 00 00 00 00
   52-in-1:   $(8)0460 00 00 00 00 00 FE 22 EB 00 00 FE 23 05 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
   52-in-1:   $(8)0480 00 00 00 FE 23 2D 00 00 00 00 00 00 00 00 00 00 00 00 00 FF
@@ -339,6 +351,16 @@
 
   ROM:       Star Soldier (Japan).nes
   MD5:       c6f0da34a0a8f98edb1a9a81d4a6d2c8
+
+ ┌──────────────┐
+ │ Information: │
+ └──────────────┘
+
+  This entry is based on the japanese release of Star Soldier.
+  Copyright information on title screen has been removed.
+
+  Mapper calls has been changed to fit within the mapper,
+  and CHR bank 2 and 3 has been removed and remapped to 0 and 1.
 
 ╠===========================================╣
 ║               52-in-1 info                ║
