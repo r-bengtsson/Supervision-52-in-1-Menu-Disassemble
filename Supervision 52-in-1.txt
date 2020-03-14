@@ -56,7 +56,7 @@
   STA $8000 (8D 00 80) [1000 0000 | 0000 0000]
   JMP $8000 (4C 00 80)
 
-  # Reset Vector:
+  Reset Vector:
   $(F)7FF2: 8D 4F 98 (STA $984F)
   $(F)7FFC: F2 FF    ($FFF2)
 
@@ -139,7 +139,7 @@
   STA $8084 (8D 84 80) [1000 0000 | 1000 0100]
   JMP $8010 (4C 10 80)
 
-  # Reset Vector:
+  Reset Vector:
   $(F)7FF2: 8D 4F 98 (STA $984F)
   $(F)7FFC: F2 FF    ($FFF2)
 
@@ -338,7 +338,7 @@
   LDA #$00  (A9 00)
   JMP $8004 (4C 04 80)
 
-  # Reset Vector:
+  Reset Vector:
   $(8)0000: 8D 4F 98 (STA $984F)
   $(F)7FFC: 00 80    ($8000)
 
