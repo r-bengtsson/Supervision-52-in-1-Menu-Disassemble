@@ -2055,13 +2055,26 @@ BCC @BootGameResetSound
 .segment "RODATAB"                  ; $D9F2
     .org $D9F2
 
+; Special mapper routine stored in $0180. Used in 06.LEGENDRY (more?)
 ; Starts at: $D9F2 - $DA00 / $19F2 - $1A00
 BootGameSequenceData:
     .byte $48, $29, $02, $D0, $05, $8D, $90, $A2, $68, $60, $8D, $91, $A2, $68, $60
 
 ; BootGameSequenceData
 ; $19F2 - $1A00
-; 482902D0058D90A268608D91A26860
+; 48 29 02 D0 05 8D 90 A2 68 60 8D 91 A2 68 60
+;
+; $0180  PHA       (48)
+; $0181  AND #$02  (29 02)
+; $0183  BNE $018A (D0 05)
+; $0185  STA $A290 (8D 90 A2) [1010 0010 1001 0000]
+; $0188  PLA       (67)
+; $0189  RTS       (60)
+;
+; $018A  STA $A291 (8D 91 A2) [1010 0010 1001 0001]
+; $018D  PLA (68)
+; $018E  RTS (60)
+
 
 
 ; Starts at: $DA01 - $DB20 / $1A01 - $1B20

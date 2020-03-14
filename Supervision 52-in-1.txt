@@ -1,7 +1,9 @@
 ﻿Supervision 52-in-1
 -------------------------------------------------------------------
 
-
+  # Reset Vector:
+  $(F)7FF2: 8D 4F 98 (STA $984F)
+  $(F)7FFC: F2 FF    ($FFF2)
 
 
 |¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯|
@@ -13,9 +15,9 @@
 <------------------- SECTION 1 -------------------->
 <-------------------------------------------------->
 
-╔===========================================╗
-║              01.ISLANDER                  ║
-╠===========================================╣
+╔=============================================================╗
+║              01.ISLANDER                                    ║
+╠=============================================================╣
 
   Original:  Takahashi Meijin no Bouken-jima (高橋名人の冒険島)
   Released:  September 12, 1986
@@ -28,52 +30,78 @@
   CHR:       32 kB
   Mirroring: Vertical
 
-╠===========================================╣
-║               52-in-1 info                ║
-╠===========================================╣
+  [No-Intro]
+  ROM:       Takahashi Meijin no Bouken-jima (Japan).nes
+  MD5:       97740079707e3c797f0cf9d5230ff1cb
 
-  PRG Location: $000000 - $007FF0
-  CHR Location: $100000 - $107FF0
+ ┌──────────────┐
+ │ Information: │
+ └──────────────┘
+
+  This entry is based on the japanese release of
+  Takahashi Meijin no Bouken-jima (Adventure Island).
+  Pink/White Kanji and copyright information on title screen
+  has been removed.
+
+  Mapper calls has been changed to fit within the mapper.
+
+╠=============================================================╣
+║               52-in-1 info                                  ║
+╠=============================================================╣
+
+  PRG:       $000000 - $007FF0
+  CHR:       $100000 - $107FF0
+
+  Bootcode ($0400):
+  STA $8000 (8D 00 80) [1000 0000 | 0000 0000]
+  JMP $8000 (4C 00 80)
 
   # Reset Vector:
   $(F)7FF2: 8D 4F 98 (STA $984F)
   $(F)7FFC: F2 FF    ($FFF2)
 
---------------------------
-  Changes from original:
---------------------------
-  PRG
---------
+ ┌────────────────────────┐
+ │ Changes from original: │
+ ├─────┬──────────────────┘
+ │ PRG │
+ └─────┘
+
+ -----------
   Graphics:
+ -----------
 
-  # Small pink Kanji removed
-  Original:  $(B)3210 02 03 06 07 21 23 26 27 32 33 12 13 16 17 24 25 20 31 34 35
-  52-in-1:   $(B)3210 FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
-
-
-  # Title Screen copyright removed
-                                1  9  8  6     H  U  D  S  O  N     S  O  F  T
-  Original:  $(B)32A0 EE CF FF DE DF FD FE FF E8 F5 E4 F3 EF EE FF F3 EF E6 F4
-  52-in-1:   $(B)32A0 EE FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+  # Title Screen - Pink/white Kanji
+  Original:  $(B)3210  02 03 06 07 21 23 26 27 32 33 12 13 16 17 24 25 20 31 34 35
+  52-in-1:   $(B)3210  FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
 
 
-  # Bank switch Call:
-  Original:  $(B)37B4 9D FF B7 (STA $B7FF, X)
-  52-in-1:   $(B)37B4 9D 00 80 (STA $8000, X)
+  # Title Screen - Copyright
+                                 1  9  8  6     H  U  D  S  O  N     S  O  F  T
+  Original:  $(B)32A0  EE CF FF DE DF FD FE FF E8 F5 E4 F3 EF EE FF F3 EF E6 F4
+  52-in-1:   $(B)32A0  EE FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
 
 
-  # Banktable:
-  Original:  $(B)37FF 30 31 32 33
-  52-in-1:   $(B)37FF 00 01 02 03
+ ---------
+  Mapper:
+ ---------
 
-╚===========================================╝
+  # Mapper - Bank switch call
+  Original:  $(B)37B4  9D FF B7 (STA $B7FF, X)
+  52-in-1:   $(B)37B4  9D 00 80 (STA $8000, X)
+
+
+  # Mapper - Banktable
+  Original:  $(B)37FF  30 31 32 33
+  52-in-1:   $(B)37FF  00 01 02 03
+
+╚=============================================================╝
 
 
 
 
-╔===========================================╗
-║              02.GRADING                   ║
-╠===========================================╣
+╔=============================================================╗
+║              02.GRADING                                     ║
+╠=============================================================╣
 
   Original:  Gradius (グラディウス)
   Released:  April 25, 1986
@@ -86,13 +114,95 @@
   CHR:       32 kB
   Mirroring: Vertical
 
-╠===========================================╣
-║               52-in-1 info                ║
-╠===========================================╣
+  ROM:       Gradius (Japan).nes
+  MD5:       5e6719b309a9f522135e5b889f326f4c
+
+ ┌──────────────┐
+ │ Information: │
+ └──────────────┘
+
+  This entry is based on the japanese release of Gradius.
+  Version information in ROM has been removed.
+  Copyright and the Gradius logo has been removed
+
+  Mapper calls has been changed to fit within the mapper.
+
+╠=============================================================╣
+║               52-in-1 info                                  ║
+╠=============================================================╣
+
+  Location:
+  PRG:       $008000 - $00FFF0
+  CHR:       $108000 - $10FFF0
+
+  Bootcode ($0400):
+  STA $8084 (8D 84 80) [1000 0000 | 1000 0100]
+  JMP $8010 (4C 10 80)
+
+  # Reset Vector:
+  $(F)7FF2: 8D 4F 98 (STA $984F)
+  $(F)7FFC: F2 FF    ($FFF2)
+
+ ┌────────────────────────┐
+ │ Changes from original: │
+ ├─────┬──────────────────┘
+ │ PRG │
+ └─────┘
+
+ -----------
+  Graphics:
+ -----------
+
+  # ROM - Version information
+                        R  C  8  1  0     1  ,  0     8  6  0  2  1  9
+  Original:  $(8)0000  52 43 38 31 30 20 31 2C 30 20 38 36 30 32 31 39
+  52-in-1:   $(8)0000  FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+
+  # Title Screen - Copyright
+                               (c)     K  O  N  A  M  I     1  9  8  6
+  Original:  $(8)0730  FE 21 E9 61 00 0E 05 0F 02 03 11 00 31 39 38 36
+  52-in-1:   $(8)0730  FE 21 E9 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+  # Title Screen - Gradius Logo
+  Original:  $(8)0CC0  00 C0 C1 34 04 00 C0 34 19 00 D0 D1 D2 D3 D0 D1
+  Original:  $(8)0CD0  D2 D3 34 4D 00 39 80 81 34 1A 82 83 84 00 00 00
+  Original:  $(8)0CE0  85 86 87 88 89 8A 8A 8A 8B 8C 8D 8E 8F 90 91 92
+  Original:  $(8)0CF0  93 94 95 96 8A 8A 8A 97 88 98 99 9A 34 05 00 BB
+  Original:  $(8)0D00  86 87 88 9C 9D 9E 9F A0 A1 A2 A3 A4 A5 A6 A7 A8
+  Original:  $(8)0D10  A9 AA AB AC 9C 88 98 99 9B 34 07 00 BB 86 87 88
+  Original:  $(8)0D20  AD AE AF B0 B1 B2 B3 B4 B5 B6 B6 B7 AF B8 B9 BA
+  Original:  $(8)0D30  88 98 99 9B 34 09 00 BB 34 14 BC 9B 34 85 00 39
+
+  52-in-1:   $(8)0CC0  00 00 00 34 04 00 00 34 19 00 00 00 00 00 00 00
+  52-in-1:   $(8)0CD0  00 00 34 4D 00 39 00 00 34 1A 00 00 00 00 00 00
+  52-in-1:   $(8)0CE0  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  52-in-1:   $(8)0CF0  00 00 00 00 00 00 00 00 00 00 00 00 34 05 00 00
+  52-in-1:   $(8)0D00  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  52-in-1:   $(8)0D10  00 00 00 00 00 00 00 00 00 34 07 00 00 00 00 00
+  52-in-1:   $(8)0D20  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  52-in-1:   $(8)0D30  00 00 00 00 34 09 00 00 34 14 00 00 34 85 00 39
 
 
+ ---------
+  Mapper:
+ ---------
 
-╚===========================================╝
+  # Mapper - Bank switch call
+  Original:  $(8)0AC7  99 CE 8A 99 CE 8A (STA $8ACE, Y | STA $8ACE, Y)
+  52-in-1:   $(8)0AC7  99 84 80 99 84 80 (STA $8084, Y | STA $8084, Y)
+
+  # Mapper - Banktable
+  Original:  $(8)0ACE  30 32 31 33
+  52-in-1:   $(8)0ACE  00 02 01 03
+
+
+ ┌─────┐
+ │ CHR │
+ └─────┘
+
+  CHR Bank 02 ($2000 - €3FFF) and 03 ($4000 - €5FFF) has been swapped
+
+╚=============================================================╝
 
 
 
@@ -111,6 +221,9 @@
   PRG:       32 kB
   CHR:       32 kB
   Mirroring: Vertical
+
+  ROM:       Hokuto no Ken (Japan).nes
+  MD5:       b3b3a91e1044cd130cc04d6136b9f26d
 
 ╠===========================================╣
 ║               52-in-1 info                ║
@@ -138,6 +251,9 @@
   CHR:       32 kB (16 kB in 52-in-1)
   Mirroring: Vertical
 
+  ROM:       Star Soldier (Japan).nes
+  MD5:       c6f0da34a0a8f98edb1a9a81d4a6d2c8
+
 ╠===========================================╣
 ║               52-in-1 info                ║
 ╠===========================================╣
@@ -164,6 +280,9 @@
   CHR:       16 kB
   Mirroring: Vertical
 
+  ROM:       Goonies (Japan).nes
+  MD5:       460d3e6805496c35d630f538d01e68e4
+
 ╠===========================================╣
 ║               52-in-1 info                ║
 ╠===========================================╣
@@ -175,9 +294,9 @@
 
 
 
-╔===========================================╗
-║              06.LEGENDRY                  ║
-╠===========================================╣
+╔=============================================================╗
+║              06.LEGENDRY                                    ║
+╠=============================================================╣
 
   Original:  Kage no Densetsu (影の伝説)
   Released:  April 18, 1986
@@ -190,13 +309,87 @@
   CHR:       16 kB
   Mirroring: Horizontal
 
-╠===========================================╣
-║               52-in-1 info                ║
-╠===========================================╣
+  ROM:       Kage no Densetsu (Japan).nes
+  MD5:       4af158915d65dd33c3f0903c708d1664
+
+ ┌──────────────┐
+ │ Information: │
+ └──────────────┘
+
+  This entry is based on the japanese release of Kage no Densetsu.
+  Copyright information on title screen has been removed.
+
+  This ROM has been hacked a little bit more than others.
+  52-in-1 loads mapper calls into $0180 and the ROM JSR to
+  this location to perform mapper calls.
+
+╠=============================================================╣
+║               52-in-1 info                                  ║
+╠=============================================================╣
+
+  Location:
+  PRG:       $028000 - $02FFF0
+  CHR:       $120000 - $123FF0
+
+  Bootcode ($0400):
+  STA $A290 (8D 90 A2) [1010 0010 | 1001 0000]
+  SEI       (78)
+  CLD       (D8)
+  LDA #$00  (A9 00)
+  JMP $8004 (4C 04 80)
+
+  # Reset Vector:
+  $(8)0000: 8D 4F 98 (STA $984F)
+  $(F)7FFC: 00 80    ($8000)
+
+ ┌────────────────────────┐
+ │ Changes from original: │
+ ├─────┬──────────────────┘
+ │ PRG │
+ └─────┘
+
+ -----------
+  Graphics:
+ -----------
+
+  # Title Screen - Copyright
+                                   --     T  A  I  T  O     C  O  R  P --     1  9  8  6
+  Original:  $(8)0530  92 A5 23 47 5E 00 54 41 49 54 4F 00 43 4F 52 50 5F 00 31 39 38 36 FF
+  52-in-1:   $(8)0530  92 A5 23 47 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 FF
 
 
+ ---------
+  Mapper:
+ ---------
 
-╚===========================================╝
+  # Mapper - Bank switch call
+  Original:  $(A)24D8  8D 00 60 (STA $6000)
+  52-in-1:   $(A)24D8  20 80 01 (JSR $0180)
+
+  # Loaded into $0180 by 52-in-1 Menu
+  Bank loading routine:
+  $0180  PHA       (48)
+  $0181  AND #$02  (29 02)
+  $0183  BNE $018A (D0 05)
+  Bank 01:
+  $0185  STA $A290 (8D 90 A2) [1010 0010 1001 0000]
+  $0188  PLA       (67)
+  $0189  RTS       (60)
+
+  Bank 02:
+  $018A  STA $A291 (8D 91 A2) [1010 0010 1001 0001]
+  $018D  PLA (68)
+  $018E  RTS (60)
+
+ ---------
+  52-in-1:
+ ---------
+
+  # 52-in-1 - GameBoot/Reset Vector
+  Original: $(8)0000  78 D8 A9 00  (SEI | CLD | LDA #$00)
+  52-in-1:  $(8)0000  8D 4F 98     (STA $984F)
+
+╚=============================================================╝
 
 
 
@@ -205,16 +398,19 @@
 ║              07.TETRIS                    ║
 ╠===========================================╣
 
-  Original:  Tetris (テトリス)
-  Released:  December 22, 1988
-  Publisher: Bullet-Proof Software
-  Developer: Bullet-Proof Software
-  Players:   1
+  Original:  Tengen Tetris 
+  Released:  1989
+  Publisher: Tengen
+  Developer: Tengen
+  Players:   2
 
-  Mapper:    CNROM (3)
+  Mapper:    TENGEN-800008 (3)
   PRG:       32 kB
   CHR:       16 kB
   Mirroring: Vertical
+
+  ROM:       Tetris (USA) (Unl).nes
+  MD5:       1bcb1795a0feed766d6d0681196662fb
 
 ╠===========================================╣
 ║               52-in-1 info                ║
@@ -242,6 +438,9 @@
   CHR:       8 kB
   Mirroring: Vertical
 
+  ROM:       Super Mario Bros. (World).nes
+  MD5:       811b027eaf99c2def7b933c5208636de
+
 ╠===========================================╣
 ║               52-in-1 info                ║
 ╠===========================================╣
@@ -267,6 +466,9 @@
   PRG:       32 kB
   CHR:       16 kB (8 kB in 52-in-1)
   Mirroring: Horizontal
+
+  ROM:       TwinBee (Japan).nes
+  MD5:       18c3facfdd60c4f4b4e78ecb2c7959cc
 
 ╠===========================================╣
 ║               52-in-1 info                ║
@@ -294,6 +496,9 @@
   CHR:       16 kB
   Mirroring: Vertical
 
+  ROM:       Ninja Jajamaru-kun (Japan).nes
+  MD5:       d3280433a0e259027dbc4858c6c8b300
+
 ╠===========================================╣
 ║               52-in-1 info                ║
 ╠===========================================╣
@@ -320,6 +525,9 @@
   CHR:       16 kB
   Mirroring: Vertical
 
+  ROM:       City Connection (Japan).nes
+  MD5:       de9f231c2739450a1489c314b8330899
+
 ╠===========================================╣
 ║               52-in-1 info                ║
 ╠===========================================╣
@@ -345,6 +553,9 @@
   PRG:       32 kB
   CHR:       8 kB
   Mirroring: Horizontal
+
+  ROM:       B-Wings (Japan).nes
+  MD5:       1b24f09725092a2526fde24426eb6bc8
 
 ╠===========================================╣
 ║               52-in-1 info                ║
@@ -373,6 +584,9 @@
   CHR:       8 kB
   Mirroring: Horizontal
 
+  ROM:       1942 (Japan, USA).nes
+  MD5:       4f90905fd77c1c9456bd5dfe1ceddc34
+
 ╠===========================================╣
 ║               52-in-1 info                ║
 ╠===========================================╣
@@ -400,6 +614,9 @@
   CHR:       8 kB
   Mirroring: Vertical
 
+  ROM:       Gyrodine (Japan).nes
+  MD5:       314a2c13f0e964b51b326dc321653c36
+
 ╠===========================================╣
 ║               52-in-1 info                ║
 ╠===========================================╣
@@ -426,10 +643,14 @@
   CHR:       8 kB
   Mirroring: Horizontal
 
+  ROM:       Flappy (Japan).nes
+  MD5:       e82ef1763b81bfcab9c95c0258347512
+
 ╠===========================================╣
 ║               52-in-1 info                ║
 ╠===========================================╣
 
+  Not actually original game, but a hack.
 
 
 ╚===========================================╝
@@ -451,6 +672,9 @@
   PRG:       32 kB
   CHR:       8 kB
   Mirroring: Vertical
+
+  ROM:       Spartan X (Japan).nes
+  MD5:       020d45a8f944085d76500bd6f8f6fe15
 
 ╠===========================================╣
 ║               52-in-1 info                ║
@@ -478,10 +702,16 @@
   CHR:       8 kB
   Mirroring: Vertical
 
+  ROM:       Bomber Man (Japan).nes
+  MD5:       6e456b88a318156364066d197a8a43d4
+
 ╠===========================================╣
 ║               52-in-1 info                ║
 ╠===========================================╣
 
+  Actually a hack of Bomber Man that removes password system and
+  changes the password screen to a level select screen.
+  Not sure if there is other changes also.
 
 
 ╚===========================================╝
@@ -503,6 +733,9 @@
   PRG:       16 kB
   CHR:       8 kB
   Mirroring: Horizontal
+
+  ROM:       Front Line (Japan).nes
+  MD5:       ab4e56cd24f931f526a06c22db43f1df
 
 ╠===========================================╣
 ║               52-in-1 info                ║
@@ -535,6 +768,9 @@
   CHR:       
   Mirroring: 
 
+  ROM:       
+  MD5:       
+
 ╠===========================================╣
 ║               52-in-1 info                ║
 ╠===========================================╣
@@ -560,6 +796,9 @@
   PRG:       
   CHR:       
   Mirroring: 
+
+  ROM:       
+  MD5:       
 
 ╠===========================================╣
 ║               52-in-1 info                ║
@@ -587,6 +826,9 @@
   CHR:       
   Mirroring: 
 
+  ROM:       
+  MD5:       
+
 ╠===========================================╣
 ║               52-in-1 info                ║
 ╠===========================================╣
@@ -612,6 +854,9 @@
   PRG:       
   CHR:       
   Mirroring: 
+
+  ROM:       
+  MD5:       
 
 ╠===========================================╣
 ║               52-in-1 info                ║
@@ -639,6 +884,9 @@
   CHR:       
   Mirroring: 
 
+  ROM:       
+  MD5:       
+
 ╠===========================================╣
 ║               52-in-1 info                ║
 ╠===========================================╣
@@ -664,6 +912,9 @@
   PRG:       
   CHR:       
   Mirroring: 
+
+  ROM:       
+  MD5:       
 
 ╠===========================================╣
 ║               52-in-1 info                ║
@@ -691,6 +942,9 @@
   CHR:       
   Mirroring: 
 
+  ROM:       
+  MD5:       
+
 ╠===========================================╣
 ║               52-in-1 info                ║
 ╠===========================================╣
@@ -716,6 +970,9 @@
   PRG:       
   CHR:       
   Mirroring: 
+
+  ROM:       
+  MD5:       
 
 ╠===========================================╣
 ║               52-in-1 info                ║
@@ -743,6 +1000,9 @@
   CHR:       
   Mirroring: 
 
+  ROM:       
+  MD5:       
+
 ╠===========================================╣
 ║               52-in-1 info                ║
 ╠===========================================╣
@@ -768,6 +1028,9 @@
   PRG:       
   CHR:       
   Mirroring: 
+
+  ROM:       
+  MD5:       
 
 ╠===========================================╣
 ║               52-in-1 info                ║
@@ -795,6 +1058,9 @@
   CHR:       
   Mirroring: 
 
+  ROM:       
+  MD5:       
+
 ╠===========================================╣
 ║               52-in-1 info                ║
 ╠===========================================╣
@@ -820,6 +1086,9 @@
   PRG:       
   CHR:       
   Mirroring: 
+
+  ROM:       
+  MD5:       
 
 ╠===========================================╣
 ║               52-in-1 info                ║
@@ -847,6 +1116,9 @@
   CHR:       
   Mirroring: 
 
+  ROM:       
+  MD5:       
+
 ╠===========================================╣
 ║               52-in-1 info                ║
 ╠===========================================╣
@@ -872,6 +1144,9 @@
   PRG:       
   CHR:       
   Mirroring: 
+
+  ROM:       
+  MD5:       
 
 ╠===========================================╣
 ║               52-in-1 info                ║
@@ -899,6 +1174,9 @@
   CHR:       
   Mirroring: 
 
+  ROM:       
+  MD5:       
+
 ╠===========================================╣
 ║               52-in-1 info                ║
 ╠===========================================╣
@@ -924,6 +1202,9 @@
   PRG:       
   CHR:       
   Mirroring: 
+
+  ROM:       
+  MD5:       
 
 ╠===========================================╣
 ║               52-in-1 info                ║
@@ -951,6 +1232,9 @@
   CHR:       
   Mirroring: 
 
+  ROM:       
+  MD5:       
+
 ╠===========================================╣
 ║               52-in-1 info                ║
 ╠===========================================╣
@@ -976,6 +1260,9 @@
   PRG:       
   CHR:       
   Mirroring: 
+
+  ROM:       
+  MD5:       
 
 ╠===========================================╣
 ║               52-in-1 info                ║
@@ -1008,6 +1295,9 @@
   CHR:       
   Mirroring: 
 
+  ROM:       
+  MD5:       
+
 ╠===========================================╣
 ║               52-in-1 info                ║
 ╠===========================================╣
@@ -1033,6 +1323,9 @@
   PRG:       
   CHR:       
   Mirroring: 
+
+  ROM:       
+  MD5:       
 
 ╠===========================================╣
 ║               52-in-1 info                ║
@@ -1060,6 +1353,9 @@
   CHR:       
   Mirroring: 
 
+  ROM:       
+  MD5:       
+
 ╠===========================================╣
 ║               52-in-1 info                ║
 ╠===========================================╣
@@ -1085,6 +1381,9 @@
   PRG:       
   CHR:       
   Mirroring: 
+
+  ROM:       
+  MD5:       
 
 ╠===========================================╣
 ║               52-in-1 info                ║
@@ -1112,6 +1411,9 @@
   CHR:       
   Mirroring: 
 
+  ROM:       
+  MD5:       
+
 ╠===========================================╣
 ║               52-in-1 info                ║
 ╠===========================================╣
@@ -1137,6 +1439,9 @@
   PRG:       
   CHR:       
   Mirroring: 
+
+  ROM:       
+  MD5:       
 
 ╠===========================================╣
 ║               52-in-1 info                ║
@@ -1164,6 +1469,9 @@
   CHR:       
   Mirroring: 
 
+  ROM:       
+  MD5:       
+
 ╠===========================================╣
 ║               52-in-1 info                ║
 ╠===========================================╣
@@ -1189,6 +1497,9 @@
   PRG:       
   CHR:       
   Mirroring: 
+
+  ROM:       
+  MD5:       
 
 ╠===========================================╣
 ║               52-in-1 info                ║
@@ -1216,6 +1527,9 @@
   CHR:       
   Mirroring: 
 
+  ROM:       
+  MD5:       
+
 ╠===========================================╣
 ║               52-in-1 info                ║
 ╠===========================================╣
@@ -1241,6 +1555,9 @@
   PRG:       
   CHR:       
   Mirroring: 
+
+  ROM:       
+  MD5:       
 
 ╠===========================================╣
 ║               52-in-1 info                ║
@@ -1268,6 +1585,9 @@
   CHR:       
   Mirroring: 
 
+  ROM:       
+  MD5:       
+
 ╠===========================================╣
 ║               52-in-1 info                ║
 ╠===========================================╣
@@ -1293,6 +1613,9 @@
   PRG:       
   CHR:       
   Mirroring: 
+
+  ROM:       
+  MD5:       
 
 ╠===========================================╣
 ║               52-in-1 info                ║
@@ -1320,6 +1643,9 @@
   CHR:       
   Mirroring: 
 
+  ROM:       
+  MD5:       
+
 ╠===========================================╣
 ║               52-in-1 info                ║
 ╠===========================================╣
@@ -1345,6 +1671,9 @@
   PRG:       
   CHR:       
   Mirroring: 
+
+  ROM:       
+  MD5:       
 
 ╠===========================================╣
 ║               52-in-1 info                ║
@@ -1372,6 +1701,9 @@
   CHR:       
   Mirroring: 
 
+  ROM:       
+  MD5:       
+
 ╠===========================================╣
 ║               52-in-1 info                ║
 ╠===========================================╣
@@ -1397,6 +1729,9 @@
   PRG:       
   CHR:       
   Mirroring: 
+
+  ROM:       
+  MD5:       
 
 ╠===========================================╣
 ║               52-in-1 info                ║
