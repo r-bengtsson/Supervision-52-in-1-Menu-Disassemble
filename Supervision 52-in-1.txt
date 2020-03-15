@@ -76,7 +76,7 @@
 
 
   # Title Screen - Copyright
-                                 1  9  8  6     H  U  D  S  O  N     S  O  F  T
+                           ©     1  9  8  6     H  U  D  S  O  N     S  O  F  T
   Original:  $(B)32A0  EE CF FF DE DF FD FE FF E8 F5 E4 F3 EF EE FF F3 EF E6 F4
   52-in-1:   $(B)32A0  EE FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
 
@@ -159,7 +159,7 @@
   52-in-1:   $(8)0000  FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
 
   # Title Screen - Copyright
-                               (c)     K  O  N  A  M  I     1  9  8  6
+                                 ©     K  O  N  A  M  I     1  9  8  6
   Original:  $(8)0730  FE 21 E9 61 00 0E 05 0F 02 03 11 00 31 39 38 36
   52-in-1:   $(8)0730  FE 21 E9 00 00 00 00 00 00 00 00 00 00 00 00 00
 
@@ -304,7 +304,7 @@
   52-in-1:   $(8)03FC 21 66 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 FE 
 
   # Title Screen - Copyright
-                           (c)     B  R  O  N  S  O  N  .  H  A  R  A  T  E  T  S  U  O
+                             ©     B  R  O  N  S  O  N  .  H  A  R  A  T  E  T  S  U  O
   Original:  $(8)0429 22 85 2E 00 0C 1C 19 18 1D 19 18 22 12 0B 1C 0B 1E 0F 1E 1D 1F 19 FE
                              /  S  H  U  E  I  S  H  A  .  F  U  J  I     T  V
   Original:  $(8)0440 22 A8 1B 1D 12 1F 0F 13 1D 12 0B 22 10 1F 14 13 00 1E 20 FE
@@ -342,9 +342,9 @@
 
 
 
-╔===========================================╗
-║              04.STAR SOLDIER              ║
-╠===========================================╣
+╔=============================================================╗
+║              04.STAR SOLDIER                                ║
+╠=============================================================╣
 
   Original:  Star Soldier (スターソルジャー)
   Released:  June 13, 1986
@@ -370,9 +370,9 @@
   Mapper calls has been changed to fit within the mapper,
   and CHR bank 2 and 3 has been removed and remapped to 0 and 1.
 
-╠===========================================╣
-║               52-in-1 info                ║
-╠===========================================╣
+╠=============================================================╣
+║               52-in-1 info                                  ║
+╠=============================================================╣
 
   Location:
   PRG:       $018000 - $01FFF0
@@ -419,14 +419,14 @@
 
   CHR Bank 02 ($2000 - €3FFF) and 03 ($4000 - €5FFF) has been removed and banktable altered
 
-╚===========================================╝
+╚=============================================================╝
 
 
 
 
-╔===========================================╗
-║              05.GOONIES                   ║
-╠===========================================╣
+╔=============================================================╗
+║              05.GOONIES                                     ║
+╠=============================================================╣
 
   Original:  Goonies, The (グーニーズ)
   Released:  February 21, 1986
@@ -442,13 +442,107 @@
   ROM:       Goonies (Japan).nes
   MD5:       460d3e6805496c35d630f538d01e68e4
 
-╠===========================================╣
-║               52-in-1 info                ║
-╠===========================================╣
+ ┌──────────────┐
+ │ Information: │
+ └──────────────┘
 
 
 
-╚===========================================╝
+╠=============================================================╣
+║               52-in-1 info                                  ║
+╠=============================================================╣
+
+  Location:
+  PRG:       $020000 - $027FF0
+  CHR:       $11C000 - $11FFF0
+
+  Bootcode ($0400):
+  STA $820E (8D 0E 82) [1000 0010 | 0000 1110]
+  JMP $8011 (4C 11 80) 
+
+  Reset Vector:
+  $(F)7FF2: 8D 4F 98 (STA $984F) [1001 1000 | 0100 1111]
+  $(F)7FFC: F2 FF    ($FFF2)
+  
+ ┌────────────────────────┐
+ │ Changes from original: │
+ ├─────┬──────────────────┘
+ │ PRG │
+ └─────┘
+
+ -----------
+  Graphics:
+ -----------
+
+  # Copyright Screen
+                             T  H  E     G  O  O  N  I  E  S  ™     I  S     A     T  R  A  D  E  M  A  R  K
+  Original:  $(8)0765 21 43 54 48 45 00 47 4F 4F 4E 49 45 53 F1 00 49 53 00 41 00 54 52 41 44 45 4D 41 52 4B FD
+                             O  F     W  A  R  N  E  R     B  R  O  S  .     I  N  C  .
+  Original:  $(8)0783 21 A3 4F 46 00 57 41 52 4E 45 52 00 42 52 4F 53 CF 00 49 4E 43 CF FD
+                             ©     1  9  8  5     W  A  R  N  E  R     B  R  O  S  .     I  N  C  .
+  Original:  $(8)079A 22 84 F2 00 31 39 38 35 00 57 41 52 4E 45 52 00 42 52 4F 53 CF 00 49 4E 43 CF FD
+                             A  L  L     R  I  G  H  T  S     R  E  S  E  R  V  E  D  .
+  Original:  $(8)07B5 22 C4 41 4C 4C 00 52 49 47 48 54 53 00 52 45 53 45 52 56 45 44 CF FE 
+
+  52-in-1:   $(8)0765 21 43 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 FD
+  52-in-1:   $(8)0780 21 A3 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 FD
+  52-in-1:   $(8)0790 22 84 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 FD
+  52-in-1:   $(8)07B5 22 C4 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 FE 
+
+  # Title Screen - Copyright
+                             ©     K  O  N  A  M  I     1  9  8  6
+  Original:  $(8)07CF 22 69 F3 00 4B 4F 4E 41 4D 49 00 31 39 38 36 FD
+  52-in-1:   $(8)07CF 22 69 00 00 00 00 00 00 00 00 00 00 00 00 00 FD
+
+
+  # Title Screen - Logo
+  Original:  $(E)6D7D 35 08 E3 E4 35 04 F4 35 09 E1 36 06 BC
+  Original:  $(E)6D8A 35 08 D0 D1 D2 D3 D4 D5 D6 D7 35 08 BD
+  Original:  $(E)6D97 36 06 E0 35 18 BD
+  Original:  $(E)6D9D 36 06 39 BC
+  Original:  $(E)6DA1 35 03 D0 D1 D2 D3 D4 D5 D7 D6 D7 D8 D9 DA DB DC DD DE DF 35 04 E1 36 06 BC
+  Original:  $(E)6DBA 35 03 E0 E1 E2 E3 E4 E5 E7 E6 E7 E8 E9 EA EB EC ED EE EF 35 04 E1 36 06 BC
+  Original:  $(E)6DD3 35 06 F3 F4 F5 F7 F6 F7 F8 F9 FA FB FC FD FE FF F0 35 03 BD
+  Original:  $(E)6DE7 36 06 E0 35 18 BD 36 06 BC
+
+  52-in-1:   $(E)6D7D 35 08 00 00 35 04 00 35 09 E1 36 06 BC
+  52-in-1:   $(E)6D8A 35 08 00 00 00 00 00 00 00 00 35 08 BD
+  52-in-1:   $(E)6D97 36 06 E0 35 18 BD
+  52-in-1:   $(E)6D9D 36 06 39 BC
+  52-in-1:   $(E)6DA1 35 03 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 35 04 E1 36 06 BC
+  52-in-1:   $(E)6DBA 35 03 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 35 04 E1 36 06 BC
+  52-in-1:   $(E)6DD3 35 06 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 35 03 BD
+  52-in-1:   $(E)6DE7 36 06 E0 35 18 BD 36 06 BC
+
+
+ ---------
+  Mapper:
+ ---------
+
+  # Mapper - Bank switch call
+  Original:  $(8)00CA  8D 00 60 8D 00 60 (STA $6000 | STA $6000)
+  52-in-1:   $(8)00CA  20 E0 FF 20 E0 FF (JSR $FFE0 | JSR $FFE0)
+
+  # Mapper - Bank switch call
+  Original:  $(C)4E90  8D 00 60 (STA $6000)
+  52-in-1:   $(C)4E90  20 E0 FF (JSR $FFE0)
+
+  # Mapper - New bank call routine (placed in empty part of ROM)
+  Original:  $(F)7FE0  FF FF FF FF FF FF FF FF FF FF FF FF
+  52-in-1:   $(F)7FE0  29 02 D0 04 8D 0E 82 60 8D 0F 82 60
+
+  $(F)7FE0   AND #$02  (29 02)
+  $(F)7FE2   BNE $FFE8 (D0 04)
+
+  Bank 00:
+  $(F)7FE4   STA $820E (8D 0E 82) [1000 0010 | 0000 1110]
+  $(F)7FE7   RTS       (60)
+
+  Bank 01:
+  $(F)7FE8   STA $820F (8D 0F 82) [1000 0010 | 0000 1111]
+  $(F)7FEB   RTS       (60)
+
+╚=============================================================╝
 
 
 
@@ -530,12 +624,13 @@
   $0180  PHA       (48)
   $0181  AND #$02  (29 02)
   $0183  BNE $018A (D0 05)
-  Bank 01:
+
+  Bank 00:
   $0185  STA $A290 (8D 90 A2) [1010 0010 1001 0000]
   $0188  PLA       (67)
   $0189  RTS       (60)
 
-  Bank 02:
+  Bank 01:
   $018A  STA $A291 (8D 91 A2) [1010 0010 1001 0001]
   $018D  PLA (68)
   $018E  RTS (60)
