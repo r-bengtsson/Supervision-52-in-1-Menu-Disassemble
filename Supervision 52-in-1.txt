@@ -441,7 +441,7 @@
   Developer: Konami
   Players:   1
 
-  Mapper:    KONAMI-74*139/74 (87), Mapper hacked to CNROM (3)
+  Mapper:    KONAMI-74*139/74 (87)
   PRG:       32 kB
   CHR:       16 kB
   Mirroring: Vertical
@@ -571,7 +571,7 @@
   Developer: TOSE Software
   Players:   2
 
-  Mapper:    TAITO-74*139/74 (87), Mapper hacked to CNROM (3)
+  Mapper:    TAITO-74*139/74 (87)
   PRG:       32 kB
   CHR:       16 kB
   Mirroring: Horizontal
@@ -897,7 +897,7 @@
   Developer: Konami
   Players:   2
 
-  Mapper:    KONAMI-74*139/74 (87), Mapper hacked to CNROM (3)
+  Mapper:    KONAMI-74*139/74 (87)
   PRG:       32 kB
   CHR:       16 kB (8 kB in 52-in-1)
   Mirroring: Horizontal
@@ -977,7 +977,7 @@
   Developer: TOSE Software
   Players:   2
 
-  Mapper:    JALECO-JF-06 (87) Mapper hacked to CNROM (3)
+  Mapper:    JALECO-JF-06 (87)
   PRG:       16 kB
   CHR:       16 kB
   Mirroring: Vertical
@@ -1000,7 +1000,6 @@
 ║               52-in-1 info                                  ║
 ╠=============================================================╣
 
-
   Location:
   PRG:       $048000 - $04BFF0
   CHR:       $12C000 - $12FFF0
@@ -1012,7 +1011,7 @@
   Reset Vector:
   $(8)0000: 8D 4F 98 (STA $984F)
   $(B)3FFC: 00 80    ($8000)
-  
+
  ┌────────────────────────┐
  │ Changes from original: │
  ├─────┬──────────────────┘
@@ -1093,7 +1092,7 @@
   Developer: Hect
   Players:   2
 
-  Mapper:    JALECO-JF-05 (87) Mapper hacked to CNROM (3)
+  Mapper:    JALECO-JF-05 (87)
   PRG:       16 kB
   CHR:       16 kB
   Mirroring: Vertical
@@ -1101,11 +1100,95 @@
   ROM:       City Connection (Japan).nes
   MD5:       de9f231c2739450a1489c314b8330899
 
+ ┌──────────────┐
+ │ Information: │
+ └──────────────┘
+
+  This entry is based on the japanese release of City Connection.
+  Copyright information on title screen has been removed.
+
+  Mapper calls has been changed to fit within the mapper.
+
 ╠===========================================╣
 ║               52-in-1 info                ║
 ╠===========================================╣
 
+  Location:
+  PRG:       $04C000 - $04FFF0
+  CHR:       $130000 - $133FF0
 
+  Bootcode ($0400):
+  STA $94D8 (8D D8 94) [1001 0100 | 1101 1000]
+  JMP $8000 (4C 00 80)
+
+  Reset Vector:
+  $(B)3FF2: 8D 4F 98 (STA $984F)
+  $(B)3FFC: F2 FF    ($FFF2)
+
+ ┌────────────────────────┐
+ │ Changes from original: │
+ ├─────┬──────────────────┘
+ │ PRG │
+ └─────┘
+
+ -----------
+  Graphics:
+ -----------
+
+  # Title Screen - JALECO
+                       J  A  L  E  C  O
+  Original: $(8)0B2A  4A 41 4C 45 43 4F
+  52-in-1:  $(8)0B2A  40 40 40 40 40 40
+
+  # Title Screen - 1985
+                       ©     1  9  8  5
+  Original: $(8)0B42  3D 40 31 39 38 35
+  52-in-1:  $(8)0B42  40 40 40 40 40 40
+
+  # ????????????
+  Original: $(8)03C4 40
+  52-in-1:  $(8)03C4 44
+
+ ---------
+  Mapper:
+ ---------
+
+  # Mapper - Bank switch
+  Original: $(8)0059  8D 00 60 (STA $6000)
+  52-in-1:  $(8)0059  20 E0 BF (JSR $BFE0)
+
+
+  # Mapper - Bank switch
+  Original: $(8)023F  8D 00 60 (STA $6000)
+  52-in-1:  $(8)023F  20 E0 BF (JSR $BFE0)
+
+
+  # Mapper - Bank switch
+  Original: $(8)06B5  8D 00 60 (STA $6000)
+  52-in-1:  $(8)06B5  20 E0 BF (JSR $BFE0)
+
+
+  # Mapper - Bank switch
+  Original: $(A)22DF  8D 00 60 (STA $6000)
+  52-in-1:  $(A)22DF  20 E0 BF (JSR $BFE0)
+
+  # Mapper - New bank call routine (placed in empty part of ROM)
+  Original:  $(B)3FE0  FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+  52-in-1:   $(B)3FE0  48 29 02 D0 05 8D D8 94 68 60 8D D9 94 68 60
+
+  $(B)3FE0   PHA       (48)
+  $(B)3FE1   AND #$02  (29 02)
+  $(B)3FE3   BNE $BFEA (D0 05)
+
+  Bank 0:
+  $(B)3FE5   STA $94D8 (8D D8 94) [1001 0100 | 1101 1000]
+  $(B)3FE8   PLA       (68)
+  $(B)3FE9   RTS       (60)
+
+  Bank 1:
+  $(B)3FEA   STA $94D9 (8D D9 94) [1001 0100 | 1101 1001]
+  $(B)3FED   PLA       (68)
+  $(B)3FEE   RTS       (60)
 
 ╚===========================================╝
 
@@ -1122,7 +1205,7 @@
   Developer: Data East
   Players:   2
 
-  Mapper:    HVC-CNROM+SECURITY (185) Mapper hacked to NROM-256 (0)?
+  Mapper:    HVC-CNROM+SECURITY (185)
   PRG:       32 kB
   CHR:       8 kB
   Mirroring: Horizontal
