@@ -795,7 +795,7 @@
 
 
 ╔===========================================╗
-║              08.BROS. II                  ║
+║              08.BROS. II                  ║   NEED MORE INFORMATION, NOT SURE WHAT 52-in-1 hacks does.
 ╠===========================================╣
 
   Original:  Super Mario Bros. (スーパーマリオブラザーズ)
@@ -812,11 +812,74 @@
   ROM:       Super Mario Bros. (World).nes
   MD5:       811b027eaf99c2def7b933c5208636de
 
+ ┌──────────────┐
+ │ Information: │
+ └──────────────┘
+
+  This entry seems to b a hacked version of Super Mario bros.
+  Copyright information and logo on title screen has been removed.
+  CHR has been hacked to resemble Super Mario Bros 2j.
+
 ╠===========================================╣
 ║               52-in-1 info                ║
 ╠===========================================╣
 
+  Location:
+  PRG:       $038000 - $03FFF0
+  CHR:       $128000 - $129FF0
 
+  Bootcode ($0400):
+  STA $8394 (8D 94 83) [1000 0011 | 1001 0100]
+  SEI       (78)
+  CLD       (D8)
+  LDA #$10  (A9 10)
+  JMP $8004 (4C 04 80)
+
+  Reset Vector:
+  $(8)0000: 8D 4F 98 (STA $984F) [1001 1000 | 0100 1111]
+  $(F)7FFC: 00 80    ($8000)
+  
+ ┌────────────────────────┐
+ │ Changes from original: │
+ ├─────┬──────────────────┘
+ │ PRG │
+ └─────┘
+
+ -----------
+  Graphics:
+ -----------
+  # ????????
+  Original: $(8)026C  AE FC 07 F0 4A (LDX $07FC | BEQ $82BB)
+  52-in-1:  $(8)026C  A2 01 3C F0 4A (LDX $01 | NOP* $4AF0, X) ???
+
+  # ????????
+  Original: $(8)02A1  29 07 8D 6B 07 ?????
+  52-in-1:  $(8)02A1  29 FF 20 EA FF (AND #$FF| JSR $FFEA)
+
+  # ????????
+  Original: $(F)7FEA  15 16 16 17 17 18 19 19 1A 1A 1C 1D 1D
+  52-in-1:  $(F)7FEA  C9 08 10 04 8D 6B 07 60 A9 00 4C EE FF 
+
+  $(F)7FEA  CMP #$08   (C9 08)
+  $(F)7FEC  BPL 04     (10 04)
+  $(F)7FEE  STA $6B07  (8D 6B 07)
+  $(F)7FF1  RTS        (60) 
+  $(F)7FF2  LDA #$ 00  (A9 00)
+  $(F)7FF4  JMP $FFEE  (4C EE FF)
+
+ ---------
+  52-in-1:
+ ---------
+
+  # 52-in-1 - GameBoot/Reset Vector
+  Original: $(8)0000  78 D8 A9 00  (SEI | CLD | LDA #$00)
+  52-in-1:  $(8)0000  8D 4F 98     (STA $984F)
+
+ ┌─────┐
+ │ CHR │
+ └─────┘
+
+  CHR has been hacked to resemble Super Mario Bros 2j.
 
 ╚===========================================╝
 
