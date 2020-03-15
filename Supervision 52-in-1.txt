@@ -1,9 +1,8 @@
 ﻿Supervision 52-in-1
 -------------------------------------------------------------------
 
-  # Reset Vector:
-  $(F)7FF2: 8D 4F 98 (STA $984F)
-  $(F)7FFC: F2 FF    ($FFF2)
+  Game information is taken from NES Cart Database [bootgod.dyndns.org:7777]
+  Mapper 225/255 information is taken from [wiki.nesdev.com]
 
 
 |¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯|
