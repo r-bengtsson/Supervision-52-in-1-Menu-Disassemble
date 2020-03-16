@@ -39,6 +39,7 @@
 
   This entry is based on the japanese release of
   Takahashi Meijin no Bouken-jima (Adventure Island).
+
   Pink/White Kanji and copyright information on title screen
   has been removed.
 
@@ -121,6 +122,7 @@
  └──────────────┘
 
   This entry is based on the japanese release of Gradius.
+
   Version information in ROM has been removed.
   Copyright and the Gradius logo has been removed
 
@@ -231,6 +233,7 @@
  └──────────────┘
  
   This entry is based on the japanese release of Hokuto no Ken.
+
   Copyright information in ROM and Title Screen Logo and
   copyright has been removed.
 
@@ -370,6 +373,7 @@
  └──────────────┘
 
   This entry is based on the japanese release of Star Soldier.
+
   Copyright information on title screen has been removed.
 
   Mapper calls has been changed to fit within the mapper,
@@ -454,6 +458,7 @@
  └──────────────┘
 
   This entry is based on the japanese release of Goonies.
+
   Copyright information on copyright and title screen has been removed.
   The logo on the title screen has also been removed.
 
@@ -584,6 +589,7 @@
  └──────────────┘
 
   This entry is based on the japanese release of Kage no Densetsu.
+
   Copyright information on title screen has been removed.
 
   This ROM has been hacked a little bit more than others.
@@ -687,6 +693,7 @@
  └──────────────┘
 
   This entry is based on the unlicensed title Tetris by Tengen.
+
   Copyright information on title and select screen has been removed.
 
   Mapper calls has been changed to fit within the mapper.
@@ -816,6 +823,7 @@
  └──────────────┘
 
   This entry seems to be a hacked version of Super Mario bros.
+
   Copyright information and logo on title screen has been removed.
   CHR has been hacked to resemble Super Mario Bros 2j.
 
@@ -910,6 +918,7 @@
  └──────────────┘
 
   This entry is based on the japanese release of Twin Bee.
+
   Copyright information and logo on title screen has been removed.
 
   CHR bank 2 and 3 has been removed.
@@ -991,6 +1000,7 @@
 
   This entry is based on the japanese release of Ninja
   Jajamaru-kun.
+
   Copyright information and logo on title screen
   has been removed.
 
@@ -1105,6 +1115,7 @@
  └──────────────┘
 
   This entry is based on the japanese release of City Connection.
+
   Copyright information on title screen has been removed.
 
   Mapper calls has been changed to fit within the mapper.
@@ -1222,6 +1233,7 @@
  └──────────────┘
 
   This entry is based on the japanese release of B-Wings.
+
   Copyright information on title screen has been removed.
 
   Security checks has been hacked which makes it into NROM.
@@ -1306,6 +1318,7 @@
  └──────────────┘
 
   This entry is based on the american/japanese release of 1942.
+
   Copyright information on title screen has been removed.
 
 ╠=============================================================╣
@@ -1380,6 +1393,7 @@
  └──────────────┘
 
   This entry is based on the japanese release of Gyrodine.
+
   Copyright information on title screen has been removed.
 
 ╠=============================================================╣
@@ -1441,10 +1455,11 @@
  └──────────────┘
 
   This entry is based on a hack of the japanese release
-  of Flappy. The hack is credited to "Whirlwind Manu"
-  who released a pirate version of this game.
-  The hack enables a level select cheat.
-  [bootleggames.fandom.com/wiki/Supervision_52-in-1]
+  of Flappy.
+  
+  The hack is credited to "Whirlwind Manu" who released
+  a pirate version of this game. The hack enables a level select
+  cheat. [bootleggames.fandom.com/wiki/Supervision_52-in-1]
 
   Copyright information on title screen has been changed
   to WHIRLWIND MENU.
@@ -1908,6 +1923,7 @@
 
   This entry is based on the japanese release of Spartan X
   (Kung Fu).
+
   Copyright information on title screen has been removed and
   CHR has been modified to remove © character.
 
@@ -1999,9 +2015,9 @@
  │ Information: │
  └──────────────┘
 
-  Actually a hack of Bomber Man that removes password system and
-  changes the password screen to a level select screen.
-  Not sure if there is other changes also.
+  This entry is a hack of the japanese release of Bomber Man.
+
+  The password system has been changed to a level select screen.
 
 ╠=============================================================╣
 ║                       52-in-1 info                          ║
@@ -2035,7 +2051,7 @@
   52-in-1:  $(9)1F6C  B0 B0 B0 B0 B0 B0 B0 B0 B0 B0 B0 B0 B0 B0 B0 B0 B0 B0 B0 B0 B0 B0 B0 B0 B0 B0
 
 
-  # Continue Screen - ENTER SECRET CODE
+  # Continue Screen
                        E  N  T  E  R     S  E  C  R  E  T     C  O  D  E
   Original: $(9)1C8A  45 4E 54 45 52 3A 53 45 43 52 45 54 3A 43 4F 44 45
                        P  U  S  H        A     O  R     B        K  E  Y
@@ -2115,6 +2131,7 @@
   52-in-1:  $(A)2306  2C 07 20
   $(A)2306  BIT $2006 (2C 07 20)
 
+
   # New routine (placed in empty part of ROM)
   Original: $(A)2FE0  FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
   Original: $(A)2FF0  FF FF FF FF FF FF
@@ -2160,6 +2177,7 @@
  └──────────────┘
 
   This entry is based on the japanese release of Front Line.
+
   Copyright information and logo on title screen has been
   removed in CHR.
 
@@ -2221,49 +2239,52 @@
 <------------------- SECTION 2 -------------------->
 <-------------------------------------------------->
 
- ┌──────────────┐
- │ Information: │
- └──────────────┘
 
+╔=============================================================╗
+║                       19.MACROSS                            ║
+╠=============================================================╣
 
+  Original:  Choujikuu Yousai Macross
+  Released:  December 10, 1985
+  Publisher: Namco
+  Developer: Namco
+  Players:   1
 
-╔===========================================╗
-║                       19.MACROSS                   ║
-╠===========================================╣
+  Mapper:    NROM-128 (0)
+  PRG:       16 kB
+  CHR:       8 kB
+  Mirroring: Vertical
 
-  Original:  
-  Released:  
-  Publisher: 
-  Developer: 
-  Players:   
-
-  Mapper:    
-  PRG:       
-  CHR:       
-  Mirroring: 
-
-  ROM:       
-  MD5:       
+  ROM:       Choujikuu Yousai - Macross (Japan).nes
+  MD5:       9540cf70c91352a80b5e067bceada717
 
  ┌──────────────┐
  │ Information: │
  └──────────────┘
 
+  This entry is based on the japanese release of
+  Choujikuu Yousai Macross.
 
+  Copyright information on title screen has been removed.
 
-╠===========================================╣
+╠=============================================================╣
 ║                       52-in-1 info                          ║
-╠===========================================╣
+╠=============================================================╣
 
   Location:
-  PRG:       $ - $
-  CHR:       $ - $
+  PRG:       $080000 - $083FF0
+  CHR:       $142000 - $143FF0
 
   Bootcode ($0400):
-
+  STA $9821  (8D 21 98) [1001 1000 | 0010 0001]
+  SEI        (78)
+  CLD        ($D8)
+  LDA #$10   (A9 10)
+  JMP $8004  (4C 04 80)
 
   Reset Vector:
-
+  $(8)C000: 8D 4F 98 (STA $984F) [1001 1000 | 0100 1111]
+  $(F)3FFC: 00 C0    ($C000)
 
  ┌────────────────────────┐
  │ Changes from original: │
@@ -2275,9 +2296,28 @@
   Graphics:
  -----------
 
+  # Title Screen - Copyright
+                                ©     B  I  G     W  E  S  T
+  Original: $(9)1DA0  22 CB 0A 3B 40 42 49 47 40 57 45 53 54
+                                ©     1  9  8  5     N  A  M  C  O     L  T  D  .
+  Original: $(9)1DAD  23 08 11 3B 40 31 39 38 35 40 4E 41 4D 43 4F 40 4C 54 44 3A
+                                A  L  L     R  I  G  H  T  S     R  E  S  E  R  V  E  D
+  Original: $(9)1DB1  23 47 13 41 4C 4C 40 52 49 47 48 54 53 40 52 45 53 45 52 56 45 44
+
+  52-in-1:  $(9)1DA0  22 CB 0A 40 40 40 40 40 40 40 40 40 40
+  52-in-1:  $(9)1DAD  23 08 11 40 40 40 40 40 40 40 40 40 40 40 40 40 40 40 40 40
+  52-in-1:  $(9)1DB1  23 47 13 40 40 40 40 40 40 40 40 40 40 40 40 40 40 40 40 40 40 40
 
 
-╚===========================================╝
+ ---------
+  52-in-1:
+ ---------
+
+  # 52-in-1 - GameBoot/Reset Vector
+  Original: $(8)0000  78 D8 A9 00  (SEI | CLD | LDA #$00)
+  52-in-1:  $(8)0000  8D 4F 98     (STA $984F)
+
+╚=============================================================╝
 
 
 
