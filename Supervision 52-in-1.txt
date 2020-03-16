@@ -2244,13 +2244,13 @@
 ║                       19.MACROSS                            ║
 ╠=============================================================╣
 
-  Original:  Choujikuu Yousai Macross
+  Original:  Choujikuu Yousai Macross (超時空要塞マクロス)
   Released:  December 10, 1985
   Publisher: Namco
   Developer: Namco
   Players:   1
 
-  Mapper:    NROM-128 (0)
+  Mapper:    NAMCOT-3302 (0)
   PRG:       16 kB
   CHR:       8 kB
   Mirroring: Vertical
@@ -2322,20 +2322,20 @@
 
 
 
-╔===========================================╗
-║                       20.1989GALAXIAN              ║
-╠===========================================╣
+╔=============================================================╗
+║                       20.1989GALAXIAN                       ║   NEEDS DEEPER ANALYSE
+╠=============================================================╣
 
-  Original:  
-  Released:  
-  Publisher: 
-  Developer: 
-  Players:   
+  Original:  Galaxian (ギャラクシアン)
+  Released:  September 7, 1984
+  Publisher: Namco
+  Developer: Namco
+  Players:   2
 
-  Mapper:    
-  PRG:       
-  CHR:       
-  Mirroring: 
+  Mapper:    NAMCOT-3301
+  PRG:       8 kB
+  CHR:       8 kB
+  Mirroring: Horizontal
 
   ROM:       
   MD5:       
@@ -2344,21 +2344,31 @@
  │ Information: │
  └──────────────┘
 
+  This entry is a hack of the japanese release of Galaxian.
 
+  It seems like this entry is closely tied to the 52-in-1 Menu
+  ROM space.
 
-╠===========================================╣
+  The bullets are speed up.
+  [bootleggames.fandom.com/wiki/Supervision_52-in-1]
+
+╠=============================================================╣
 ║                       52-in-1 info                          ║
-╠===========================================╣
+╠=============================================================╣
 
   Location:
-  PRG:       $ - $
-  CHR:       $ - $
+  PRG:       $086000 - $087FF0
+  CHR:       $144000 - $145FF0
 
   Bootcode ($0400):
-
+  STA $B862 (8D 62 B8) [1011 1000 | 0110 0010]
+  LDA $FF   (A9 FF)
+  STA $1A   (85 1A)
+  JMP $E020 (4C 20 E0)
 
   Reset Vector:
-
+  $(F)7FF2: 8D 4F 98 (STA $984F)
+  $(F)7FFC: F2 FF    ($FFF2)
 
  ┌────────────────────────┐
  │ Changes from original: │
@@ -2369,10 +2379,70 @@
  -----------
   Graphics:
  -----------
+  # Before Title Screen #1
+  Original: $(8)002F  A2 00 8A 95 00
+  $(8)002F  LDX #$00     (A2 00)
+  $(8)0031  TXA          (84)
+  $(8)0032  STA $00, X   (95 00)
+  
+  52-in-1:  $(8)002F  20 00 D0 24 00
+  $(8)002F  JSR $9000    (20 00 D0)
+  $(8)0032  BIT $00      (24 00)
 
 
+  # Before Title Screen #2
+  Original: $(8)0170  B9 B4 E1
+  $(8)0177  LDA $E1B4, Y (B9 B4 E1)
+  
+  52-in-1:  $(8)0170  20 45 D0
+  $(8)0177  JSR $D045    (20 45 D0)
 
-╚===========================================╝
+
+  # During Game?
+  Original: $(8)05A8  A5 4C 3D A0 E5
+  $(8)05A8  LDA $4C      (A5 4C)
+  $(8)05AA  AND $E5A0, X (3D A0 E5)
+
+  52-in-1:  $(8)05A9  4C 1D D0 A0
+  $(8)05A8  JMP $901D    (4C 1D D0)
+
+
+  # Gameplay - Shot routine
+  Original: $(8)0630  AD 80 02 38 E9 04 8D 80 02 B0 0E
+  $(8)0630  LDA $0280    (AD 80 02)
+  $(8)0633  SEC          (38)
+  $(8)0634  SBC #$04     (E9 04)
+  $(8)0636  STA $0280    (8D 80 02)
+  $(8)0639  BCS $8649    (B0 0E)
+
+  52-in-1:  $(8)0630  AD 80 02 20 0E D0 8D 80 02 B0 0E
+  $(8)0630  LDA $0280    (AD 80 02)
+  $(8)0633  JSR $900E    (20 0E D0)
+  $(8)0636  STA $0280    (8D 80 02)
+  $(8)0639  BCS $8649    (B0 0E)
+
+
+  # DATA ???
+  Original: $(9)1F80  FF 8D 02 40 BD D1 FF 09 08 8D 03 40 A5 01 4A 4A
+  Original: $(9)1F90  4A 29 1E AA BD B2 FF 8D 06 40 BD B1 FF 09 08 8D
+  
+  52-in-1:  $(9)1F80  FF 8D 02 40 BD D1 FF 09 08 8D 03 40 4C 51 D0 4A
+  52-in-1:  $(9)1F90  8D 4F 98 AA BD B2 FF 8D 06 40 BD B1 FF 09 08 8D
+
+
+ ---------
+  52-in-1:
+ ---------
+
+  # Reset Vector
+  Original: $(F)1FF2  FF FF FF FF FF FF 
+  52-in-1:  $(F)1FF2  8D 4F 98 4C E4 D0 
+
+  # Vectors
+  Original: $(F)1FFA  0C E2 | 20 E0 | 20 E0
+  52-in-1:  $(F)1FFA  57 D3 | F2 FF | B4 D3
+
+╚=============================================================╝
 
 
 
@@ -2381,16 +2451,16 @@
 ║                       21.STAR FORCE                ║
 ╠===========================================╣
 
-  Original:  
-  Released:  
-  Publisher: 
-  Developer: 
-  Players:   
+  Original:  Star Force (スターフォース)
+  Released:  June 25, 1985
+  Publisher: Hudson Soft
+  Developer: Tecmo
+  Players:   1
 
-  Mapper:    
-  PRG:       
-  CHR:       
-  Mirroring: 
+  Mapper:    NROM-128 (0)
+  PRG:       16 kB
+  CHR:       8 kB
+  Mirroring: Vertical
 
   ROM:       
   MD5:       
@@ -2399,15 +2469,19 @@
  │ Information: │
  └──────────────┘
 
+  This entry is based on the japanese release of
+  Star Force.
 
+  ****Pink/White Kanji and copyright information on title screen
+  has been removed.
 
 ╠===========================================╣
 ║                       52-in-1 info                          ║
 ╠===========================================╣
 
   Location:
-  PRG:       $ - $
-  CHR:       $ - $
+  PRG:       $088000 - $08BFF0
+  CHR:       $146000 - $147FF0
 
   Bootcode ($0400):
 
