@@ -795,7 +795,7 @@
 
 ╔=============================================================╗
 ║                       08.BROS. II                           ║   NEED MORE INFORMATION, NOT SURE WHAT 52-in-1 hack does.
-╠=============================================================╣
+╠=============================================================╣   Does it store the nametables in the CHR??
 
   Original:  Super Mario Bros. (スーパーマリオブラザーズ)
   Released:  September 13, 1985
@@ -1122,8 +1122,8 @@
   JMP $8000 (4C 00 80)
 
   Reset Vector:
-  $(B)3FF2: 8D 4F 98 (STA $984F)
-  $(B)3FFC: F2 FF    ($FFF2)
+  $(F)3FF2: 8D 4F 98 (STA $984F)
+  $(F)3FFC: F2 FF    ($FFF2)
 
  ┌────────────────────────┐
  │ Changes from original: │
@@ -1966,9 +1966,10 @@
  ┌─────┐
  │ CHR │
  └─────┘
+
   # Copyright (©) blanked 
-  Original: $0F48  FF FF FF FF FF FF FF FF C3 BD 66 5E 5E 66 BD C3
-  52-in-1:  $0F48  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  Original: $0F40  FF FF FF FF FF FF FF FF C3 BD 66 5E 5E 66 BD C3
+  52-in-1:  $0F40  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
 
 ╚=============================================================╝
 
@@ -2034,9 +2035,9 @@
 
 
 
-╔===========================================╗
-║                       18.FRONT LINE                ║
-╠===========================================╣
+╔=============================================================╗
+║                       18.FRONT LINE                         ║
+╠=============================================================╣
 
   Original:  Front Line (フロントライン)
   Released:  August 1, 1985
@@ -2056,35 +2057,57 @@
  │ Information: │
  └──────────────┘
 
+  This entry is based on the japanese release of Front Line.
+  Copyright information on title screen has been removed and
+  CHR has been modified to remove Copyright.
 
-
-╠===========================================╣
+╠=============================================================╣
 ║                       52-in-1 info                          ║
-╠===========================================╣
+╠=============================================================╣
 
   Location:
-  PRG:       $ - $
-  CHR:       $ - $
+  PRG:       $07C000 - $07FFF0
+  CHR:       $140000 - $141FF0
 
   Bootcode ($0400):
-
+  STA $B7E0 (8D E0 B7) [1011 0111 | 1110 0000]
+  JMP $C000 (4C 00 C0)
 
   Reset Vector:
-
+  $(F)3FF2: 8D 4F 98 (STA $984F)
+  $(F)3FFC: F2 FF    ($FFF2)
 
  ┌────────────────────────┐
  │ Changes from original: │
  ├─────┬──────────────────┘
- │ PRG │
+ │ CHR │
  └─────┘
+  # Nametable seems to be stored in CHR
 
- -----------
-  Graphics:
- -----------
+  # Title Screen - TAITO
+  Original: $0CA0  D2 D3 D4 D5 D6 D7 D8 D9 DA DB
+  Original: $0CAA  DC DD DE DF E0 E1 E2 E3 E4 E5
+
+  52-in-1:  $0CA0  0A 0A 0A 0A 0A 0A 0A 0A 0A 0A
+  52-in-1:  $0CAA  0A 0A 0A 0A 0A 0A 0A 0A 0A 0A
 
 
+  # Title Screen - Logo
+  Original: $0CB8  B2 B3 B2 B4 B5 B6 B7 B8 B9 BA 0A CC 0A CD B7 B8 B2 B3 0A 0A
+  Original: $0CCC  BB BC BB BD BE BF C0 C1 C2 C3 0A CC 0A CD C0 C1 BB BC 0A 0A
+  Original: $0CE0  C4 0A C4 C5 C6 C7 C8 C9 CA CB 0A CE B3 CF C8 C9 CE B3 D0 D1
 
-╚===========================================╝
+  52-in-1:  $0CB8  0A 0A 0A 0A 0A 0A 0A 0A 0A 0A 0A 0A 0A 0A 0A 0A 0A 0A 0A 0A
+  52-in-1:  $0CCC  0A 0A 0A 0A 0A 0A 0A 0A 0A 0A 0A 0A 0A 0A 0A 0A 0A 0A 0A 0A
+  52-in-1:  $0CE0  0A 0A 0A 0A 0A 0A 0A 0A 0A 0A 0A 0A 0A 0A 0A 0A 0A 0A 0A 0A
+
+
+  # Title Screen - Copyright
+                    ©     T  A  I  T  O     C  O  R  P  .     M  C  M  L  X  X  X  V
+  Original: $0D20  10 0A 24 11 19 24 1F 0A 13 1F 22 20 0F 0A 1D 13 1D 1C 28 28 28 26
+  52-in-1:  $0D20  0A 0A 0A 0A 0A 0A 0A 0A 0A 0A 0A 0A 0A 0A 0A 0A 0A 0A 0A 0A 0A 0A
+
+╚=============================================================╝
 
 
 
