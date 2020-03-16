@@ -606,7 +606,7 @@
   JMP $8004 (4C 04 80)
 
   Reset Vector:
-  $(8)0000: 8D 4F 98 (STA $984F)
+  $(8)0000: 8D 4F 98 (STA $984F)  (Needs code at $(8)0000 in 52-in-1 Menu ROM?)
   $(F)7FFC: 00 80    ($8000)
 
  ┌────────────────────────┐
@@ -657,7 +657,7 @@
 
   # 52-in-1 - GameBoot/Reset Vector
   Original: $(8)0000  78 D8 A9 00  (SEI | CLD | LDA #$00)
-  52-in-1:  $(8)0000  8D 4F 98     (STA $984F) (Needs code at $(8)0000 in 52-in-1 Menu ROM?)
+  52-in-1:  $(8)0000  8D 4F 98     (STA $984F)
 
 ╚=============================================================╝
 
@@ -836,8 +836,8 @@
   JMP $8004 (4C 04 80)
 
   Reset Vector:
-  $(F)7FF2: 8D 4F 98 (STA $984F) [1001 1000 | 0100 1111]
-  $(F)7FFC: F2 FF    ($FFF2)
+  $(8)0000: 8D 4F 98 (STA $984F) [1001 1000 | 0100 1111]
+  $(F)7FFC: 00 80    ($8000) (Needs code at $(8)0000 in 52-in-1 Menu ROM?)
   
  ┌────────────────────────┐
  │ Changes from original: │
@@ -874,7 +874,7 @@
 
   # 52-in-1 - GameBoot/Reset Vector
   Original: $(8)0000  78 D8 A9 00  (SEI | CLD | LDA #$00)
-  52-in-1:  $(8)0000  8D 4F 98     (STA $984F) (Needs code at $(8)0000 in 52-in-1 Menu ROM?)
+  52-in-1:  $(8)0000  8D 4F 98     (STA $984F)
 
  ┌─────┐
  │ CHR │
@@ -1010,7 +1010,7 @@
 
   Reset Vector:
   $(8)0000: 8D 4F 98 (STA $984F)
-  $(B)3FFC: 00 80    ($8000)
+  $(B)3FFC: 00 80    ($8000) (Needs code at $(8)0000 in 52-in-1 Menu ROM?)
 
  ┌────────────────────────┐
  │ Changes from original: │
@@ -1075,7 +1075,7 @@
 
   # 52-in-1 - GameBoot/Reset Vector
   Original: $(8)0000  4C 2F 81  (JMP $812F)
-  52-in-1:  $(8)0000  8D 4F 98  (STA $984F) (Needs code at $(8)0000 in 52-in-1 Menu ROM?)
+  52-in-1:  $(8)0000  8D 4F 98  (STA $984F)
 
 ╚=============================================================╝
 
@@ -1418,9 +1418,9 @@
 
 
 
-╔===========================================╗
-║                       15.FLAPPY                    ║
-╠===========================================╣
+╔=============================================================╗
+║                       15.FLAPPY                             ║
+╠=============================================================╣
 
   Original:  Flappy (フラッピー)
   Released:  June 14, 1985
@@ -1433,28 +1433,37 @@
   CHR:       8 kB
   Mirroring: Horizontal
 
-  ROM:       Flappy (Japan).nes
+  ROM:       Flappy (Japan).nes                       <--- need to find pirate version
   MD5:       e82ef1763b81bfcab9c95c0258347512
 
  ┌──────────────┐
  │ Information: │
  └──────────────┘
 
-  Not actually original game, but a hack.
+  This entry is based on a hack of the japanese release
+  of Flappy. The hack is credited to "Whirlwind Manu"
+  who released a pirate version of this game.
+  The hack enables a level select cheat.
+  [bootleggames.fandom.com/wiki/Supervision_52-in-1]
 
-╠===========================================╣
+  Copyright information on title screen has been changed
+  to WHIRLWIND MENU.
+
+╠=============================================================╣
 ║                       52-in-1 info                          ║
-╠===========================================╣
+╠=============================================================╣
 
   Location:
-  PRG:       $ - $
-  CHR:       $ - $
+  PRG:       $068000 - $06FFF0
+  CHR:       $13A000 - $13BFF0
 
   Bootcode ($0400):
-
+  STA $A69D (8D 9D A6) [1010 0110 | 1001 1101]
+  JMP $8007 (4C 07 80)
 
   Reset Vector:
-
+  $(8)0000: 8D 4F 98 (STA $984F)  (Needs code at $(8)0000 in 52-in-1 Menu ROM?)
+  $(F)7FFC: 00 80    ($8000)
 
  ┌────────────────────────┐
  │ Changes from original: │
@@ -1466,9 +1475,410 @@
   Graphics:
  -----------
 
+  # Title Screen - Copyright
+                       ©     d  B     S  O  F  T     1  9  8  5
+  Original: $(B)361A  3B 40 3C 22 0D 33 2F 26 34 40 11 19 18 15
+                       W  H  I  R  L  W  I  N  D     M  E  N  U
+  52-in-1:  $(B)361a  37 28 29 32 2C 37 29 2E 24 40 2D 25 2E 35
 
 
-╚===========================================╝
+ -----------
+  Hack:
+ -----------
+  # Title Screen
+  Original: $(8)0053  28 D0 21 A2 E8 A0 00 B9 F0 07 95 00 E8 C8 C0 05 D0 F5
+  $(8)0053  PLP          (28)
+  $(8)0054  BNE $8077    (D0 21)
+  $(8)0056  LDX #$E8     (A2 E8)
+  $(8)0058  LDY #$00     (A0 00)
+  $(8)005A  LDA $07F0    (B9 F0 07)
+  $(8)005D  STA $00, X   (95 00)
+  $(8)005F  INX          (E8)
+  $(8)0060  INY          (C8)
+  $(8)0061  CPY #$05     (C0 05)
+  $(8)0063  BNE $805A    (D0 F5)
+
+  52-in-1:  $(8)0053  A9 01 85 80 28 D0 1D EA EA EA EA EA EA EA EA EA EA EA
+  $(8)0053  LDA #$01     (A9 01)
+  $(8)0055  STA $80      (85 80)
+  $(8)0057  PLP          (28)
+  $(8)0058  BNE $8007    (D0 1D)
+  $(8)005A  NOP NOP NOP NOP NOP NOP NOP NOP NOP NOP NOP (EA EA EA EA EA EA EA EA EA EA EA)
+
+
+  # Title Screen
+  Original: $(A)22B8  C9 01 D0 7E
+  $(A)22B8  CMP #$01     (C9 01)
+  $(A)22BA  BNE $A33A    (D0 7E)
+
+  52-in-1:  $(A)22B8  4C B8 AE 7E
+  $(A)22B8  JMP $AEB8    (4C B8 AE)
+  $(A)22BB  7E unexecuted
+
+
+  # Keyword and Music Screen
+  Original: $(A)2814  A2 01
+  $(A)2814  LDX #$01     (A2 01)
+
+  52-in-1:  $(A)2814  A6 80
+  $(A)2814  LDX $80      (A6 80)
+
+
+  # Keyword and Music Screen
+  Original: $(A)2D5E  20 DA AF
+  $(A)2D5E  JSR $AFDA    (20 DA AF)  
+
+  52-in-1:  $(A)2D5E  20 44 AE
+  $(A)2D5E  JSR $AE44    (20 44 AE) 
+
+
+# Keyword and Music Screen - Input keyword
+  Original: $(A)2E2A  C9 40 D0 05 C6 16 4C B3 AE
+  ___L2E2A:
+  $(A)2E2A  CMP #$40     (C9 40)
+  $(A)2E2C  BNE $AE33    (D0 05)    ___L2E33
+  $(A)2E2E  DEC $16      (C6 16)
+  $(A)2E30  JMP $AEB3    (4C B3 AE) ___L2EB3
+
+  Original: $(A)2E33  C9 80 D0 05 E6 16 4C B3 AE
+  ___L2E33:  
+  $(A)2E33  CMP #$80     (C9 80)
+  $(A)2E35  BNE $AE3C    (D0 05)    ___L2E3C
+  $(A)2E37  INC $16      (E6 16)
+  $(A)2E39  JMP $AEB3    (4C B3 AE) ___L2EB3
+
+  Original: $(A)2E3B  C9 10 D0 05 C6 1A 4C B3 AE
+  ___L2E3C:
+  $(A)2E3C  CMP #$10     (C9 10)
+  $(A)2E3E  BNE L2E45    (D0 05)    ___L2E45
+  $(A)2E40  DEC $1A      (C6 1A)
+  $(A)2E42  JMP $AEB3    (4C B3 AE) ___L2EB3
+
+  Original: $(A)2E45  C9 20 D0 05 E6 1A 4C B3 AE
+  ___L2E45:
+  $(A)2E45  CMP #$20     (C0 20)
+  $(A)2E47  BNE $AE4E    (D0 05)    ___L2E4E
+  $(A)2E49  INC $1A      (E6 1A)
+  $(A)2E4B  JMP $AEB3    (4C B3 AE) ___L2EB3
+
+  Original: $(A)2E4E  C9 01 D0 31 A5 14 A5 1A 85 01 0A 0A 48 65 01 85 01 68 0A 65 01 0A 85 01 A5 16 0A 65 01 AA BD 39 B7 C9 3E D0 03 4C 06 AF
+  ___L2E4E:
+  $(A)2E4E  CMP #$01     (C9 01)
+  $(A)2E50  BNE $AE83    (D0 31)    ___L2E83
+  $(A)2E52  LDA $14      (A5 14)
+  $(A)2E54  LDA $1A      (A5 1A)
+  $(A)2E56  STA $01      (85 01)
+  $(A)2E58  ASL A        (0A)
+  $(A)2E59  ASL A        (0A)
+  $(A)2E5A  PHA          (48)
+  $(A)2E5B  ADC $01      (65 01)
+  $(A)2E5D  STA $01      (85 01)
+  $(A)2E5F  PLA          (68)
+  $(A)2E60  ASL A        (0A)
+  $(A)2E61  ADC $01      (65 01)
+  $(A)2E63  ASL A        (0A)
+  $(A)2E64  STA $01      (85 01)
+  $(A)2E66  LDA $16      (A5 16)
+  $(A)2E68  ASL A        (0A)
+  $(A)2E69  ADC $01      (65 01)
+  $(A)2E6B  TAX          (AA)
+  $(A)2E6C  LDA $B739, X (BD 39 B7)
+  $(A)2E6F  CMP #$3E     (C9 3E)
+  $(A)2E71  BNE $AE76    (D0 03)    ___L2E76
+  $(A)2E73  JMP $AF06    (4C 06 AF) ___L2F06
+
+  Original: $(A)2E76  A6 14 E0 ED F0 34 95 00 E6 14 4C 8F AE
+  ___L2E76:
+  $(A)2E76  LDX $14      (A6 14)
+  $(A)2E78  CPX #$ED     (E0 ED)
+  $(A)2E7A  BEQ $AEB0    (F0 34)    ___L2EB0
+  $(A)2E7C  STA $00, X   (95 00)
+  $(A)2E7E  INC $14      (E6 14)
+  $(A)2E80  JMP $AE8F    (4C 8F AE) ___L2E8F
+
+  Original: $(A)2E83  C9 02 D0 29 A6 14 E0 E8 F0 23 C6 14
+  ___L2E83:
+  $(A)2E83  CMP #$02     (C9 02)
+  $(A)2E85  BNE $AEB0    (D0 29)    ___L2EB0
+  $(A)2E87  LDX $14      (A6 14)
+  $(A)2E89  CPX #$E8     (E0 E8)
+  $(A)2E8B  BEQ $AEB0    (F0 23)    ___L2EB0
+  $(A)2E8D  DEC $14      (C6 14)
+
+  Original: $(A)2E8F  A9 40 A6 14
+  ___L2E8F:
+  $(A)2E8F  LDA #$40     (A9 40)
+  $(A)2E91  LDX $14      (A6 14)
+
+  Original: $(A)2E93  E0 ED F0 06 95 00 E8 4C 93 AE
+  ___L2E93:
+  $(A)2E93  CPX #$ED     (E0 ED)
+  $(A)2E95  BEQ $AE9D    (F0 06)    ___L2E9D
+  $(A)2E97  STA $00, X   (95 00)
+  $(A)2E99  INX          (E8)
+  $(A)2E9A  JMP $AE93    (4C 93 AE) ___L2E93
+
+  Original: $(A)2E9D  A9 14 85 EE A9 0B 85 EF A9 E8 85 1D A9 00 85 1E 20 CD B3
+  ___L2E9D:
+  $(A)2E9D  LDA #$14     (A9 14)
+  $(A)2E9F  STA $EE      (85 EE)
+  $(A)2EA1  LDA #$0B     (A9 0B)
+  $(A)2EA3  STA $EF      (85 EF)
+  $(A)2EA5  LDA #$E8     (A9 E8)
+  $(A)2EA7  STA $1D      (85 1D)
+  $(A)2EA9  LDA #$00     (A9 00)
+  $(A)2EAB  STA $1E      (85 1E)
+  $(A)2EAD  JSR $B3CD    (20 CD B3) ___F33CD
+  
+  Original: $(A)2EB0  4C FB AE
+  ___L2EB0:
+  $(A)2EB0  JMP $AEFB    (4C FB AE)
+
+  Original: $(A)2EB3  A5 16 10 0A A9 0C A6 1A D0 02 A9 0A
+  ___L2EB3:
+  $(A)2EB3  LDA $16      (A5 16)
+  $(A)2EB5  BPL $AEC1    (10 0A)    ___L2EC1
+  $(A)2EB7  LDA #$0C     (A9 0C)
+  $(A)2EB9  LDX $1A      (A6 1A)
+  $(A)2EBB  BNE $AEBF    (D0 02)    ___L2EBF
+  $(A)2EBD  LDA #$0A     (A9 0A)
+
+  Original: $(A)2EBF  C6 1A
+  ___L2EBF:
+  $(A)2EBF  DEC $1A      (C6 1A)
+
+  Original: $(A)2EC1  A6 1A E0 02 D0 04 C9 0B B0 04
+  ___L2EC1:
+  $(A)2EC1  LDX $1A      (A6 1A)
+  $(A)2EC3  CPX #$02     (E0 02)
+  $(A)2EC5  BNE $AECB    (D0 04)    ___L2ECB
+  $(A)2EC7  CMP #$0B     (C9 0B)
+  $(A)2EC9  BCS $AECF    (B0 04)    ___L2ECF
+ 
+  Original: $(A)2ECB  C9 0D 90 04
+  ___L2ECB:
+  $(A)2ECB  CMP #$0D     (C9 0D)
+  $(A)2ECD  BCC $AED3    (90 04)
+
+  Original: $(A)2EEF  0A 69 0D A8 A9 00 20 DA AF 4C FB AE
+  ___L2EEF:
+  $(A)2EEF  ASL A        (0A)
+  $(A)2EF0  ADC #$0D     (69 0D)
+  $(A)2EF2  TAY          (A8)
+  $(A)2EF3  LDA #$00     (A9 00)
+  $(A)2EF5  JSR $AFDA    (20 DA AF) ___F2FDA
+  $(A)2EF8  JMP $AEFB    (4C FB AE) ___L2EFB
+
+  Original: $(A)2EFB  A9 03 20 76 8F 4C 80 AD
+  ___L2EFB:
+  $(A)2EFB  LDA #$03     (A9 03)
+  $(A)2EFD  JSR $8F76    (20 76 8F) ___F0F76
+  $(A)2F00  JMP $AD80    (4C 80 AD) ___L2D80
+
+  Original: $(A)2F03  A9 01 60
+  ___L2F03:
+  $(A)2F03  LDA #$01     (A9 01)
+  $(A)2F05  RTS          (60)
+
+
+  52-in-1:  $(A)2E2A  C9 01 D0 06 20 3A B7 4C 3E AE
+  ___L2E2A:
+  $(A)2E2A  CMP #$01     (C9 01)
+  $(A)2E2C  BNE $AE34    (D0 06)    ___L2E34
+  $(A)2E2E  JSR $B73A    (20 3A B7) ___F373A
+  $(A)2E2A  JMP $AE3E    (4C 3E AE) ___L2E3E
+
+  52-in-1:  $(A)2E34  C9 02 F0 03 4C FB AE
+  ___L2E34:
+  $(A)2E34  CMP #$02     (C9 02)
+  $(A)2E36  BEQ $AE3B    (F0 03)    ___L2EB3
+  $(A)2E38  JMP $AEFB    (4C FB AE) ___L2EFB
+
+  52-in-1:  $(A)2E3B  20 3E B7
+  ___L2E3B:
+  $(A)2E3B  JSR $B73E    (20 3E B7) ___F373E
+
+  52-in-1:  $(A)2E3E  20 B3 AE 4C FB AE
+  ___L2E3E:
+  $(A)2E3E  JSR $AEB3    (20 B3 AE) ___F2EB3
+  $(A)2E41  JMP $AEFB    (4C FB AE) ___L2EFB
+
+  52-in-1:  $(A)2E44  A9 10 8D 00 20 AD 02 20 A9 21 8D 06 20 A9 F3 8D 06 20 A9 40 8D 07 20 8D 07 20 8D 07 20 A9 00 85 16 85 1A A2 01 A5 80
+  ___F2E44:
+  $(A)2E44  LDA #$10     (A9 10)
+  $(A)2E46  STA $2000    (8D 00 20)
+  $(A)2E49  LDA $2002    (AD 02 20)
+  $(A)2E4C  LDA #$21     (A9 21)
+  $(A)2E4E  STA $2006    (8D 06 20)
+  $(A)2E51  LDA #$F3     (A9 F3)
+  $(A)2E53  STA $2006    (8D 06 20)
+  $(A)2E56  LDA #$40     (A9 40)
+  $(A)2E58  STA $2007    (8D 07 20)
+  $(A)2E5B  STA $2007    (8D 07 20)
+  $(A)2E5E  STA $2007    (8D 07 20)
+  $(A)2E61  LDA #$00     (A9 00)
+  $(A)2E63  STA $16      (85 16)
+  $(A)2E65  STA $1A      (85 1A)
+  $(A)2E67  LDX #$01     (A2 01)
+  $(A)2E69  LDA $80      (A5 80)
+
+  52-in-1:  $(A)2E6B  29 0F F0 13 A8 18 F8
+  ___L2E6B:
+  $(A)2E6B  AND #$0F     (29 0F)
+  $(A)2E6D  BEQ $AE82    (F0 13)    ___L2E82
+  $(A)2E6F  TAY          (A8)
+  $(A)2E70  CLC          (18)
+  $(A)2E71  SED          (F8)
+
+  52-in-1:  $(A)2E72  A5 16 7D F0 AE 85 16 A5 1A 69 00 85 1A 88 D0 F0
+  ___L2E72:
+  $(A)2E72  LDA $16      (A5 16)
+  $(A)2E74  ADC $AEF0, X (7D F0 AE)
+  $(A)2E77  STA $16      (85 16)
+  $(A)2E79  LDA $1A      (A5 1A)
+  $(A)2E7B  ADC $00      (69 00)
+  $(A)2E7D  STA $1A      (85 1A)
+  $(A)2E7B  DEY          (88)
+  $(A)2E7B  BNE $AE72    (D0 F0)    ___L2E72
+
+  52-in-1:  $(A)2E82  CA 30 09 A5 80 4A 4A 4A 4A 18 90 DD
+  ___L2E82:
+  $(A)2E82  DEX          (CA)
+  $(A)2E83  BMI $AE8E    (30 09)
+  $(A)2E85  LDA $80      (A5 80)
+  $(A)2E87  LSR A        (4A)
+  $(A)2E88  LSR A        (4A)
+  $(A)2E89  LSR A        (4A)
+  $(A)2E8A  LSR A        (4A)
+  $(A)2E8B  CLC          (18)
+  $(A)2E8C  BCC $AE6B    (90 DD)    ___L2E6B
+
+  52-in-1:  $(A)2E8E  D8 A9 21 8D 06 20 A9 F3 8D 06 20 A5 1A 09 10 8D 07 20 20 6E B7 A9 00 8D 05 20 A5 7A 8D 05 20 A9 00 8D 71 00 60
+  ___L2E8E:
+  $(A)2E8E  CLD          (D8)
+  $(A)2E8F  LDA #$21     (A9 21)
+  $(A)2E91  STA $2006    (8D 06 20)
+  $(A)2E94  LDA #$F3     (A9 F3)
+  $(A)2E96  STA $2006    (8D 06 20)
+  $(A)2E99  LDA $1A      (A5 1A)
+  $(A)2E9B  ORA #$10     (09 10)
+  $(A)2E9D  STA $2007    (8D 07 20)
+  $(A)2EA0  JSR $B76E    (20 6E B7) ___F376E
+  $(A)2EA3  LDA #$00     (A9 00)
+  $(A)2EA5  STA $2005    (8D 05 20)
+  $(A)2EA8  LDA $7A      (A5 7A)
+  $(A)2EAA  STA $2005    (8D 05 20)
+  $(A)2EAD  LDA #$00     (A9 00)
+  $(A)2EAF  STA $0071    (8D 71 00)
+  $(A)2EB2  RTS          (60)
+
+  52-in-1:  $(A)2EB3  A9 73 85 71 60
+  ___F2EB3:
+  $(A)2EB3  LDA #$73     (A9 73)
+  $(A)2EB5  STA $71      (85 71)
+  $(A)2EB7  RTS          (60)
+
+  52-in-1:  $(A)2EB8  C9 73 D0 06 20 44 AE 4C 85 A5
+  ___L2EB8:
+  $(A)2EB8  CMP #$73     (C9 73)
+  $(A)2EBA  BNE $AEC2    (D0 06)    ___L2EC2
+  $(A)2EBC  JSR $AE44    (20 44 AE) ___F2E44
+  $(A)2EBF  JMP $A585    (4C 85 A5) ___F2585
+
+  52-in-1:  $(A)2EC2  C9 01 D0 03 4C BC A2
+  ___L2EC2:
+  $(A)2EC2  CMP #$01     (C9 01)
+  $(A)2EC4  BNE $AEC9    (D0 03)    ___L2EC9
+  $(A)2EC6  JMP $A2BC    (4C BC A2) ___L22BC
+
+  52-in-1:  $(A)2EC9  4C 3A A3 4C 3A A3
+  ___L2EC9:
+  $(A)2EC9  JMP $A33A    (4C 3A A3) ___L233A
+  $(A)2ECC  JMP $A33A    (4C 3A A3) ___L233A
+
+  # Data???
+  52-in-1:  $(A)2EEF  0A
+  52-in-1:  $(A)2EF0  16 01 A2 00 8A 95 00 E8 D0 FB 60
+
+  52-in-1:  $(A)2EFB  A9 03 20 76 8F 4C 80 AD 
+  ___L2EFB:
+  $(A)2EFB  LDA #$03     (A9 03)
+  $(A)2EFD  JSR $8F76    (20 76 8F) ___F0F76
+  $(A)2F00  JMP $AD90    (4C 80 AD) ___L2D80
+
+  52-in-1:  $(A)2F03  A5 80 60
+  ___L2F03:
+  $(A)2F03  LDA $80      (A5 80)
+  $(A)2F05  RTS          (60)
+
+
+  # Keyword and Music Screen
+                       I  N  P  U  T     K  E  Y  W  O  R  D  =
+  Original: $(B)372A  29 2E 30 35 34 40 2B 25 39 37 2F 32 24 1D
+                          A     B     C     D     E     F     G     H     I     J     K     L     M
+  Original: $(B)3738  00 21 40 22 40 23 40 24 40 25 40 26 40 27 40 28 40 29 40 2A 40 2B 40 2C 40 2D
+                          N     O     P     Q     R     S     T     U     V     W     X     Y     Z
+  Original: $(B)3752  00 2E 40 2F 40 30 40 31 40 32 40 33 40 34 40 35 40 36 40 37 40 38 40 39 40 3A
+                          0     1     2     3     4     5     6     7     8     9     END
+  Original: $(B)376C  00 10 40 11 40 12 40 13 40 14 40 15 40 16 40 17 40 18 40 19 40 3E 3F
+                          M  U  S  I  C     S  E  L  E  C  T
+  Original: $(B)3783  00 2D 35 33 29 23 40 33 25 2C 25 23 34
+
+
+                       I  N  P  U  T     K  E  Y  W  O  R  D
+  52-in-1:  $(B)372A  29 2E 30 35 34 40 2B 25 39 37 2F 32 24 00 00 00
+  52-in-1:  $(B)373A  E6 80 D0 02 C6 80 A5 80 D0 05 A9 C8 85 80 60 C9 C9 90 FB A9 01 85 80 60
+  
+  $(B)373A  INC $80   (E6 80)
+  $(B)373C  BNE $B740 (D0 02)
+  
+  $(B)373E  DEC $80   (C6 80)
+
+  $(B)3740  LDA $80   (A5 80)
+  $(B)3742  BNE $B749 (D0 05)
+  $(B)3744  LDA #$C8  (A9 C8)
+  $(B)3746  STA $80   (85 80)
+
+  $(B)3748  RTS       (60)
+
+  $(B)3749  CMP #$C9  (C9 C9)
+  $(B)374B  BCC $B748 (90 FB)
+  $(B)374D  LDA #$01  (A9 01)
+  $(B)374F  STA $80   (85 80)
+  $(B)3751  RTS       (60)
+
+
+                                                  L  E  V  E  L           0  0  1
+  52-in-1:  $(B)3752  00 40 40 40 40 40 40 40 40 2C 25 36 25 2C 40 1D 00 10 10 11 40 40 40 40 40 40
+  52-in-1:  $(B)376C  00 00 
+  52-in-1:  $(B)376E  A5 16 4A 4A 4A 4A 09 10 8D 07 20 A5 16 29 0F 09 10 8D 07 20 60
+  
+  $(B)376E  LDA $16          (A5 16)
+  $(B)3770  LSR A            (4A)
+  $(B)3771  LSR A            (4A)
+  $(B)3772  LSR A            (4A)
+  $(B)3773  LSR A            (4A)
+  $(B)3774  ORA #$10         (09 10)
+  $(B)3776  STA $2007        (8D 07 20)
+  $(B)3779  LDA $16          (A5 16)
+  $(B)377B  AND #$0F         (29 0F)
+  $(B)377D  ORA #$10         (09 10)
+  $(B)377F  STA $2007        (8D 07 20)
+  $(B)3782  RTS              (60)
+
+                          M  U  S  I  C     S  E  L  E  C  T
+  52-in-1:  $(B)3783  00 2D 35 33 29 23 40 33 25 2C 25 23 34
+
+
+ ---------
+  52-in-1:
+ ---------
+
+  # 52-in-1 - GameBoot/Reset Vector
+  Original: $(8)0000  4C 07 80  (JMP $8007)
+  52-in-1:  $(8)0000  8D 4F 98  (STA $984F)
+
+╚=============================================================╝
 
 
 
@@ -1528,9 +1938,9 @@
 
 
 
-╔===========================================╗
-║                       17.BOMBER MAN                ║
-╠===========================================╣
+╔=============================================================╗
+║                       17.BOMBER MAN                         ║
+╠=============================================================╣
 
   Original:  Bomberman (ボンバーマン)
   Released:  December 19, 1985
@@ -1554,19 +1964,21 @@
   changes the password screen to a level select screen.
   Not sure if there is other changes also.
 
-╠===========================================╣
+╠=============================================================╣
 ║                       52-in-1 info                          ║
-╠===========================================╣
+╠=============================================================╣
 
   Location:
-  PRG:       $ - $
-  CHR:       $ - $
+  PRG:       $078000 - $07BFF0
+  CHR:       $13E000 - $13FFF0
 
   Bootcode ($0400):
-
+  STA $979F (8D 9F 97) [1001 0111 | 1001 1111]
+  JMP $C000 (4C 00 C0)
 
   Reset Vector:
-
+  $(F)7FF2: 8D 4F 98 (STA $984F) [1001 1000 | 0100 1111]
+  $(F)7FFC: F2 FF    ($FFF2)
 
  ┌────────────────────────┐
  │ Changes from original: │
@@ -1580,7 +1992,7 @@
 
 
 
-╚===========================================╝
+╚=============================================================╝
 
 
 
