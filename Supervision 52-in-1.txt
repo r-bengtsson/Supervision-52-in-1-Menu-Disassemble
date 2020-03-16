@@ -1485,6 +1485,7 @@
  -----------
   Hack:
  -----------
+
   # Title Screen
   Original: $(8)0053  28 D0 21 A2 E8 A0 00 B9 F0 07 95 00 E8 C8 C0 05 D0 F5
   $(8)0053  PLP          (28)
@@ -2028,7 +2029,108 @@
   Graphics:
  -----------
 
+  # Title Screen - Copyright
+                       T  F  O  S     N  O  S  D  U  H     5  8  9  1     T  H  G  I  R  Y  P  O  C
+  Original: $(9)1F6C  54 46 4F 53 B0 4E 4F 53 44 55 48 B0 35 38 39 31 B0 54 48 47 49 52 59 50 4F 43
+  52-in-1:  $(9)1F6C  B0 B0 B0 B0 B0 B0 B0 B0 B0 B0 B0 B0 B0 B0 B0 B0 B0 B0 B0 B0 B0 B0 B0 B0 B0 B0
 
+
+  # Continue Screen - ENTER SECRET CODE
+                       E  N  T  E  R     S  E  C  R  E  T     C  O  D  E
+  Original: $(9)1C8A  45 4E 54 45 52 3A 53 45 43 52 45 54 3A 43 4F 44 45
+                       P  U  S  H        A     O  R     B        K  E  Y
+  52-in-1:  $(9)1C8A  50 55 53 48 3A 3A 41 3A 4F 52 3A 42 3A 3A 4B 45 59
+
+
+ -----------
+  Hack:
+ -----------
+  # Before loading title screen
+  Original: $(8)0308  C8 84 E1 88 98 A2 07
+  $(8)0308  INY      (C8)
+  $(8)0309  STY $E1  (84 E1)
+  $(8)030B  DEY      (88)
+  $(8)030C  TYA      (98)
+  $(8)030D  LDX #$07 (A2 07)
+
+  52-in-1:  $(8)0308  A9 02 85 E1 98 A2 06
+  $(8)0308  LDY #$02 (A9 02)
+  $(8)030A  STA $E1  (85 E1)
+  $(8)030C  TYA      (98)
+  $(8)030D  LDX #$06 (A2 06)
+
+
+  # Before loading Continue Screen
+  Original: $(9)1A8F  A9 00 85 60 85 72 85 B5 A0 47 A9 20 A2 E7 20 31 DC 20 33 C2 A9 06 85 1F A9 3A 85 20 A0 00
+  Original: $(9)1AAD  20 83 C2 A9 22 A6 1F 20 8E C1 A5 20 8D 07 20 20 8E C2 A2 0A
+  Original: $(9)1AC1  20 83 C2 A5 12 29 8F D0 26 CA D0 F4 20 83 C2 A9 22 A6 1F 20 8E C1 A9 3B 8D 07 20 20 8E C2 A2 0A
+  Original: $(9)1AE1  20 83 C2 A5 12 29 8F D0 06 CA D0 F4 4C AD DA
+  Original: $(9)1AF0  30 49 48 A9 12 8D 03 40 68 C9 01 F0 1F A5 20 C9 3A D0 04 A9 51 85 20
+  Original: $(9)1B07  A5 20 C9 41 F0 05 C6 20 4C 16 DB
+  Original: $(9)1B12  A9 50 85 20
+  Original: $(9)1B16  20 FF C2 4C AD DA
+  Original: $(9)1B1C  A5 20 C9 3A D0 04 A9 40 85 20
+  Original: $(9)1B26  A5 20 C9 50 F0 05 E6 20 4C 35 DB
+  Original: $(9)1B31  A9 41 85 20
+  Original: $(9)1B35  20 FF C2
+  Original: $(9)1B38  4C AD DA
+  Original: $(9)1B3B  A9 11 8D 03 40 A5 20 C9 3A F0 F2 29 0F AA BD A7 DF 99 7F 00 20 83 C2 A9 22 A6 1F 20 8E C1 A5 20 8D 07 20 20 8E C2 A9 3A 85 20 E6 1F C8 C0 14 F0 06 20 FF C2 4C
+
+  52-in-1:  $(9)1A8F  A5 58 D0 08 A9 10 85 73 A9 01 85 58 
+  52-in-1:  $(9)1A9B  A9 00 85 60 85 72 85 B5 A9 00 8D 00 20 A0 47 A9 20 A2 E7 20 31 DC 20 33 C2 20 83 C2 A0 00 A9 22 A2 0B 20 8E C1
+  52-in-1:  $(9)1AC0  B9 4A DB F0 07 8D 07 20 C8 4C C0 DA
+  52-in-1:  $(9)1ACC  20 21 DB A5 58 20 2E DB 20 83 C2
+  52-in-1:  $(9)1AD7  A5 0C 09 80 8D 00 20 20 FF C2
+  52-in-1:  $(9)1AE1  A5 12 29 D0 F0 FA C9 10 F0 31 C9 40 F0 1A E6 58 A5 58 C9 5B B0 03 4C FE DA 
+  52-in-1:  $(9)1AFA  A9 01 85 58 
+  52-in-1:  $(9)1AFE  20 21 DB A5 58 20 2E DB 4C D7 DA
+  52-in-1:  $(9)1B09  C6 58 D0 04 A9 5A 85 58
+  52-in-1:  $(9)1B11  20 21 DB A5 58 20 2E DB 4C D7 DA
+  52-in-1:  $(9)1B1C  A5 58 85 DD 60
+  52-in-1:  $(9)1B21  A9 00 8D 00 20 A9 22 A2 12 20 8E C1 60
+  52-in-1:  $(9)1B2E  A0 30 38
+  52-in-1:  $(9)1B31  E9 0A 90 03 C8 D0 F9
+  52-in-1:  $(9)1B38  69 3A C0 30 D0 02 A0 3A
+  52-in-1:  $(9)1B40  8C 07 20 8D 07 20 20 8E C2 60
+
+                       S  T  A  G  E
+  52-in-1:  $(9)1B4A  53 54 41 47 45 00
+                                                                 S  T
+  52-in-1:  $(9)1B50  D0 02 A0 3A 8C 07 20 8D 07 20 20 8E C2 60 53 54
+                       A  G  E        0  1
+  52-in-1:  $(9)1B60  41 47 45 3A 3A 30 31 00
+
+
+  # Death Screen - Removes Password #1
+  Original: $(A)22FA  20 8E C1
+  $(A)22FA  JSR $818E (20 8E C1)
+
+  52-in-1:  $(A)22F0  2C 8E C1
+  $(A)22FA  BIT $818E (2C 8E C1)
+
+  # Death Screen - Removes Password #2
+  Original: $(A)2306  8D 07 20
+  $(A)2306  STA $2006 (8D 07 20)
+
+  52-in-1:  $(A)2306  2C 07 20
+  $(A)2306  BIT $2006 (2C 07 20)
+
+  # New routine (placed in empty part of ROM)
+  Original: $(A)2FE0  FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+  Original: $(A)2FF0  FF FF FF FF FF FF
+
+  52-in-1:  $(A)2FE0  AD 90 01 C9 AA F0 03 4C 12 C0
+  $(A)2FE0  LDA $0190  (AD 90 01)
+  $(A)2FE3  CMP #$ AA  (C9 AA)
+  $(A)2FE5  BEQ $AFEA  (F0 03)
+  $(A)2FE7  JMP $C012  (4C 12 C0)
+
+  52-in-1:  $(A)2FE9  AD 91 01 C9 55 D0 F6 08 48 4C A4 BD
+  $(A)2FE9  LDA $0190  (AD 90 01)
+  $(A)2FEC  CMP #$55   (C9 55)
+  $(A)2FEE  BNE $????  (D0 F6)
+  $(A)2FF0  PHP        (48)
+  $(A)2FF1  JMP $BDA4  (4C A4 BD)
 
 ╚=============================================================╝
 
@@ -2058,8 +2160,10 @@
  └──────────────┘
 
   This entry is based on the japanese release of Front Line.
-  Copyright information on title screen has been removed and
-  CHR has been modified to remove Copyright.
+  Copyright information and logo on title screen has been
+  removed in CHR.
+
+  This game seems to store some of its nametable data in CHR.
 
 ╠=============================================================╣
 ║                       52-in-1 info                          ║
@@ -2074,7 +2178,7 @@
   JMP $C000 (4C 00 C0)
 
   Reset Vector:
-  $(F)3FF2: 8D 4F 98 (STA $984F)
+  $(F)3FF2: 8D 4F 98 (STA $984F) [1001 1000 | 0100 1111]
   $(F)3FFC: F2 FF    ($FFF2)
 
  ┌────────────────────────┐
