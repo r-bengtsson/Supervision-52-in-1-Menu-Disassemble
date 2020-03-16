@@ -230,7 +230,7 @@
  │ Information: │
  └──────────────┘
  
-  This entry is based on the japanese release of Star Soldier.
+  This entry is based on the japanese release of Hokuto no Ken.
   Copyright information in ROM and Title Screen Logo and
   copyright has been removed.
 
@@ -1348,7 +1348,7 @@
  ---------
 
   # 52-in-1 - GameBoot/Reset Vector
-  Original: $(B)3F90  78 D8 A2 (SEI | CLD | LDX #$F3)
+  Original: $(B)3F90  78 D8 A2 F3 (SEI | CLD | LDX #$F3)
   52-in-1:  $(B)3F90  8D 4F 98 (STA $984F)
 
 ╚=============================================================╝
@@ -1883,9 +1883,9 @@
 
 
 
-╔===========================================╗
-║                       16.SPARTAN                   ║
-╠===========================================╣
+╔=============================================================╗
+║                       16.SPARTAN                            ║
+╠=============================================================╣
 
   Original:  Spartan X (スパルタンＸ)
   Released:  June 21, 1985
@@ -1905,21 +1905,29 @@
  │ Information: │
  └──────────────┘
 
+  This entry is based on the japanese release of Spartan X
+  (Kung Fu).
+  Copyright information on title screen has been removed and
+  CHR has been modified to remove © character.
 
-
-╠===========================================╣
+╠=============================================================╣
 ║                       52-in-1 info                          ║
-╠===========================================╣
+╠=============================================================╣
 
   Location:
-  PRG:       $ - $
-  CHR:       $ - $
+  PRG:       $070000 - $077FF0
+  CHR:       $13C000 - $13DFF0
 
   Bootcode ($0400):
-
+  STA $871E (8D 1E 87) [1000 0111 | 0001 1110]
+  SEI       (78)
+  CLD       (D8)
+  LDA #$00  (A9 00)
+  JMP $825C (4C 5C 82)
 
   Reset Vector:
-
+  $(8)0258: 8D 4F 98 (STA $984F)  (Needs code at $(0)0258 in 52-in-1 Menu ROM?)
+  $(F)7FFC: 58 82    ($8258)
 
  ┌────────────────────────┐
  │ Changes from original: │
@@ -1931,9 +1939,38 @@
   Graphics:
  -----------
 
+  # Title Screen - Copyright
+                                I  R  E  M     C  O  R  P  .  1  9  8  4
+  Original: $(9)16C7  23 0A 0E 12 1B 0E 16 FC 0C 18 1B 19 13 01 09 08 04
+                                1  9  8  5     N  I  N  T  E  N  D  O
+  Original: $(9)16D8  23 4A 0D 01 09 08 05 FC 17 12 17 1D 0E 17 0D 18 00
+
+  52-in-1:  $(9)16C7  23 0A 0E FC FC FC FC FC FC FC FC FC FC FC FC FC FC
+  52-in-1:  $(9)16D8  23 4A 0D FC FC FC FC FC FC FC FC FC FC FC FC FC 00
 
 
-╚===========================================╝
+ ---------
+  52-in-1:
+ ---------
+
+  # 52-in-1 - GameBoot/Reset Vector
+  Original: $(8)0258  78 D8 A9 00  (SEI | CLD | LDA #$00)
+  52-in-1:  $(8)0258  8D 4F 98     (STA $984F)
+
+
+  # 52-in-1 - IRQ Vector
+  Original: $(F)7FFE  F0 FF        ($FFF0)
+  52-in-1:  $(F)7FFE  F0 BF        ($BFF0)
+
+
+ ┌─────┐
+ │ CHR │
+ └─────┘
+  # Copyright (©) blanked 
+  Original: $0F48  FF FF FF FF FF FF FF FF C3 BD 66 5E 5E 66 BD C3
+  52-in-1:  $0F48  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+╚=============================================================╝
 
 
 
