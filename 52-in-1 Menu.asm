@@ -2323,8 +2323,12 @@ BootGameBootSequencesSection3:
 ; Include 52-in-1 data Part 3
 .segment "BINC"                     ; $DD41
     .org $DD41
-    .incbin "./bin/1D41-3FF1.bin"
+    .incbin "./bin/1D41-1FFF.bin"
 
+; Include 52-in-1 data Part 4 - Galaxian
+.segment "BIND"                     ; $E000
+    .org $E000
+    .incbin "./bin/2000-3FF1 Galaxian.bin"
 
 ; 52-in-1 specific code at $FFF2 in all games
 .segment "MULTIC"
