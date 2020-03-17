@@ -2522,23 +2522,98 @@
 
 
 
-╔===========================================╗
-║                       22.KUNG-FU                   ║
-╠===========================================╣
+╔=============================================================╗
+║                       22.KUNG-FU                            ║
+╠=============================================================╣
 
-  Original:  
-  Released:  
-  Publisher: 
-  Developer: 
-  Players:   
+  Original:  Yie Ar Kung Fu (イーアルカンフー)
+  Released:  April 22, 1985
+  Publisher: Konami
+  Developer: Konami
+  Players:   1
 
-  Mapper:    
-  PRG:       
-  CHR:       
-  Mirroring: 
+  Mapper:    NROM-128 (0)
+  PRG:       16 kB
+  CHR:       8 kB
+  Mirroring: Horizontal
 
-  ROM:       
-  MD5:       
+  ROM:       Yie Ar Kung-Fu (Japan) (Rev 1.2).nes
+  MD5:       7b50b21c7030e6929893ed4eaa814fc7
+
+ ┌──────────────┐
+ │ Information: │
+ └──────────────┘
+
+  This entry is based on the japanese release of
+  Yie Ar Kung Fu.
+
+  Copyright information on title and select screen has been removed,
+  but copyright ingame has been left untouched.
+
+╠=============================================================╣
+║                       52-in-1 info                          ║
+╠=============================================================╣
+
+  Location:
+  PRG:       $08C000 - $08FFFF
+  CHR:       $148000 - $149FFF
+
+  Bootcode ($0400):
+  STA $B8E4 (8D E4 B8) [1011 1000 | 1110 0100]
+  JMP $C00F (4C 0F C0)
+
+  Reset Vector:
+  $(F)3FF2: 8D 4F 98 (STA $984F) [1001 1000 | 0100 1111]
+  $(F)3FFC: F2 FF    ($FFF2)
+
+ ┌────────────────────────┐
+ │ Changes from original: │
+ ├─────┬──────────────────┘
+ │ PRG │
+ └─────┘
+
+ -----------
+  Graphics:
+ -----------
+
+  # Title Screen - Copyright © 1986 (Background)
+                             ©     1  9  8  6   
+  Original: $(8)09AD  CA 21 5F 00 66 6E 6D 6A FE
+  52-in-1:  $(8)09AD  CA 21 00 00 00 00 00 00 FE
+  
+  # Title Screen - Copyright KONAMI (Sprite)
+  Original: $(8)0AD6  6F
+  52-in-1:  $(8)0AD0  F4
+
+  # Title Screen - Konami
+  Original: $(8)09B6  8C 20 4A 4B FE 92 20 4C FE
+  Original: $(8)09BF  AC 20 4D 4E 4F 50 51 52 53 54 FE
+
+  52-in-1:  $(8)09B6  8C 20 00 00 FE 92 20 00 FE
+  52-in-1:  $(8)09BF  AC 20 00 00 00 00 00 00 00 00 FE
+
+╚=============================================================╝
+
+
+
+
+╔=============================================================╗
+║                       23.NINJA 1                            ║
+╠=============================================================╣
+
+  Original:  Ninja-kun: Majou no Bouken (忍者くん　魔城の冒険)
+  Released:  May 10, 1985
+  Publisher: Jaleco
+  Developer: TOSE Software
+  Players:   2
+
+  Mapper:    JALECO-JF-03 (0)
+  PRG:       16 kB
+  CHR:       8 kB
+  Mirroring: Horizontal
+
+  ROM:       Ninja-kun - Majou no Bouken (Japan).nes
+  MD5:       3ed008f5279a927d564faad5cbf5cb3a
 
  ┌──────────────┐
  │ Information: │
@@ -2546,16 +2621,19 @@
 
 
 
-╠===========================================╣
+╠=============================================================╣
 ║                       52-in-1 info                          ║
-╠===========================================╣
+╠=============================================================╣
 
   Location:
-  PRG:       $ - $
-  CHR:       $ - $
+  PRG:       $090000 - $093FFF
+  CHR:       $14A000 - $14BFFF
 
   Bootcode ($0400):
-
+  STA $B925 (8D 25 B9) [1011 1001 | 0010 0101]
+  SEI       (78)
+  LDA #$00  (A9 00)
+  JMP $8003 (4C 03 80)
 
   Reset Vector:
 
@@ -2570,64 +2648,42 @@
   Graphics:
  -----------
 
+  Original: $(8)0000  78 A9 00
+  52-in-1:  $(8)0000  8D 4F 98
 
 
-╚===========================================╝
+  Original: $(8)06E0  00 8D 07 20 CA D0 FA 60 0F 38 18 28 0F 30 12 0F
+  Original: $(8)06F0  0F 30 12 16 0F 10 30 0F 0F 28 08 18 2C 30 16 0F
+  Original: $(8)0700  0F 30 26 0F 0F 27 0F 11 0F 0F 0F 0F 4A 4A 4A 4A
 
 
+  52-in-1:  $(8)06E0  00 8D 07 20 CA D0 FA 60 0F 38 18 28 0F 30 12 0D
+  52-in-1:  $(8)06F0  0F 30 12 16 0F 10 30 0D 0F 28 08 18 2C 30 16 0D
+  52-in-1:  $(8)0700  0F 30 26 0D 0F 27 0D 11 0F 0F 0F 0F 4A 4A 4A 4A
+
+  # Title Screen - Copyright © 1985 JALECO
+  Original: $(9)1D58  8D 07 20 (STA $2007)
+  52-in-1:  $(9)1D58  EA EA EA
 
 
-╔===========================================╗
-║                       23.NINJA 1                   ║
-╠===========================================╣
-
-  Original:  
-  Released:  
-  Publisher: 
-  Developer: 
-  Players:   
-
-  Mapper:    
-  PRG:       
-  CHR:       
-  Mirroring: 
-
-  ROM:       
-  MD5:       
-
- ┌──────────────┐
- │ Information: │
- └──────────────┘
+  # Title Screen - Copyright ©1985 Licensed by UPL Co Ltd.
+  Original: $(9)1D70  8D 07 20 (STA $2007)
+  52-in-1:  $(9)1D70  EA EA EA
 
 
+  Original: $(A)23C0  03 60 A9 80 85 6D 60 0F 03 02 0F 0F 13 12 0F 0F
+  Original: $(A)23D0  23 22 0F 0F 32 32 0F 0F 08 07 0F 0F 18 17 0F 0F
+  Original: $(A)23E0  28 27 0F 0F 38 37 0F A9 00 85 15 85 16 85 17 A5
 
-╠===========================================╣
-║                       52-in-1 info                          ║
-╠===========================================╣
-
-  Location:
-  PRG:       $ - $
-  CHR:       $ - $
-
-  Bootcode ($0400):
+  52-in-1:  $(A)23C0  03 60 A9 80 85 6D 60 0F 03 02 0D 0F 13 12 1D 0F
+  52-in-1:  $(A)23D0  23 22 2D 0F 32 32 3D 0F 08 07 0D 0F 18 17 1D 0F
+  52-in-1:  $(A)23E0  28 27 2D 0F 38 37 3D A9 00 85 15 85 16 85 17 A5
 
 
-  Reset Vector:
+  Original: $(B)3FF0  0F 47 3F 0E 0F 1E 0F B6 7F 3D 2E 87 00 80 E6 87
+  52-in-1:  $(B)3FF0  0F 47 3F 0E 0F 1E 0F B6 7F 3D 2E 87 00 80 E6 00
 
-
- ┌────────────────────────┐
- │ Changes from original: │
- ├─────┬──────────────────┘
- │ PRG │
- └─────┘
-
- -----------
-  Graphics:
- -----------
-
-
-
-╚===========================================╝
+╚=============================================================╝
 
 
 
