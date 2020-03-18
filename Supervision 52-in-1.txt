@@ -45,7 +45,7 @@ SECTION 2
 24.PIPELINE      1983  16    8   H    0   $B966  [1 0 1 1 100101 100110]  $094000 - $097FFF   $14C000 - $14DFFF
 25.MAHJONG 2     1983  16    8   V    0   $99A7  [1 0 0 1 100110 100111]  $098000 - $09BFF0   $14E000 - $14FFF0
 26.MAHJONG 4     1984  16    8   V    0   $99E8  [1 0 0 1 100111 101000]  $09C000 - $09FFF0   $150000 - $151FF0
-27.LODE RUNNER1  
+27.LODE RUNNER1  1984  16    8   V    0   $9A29  [1 0 0 1 101000 101001]  $0A0000 - $0A3FF0   $152000 - $153FF0
 
 28.LODE RUNNER2  
 29.KING KONG 1   
@@ -2670,7 +2670,7 @@ SECTION 3
 
 
 ╔=============================================================╗
-║                       23.NINJA 1                            ║
+║                       23.NINJA 1                            ║       <----- NEEDS DEEPER ANALYSIS
 ╠=============================================================╣
 
   Original:  Ninja-kun: Majou no Bouken (忍者くん　魔城の冒険)
@@ -2691,7 +2691,12 @@ SECTION 3
  │ Information: │
  └──────────────┘
 
+  This entry is based on the japanese release of Ninja-kun:
+  Majou no Bouken.
 
+  Copyright information on title screen has been removed.
+
+  Some other things have been changed too, but im not sure what.
 
 ╠=============================================================╣
 ║                       52-in-1 info                          ║
@@ -2789,7 +2794,12 @@ SECTION 3
  │ Information: │
  └──────────────┘
 
+  This entry is based on the worldwide release of Mario Bros.
 
+  Copyright information on title has been removed, and the logo
+  has been hacked to say MR MARY instead of MARIO BROS.
+
+  Some other things have been changed too, but im not sure what.
 
 ╠=============================================================╣
 ║                       52-in-1 info                          ║
@@ -2879,7 +2889,9 @@ SECTION 3
  │ Information: │
  └──────────────┘
 
+  This entry is based on the worldwide release of Mahjong.
 
+  Copyright information on title has been removed.
 
 ╠=============================================================╣
 ║                       52-in-1 info                          ║
@@ -2983,7 +2995,9 @@ SECTION 3
  │ Information: │
  └──────────────┘
 
+  This entry is based on the worldwide release of 4-nin Uchi Mahjong.
 
+  Copyright information on title has been removed.
 
 ╠=============================================================╣
 ║                       52-in-1 info                          ║
@@ -3025,39 +3039,46 @@ SECTION 3
 ║                       27.LODE RUNNER1                       ║
 ╠=============================================================╣
 
-  Original:  
-  Released:  
-  Publisher: 
-  Developer: 
-  Players:   
+  Original:  Lode Runner (ロードランナー)
+  Released:  July 31, 1984
+  Publisher: Hudson Soft
+  Developer: Hudson Soft
+  Players:   2
 
-  Mapper:    
-  PRG:       
-  CHR:       
-  Mirroring: 
+  Mapper:    RROM (0)
+  PRG:       16 kB
+  CHR:       8 kB
+  Mirroring: Vertical
 
-  ROM:       
-  MD5:       
+  ROM:       Lode Runner (Japan).nes
+  MD5:       739b7c1db2b397941c1260999b641a7f
 
  ┌──────────────┐
  │ Information: │
  └──────────────┘
 
+  This entry is based on the japanese release of Lode Runner.
 
+  Copyright information on title has been removed.
 
 ╠=============================================================╣
 ║                       52-in-1 info                          ║
 ╠=============================================================╣
 
   Location:
-  PRG:       $ - $
-  CHR:       $ - $
+  PRG:       $0A0000 - $0A3FF0
+  CHR:       $152000 - $153FF0
 
   Bootcode ($0400):
-
+  STA $9A29 (8D 29 9A) [1001 1010 | 0010 1001]
+  SEI       (78)
+  CLD       (D8)
+  LDX $FF   (A2 FF)
+  JMP $C004 (4C 04 C0)
 
   Reset Vector:
-
+  $(8)0000  8D 4F 98  (STA $984F)
+  $(F)3FFC: 00 C0     ($C000)
 
  ┌────────────────────────┐
  │ Changes from original: │
@@ -3068,8 +3089,33 @@ SECTION 3
  -----------
   Graphics:
  -----------
+  
+  # Title Screen - EDIT MODE / Copyright
+                                E  D  I  T     M  O  D  E
+  Original: $(9)1DA0  22 4B 20 45 44 49 54 20 4D 4F 44 45 00
+                             C  O  P  Y  R  I  G  H  T     ©     1  9  8  4     H  U  D  S  O  N     S  O  F  T
+  Original: $(9)1DAD  23 02 43 4F 50 59 52 49 47 48 54 20 40 20 31 39 38 34 20 48 55 44 53 4F 4E 20 53 4F 46 54 00
+                             W  I  T  H     P  E  R  M  I  S  S  I  O  N     O  F
+  Original: $(9)1DCC  23 27 57 49 54 48 20 50 45 52 4D 49 53 53 49 4F 4E 20 4F 46 00
+                                B  R  O  D  E  R  B  U  N  D     S  O  F  T  W  A  R  E     I  N  C
+  Original: $(9)1DE1  23 44 42 52 4F 44 45 52 42 55 4E 44 20 53 4F 46 54 57 41 52 45 20 49 4E 43 00
+                             A  L  L     R  I  G  H  T  S     R  E  S  E  R  V  E  D
+  Original: $(9)1DFB  23 67 41 4C 4C 20 52 49 47 48 54 53 20 52 45 53 45 52 56 45 44
+
+  52-in-1:  $(9)1DA0  22 4B 20 20 20 20 20 20 20 20 20 20 00
+  52-in-1:  $(9)1DAD  23 02 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 00
+  52-in-1:  $(9)1DCC  23 27 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 00 
+  52-in-1:  $(9)1DE1  23 44 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 00
+  52-in-1:  $(9)1DFB  23 67 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20
 
 
+ ---------
+  52-in-1:
+ ---------
+
+  # 52-in-1 - GameBoot/Reset Vector
+  Original: $(8)0000  78 D8 A2 FF  (SEI | CLD | LDX #$FF)
+  52-in-1:  $(8)0000  8D 4F 98     (STA $984F)
 
 ╚=============================================================╝
 
