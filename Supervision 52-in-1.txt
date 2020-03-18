@@ -2636,7 +2636,8 @@
   JMP $8003 (4C 03 80)
 
   Reset Vector:
-
+  $(8)0000  8D 4F 98  (STA $984F)
+  $(F)3FFC: 00 80     ($8000)
 
  ┌────────────────────────┐
  │ Changes from original: │
@@ -2648,18 +2649,15 @@
   Graphics:
  -----------
 
-  Original: $(8)0000  78 A9 00
-  52-in-1:  $(8)0000  8D 4F 98
-
-
+  # After Death when loading game. LDA $86FC, X | STA $0310, X
   Original: $(8)06E0  00 8D 07 20 CA D0 FA 60 0F 38 18 28 0F 30 12 0F
   Original: $(8)06F0  0F 30 12 16 0F 10 30 0F 0F 28 08 18 2C 30 16 0F
   Original: $(8)0700  0F 30 26 0F 0F 27 0F 11 0F 0F 0F 0F 4A 4A 4A 4A
 
-
   52-in-1:  $(8)06E0  00 8D 07 20 CA D0 FA 60 0F 38 18 28 0F 30 12 0D
   52-in-1:  $(8)06F0  0F 30 12 16 0F 10 30 0D 0F 28 08 18 2C 30 16 0D
   52-in-1:  $(8)0700  0F 30 26 0D 0F 27 0D 11 0F 0F 0F 0F 4A 4A 4A 4A
+
 
   # Title Screen - Copyright © 1985 JALECO
   Original: $(9)1D58  8D 07 20 (STA $2007)
@@ -2670,7 +2668,7 @@
   Original: $(9)1D70  8D 07 20 (STA $2007)
   52-in-1:  $(9)1D70  EA EA EA
 
-
+  # Not sure
   Original: $(A)23C0  03 60 A9 80 85 6D 60 0F 03 02 0F 0F 13 12 0F 0F
   Original: $(A)23D0  23 22 0F 0F 32 32 0F 0F 08 07 0F 0F 18 17 0F 0F
   Original: $(A)23E0  28 27 0F 0F 38 37 0F A9 00 85 15 85 16 85 17 A5
@@ -2680,8 +2678,17 @@
   52-in-1:  $(A)23E0  28 27 2D 0F 38 37 3D A9 00 85 15 85 16 85 17 A5
 
 
-  Original: $(B)3FF0  0F 47 3F 0E 0F 1E 0F B6 7F 3D 2E 87 00 80 E6 87
-  52-in-1:  $(B)3FF0  0F 47 3F 0E 0F 1E 0F B6 7F 3D 2E 87 00 80 E6 00
+ ---------
+  52-in-1:
+ ---------
+
+  # IRQ changed
+  Original: $(B)3FFE  E6 87
+  52-in-1:  $(B)3FFE  E6 00
+
+  # 52-in-1 - GameBoot/Reset Vector
+  Original: $(8)0000  78 A9 00  (SEI | LDA #$00)
+  52-in-1:  $(8)0000  8D 4F 98  (STA $984F)
 
 ╚=============================================================╝
 
@@ -2692,16 +2699,16 @@
 ║                       24.PIPELINE                  ║
 ╠===========================================╣
 
-  Original:  
-  Released:  
-  Publisher: 
-  Developer: 
-  Players:   
+  Original:  Mario Bros.  (マリオブラザーズ)
+  Released:  September 9, 1983
+  Publisher: Nintendo
+  Developer: Nintendo
+  Players:   2
 
-  Mapper:    
-  PRG:       
-  CHR:       
-  Mirroring: 
+  Mapper:    NROM-128 (0)
+  PRG:       16 kB
+  CHR:       8 kB
+  Mirroring: Horizontal
 
   ROM:       
   MD5:       
@@ -2717,8 +2724,8 @@
 ╠===========================================╣
 
   Location:
-  PRG:       $ - $
-  CHR:       $ - $
+  PRG:       $094000 - $097FFF
+  CHR:       $14C000 - $14DFFF
 
   Bootcode ($0400):
 
