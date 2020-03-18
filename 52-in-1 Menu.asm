@@ -2180,7 +2180,7 @@ BootGameBootSequencesSection2:
     ; STA $B925 | SEI | LDA #$00 | JMP $8003 | 
     .byte $8D, $25, $B9, $78, $A9, $00, $4C, $03, $80, $39, $29, $03, $85, $39, $20, $6A
     ; 24.PIPELINE
-    ; STA $B966 | SEI | CLD | LDA $2002 | BPL $4CFB | ????????
+    ; STA $B966 | SEI | CLD | LDA $2002 | BPL $0405 | JMP $C007 |
     .byte $8D, $66, $B9, $78, $D8, $AD, $02, $20, $10, $FB, $4C, $07, $C0, $20, $0F, $F7
     ; 25.MAHJONG 2
     ; STA $99A7 | SEI | CLD | LDA #$10 | JMP $CA47 | 
