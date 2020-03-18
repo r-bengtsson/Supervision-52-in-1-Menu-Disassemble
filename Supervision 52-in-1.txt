@@ -5,31 +5,31 @@
   Mapper 225/255 information is taken from [wiki.nesdev.com]
 
 |¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯|
-|                Section x - Quickview Games                 |
+|                Section x - Games Quicklist                 |
 |____________________________________________________________|
 
 SECTION 1
-                                                 [1 B M Z PPPPPp CCCCCC]
-GAME             YEAR  PRG  CHR MIR  MAP  Mapper [. H M O PPPPPP CCCCCC]
+                                                 [1 B M Z PPPPPp CCCCCC] 255
+GAME             YEAR  PRG  CHR MIR  MAP  Mapper [. H M O PPPPPP CCCCCC] 225
 01.ISLANDER      1986  32   32   V    3   $8000  [1 0 0 0 000000 000000]
 02.GRADING       1986  32   32   V    3   $8084  [1 0 0 0 000010 000100]
 03.P-D FIGHTING  1986  32   32   V    3   $8108  [1 0 0 0 000100 001000]
 04.STAR SOLDIER  1986  32   32   V    3   $818C  [1 0 0 0 000110 001100]
-05.GOONIES       1986  32   16        87  $820E  [1 0 0 0 001000 001110]
-06.LEGENDRY
-07.TETRIS
-08.BROS II
-09.TWIN BEE
+05.GOONIES       1986  32   16   V   87   $820E  [1 0 0 0 001000 001110]
+06.LEGENDRY      1986  32   16   H   87   $A290  [1 0 1 0 001010 010000]
+07.TETRIS        1989  32   16   V    3   $8312  [1 0 0 0 001100 010010]
+08.BROS II       1985  32    8   V    0   $8394  [1 0 0 0 001110 010100]
+09.TWIN BEE      1986  32   16   H   87   $A415  [1 0 1 0 010000 010101]
 
-10.NINJA 2
-11.CITY CONECT.
-12.B-WINGS
-13.1942
-14.GYROOINE
-15.FLAPPY
-16.SPARTAN
-17.BOMBER MAN
-18.FRONT LINE
+10.NINJA 2       1985  16   16   V   87   $9496  [1 0 0 1 010010 010110]
+11.CITY CONECT.  1985  16   16   V   87   $94D8  [1 0 0 1 010011 011000]
+12.B-WINGS       1985  32    8   H  185   $A51A  [1 0 1 0 010100 011010]
+13.1942          1985  32    8   H    0   $A59B  [1 0 1 0 010110 011011]
+14.GYROOINE      1986  32    8   V    0   $861C  [1 0 0 0 011000 011100]
+15.FLAPPY        1985  32    8   H    0   $A69D  [1 0 1 0 011010 011101]
+16.SPARTAN       1985  32    8   V    0   $871E  [1 0 0 0 011100 011110]
+17.BOMBER MAN    1985  16    8   V    0   $979F  [1 0 0 1 011110 011111]
+18.FRONT LINE    1985  16    8   H    0   $B7E0  [1 0 1 1 011111 100000]
 
 
 SECTION 2
@@ -906,7 +906,6 @@ SECTION 3
   CHR:       $128000 - $129FF0
 
   Bootcode ($0400):
-  $8D, $15, $A4, $4C, $11, $80
   STA $8394 (8D 94 83) [1000 0011 | 1001 0100]
   SEI       (78)
   CLD       (D8)
@@ -1375,7 +1374,7 @@ SECTION 3
   Ported by: Micronics / Khaos
   Players:   2
 
-  Mapper:    NROM-256
+  Mapper:    NROM-256 (0)
   PRG:       32 kB
   CHR:       8 kB
   Mirroring: Horizontal
