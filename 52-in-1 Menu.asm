@@ -2189,7 +2189,7 @@ BootGameBootSequencesSection2:
     ; STA $99E8 | JMP $C000 | 
     .byte $8D, $E8, $99, $4C, $00, $C0, $91, $A2, $C8, $A9, $FF, $91, $A2, $20, $10, $DE
     ; 27.LODE RUNNER1
-    ; STA $9A29 | SEI | CLD | LDX $FF | JMP $C04C | 
+    ; STA $9A29 | SEI | CLD | LDX $FF | JMP $C004 | 
     .byte $8D, $29, $9A, $78, $D8, $A2, $FF, $4C, $04, $C0, $B9, $E6, $39, $A5, $39, $29
     
     ; Column 2
