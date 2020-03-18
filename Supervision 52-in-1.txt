@@ -4,6 +4,76 @@
   Game information is taken from NES Cart Database [bootgod.dyndns.org:7777]
   Mapper 225/255 information is taken from [wiki.nesdev.com]
 
+|¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯|
+|                Section x - Quickview Games                 |
+|____________________________________________________________|
+
+SECTION 1
+                                                 [1 B M Z PPPPPp CCCCCC]
+GAME             YEAR  PRG  CHR MIR  MAP  Mapper [. H M O PPPPPP CCCCCC]
+01.ISLANDER      1986  32   32   V    3   $8000  [1 0 0 0 000000 000000]
+02.GRADING       1986  32   32   V    3   $8084  [1 0 0 0 000010 000100]
+03.P-D FIGHTING  1986  32   32   V    3   $8108  [1 0 0 0 000100 001000]
+04.STAR SOLDIER  1986  32   32   V    3   $818C  [1 0 0 0 000110 001100]
+05.GOONIES       1986  32   16        87  $820E  [1 0 0 0 001000 001110]
+06.LEGENDRY
+07.TETRIS
+08.BROS II
+09.TWIN BEE
+
+10.NINJA 2
+11.CITY CONECT.
+12.B-WINGS
+13.1942
+14.GYROOINE
+15.FLAPPY
+16.SPARTAN
+17.BOMBER MAN
+18.FRONT LINE
+
+
+SECTION 2
+
+19.MACROSS
+20.1989GALAXIAN
+21.STAR FORCE
+22.KUNG-FU
+23.NINJA 1
+24.PIPELINE
+25.MAHJONG 2
+26.MAHJONG 4
+27.LODE RUNNER1
+
+28.LODE RUNNER2
+29.KING KONG 1
+30.KING KONG 2
+31.KING KONG 3
+32.MAPPY
+33.EXCITE BIKE
+34.F1-RACE
+35.ROAD FIGHTER
+36.PIN BALL
+
+
+SECTION 3
+
+37.BASEBALL
+38.POPEYE
+39.GALAGA
+40.GALAXIAN
+41.PAC-MAN
+42.ICE CLIMBER
+43.1989 EXERION
+44.WRESTLE
+
+45.BATTLE CITY
+46.SKY DESTRYOER
+47.CHESS
+48.BALLOON FIGHT
+49.FORMATION Z
+50.POOYAN
+51.CIRCUS TROUPE
+52.FANCY BROS
 
 |¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯|
 |                     Section x - Games                      |
