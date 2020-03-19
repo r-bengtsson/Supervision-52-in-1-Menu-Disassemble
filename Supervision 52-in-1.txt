@@ -3138,8 +3138,8 @@ SECTION 3
   CHR:       8 kB
   Mirroring: Vertical
 
-  ROM:       
-  MD5:       
+  ROM:       Championship Lode Runner (Japan)
+  MD5:       51e3b6c0b6d8158fffdf7775465d5f3f
 
  ┌──────────────┐
  │ Information: │
@@ -3223,43 +3223,50 @@ SECTION 3
 
 
 
-╔===========================================╗
-║                       29.KING KONG 1               ║
-╠===========================================╣
+╔=============================================================╗
+║                       29.KING KONG 1                        ║
+╠=============================================================╣
 
-  Original:  
-  Released:  
-  Publisher: 
-  Developer: 
-  Players:   
+  Original:  Donkey Kong (ドンキーコング )
+  Released:  July 15, 1983
+  Publisher: Nintendo
+  Developer: Nintendo
+  Players:   2
 
-  Mapper:    
-  PRG:       
-  CHR:       
-  Mirroring: 
+  Mapper:    NROM-128 (0)
+  PRG:       16 kB
+  CHR:       8 kB
+  Mirroring: Horizontal
 
-  ROM:       
-  MD5:       
+  ROM:       Donkey Kong (World) (Rev 1).nes
+  MD5:       40319cad12c80fc095901eb0182df838
 
  ┌──────────────┐
  │ Information: │
  └──────────────┘
 
+  This entry is based on the japanese release of Donkey Kong. 
 
+  Copyright information on the title screen has been removed.
 
-╠===========================================╣
+╠=====================================================╣
 ║                   52-in-1 info                      ║
-╠===========================================╣
+╠=====================================================╣
 
   Location:
-  PRG:       $ - $
-  CHR:       $ - $
+  PRG:       $0A8000 - $0ABFFF
+  CHR:       $154000 - $155FFF
 
   Bootcode ($0400):
-
+  STA $9AAA (8D AA 9A) [1001 1010 | 1010 1010]
+  SEI       (78)
+  CLD       (D8)
+  LDA #$10  (A9 10)
+  JMP $C7A2 (4C A2 C7)
 
   Reset Vector:
-
+  $(8)078E  8D 4F 98  (STA $984F)
+  $(F)3FFC: 9E C7     ($C79E)
 
  ┌────────────────────────┐
  │ Changes from original: │
@@ -3271,9 +3278,25 @@ SECTION 3
   Graphics:
  -----------
 
+  # Title Screen - Copyright
+                       ©  1  9  8  1     N  I  N  T  E  N  D  O     C  O .,  L  T  D  .
+  Original: $(B)39F4  D3 01 09 08 01 24 17 12 17 1D 0E 17 0D 18 24 0C 18 65 15 1D 0D 64
+                       M  A  D  E     I  N     J  A  P  A  N
+  Original: $(B)3A0D  16 0A 0D 0E 24 12 17 24 13 0A 19 0A 17
 
+  52-in-1:  $(B)39F4  24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 
+  52-in-1:  $(B)3A0D  24 24 24 24 24 24 24 24 24 24 24 24 24
+    
 
-╚===========================================╝
+ ---------
+  52-in-1:
+ ---------
+
+  # 52-in-1 - GameBoot/Reset Vector
+  Original: $(8)078E  78 D8 A9 10  (SEI | CLD | LDY #$10)
+  52-in-1:  $(8)078E  8D 4F 98     (STA $984F)
+
+╚=============================================================╝
 
 
 
