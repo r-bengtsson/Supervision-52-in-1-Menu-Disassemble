@@ -88,7 +88,7 @@ OAM                 = $0200
 ; Include 52-in-1 data Part 1
 .segment "BINA"                     ; $C000
 .org $C000
-    .incbin "./bin/01 0000-107A.bin"
+    .incbin "./includes/01 0000-107A.bin"
 
 
 
@@ -158,7 +158,7 @@ RTS
 ; Include 52-in-1 data Part 2
 .segment "BINB"                     ; $D099
     .org $D099
-    .incbin "./bin/02 1099-10A2.bin"
+    .incbin "./includes/02 1099-10A2.bin"
 
 
 ; Second part of menu code
@@ -2323,12 +2323,12 @@ BootGameBootSequencesSection3:
 ; Include 52-in-1 data Part 3
 .segment "BINC"                     ; $DD41
     .org $DD41
-    .incbin "./bin/03 1D41-1FFF.bin"
+    .incbin "./includes/03 1D41-1FFF.bin"
 
 ; Include 52-in-1 data Part 4 - Galaxian
 .segment "BIND"                     ; $E000
     .org $E000
-    .incbin "./bin/04 2000-3FF1.bin"
+    .incbin "./includes/04 2000-3FF1.bin"
 
 ; 52-in-1 specific code at $FFF2 in all games
 .segment "MULTIC"
