@@ -4,6 +4,7 @@ A disassemble and analysis of the multicart Supervision 52-in-1
 
 Files
 - **52-in-1 Menu.cfg**                 - Configuration file for NROM-128. Used different segmens to align code to correct adress (perhaps there is a better way do do this?)
+- ***52-in-1 Menu.tbl***               - Table file for the rom
 
 - **.\src\52-in-1 Menu.asm**           - Commented disassemble of the Supervision 52-in-1 Menu. Compiles to a 1/1 copy of original.
 
