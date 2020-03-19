@@ -8,7 +8,8 @@
 |                Section x - Games Quicklist                 |
 |____________________________________________________________|
 
-
+  PRG:       
+  CHR:       $152000 - $153FF0
 
 SECTION 1
 
@@ -47,7 +48,7 @@ SECTION 2
 26.MAHJONG 4     1984  16    8   V    0   $99E8  [1 0 0 1 100111 101000]  $09C000 - $09FFF0   $150000 - $151FF0
 27.LODE RUNNER1  1984  16    8   V    0   $9A29  [1 0 0 1 101000 101001]  $0A0000 - $0A3FF0   $152000 - $153FF0
 
-28.LODE RUNNER2  
+28.LODE RUNNER2  1985  16    8   V    0   $9A69  [1 0 0 1 101001 101001]  $0A4000 - $0A7FFF   $152000 - $153FF0
 29.KING KONG 1   
 30.KING KONG 2   
 31.KING KONG 3   
@@ -3122,20 +3123,20 @@ SECTION 3
 
 
 
-╔===========================================╗
-║                       28.LODE RUNNER2              ║
-╠===========================================╣
+╔=============================================================╗
+║                       28.LODE RUNNER2                       ║
+╠=============================================================╣
 
-  Original:  
-  Released:  
-  Publisher: 
-  Developer: 
-  Players:   
+  Original:  Championship Lode Runner (チャンピオンシップロードランナー)
+  Released:  April 17, 1985
+  Publisher: Hudson Soft
+  Developer: Hudson Soft
+  Players:   1
 
-  Mapper:    
-  PRG:       
-  CHR:       
-  Mirroring: 
+  Mapper:    NROM-128 (0)
+  PRG:       16 kB
+  CHR:       8 kB
+  Mirroring: Vertical
 
   ROM:       
   MD5:       
@@ -3144,21 +3145,32 @@ SECTION 3
  │ Information: │
  └──────────────┘
 
+  This entry is based on the japanese release of
+  Championship Lode Runner. 
 
+  Copyright information and the championship logo on
+  the title screen has been removed.
 
-╠===========================================╣
+  CHR is shared with 27.LODE RUNNER1
+
+╠=====================================================╣
 ║                   52-in-1 info                      ║
-╠===========================================╣
+╠=====================================================╣
 
   Location:
-  PRG:       $ - $
-  CHR:       $ - $
+  PRG:       $0A4000 - $0A7FFF
+  CHR:       $152000 - $153FF0
 
   Bootcode ($0400):
-
+  STA $9A69 (8D 69 9A) [1001 1010 | 0110 1001]
+  SEI       (78)
+  CLD       (D8)
+  LDX #$FF  (A2 FF)
+  JMP $C004 (4C 04 C0)
 
   Reset Vector:
-
+  $(8)0000  8D 4F 98  (STA $984F)
+  $(F)3FFC: 00 C0     ($C000)
 
  ┌────────────────────────┐
  │ Changes from original: │
@@ -3170,9 +3182,43 @@ SECTION 3
   Graphics:
  -----------
 
+  # ???????
+  Original: $(8)055A  DE
+  52-in-1:  $(8)055A  C8
 
 
-╚===========================================╝
+  # Title Screen - Copyright
+                             C  O  P  Y  R  I  G  H  T     1  9  8  4        D  O  U  G     S  M  I  T  H
+  Original: $(8)1E46  23 03 43 4F 50 59 52 49 47 48 54 20 31 39 38 34 20 20 44 4F 55 47 20 53 4D 49 54 48 00
+                             P  U  B  L  I  S  H  E  D     B  Y     H  U  D  S  O  N     S  O  F  T
+  Original: $(8)1E63  23 24 50 55 42 4C 49 53 48 45 44 20 42 59 20 48 55 44 53 4F 4E 20 53 4F 46 54 00 
+                             U  N  D  E  R     L  I  C  E  N  S  E     F  R  O  M
+  Original: $(8)1E7E  23 47 55 4E 44 45 52 20 4C 49 43 45 4E 53 45 20 46 52 4F 4D 00
+                             B  R  O  D  E  R  B  U  N  D     S  O  F  T  W  A  R  E     I  N  C
+  Original: $(8)1E93  23 64 42 52 4F 44 45 52 42 55 4E 44 20 53 4F 46 54 57 41 52 45 20 49 4E 43 00
+
+  52-in-1:  $(8)1E46  23 03 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 00
+  52-in-1:  $(8)1E63  23 24 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 00
+  52-in-1:  $(8)1E7E  23 47 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 00
+  52-in-1:  $(8)1E93  23 64 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 00
+
+
+ ---------
+  52-in-1:
+ ---------
+
+  # 52-in-1 - GameBoot/Reset Vector
+  Original: $(8)0000  78 D8 A2 FF  (SEI | CLD | LDX #$FF)
+  52-in-1:  $(8)0000  8D 4F 98     (STA $984F)
+
+ ┌─────┐
+ │ CHR │
+ └─────┘
+
+  This entry doesn't have an unique CHR, but shares it with
+  27.LODE RUNNER1, which differs partly from original CHR.
+
+╚=============================================================╝
 
 
 
