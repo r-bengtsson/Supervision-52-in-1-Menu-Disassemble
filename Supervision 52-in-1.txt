@@ -8,8 +8,7 @@
 |                Section x - Games Quicklist                 |
 |____________________________________________________________|
 
-  PRG:       
-  CHR:       $152000 - $153FF0
+    
 
 SECTION 1
 
@@ -49,8 +48,8 @@ SECTION 2
 27.LODE RUNNER1  1984  16    8   V    0   $9A29  [1 0 0 1 101000 101001]  $0A0000 - $0A3FF0   $152000 - $153FF0
 
 28.LODE RUNNER2  1985  16    8   V    0   $9A69  [1 0 0 1 101001 101001]  $0A4000 - $0A7FFF   $152000 - $153FF0
-29.KING KONG 1   
-30.KING KONG 2   
+29.KING KONG 1   1983  16    8   H    0   $9AAA  [1 0 0 1 101010 101010]  $0A8000 - $0ABFFF   $154000 - $155FFF
+30.KING KONG 2   1983  16    8   V    0   $BAEB  [1 0 1 1 101011 101011]  $0AC000 - $0AFFFF   $156000 - $157FFF
 31.KING KONG 3   
 32.MAPPY         
 33.EXCITE BIKE   
@@ -3249,6 +3248,8 @@ SECTION 3
 
   Copyright information on the title screen has been removed.
 
+  Mapper calls Vertical mirroring even though it is listed as Horizontal.
+
 ╠=====================================================╣
 ║                   52-in-1 info                      ║
 ╠=====================================================╣
@@ -3265,7 +3266,7 @@ SECTION 3
   JMP $C7A2 (4C A2 C7)
 
   Reset Vector:
-  $(8)078E  8D 4F 98  (STA $984F)
+  $(8)079E  8D 4F 98  (STA $984F)
   $(F)3FFC: 9E C7     ($C79E)
 
  ┌────────────────────────┐
@@ -3293,51 +3294,60 @@ SECTION 3
  ---------
 
   # 52-in-1 - GameBoot/Reset Vector
-  Original: $(8)078E  78 D8 A9 10  (SEI | CLD | LDY #$10)
-  52-in-1:  $(8)078E  8D 4F 98     (STA $984F)
+  Original: $(8)079E  78 D8 A9 10  (SEI | CLD | LDY #$10)
+  52-in-1:  $(8)079E  8D 4F 98     (STA $984F)
 
 ╚=============================================================╝
 
 
 
 
-╔===========================================╗
-║                       30.KING KONG 2               ║
-╠===========================================╣
+╔=============================================================╗
+║                       30.KING KONG 2                        ║
+╠=============================================================╣
 
-  Original:  
-  Released:  
-  Publisher: 
-  Developer: 
-  Players:   
+  Original:  Donkey Kong Jr. (ドンキーコングＪｒ)
+  Released:  July 15, 1983
+  Publisher: Nintendo
+  Developer: Nintendo
+  Players:   2
 
-  Mapper:    
-  PRG:       
-  CHR:       
-  Mirroring: 
+  Mapper:    HROM (0)
+  PRG:       16 kB
+  CHR:       8 kB
+  Mirroring: Vertical
 
-  ROM:       
-  MD5:       
+  ROM:       Donkey Kong Jr. (World) (Rev 1).nes
+  MD5:       f2124d8595da011d78cd655ac6fa9f0b
 
  ┌──────────────┐
  │ Information: │
  └──────────────┘
 
+  This entry is based on the japanese release of Donkey Kong Jr. 
 
+  Copyright information on the title screen has been removed.
 
-╠===========================================╣
+  Mapper calls Horizontal mirroring even though it is listed as Vertical.
+
+╠=====================================================╣
 ║                   52-in-1 info                      ║
-╠===========================================╣
+╠=====================================================╣
 
   Location:
-  PRG:       $ - $
-  CHR:       $ - $
+  PRG:       $0AC000 - $0AFFFF
+  CHR:       $156000 - $157FFF
 
   Bootcode ($0400):
-
+  STA $BAEB (8D EB BA) [1011 1010 | 1110 1011]
+  SEI       (78)
+  CLD       (D8)
+  LDA #$10  (A9 10)
+  JMP $C672 (4C 72 C6)
 
   Reset Vector:
-
+  $(8)066E  8D 4F 98  (STA $984F)
+  $(F)3FFC: 6E C6     ($C66E)
 
  ┌────────────────────────┐
  │ Changes from original: │
@@ -3349,9 +3359,26 @@ SECTION 3
   Graphics:
  -----------
 
+  # Title Screen - Copyright
+                       ©  1  9  8  2     N  I  N  T  E  N  D  O     C  O .,  L  T  D  .
+  Original: $(B)3360  FE 01 09 08 02 24 17 12 17 1D 0E 17 0D 18 24 0C 18 CA 15 1D 0D C7
+                       
+                       M  A  D  E     I  N     J  A  P  A  N
+  Original: $(B)3380  16 0A 0D 0E 24 12 17 24 13 0A 19 0A 17
+
+  52-in-1:  $(B)3360  24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24
+  52-in-1:  $(B)3380  24 24 24 24 24 24 24 24 24 24 24 24 24
 
 
-╚===========================================╝
+ ---------
+  52-in-1:
+ ---------
+
+  # 52-in-1 - GameBoot/Reset Vector
+  Original: $(8)066E  78 D8 A9 10  (SEI | CLD | LDY #$10)
+  52-in-1:  $(8)066E  8D 4F 98     (STA $984F)
+
+╚=============================================================╝
 
 
 
