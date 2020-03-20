@@ -51,7 +51,7 @@ SECTION 2
 29.KING KONG 1   1983  16    8   H    0   $9AAA  [1 0 0 1 101010 101010]  $0A8000 - $0ABFFF   $154000 - $155FFF
 30.KING KONG 2   1983  16    8   V    0   $BAEB  [1 0 1 1 101011 101011]  $0AC000 - $0AFFFF   $156000 - $157FFF
 31.KING KONG 3   1984  16    8   V    0   $9B2C  [1 0 0 1 101100 101100]  $0B0000 - $0B3FFF   $158000 - $159FFF
-32.MAPPY         
+32.MAPPY         1984  16    8   V    0   $9B6D  [1 0 0 1 101101 101101]  
 33.EXCITE BIKE   
 34.F1-RACE       
 35.ROAD FIGHTER  
@@ -3405,7 +3405,10 @@ SECTION 3
  │ Information: │
  └──────────────┘
 
+  This entry is based on the japanese release of Donkey Kong 3. 
 
+  Copyright information on the title screen has been removed.
+  Logo has been removed and changed to GORILLA 3.
 
 ╠=====================================================╣
 ║                   52-in-1 info                      ║
@@ -3481,20 +3484,20 @@ SECTION 3
 
 
 
-╔===========================================╗
-║                       32.MAPPY                     ║
-╠===========================================╣
+╔=============================================================╗
+║                       32.MAPPY                              ║
+╠=============================================================╣
 
-  Original:  
-  Released:  
-  Publisher: 
-  Developer: 
-  Players:   
+  Original:  Mappy (マッピー)
+  Released:  November 14, 1984
+  Publisher: Namco
+  Developer: Namco
+  Players:   2
 
-  Mapper:    
-  PRG:       
-  CHR:       
-  Mirroring: 
+  Mapper:    NAMCOT-3302 (0)
+  PRG:       16 kB
+  CHR:       8 kB
+  Mirroring: Vertical
 
   ROM:       
   MD5:       
@@ -3505,19 +3508,21 @@ SECTION 3
 
 
 
-╠===========================================╣
+╠=====================================================╣
 ║                   52-in-1 info                      ║
-╠===========================================╣
+╠=====================================================╣
 
   Location:
-  PRG:       $ - $
-  CHR:       $ - $
+  PRG:       $0B4000 - $0B7FFF
+  CHR:       $15A000 - $15BFFF
 
   Bootcode ($0400):
-
+  STA $9B6D (8D 6D 9B) [1001 1011 | 0110 1101]
+  JMP $C031 (4C 31 C0)
 
   Reset Vector:
-
+  $(8)0000  8D 4F 98 (STA $984F)
+  $(B)3FFC  00 C0
 
  ┌────────────────────────┐
  │ Changes from original: │
@@ -3529,9 +3534,61 @@ SECTION 3
   Graphics:
  -----------
 
+  # Title Screen - Copyright
+                             ©     1  9  8  3     1  9  8  4     N  A  M  C  O     L  T  D  .
+  Original: $(8)0CC0  E5 22 26 00 02 0A 09 04 00 02 0A 09 05 00 18 0B 17 0D 19 00 16 1E 0E 25
+                                A  L  L     R  I  G  H  T  S     R  E  S  E  R  V  E  D
+  Original: $(8)0CD8  13 27 23 0B 16 16 00 1C 13 11 12 1E 1D 00 1C 0F 1D 0F 1C 20 0F 0E
+
+  52-in-1:  $(8)0CC0  E5 22 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  52-in-1:  $(8)0CD8  13 27 23 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+ ---------
+  52-in-1:
+ ---------
+
+  # 52-in-1 - GameBoot/Reset Vector
+                       C  O  P  Y  R  I  G  H  T     1  9  8  3
+  Original: $(8)0000  43 4F 50 59 52 49 47 48 54 20 31 39 38 33
+  52-in-1:  $(8)0000  8D 4F 98 (STA $984F)
 
 
-╚===========================================╝
+  # Reset Vector - Original
+  Original: $(8)0031  78 D8
+  52-in-1:  $(8)0030  D8 78
+
+
+  Original: $(B)3FFC  31 C0
+  52-in-1:  $(B)3FFC  00 C0
+
+ ┌─────┐
+ │ CHR │
+ └─────┘
+
+  NAMCO logo has been blanked in CHR.
+
+  # NAMCOT Logo
+  Original: $0270  00 00 00 00 00 00 00 00 FF FF E1 E1 E1 E1 E1 E1
+  Original: $1F40  87 C7 C0 C7 CF CE CF C7 00 00 00 00 00 00 00 00
+  Original: $1F50  F8 FC 1C FC FC 1C FC FC 00 00 00 00 00 00 00 00
+  Original: $1F60  FF FF E7 E7 E7 E7 E7 E7 00 00 00 00 00 00 00 00
+  Original: $1F70  F0 F9 39 39 39 39 39 38 00 00 00 00 00 00 00 00
+  Original: $1F80  FF FF C0 C0 C0 C0 FF FF 00 00 00 00 00 00 00 00
+  Original: $1F90  1F 3F 30 30 30 30 3F 1F 00 00 00 00 00 00 00 00
+  Original: $1FA0  E3 F3 70 70 70 70 F0 E0 00 00 00 00 00 00 00 00
+  Original: $1FB0  FE FE 70 70 70 70 70 70 00 00 00 00 00 00 00 00
+
+  52-in-1:  $0270  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  52-in-1:  $1F40  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  52-in-1:  $1F50  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  52-in-1:  $1F60  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  52-in-1:  $1F70  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  52-in-1:  $1F80  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  52-in-1:  $1F90  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  52-in-1:  $1FA0  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  52-in-1:  $1FB0  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+╚=============================================================╝
 
 
 
