@@ -8,7 +8,7 @@
 |                Section x - Games Quicklist                 |
 |____________________________________________________________|
 
-
+    
 
 SECTION 1
 
@@ -51,8 +51,8 @@ SECTION 2
 29.KING KONG 1   1983  16    8   H    0   $9AAA  [1 0 0 1 101010 101010]  $0A8000 - $0ABFFF   $154000 - $155FFF
 30.KING KONG 2   1983  16    8   V    0   $BAEB  [1 0 1 1 101011 101011]  $0AC000 - $0AFFFF   $156000 - $157FFF
 31.KING KONG 3   1984  16    8   V    0   $9B2C  [1 0 0 1 101100 101100]  $0B0000 - $0B3FFF   $158000 - $159FFF
-32.MAPPY         1984  16    8   V    0   $9B6D  [1 0 0 1 101101 101101]  
-33.EXCITE BIKE   
+32.MAPPY         1984  16    8   V    0   $9B6D  [1 0 0 1 101101 101101]  $0B4000 - $0B7FFF   $15A000 - $15BFFF
+33.EXCITE BIKE   1984  16    8   V    0   $9BAE  [1 0 0 1 101110 101110]  $0B8000 - $0BBFFF   $15C000 - $15DFFF
 34.F1-RACE       
 35.ROAD FIGHTER  
 36.PIN BALL      
@@ -3499,14 +3499,18 @@ SECTION 3
   CHR:       8 kB
   Mirroring: Vertical
 
-  ROM:       
-  MD5:       
+  ROM:       Mappy (Japan).nes
+  MD5:       b0ba60bc0866efc73ccd62defc0120d5
 
  ┌──────────────┐
  │ Information: │
  └──────────────┘
 
+  This entry is based on the japanese release of Mappy. 
 
+  Copyright information on the title screen has been removed.
+  
+  NAMCOT logo has been blanked in CHR.
 
 ╠=====================================================╣
 ║                   52-in-1 info                      ║
@@ -3522,7 +3526,7 @@ SECTION 3
 
   Reset Vector:
   $(8)0000  8D 4F 98 (STA $984F)
-  $(B)3FFC  00 C0
+  $(B)3FFC  00 C0    ($C000)
 
  ┌────────────────────────┐
  │ Changes from original: │
@@ -3542,6 +3546,7 @@ SECTION 3
 
   52-in-1:  $(8)0CC0  E5 22 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
   52-in-1:  $(8)0CD8  13 27 23 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
 
  ---------
   52-in-1:
@@ -3593,43 +3598,54 @@ SECTION 3
 
 
 
-╔===========================================╗
-║                       33.EXCITE BIKE               ║
-╠===========================================╣
+╔=============================================================╗
+║                       33.EXCITE BIKE                        ║
+╠=============================================================╣
 
-  Original:  
-  Released:  
-  Publisher: 
-  Developer: 
-  Players:   
+  Original:  Excitebike 
+  Released:  November 30, 1984
+  Publisher: Nintendo
+  Developer: Nintendo
+  Players:   1
 
-  Mapper:    
-  PRG:       
-  CHR:       
-  Mirroring: 
+  Mapper:    NROM-128 (0)
+  PRG:       16 kB
+  CHR:       8 kB
+  Mirroring: Vertical
 
-  ROM:       
-  MD5:       
+  ROM:       Excitebike (Japan, USA).nes
+  MD5:       d7fe15cf2bc7b6582c07d12b3cf3bede
 
  ┌──────────────┐
  │ Information: │
  └──────────────┘
 
+  This entry is based on the american/japanese release of
+  Exitebike. 
 
+  Copyright information on the title screen and NINTENDO
+  text ingame has been removed.
 
-╠===========================================╣
-║                   52-in-1 info                   ║
-╠===========================================╣
+  Excitebike logo has been changed to just text in 52-in-1.
+
+╠=====================================================╣
+║                   52-in-1 info                      ║
+╠=====================================================╣
 
   Location:
-  PRG:       $ - $
-  CHR:       $ - $
+  PRG:       $0B8000 - $0BBFFF
+  CHR:       $15C000 - $15DFFF
 
   Bootcode ($0400):
-
+  STA $9BAE (8D AE 9B) [1001 1011 | 1010 1110]
+  SEI       (78)
+  CLD       (D8)
+  LDA #$00  (A9 00)
+  JMP $C188 (4C 88 C1)
 
   Reset Vector:
-
+  $(8)0184  8D 4F 98 (STA $984F)
+  $(B)3FFC  84 C1    ($C184)
 
  ┌────────────────────────┐
  │ Changes from original: │
@@ -3640,10 +3656,38 @@ SECTION 3
  -----------
   Graphics:
  -----------
+  
+  # Ingame - NINTENDO
+                                N  I  N  T  E  N  D  O
+  Original: $(9)14D4  20 CC 08 17 12 17 1D 0E 17 0D 18
+  52-in-1:  $(9)14D0  20 CC 08 FE FE FE FE FE FE FE FE
 
 
+  # Title Screen - Logo
+  Original: $(9)1673  21 07 12 98 9A 9C 9E A0 A2 A4 A6 A8 98 9A 98 AA A4 AC AE 98 9A 
+  Original: $(9)1688  21 27 12 99 9B 9D 9F A1 A3 A5 A7 A9 99 9B 99 AB A5 AD AF 99 9B
+  
+                                            E  X  C  I  T  E  B  I  K  E
+  52-in-1:  $(9)1673  21 07 12 FC FC FC FC 0E 21 0C 12 1D 0E 0B 12 14 0E FC FC FC FC                
+  52-in-1:  $(9)1688  21 27 12 FC FC FC FC FC FC FC FC FC FC FC FC FC FC FC FC FC FC
 
-╚===========================================╝
+
+  # Title Screen - Copyright
+                                ©  1  9  8  4     N  I  N  T  E  N  D  O
+  Original: $(9)16C2  23 09 0E 3A 01 09 08 04 FC 17 12 17 1D 0E 17 0D 18
+  52-in-1:  $(9)16C2  23 09 0E FC FC FC FC FC FC FC FC FC FC FC FC FC FC
+
+
+ ---------
+  52-in-1:
+ ---------
+
+  # 52-in-1 - GameBoot/Reset Vector
+                       
+  Original: $(8)0184  78 D8 A9 00 (SEI | CLD | LDA #$00)
+  52-in-1:  $(8)0184  8D 4F 98    (STA $984F)
+
+╚=============================================================╝
 
 
 
