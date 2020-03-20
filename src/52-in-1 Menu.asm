@@ -2203,7 +2203,7 @@ BootGameBootSequencesSection2:
     ; STA $BAEB | SEI | CLD | LDA #$10 | JMP $C672 | 
     .byte $8D, $EB, $BA, $78, $D8, $A9, $10, $4C, $72, $C6, $B5, $76, $C9, $FF, $F0, $0F
     ; 31.KING KONG 3
-    ; STA $9B2C | SEI | CLD | LDA $2002 | BPL $4CFB | ??????
+    ; STA $9B2C | SEI | CLD | LDA $2002 | BPL $0405 | JMP $C007 |
     .byte $8D, $2C, $9B, $78, $D8, $AD, $02, $20, $10, $FB, $4C, $07, $C0, $18, $60, $C6
     ; 32.MAPPY
     ; STA $9B6D | JMP $C031 | 
