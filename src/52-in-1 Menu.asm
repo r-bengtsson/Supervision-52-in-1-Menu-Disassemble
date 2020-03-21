@@ -2212,7 +2212,7 @@ BootGameBootSequencesSection2:
     ; STA $9BAE | SEI | CLD | LDA #$00 | JMP $C188 | 
     .byte $8D, $AE, $9B, $78, $D8, $A9, $00, $4C, $88, $C1, $24, $DC, $B0, $02, $38, $60
     ; 34.F-1 RACE
-    ; STA $9BEF | LDA $2002 | BPL $4CFB | ????????
+    ; STA $9BEF | LDA $2002 | BPL $0403 | JMP $C005 |
     .byte $8D, $EF, $9B, $AD, $02, $20, $10, $FB, $4C, $05, $C0, $B0, $02, $38, $60, $C6
     ; 35.ROAD FIGHTER
     ; STA $BC30 | JMP $C010 | 
