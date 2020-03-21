@@ -60,7 +60,7 @@ SECTION 2
 
 SECTION 3
 
-37.BASEBALL      
+37.BASEBALL      1983  16    8   H    0   $BCB2  [1 0 1 1 110010 110010]  $0C8000 - $0CBFFF   $164000 - $165FFF
 38.POPEYE        
 39.GALAGA        
 40.GALAXIAN      
@@ -3906,7 +3906,12 @@ SECTION 3
  │ Information: │
  └──────────────┘
 
+  This entry is based on the japanese release of Pinball. 
 
+  Copyright information on the title screen has been removed.
+  NINTENDO text on team select screen has also been removed.
+
+  A BEQ has been changed in the PRG.
 
 ╠=====================================================╣
 ║                   52-in-1 info                      ║
@@ -3971,20 +3976,20 @@ SECTION 3
 <------------------------ SECTION 3 ------------------------->
 <------------------------------------------------------------>
 
-╔===========================================╗
-║                       37.BASE BALL                 ║
-╠===========================================╣
+╔=============================================================╗
+║                       37.BASE BALL                          ║
+╠=============================================================╣
 
-  Original:  
-  Released:  
-  Publisher: 
-  Developer: 
-  Players:   
+  Original:  Baseball (ベースボール)
+  Released:  December 7, 1983
+  Publisher: Nintendo
+  Developer: Nintendo
+  Players:   2
 
-  Mapper:    
-  PRG:       
-  CHR:       
-  Mirroring: 
+  Mapper:    NROM-128 (0)
+  PRG:       16 kB
+  CHR:       8 kB
+  Mirroring: Horizontal
 
   ROM:       
   MD5:       
@@ -3993,21 +3998,29 @@ SECTION 3
  │ Information: │
  └──────────────┘
 
+  This entry is based on the japanese release of Baseball. 
 
+  Copyright information on the title screen has been removed.
+  NINTENDO text on team select screen has also been removed.
 
-╠===========================================╣
+  The select cursor ball on the title screen has been
+  changed to a circle in CHR.
+
+╠=====================================================╣
 ║                   52-in-1 info                      ║
-╠===========================================╣
+╠=====================================================╣
 
   Location:
-  PRG:       $ - $
-  CHR:       $ - $
+  PRG:       $0C8000 - $0CBFFF
+  CHR:       $164000 - $165FFF
 
   Bootcode ($0400):
-
+  STA $BCB2 (8D B2 BC) [1011 1100 | 1011 0010]
+  JMP $C3C7 (4C C7 C3)
 
   Reset Vector:
-
+  $(F)3FF2: 8D 4F 98 (STA $984F) [1001 1000 | 0100 1111]
+  $(F)3FFC: F2 FF    ($FFF2)
 
  ┌────────────────────────┐
  │ Changes from original: │
@@ -4019,9 +4032,45 @@ SECTION 3
   Graphics:
  -----------
 
+  # Team Select - NINTENDO
+                       N  I  N  T  E  N  D  O
+  Original: $(B)3705  17 12 17 1D 0E 17 0D 18
+  52-in-1:  $(B)3705  25 25 25 25 25 25 25 25
 
 
-╚===========================================╝
+  # Title Screen - Copyright
+                       ©  1  9  8  3     N  I  N  T  E  N  D  O     C  O .,  L  T  D  .
+  Original: $(B)391B  AF 01 09 08 03 25 17 12 17 1D 0E 17 0D 18 25 0C 18 AD 15 1D 0D AC
+  52-in-1:  $(B)391B  25 25 25 25 25 25 25 25 25 25 25 25 25 25 25 25 25 25 25 25 25 25
+
+
+ ---------
+  52-in-1:
+ ---------
+
+  # Unused Reset vector in 52-in-1?? starts at $(8)03C7
+  Original: $(8)03C5  78 D8
+  52-in-1:  $(8)03C5  8D 0F
+
+
+  # 52-in-1 - Reset Vector
+  Original: $(F)7FFC  C5 C3        ($C3C5)
+  52-in-1:  $(F)7FFC  F2 FF        ($FFF2)
+
+
+  # 52-in-1 - IRQ Vector
+  Original: $(F)7FFE  F8 C3        ($C3F8)
+  52-in-1:  $(F)7FFE  F8 00        ($00F8)
+
+ ┌─────┐
+ │ CHR │
+ └─────┘
+
+  # Title Screen - Ball cursor changed to circle
+  Original: $0AE0  FF FF FF FF FF FF FF FF 1C 2E 6D 6B 5B 3A 1C 00
+  52-in-1:  $0AE0  FF FF FF FF FF FF FF FF 1C 22 41 41 41 22 1C 00
+
+╚=============================================================╝
 
 
 
