@@ -8,7 +8,7 @@
 |                Section x - Games Quicklist                 |
 |____________________________________________________________|
 
-    
+
 
 SECTION 1
 
@@ -53,9 +53,9 @@ SECTION 2
 31.KING KONG 3   1984  16    8   V    0   $9B2C  [1 0 0 1 101100 101100]  $0B0000 - $0B3FFF   $158000 - $159FFF
 32.MAPPY         1984  16    8   V    0   $9B6D  [1 0 0 1 101101 101101]  $0B4000 - $0B7FFF   $15A000 - $15BFFF
 33.EXCITE BIKE   1984  16    8   V    0   $9BAE  [1 0 0 1 101110 101110]  $0B8000 - $0BBFFF   $15C000 - $15DFFF
-34.F1-RACE             16    8   V    0   $9BEF  [1 0 0 1 101111 101111]  
-35.ROAD FIGHTER  
-36.PIN BALL      
+34.F-1 RACE      1984  16    8   V    0   $9BEF  [1 0 0 1 101111 101111]  $0BC000 - $0BFFFF   $15E000 - $15FFFF
+35.ROAD FIGHTER  1985  16    8   H    0   $BC30  [1 0 1 1 110000 110000]  $0C0000 - $0C3FFF   $160000 - $161FFF
+36.PIN BALL      1984  16    8   H    0   $BC71  [1 0 1 1 110001 110001]  $0C4000 - $0C7FFF   $162000 - $163FFF
 
 
 SECTION 3
@@ -3875,7 +3875,7 @@ SECTION 3
   Original: $(8)0000  52 43 38 30 31 00 31 2E 30 00 38 35 30 33 32 38
   52-in-1:  $(8)0000  8D 4F 98 (STA $984F)
   
-
+  # Reset Vector
   Original: $(C)3FFC  10 C0
   52-in-1:  $(C)3FFC  00 C0
   
@@ -3884,23 +3884,23 @@ SECTION 3
 
 
 
-╔===========================================╗
-║                       36.PIN BALL                  ║
-╠===========================================╣
+╔=============================================================╗
+║                       36.PIN BALL                           ║
+╠=============================================================╣
 
-  Original:  
-  Released:  
-  Publisher: 
-  Developer: 
-  Players:   
+  Original:  Pinball
+  Released:  February 2, 1984
+  Publisher: Nintendo
+  Developer: Nintendo
+  Players:   2
 
-  Mapper:    
-  PRG:       
-  CHR:       
-  Mirroring: 
+  Mapper:    NROM-128 (0)
+  PRG:       16 kB
+  CHR:       8 kB
+  Mirroring: Horizontal
 
-  ROM:       
-  MD5:       
+  ROM:       Pinball (Japan, USA).nes
+  MD5:       838b3043af802e70a855560433a6fca3
 
  ┌──────────────┐
  │ Information: │
@@ -3908,19 +3908,25 @@ SECTION 3
 
 
 
-╠===========================================╣
+╠=====================================================╣
 ║                   52-in-1 info                      ║
-╠===========================================╣
+╠=====================================================╣
 
   Location:
-  PRG:       $ - $
-  CHR:       $ - $
+  PRG:       $0C4000 - $0C7FFF
+  CHR:       $162000 - $163FFF
 
   Bootcode ($0400):
-
+  STA $BC71 (8D 71 BC) [1011 1100 | 0111 0001]
+  SEI       (78)
+  CLD       (D8)
+  LDA $2002 (AD 02 20)
+  BPL $0405 (10 FB)
+  JMP $C007 (4C 07 C0)
 
   Reset Vector:
-
+  $(8)0000  8D 4F 98 (STA $984F)
+  $(B)3FFC  00 C0    ($C000)
 
  ┌────────────────────────┐
  │ Changes from original: │
@@ -3931,10 +3937,31 @@ SECTION 3
  -----------
   Graphics:
  -----------
+  
+  # Title Screen - Copyright
+                       ©  1  9  8  3     N  I  N  T  E  N  D  O     C  O .,  L  T  D  .
+  Original: $(8)04C8  6F 8B 8F 8E 8D B9 69 66 69 6D 64 69 63 6A B9 62 6A EE 67 6D 63 EF
+  52-in-1:  $(8)04C0  24 24 24 24 24 B9 24 24 24 24 24 24 24 24 B9 24 24 24 24 24 24 24
 
 
+  # Ingame - Nintendo Logo              
+  Original: $(8)068B  24 93 94 95 96 97 98 
+  52-in-1:  $(8)068B  24 24 24 24 24 24 24
 
-╚===========================================╝
+
+ ---------
+  52-in-1:
+ ---------
+
+  # 52-in-1 - GameBoot/Reset Vector
+  Original: $(8)0000  D8 78 AD 02 20 (CLD | SEI | LDA $2002)
+  52-in-1:  $(8)0000  8D 4F 98    (STA $984F)
+
+  # IRQ Vector
+  Original: $(8)3FFE  ED C1
+  52-in-1:  $(C)3FFE  ED 00
+
+╚=============================================================╝
 
 
 
