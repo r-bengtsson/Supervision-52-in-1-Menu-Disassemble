@@ -53,7 +53,7 @@ SECTION 2
 31.KING KONG 3   1984  16    8   V    0   $9B2C  [1 0 0 1 101100 101100]  $0B0000 - $0B3FFF   $158000 - $159FFF
 32.MAPPY         1984  16    8   V    0   $9B6D  [1 0 0 1 101101 101101]  $0B4000 - $0B7FFF   $15A000 - $15BFFF
 33.EXCITE BIKE   1984  16    8   V    0   $9BAE  [1 0 0 1 101110 101110]  $0B8000 - $0BBFFF   $15C000 - $15DFFF
-34.F1-RACE       
+34.F1-RACE             16    8   V    0   $9BEF  [1 0 0 1 101111 101111]  
 35.ROAD FIGHTER  
 36.PIN BALL      
 
@@ -3683,7 +3683,6 @@ SECTION 3
  ---------
 
   # 52-in-1 - GameBoot/Reset Vector
-                       
   Original: $(8)0184  78 D8 A9 00 (SEI | CLD | LDA #$00)
   52-in-1:  $(8)0184  8D 4F 98    (STA $984F)
 
@@ -3692,43 +3691,147 @@ SECTION 3
 
 
 
-╔===========================================╗
-║                       34.F-1 RACE                  ║
-╠===========================================╣
+╔=============================================================╗
+║                       34.F-1 RACE                           ║
+╠=============================================================╣
 
-  Original:  
-  Released:  
-  Publisher: 
-  Developer: 
-  Players:   
+  Original:  F1 Race (Ｆ１レース)
+  Released:  November 2, 1984
+  Publisher: Nintendo
+  Developer: Nintendo
+  Players:   1
 
-  Mapper:    
-  PRG:       
-  CHR:       
-  Mirroring: 
+  Mapper:    RROM (0)
+  PRG:       16 kB
+  CHR:       8 kB
+  Mirroring: Vertical
 
-  ROM:       
-  MD5:       
+  ROM:       F1 Race (Japan).nes
+  MD5:       5c7641c1adc213454c9962eb7f307626
 
  ┌──────────────┐
  │ Information: │
  └──────────────┘
 
+  This entry is based on the japanese release of F1 Race. 
 
+  Copyright information on the title screen has been removed.
 
-╠===========================================╣
+  NINTENDO text ingame has been blanked in CHR.
+
+╠=====================================================╣
 ║                   52-in-1 info                      ║
-╠===========================================╣
+╠=====================================================╣
 
   Location:
-  PRG:       $ - $
-  CHR:       $ - $
+  PRG:       $0BC000 - $0BFFFF
+  CHR:       $15E000 - $15FFFF
 
   Bootcode ($0400):
-
+  STA $9BEF (8D EF 9B) [1001 1011 | 1110 1111]
+  LDA $2002 (AD 02 20)
+  BPL $0403 (10 FB)
+  JMP $C005 (4C 05 C0)
 
   Reset Vector:
+  $(8)0000  8D 4F 98 (STA $984F)
+  $(B)3FFC  00 C0    ($C000)
 
+ ┌────────────────────────┐
+ │ Changes from original: │
+ ├─────┬──────────────────┘
+ │ PRG │
+ └─────┘
+
+ -----------
+  Graphics:
+ -----------
+  
+  # Title Screen - Copyright
+                       O  D  N  E  T  N  I  N     4  8  9  1  ©
+  Original: $(A)2936  18 0D 17 0E 1D 17 12 17 2D 04 08 09 01 24 2D
+
+  52-in-1:  $(A)2936  2D 2D 2D 2D 2D 2D 2D 2D 2D 2D 2D 2D 2D 2D 2D
+  
+
+ ---------
+  52-in-1:
+ ---------
+
+  # 52-in-1 - GameBoot/Reset Vector
+  Original: $(8)0000  AD 02 20 10 FB (LDA $2002 | BPL $C000)
+  52-in-1:  $(8)0000  8D 4F 98       (STA $984F)
+
+ ┌─────┐
+ │ CHR │
+ └─────┘
+
+  NINTENDO logo has been blanked in CHR.
+
+  # NINTENDO Logo
+  Original: $1540  FF FF FF FF FF FF FF FF 18 18 18 18 18 18 18 18
+  Original: $1550  00 00 00 00 00 00 00 00 FF BB 9A AB AA B2 BA FF
+  Original: $1560  00 00 00 00 00 00 00 00 FF FF FE C7 DB DB DB FF
+  Original: $1570  00 00 00 00 00 00 00 00 FF 7F 39 76 70 77 99 FF
+  Original: $1580  00 00 00 00 00 00 00 00 FF FF FF 8E B5 B5 B6 FF
+  Original: $1590  00 00 00 00 00 00 00 00 FF BF BF 33 AD AD 33 FF
+
+  52-in-1:  $1540  FF FF FF FF FF FF FF FF 00 00 00 00 00 00 00 00
+  52-in-1:  $1550  FF FF FF FF FF FF FF FF 00 00 00 00 00 00 00 00
+  52-in-1:  $1560  FF FF FF FF FF FF FF FF 00 00 00 00 00 00 00 00
+  52-in-1:  $1570  FF FF FF FF FF FF FF FF 00 00 00 00 00 00 00 00
+  52-in-1:  $1580  FF FF FF FF FF FF FF FF 00 00 00 00 00 00 00 00
+  52-in-1:  $1590  FF FF FF FF FF FF FF FF 00 00 00 00 00 00 00 00
+
+╚=============================================================╝
+
+
+
+
+╔=============================================================╗
+║                       35.ROAD FIGHTER                       ║
+╠=============================================================╣
+
+  Original:  Road Fighter (ロードファイター)
+  Released:  July 11, 1985
+  Publisher: Konami
+  Developer: Konami
+  Players:   1
+
+  Mapper:    NROM-128
+  PRG:       16 kB
+  CHR:       8 kB
+  Mirroring: Horizontal
+
+  ROM:       Road Fighter (Japan).nes
+  MD5:       fa6e237e3f4c0acd9d73e8cf73576723
+
+ ┌──────────────┐
+ │ Information: │
+ └──────────────┘
+
+  This entry is based on the japanese release of Road Fighter. 
+
+  Copyright information and Konami logo on the title screen
+  has been removed.
+
+  A BEQ has been changed in the PRG.
+
+╠=====================================================╣
+║                   52-in-1 info                      ║
+╠=====================================================╣
+
+  Location:
+  PRG:       $0C0000 - $0C3FFF
+  CHR:       $160000 - $161FFF
+
+  Bootcode ($0400):
+  STA $BC30 (8D 30 BC) [1011 1100 | 0011 0000]
+  JMP $C010 (4C 10 C0)
+
+  Reset Vector:
+  $(8)0000  8D 4F 98 (STA $984F)
+  $(B)3FFC  00 C0    ($C000)
 
  ┌────────────────────────┐
  │ Changes from original: │
@@ -3740,64 +3843,43 @@ SECTION 3
   Graphics:
  -----------
 
+  # Title Screen - Copyright
+                             ©     1  9  8  5     K  O  N  A  M  I
+  Original: $(8)07B0  29 22 0C 00 31 39 38 35 00 4B 4F 4E 41 4D 49 FE
+  52-in-1:  $(8)07B0  29 22 00 00 00 00 00 00 00 00 00 00 00 00 00 FE
 
 
-╚===========================================╝
+  # Title Screen - Konami Logo
+                      Top K
+  Original: $(8)07C0  8B 20 01 02 FE
+                      Top i
+  Original: $(8)07C5  91 20 0B FE
+                      Lower Konami®
+  Original: $(8)07C9  AB 20 03 04 05 06 07 08 09 0A FE 
+
+  52-in-1:  $(8)07C0  8B 20 00 00 FE
+  52-in-1:  $(8)07C5  91 20 00 FE
+  52-in-1:  $(8)07C9  AB 20 00 00 00 00 00 00 00 00 FE
 
 
+ ---------
+  52-in-1:
+ ---------
+  
+  # ???????
+  Original: $(A)2060  F0 0E (BEQ $A076)
+  52-in-1:  $(A)2060  F0 00 (BEQ $A068)
 
+  # 52-in-1 - GameBoot/Reset Vector
+                       R  C  8  0  1     1  .  0     8  5  0  3  2  8
+  Original: $(8)0000  52 43 38 30 31 00 31 2E 30 00 38 35 30 33 32 38
+  52-in-1:  $(8)0000  8D 4F 98 (STA $984F)
+  
 
-╔===========================================╗
-║                       35.ROAD FIGHTER              ║
-╠===========================================╣
-
-  Original:  
-  Released:  
-  Publisher: 
-  Developer: 
-  Players:   
-
-  Mapper:    
-  PRG:       
-  CHR:       
-  Mirroring: 
-
-  ROM:       
-  MD5:       
-
- ┌──────────────┐
- │ Information: │
- └──────────────┘
-
-
-
-╠===========================================╣
-║                   52-in-1 info                      ║
-╠===========================================╣
-
-  Location:
-  PRG:       $ - $
-  CHR:       $ - $
-
-  Bootcode ($0400):
-
-
-  Reset Vector:
-
-
- ┌────────────────────────┐
- │ Changes from original: │
- ├─────┬──────────────────┘
- │ PRG │
- └─────┘
-
- -----------
-  Graphics:
- -----------
-
-
-
-╚===========================================╝
+  Original: $(C)3FFC  10 C0
+  52-in-1:  $(C)3FFC  00 C0
+  
+╚=============================================================╝
 
 
 
