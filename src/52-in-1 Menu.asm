@@ -2218,7 +2218,7 @@ BootGameBootSequencesSection2:
     ; STA $BC30 | JMP $C010 | 
     .byte $8D, $30, $BC, $4C, $10, $C0, $6A, $F4, $A5, $0F, $85, $40, $85, $A2, $A5, $10
     ; 36.PIN BALL
-    ; STA $BC71 | SEI | CLD | LDA $2002 | BPL $4CFB | ?????????????
+    ; STA $BC71 | SEI | CLD | LDA $2002 | BPL $0405 | JMP $C007 |
     .byte $8D, $71, $BC, $78, $D8, $AD, $02, $20, $10, $FB, $4C, $07, $C0, $C9, $FF, $D0
 
 
