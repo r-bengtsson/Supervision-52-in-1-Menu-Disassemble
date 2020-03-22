@@ -73,12 +73,12 @@ SECTION 3
 46.SKY DESTRYOER 1985  16    8   H    0   $BEBA  [1 0 1 1 111010 111010]  $0E8000 - $0EBFFF   $174000 - $175FFF
 47.CHESS         1983  16    8   H    0   $9EFB  [1 0 0 1 111011 111011]  $0EC000 - $0EFFFF   $176000 - $177FFF
 48.BALLOON FIGHT 1985  16    8   H    0   $BF3C  [1 0 1 1 111100 111100]  $0F0000 - $0F3FFF   $178000 - $179FFF
-49.FORMATION Z   
+49.FORMATION Z   1985  16    8   H    0   $BF7D  [1 0 1 1 111101 111101]  $0F4000 - $0F7FFF   $17A000 - $17BFFF
 50.POOYAN        
 51.CIRCUS TROUPE 
 52.FANCY BROS    1985  32    8   H    0   $A394  [1 0 1 0 001110 010100]  $038000 - $03FFF0   $128000 - $129FF0
 
-     
+
 |¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯|
 |                     Section x - Games                      |
 |____________________________________________________________|
@@ -5049,43 +5049,49 @@ SECTION 3
 
 
 
-╔===========================================╗
-║                       49.FORMATION Z               ║
-╠===========================================╣
+╔==============================================================╗
+║                       49.FORMATION Z                         ║
+╠==============================================================╣
 
-  Original:  
-  Released:  
-  Publisher: 
-  Developer: 
-  Players:   
+  Original:  Formation Z (フォーメーションＺ)
+  Released:  April 4, 1985
+  Publisher: Jaleco
+  Developer: Hect
+  Players:   2
 
-  Mapper:    
-  PRG:       
-  CHR:       
-  Mirroring: 
+  Mapper:    JALECO-JF-02
+  PRG:       16 kB
+  CHR:       8 kB
+  Mirroring: Horizontal
 
-  ROM:       
-  MD5:       
+  ROM:       Formation Z (Japan) (Rev A).nes
+  MD5:       7c0a3a67f404c03f2d701b93a4566602
 
  ┌──────────────┐
  │ Information: │
  └──────────────┘
 
+  This entry is based on the japanese release of Formation Z. 
 
+  Copyright information on the title screen has been removed.
 
-╠===========================================╣
+╠=====================================================╣
 ║                   52-in-1 info                      ║
-╠===========================================╣
+╠=====================================================╣
 
   Location:
-  PRG:       $ - $
-  CHR:       $ - $
+  PRG:       $0F4000 - $0F7FFF
+  CHR:       $17A000 - $17BFFF
 
   Bootcode ($0400):
-
+  STA $BF7D (8D 7D BF) [1011 1111 | 0111 1101]
+  SEI       (78)
+  LDA #$00  (A9 00)
+  JMP $8003 (4C 03 80)
 
   Reset Vector:
-
+  $(8)0000  8D 4F 98 (STA $984F)
+  $(F)7FFC: 00 80    ($8000)
 
  ┌────────────────────────┐
  │ Changes from original: │
@@ -5097,9 +5103,23 @@ SECTION 3
   Graphics:
  -----------
 
+  # Title Screen - Copyright
+                       ©     1  9  8  5     J  A  L  E  C  O
+  Original: $(9)109D  27 30 01 09 08 05 30 13 0A 15 0E 0C 18
+                       
+  52-in-1:  $(9)109D  30 30 30 30 30 30 30 30 30 30 30 30 30
 
 
-╚===========================================╝
+ ---------
+  52-in-1:
+ ---------
+
+  # 52-in-1 - GameBoot/Reset Vector
+  Original: $(8)0000  78 A9 00 8D 00 20 (SEI | LDA #$00 | STA $2000)
+  52-in-1:  $(8)0000  8D 4F 98 (STA $984F)
+
+
+╚==============================================================╝
 
 
 
