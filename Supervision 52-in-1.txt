@@ -61,7 +61,7 @@ SECTION 2
 SECTION 3
 
 37.BASEBALL      1983  16    8   H    0   $BCB2  [1 0 1 1 110010 110010]  $0C8000 - $0CBFFF   $164000 - $165FFF
-38.POPEYE        
+38.POPEYE        1982  16    8   H    0   $BCF3  [1 0 1 1 110011 110011]  $0CC000 - $0CFFFF   $166000 - $167FFF
 39.GALAGA        
 40.GALAXIAN      
 41.PAC-MAN       
@@ -4075,43 +4075,50 @@ SECTION 3
 
 
 
-╔===========================================╗
-║                       38.POPEYE                    ║
-╠===========================================╣
+╔=============================================================╗
+║                       38.POPEYE                             ║
+╠=============================================================╣
 
-  Original:  
-  Released:  
-  Publisher: 
-  Developer: 
-  Players:   
+  Original:  Popeye (ポパイ)
+  Released:  July 15, 1983
+  Publisher: Nintendo
+  Developer: Nintendo
+  Players:   2
 
-  Mapper:    
-  PRG:       
-  CHR:       
-  Mirroring: 
+  Mapper:    NROM-128 (0)
+  PRG:       16 kB
+  CHR:       8 kB
+  Mirroring: Horizontal
 
-  ROM:       
-  MD5:       
+  ROM:       Popeye (Japan).nes
+  MD5:       79093d6add5b6f7445302857fc629570
 
  ┌──────────────┐
  │ Information: │
  └──────────────┘
 
+  This entry is based on the japanese release of Popeye. 
 
+  Copyright information on the title screen has been removed.
 
-╠===========================================╣
+╠=====================================================╣
 ║                   52-in-1 info                      ║
-╠===========================================╣
+╠=====================================================╣
 
   Location:
-  PRG:       $ - $
-  CHR:       $ - $
+  PRG:       $0CC000 - $0CFFFF
+  CHR:       $166000 - $167FFF
 
   Bootcode ($0400):
-
+  STA $BCF3 (8D F3 BC) [1011 1100 | 1111 0011]
+  SEI       (78)
+  CLD       (D8)
+  LDA #$10  (A9 10)
+  JMP $C64D (4C 4D C6)
 
   Reset Vector:
-
+  $(F)3FF2: 8D 4F 98 (STA $984F) [1001 1000 | 0100 1111]
+  $(F)3FFC: 49 C6    ($C649)
 
  ┌────────────────────────┐
  │ Changes from original: │
@@ -4123,9 +4130,32 @@ SECTION 3
   Graphics:
  -----------
 
+  # Title Screen - Copyright
+                                ©  1  9  8  2     K  I  N  G     F  E  A  T  U  R  E  S
+  Original: $(B)37DA  22 A5 13 E9 01 09 08 02 24 14 12 17 10 24 0F 0E 0A 1D 1E 1B 0E 1C
+                       
+                                S  Y  N  D  I  C  A  T  E  ,  I  N  C  .
+  Original: $(B)37F0  22 CB 0E 1C 22 17 0D 12 0C 0A 1D 0E DD 12 17 0C EB
+                                ©  1  9  8  2     N  I  N  T  E  N  D  O     C  O .,  L  T  D  .
+  Original: $(B)3801  23 05 16 E9 01 09 08 02 24 17 12 17 1D 0E 17 0D 18 24 0C 18 2F 15 1D 0D EB 
+                                M  A  D  E     I  N     J  A  P  A  N
+  Original: $(B)381A  23 4B 0D 16 0A 0D 0E 24 12 17 24 13 0A 19 0A 17
+  
+  52-in-1:  $(B)37DA  22 A5 13 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24
+  52-in-1:  $(B)37F0  22 CB 0E 24 24 24 24 24 24 24 24 24 24 24 24 24 24
+  52-in-1:  $(B)3801  23 05 16 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 
+  52-in-1:  $(B)381A  23 4B 0D 24 24 24 24 24 24 24 24 24 24 24 24 24
 
 
-╚============================╝
+ ---------
+  52-in-1:
+ ---------
+
+  # 52-in-1 - GameBoot/Reset Vector
+  Original: $(8)0649  78 D8 A9 10 (SEI | CLD | LDY #$10)
+  52-in-1:  $(8)0649  8D 4F 98    (STA $984F)
+
+╚=============================================================╝
 
 
 
