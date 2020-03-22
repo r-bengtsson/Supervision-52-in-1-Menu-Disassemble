@@ -66,7 +66,7 @@ SECTION 3
 40.GALAXIAN      1984   8    8   H    0   $B862  [1 0 1 1 100001 100010]  $086000 - $087FF0   $144000 - $145FF0
 41.PAC-MAN       1984  16    8   H    0   $BD75  [1 0 1 1 110101 110101]  $0D4000 - $0D7FFF   $16A000 - $16BFFF
 42.ICE CLIMBER   1985  16    8   H    0   $BDB6  [1 0 1 1 110110 110110]  $0D8000 - $0DBFFF   $16C000 - $16DFFF
-43.1989 EXERION  
+43.1989 EXERION  1985  16    8   H    0   $BDF7  [1 0 1 1 110111 110111]  $0DC000 - $0DFFFF   $16E000 - $16FFFF
 44.WRESTLE       
 
 45.BATTLE CITY    
@@ -4546,43 +4546,52 @@ SECTION 3
 
 
 
-╔===========================================╗
-║                       43.1989 EXERION              ║
-╠===========================================╣
+╔==============================================================╗
+║                       43.1989 EXERION                        ║    Needs deeper analysis
+╠==============================================================╣
 
-  Original:  
-  Released:  
-  Publisher: 
-  Developer: 
-  Players:   
+  Original:  Exerion (エクセリオン)
+  Released:  February 11, 1985
+  Publisher: Jaleco
+  Developer: Jaleco
+  Ported by: TOSE Software
+  Players:   2
 
-  Mapper:    
-  PRG:       
-  CHR:       
-  Mirroring: 
+  Mapper:    JALECO-JF-01
+  PRG:       16 kB
+  CHR:       8 kB
+  Mirroring: Horizontal
 
-  ROM:       
-  MD5:       
+  ROM:       Exerion (Japan) (En).nes
+  MD5:       d602de6f90c301f2deea26d41ff8ad1c
 
  ┌──────────────┐
  │ Information: │
  └──────────────┘
 
+  This entry is based on a hack of Exerion. 
 
+  Copyright information on the title screen has been removed.
 
-╠===========================================╣
+  New code has been added to remove nr of single shots
+  that the player has.
+  [bootleggames.fandom.com/wiki/Supervision_52-in-1]
+
+╠=====================================================╣
 ║                   52-in-1 info                      ║
-╠===========================================╣
+╠=====================================================╣
 
   Location:
-  PRG:       $ - $
-  CHR:       $ - $
+  PRG:       $0DC000 - $0DFFFF
+  CHR:       $16E000 - $16FFFF
 
   Bootcode ($0400):
-
+  STA $BDF7 (8D F7 BD) [1011 1101 | 1111 0111]
+  JMP $8000 (4C 00 80)
 
   Reset Vector:
-
+  $(F)7FF2: 8D 4F 98 (STA $984F) [1001 1000 | 0100 1111]
+  $(F)7FFC: F2 FF    ($FFF2)
 
  ┌────────────────────────┐
  │ Changes from original: │
@@ -4594,9 +4603,49 @@ SECTION 3
   Graphics:
  -----------
 
+  # ????
+  Original: $(8)071A  8D 24 87 (STA $8724)
+  52-in-1:  $(8)071A  2C 24 87 (BIT $8724)
 
 
-╚===========================================╝
+  # Title Screen - Copyright
+                                         ©     1  9  8  7     J  A  L  E  C  O
+  Original: $(8)0B90  15 0A 22 0E 1B 1C 27 30 01 09 08 05 30 13 0A 15 0E 0C 18
+  52-in-1:  $(8)0B90  15 0A 22 0E 1B 1C 30 30 30 30 30 30 30 30 30 30 30 30 30
+
+  # ???
+  Original: $(8)0E70  F0 0F (BEQ $8E81)
+  52-in-1:  $(8)0E70  EA EA (NOP | NOP)
+
+  # Jump to new subroutine at $(B)3D50
+  Original: $(8)0EA0  A5 3D 38 E9 01 (LDA $3D | SEC | SBC #$01)
+  52-in-1:  $(8)0EA0  20 50 BD E9 01 (JSR $BD50 | SBC #$01)
+
+
+  Original: $(8)0F09  A9 D8 (LDA #$D8)
+  52-in-1:  $(8)0F09  A9 EF (LDA #$EF)
+
+  # ??? Data?
+  Original: $(9)1860  90 98 99 98 B0 98 A0 03 A2 40 B9 8C 98 9D 74 06
+  52-in-1:  $(9)1860  90 98 2C 98 B0 98 A0 03 A2 40 B9 8C 98 9D 74 06
+
+  # ??? Data?
+  Original: $(9)1A70  AC 9C D9 9A 12 9D D9 9A A5 20 29 08 D0 04 A9 16
+  52-in-1:  $(9)1A70  AC 9C D9 9A D9 9A D9 9A A5 20 29 08 D0 04 A9 16
+
+  # New subroutine
+  Original: $(B)3D50  FF FF FF FF FF FF FF FF FF
+  52-in-1:  $(B)3D50  A5 3D D0 03 68 68 60 38 60 (LDA $55 | BPL $B677 | PLA | PLA | RTS)
+
+
+ ---------
+  52-in-1:
+ ---------
+  # 52-in-1 - GameBoot/Reset Vector
+  Original: $(8)0000  A9 00 8D 00 20 78 D8 (LDA #$00 | STA $2000 | SEI | CLD)
+  52-in-1:  $(8)0000  78 D8 A9 00 8D 00 20 (SEI | CLD | LDA #$00 | STA $2000)
+
+╚==============================================================╝
 
 
 
