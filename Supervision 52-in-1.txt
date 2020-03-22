@@ -74,8 +74,8 @@ SECTION 3
 47.CHESS         1983  16    8   H    0   $9EFB  [1 0 0 1 111011 111011]  $0EC000 - $0EFFFF   $176000 - $177FFF
 48.BALLOON FIGHT 1985  16    8   H    0   $BF3C  [1 0 1 1 111100 111100]  $0F0000 - $0F3FFF   $178000 - $179FFF
 49.FORMATION Z   1985  16    8   H    0   $BF7D  [1 0 1 1 111101 111101]  $0F4000 - $0F7FFF   $17A000 - $17BFFF
-50.POOYAN        
-51.CIRCUS TROUPE 
+50.POOYAN        1985  16    8   V    0   $9FBE  [1 0 0 1 111110 111110]  $0F8000 - $0FBFFF   $17C000 - $17DFFF
+51.CIRCUS TROUPE 1986  16    8   V    0   $9FFF  [1 0 0 1 111111 111111]  $0FC000 - $0FFFFF   $17E000 - $17FFFF
 52.FANCY BROS    1985  32    8   H    0   $A394  [1 0 1 0 001110 010100]  $038000 - $03FFF0   $128000 - $129FF0
 
 
@@ -5106,7 +5106,6 @@ SECTION 3
   # Title Screen - Copyright
                        ©     1  9  8  5     J  A  L  E  C  O
   Original: $(9)109D  27 30 01 09 08 05 30 13 0A 15 0E 0C 18
-                       
   52-in-1:  $(9)109D  30 30 30 30 30 30 30 30 30 30 30 30 30
 
 
@@ -5124,20 +5123,21 @@ SECTION 3
 
 
 
-╔===========================================╗
-║                       50.POOYAN                         ║
-╠===========================================╣
+╔==============================================================╗
+║                       50.POOYAN                              ║
+╠==============================================================╣
 
-  Original:  
-  Released:  
-  Publisher: 
-  Developer: 
-  Players:   
+  Original:  Pooyan (プーヤン)
+  Released:  September 20, 1985
+  Publisher: Hudson Soft
+  Developer: Konami
+  Ported by: Hudson Soft
+  Players:   2
 
-  Mapper:    
-  PRG:       
-  CHR:       
-  Mirroring: 
+  Mapper:    NROM-256 (0)
+  PRG:       16 kB
+  CHR:       8 kB
+  Mirroring: Vertical
 
   ROM:       
   MD5:       
@@ -5146,21 +5146,83 @@ SECTION 3
  │ Information: │
  └──────────────┘
 
+  This entry is based on the japanese release of Pooyan. 
 
+  Copyright information on the title screen has been removed.
 
-╠===========================================╣
-║                  52-in-1 info                      ║
-╠===========================================╣
+╠=====================================================╣
+║                   52-in-1 info                      ║
+╠=====================================================╣
 
   Location:
-  PRG:       $ - $
-  CHR:       $ - $
+  PRG:       $0F8000 - $0FBFFF
+  CHR:       $17C000 - $17DFFF
 
   Bootcode ($0400):
-
+  STA $9FBE (8D BE 9F) [1001 1111 | 1011 1110]
+  JMP $C000 (4C 00 C0)
 
   Reset Vector:
+  $(F)7FF2: 8D 4F 98 (STA $984F) [1001 1000 | 0100 1111]
+  $(F)7FFC: F2 FF    ($FFF2)
 
+ ┌────────────────────────┐
+ │ Changes from original: │
+ ├─────┬──────────────────┘
+ │ PRG │
+ └─────┘
+
+ -----------
+  Graphics:
+ -----------
+                       T  F  O  S     N  O  S  D  U  H        I  M  A  N  O  K     5  8  9  1     ©
+  Original: $(8)0E82  54 46 4F 53 00 4E 4F 53 44 55 48 00 00 49 4D 41 4E 4F 4B 00 35 38 39 31 00 40
+  52-in-1:  $(8)0E82  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 40
+
+╚==============================================================╝
+
+
+
+
+╔==============================================================╗
+║                       51.CIRCUS TROUPE                       ║
+╠==============================================================╣
+
+  Original:  Circus Charlie
+  Released:  March 4, 1986
+  Publisher: Soft Pro
+  Developer: Konami
+  Players:   2
+
+  Mapper:    NROM-128(0)
+  PRG:       16 kB
+  CHR:       8 kB
+  Mirroring: Vertical
+
+  ROM:       Circus Charlie (Japan).nes
+  MD5:       6244f9b2c47e19fbaaef221bf706d34d
+
+ ┌──────────────┐
+ │ Information: │
+ └──────────────┘
+
+
+
+╠=====================================================╣
+║                   52-in-1 info                      ║
+╠=====================================================╣
+
+  Location:
+  PRG:       $0FC000 - $0FFFFF
+  CHR:       $17E000 - $17FFFF
+
+  Bootcode ($0400):
+  STA $9FFF (8D FF 9F) [1001 1111 | 1111 1111]
+  JMP $C000 (4C 00 C0)
+
+  Reset Vector:
+  $(F)7FF2: 8D 4F 98 (STA $984F) [1001 1000 | 0100 1111]
+  $(F)7FFC: F2 FF    ($FFF2)
 
  ┌────────────────────────┐
  │ Changes from original: │
@@ -5172,64 +5234,39 @@ SECTION 3
   Graphics:
  -----------
 
+  # Title Screen - Copyright
+                       ©     1  9  8  6     K  O  N  A  M  I
+  Original: $(8)07AC  3A 00 31 39 38 36 00 4B 4F 4E 41 4D 49
+                       B  Y        S  O  F  T     P  R  O
+  Original: $(8)07BD  42 59 00 00 53 4F 46 54 00 50 52 4F
+
+  52-in-1:  $(8)07AC  00 00 00 00 00 00 00 00 00 00 00 00 00
+  52-in-1:  $(8)07BD  00 00 00 00 00 00 00 00 00 00 00 00
 
 
-╚===========================================╝
+  # Title Screen - Logo
+  Original: $(9)168F  90 00 00 00 B0 B1 B2 B3 B4 B5 B6 B7 FE
+  Original: $(9)16A2  80 00 00 00 C0 C1 C2 C3 C4 C5 C6 C7 FE
+  Original: $(9)16B5  A0 00 00 00 00 B0 B1 B8 B9 DE DF BC D0 D1 00 00 00 80
+  Original: $(9)16CA  90 00 00 00 00 C0 C1 C8 C9 EE EF CC E0 E1 00 00 00 90
 
+  52-in-1:  $(9)168F  90 00 00 00 00 00 00 00 00 00 00 00 FE
+                                      C  I  R  C  U  S
+  52-in-1:  $(9)16A2  80 00 00 00 00 43 49 52 43 55 53 00 FE
+                                         T  R  O  U  P  E
+  52-in-1:  $(9)16B5  A0 00 00 00 00 00 54 52 4F 55 50 45 00 00 00 00 00 80
+  52-in-1:  $(9)16C0  90 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 90
+  
 
+ ---------
+  52-in-1:
+ ---------
 
+  # 52-in-1 - GameBoot/Reset Vector
+  Original: $(8)0000  D8 78 (CLD | SEI)
+  52-in-1:  $(8)0000  78 D8 (SEI | CLD)
 
-╔===========================================╗
-║                       51.CIRCUS TROUPE             ║
-╠===========================================╣
-
-  Original:  
-  Released:  
-  Publisher: 
-  Developer: 
-  Players:   
-
-  Mapper:    
-  PRG:       
-  CHR:       
-  Mirroring: 
-
-  ROM:       
-  MD5:       
-
- ┌──────────────┐
- │ Information: │
- └──────────────┘
-
-
-
-╠===========================================╣
-║                  52-in-1 info                      ║
-╠===========================================╣
-
-  Location:
-  PRG:       $ - $
-  CHR:       $ - $
-
-  Bootcode ($0400):
-
-
-  Reset Vector:
-
-
- ┌────────────────────────┐
- │ Changes from original: │
- ├─────┬──────────────────┘
- │ PRG │
- └─────┘
-
- -----------
-  Graphics:
- -----------
-
-
-
-╚===========================================╝
+╚==============================================================╝
 
 
 
