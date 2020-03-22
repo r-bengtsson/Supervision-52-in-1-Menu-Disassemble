@@ -62,7 +62,7 @@ SECTION 3
 
 37.BASEBALL      1983  16    8   H    0   $BCB2  [1 0 1 1 110010 110010]  $0C8000 - $0CBFFF   $164000 - $165FFF
 38.POPEYE        1982  16    8   H    0   $BCF3  [1 0 1 1 110011 110011]  $0CC000 - $0CFFFF   $166000 - $167FFF
-39.GALAGA        
+39.GALAGA        1985  16    8   H    0   $BD34  [1 0 1 1 110100 110100]  $0D0000 - $0D3FFF   $168000 - $169FFF
 40.GALAXIAN      
 41.PAC-MAN       
 42.ICE CLIMBER   
@@ -4160,43 +4160,51 @@ SECTION 3
 
 
 
-╔===========================================╗
-║                       39.GALAGA                    ║
-╠===========================================╣
+╔=============================================================╗
+║                       39.GALAGA                             ║
+╠=============================================================╣
 
-  Original:  
-  Released:  
-  Publisher: 
-  Developer: 
-  Players:   
+  Original:  Galaga (ギャラガ)
+  Released:  February 15, 1985
+  Publisher: Namco
+  Developer: Namco
+  Players:   2
 
-  Mapper:    
-  PRG:       
-  CHR:       
-  Mirroring: 
+  Mapper:    NAMCOT-3301 (0)
+  PRG:       16 kB
+  CHR:       8 kB
+  Mirroring: H
 
-  ROM:       
-  MD5:       
+  ROM:       Galaga (Japan).nes
+  MD5:       5b684ccb852fa4e79e73b89f2c840f16
 
  ┌──────────────┐
  │ Information: │
  └──────────────┘
 
+  This entry is based on the japanese release of Galaga. 
 
+  Copyright information and NAMCOT logoo on the title screen
+  has been removed.
 
-╠===========================================╣
+╠=====================================================╣
 ║                   52-in-1 info                      ║
-╠===========================================╣
+╠=====================================================╣
 
   Location:
-  PRG:       $ - $
-  CHR:       $ - $
+  PRG:       $0D0000 - $0D3FFF
+  CHR:       $168000 - $169FFF
 
   Bootcode ($0400):
-
+  STA $BD34 (8D 34 BD) [1011 1101 | 0011 0100]
+  SEI       (78)
+  CLD       (D8)
+  LDA #$00  (A9 00)
+  JMP $C004 (4C 04 C0)
 
   Reset Vector:
-
+  $(8)0000: 8D 4F 98 (STA $984F) [1001 1000 | 0100 1111]
+  $(F)3FFC: 00 C0    ($C000)
 
  ┌────────────────────────┐
  │ Changes from original: │
@@ -4208,9 +4216,35 @@ SECTION 3
   Graphics:
  -----------
 
+  # Title Screen - NAMCOT
+  Original: $(B)3D40  2C 2D 2E 2F 30 31 32 33 34
+  52-in-1:  $(B)3D40  24 24 24 24 24 24 24 24 24
 
 
-╚===========================================╝
+  # Title Screen - Copyright
+                                ©     1  9  8  1     1  9  8  5     N  A  M  C  O     L  T  D  .
+  Original: $(B)3D49  E4 2A 16 29 24 01 09 08 01 24 01 09 08 05 24 17 0A 16 0C 18 24 15 1D 0D 28 
+                                A  L  L     R  I  G  H  T  S     R  E  S  E  R  V  E  D
+  Original: $(B)3D62  26 2B 13 0A 15 15 24 1B 12 10 11 1D 1C 24 1B 0E 1C 0E 1B 1F 0E 0D
+
+  52-in-1:  $(B)3D49  E4 2A 16 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24
+  52-in-1:  $(B)3D62  26 2B 13 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24
+
+
+ ---------
+  52-in-1:
+ ---------
+
+  # 52-in-1 - GameBoot/Reset Vector
+  Original: $(8)0000  78 D8 A2 00 8E 00 20 8E 01 20 (SEI | CLD | LDX #$00 | STX $2000 | STX $2001)
+  52-in-1:  $(8)0000  8D 4F 98 00 8D 00 20 8D 01 20 (STA $984F | 00       | STA $2000 | STA $2001)
+
+
+  # 52-in-1 - IRQ Vector
+  Original: $(B)3FF0  00 C0 ($C000)
+  52-in-1:  $(B)3FF0  00 00 ($0000)
+
+╚=============================================================╝
 
 
 
