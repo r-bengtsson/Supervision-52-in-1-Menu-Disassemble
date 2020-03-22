@@ -4747,43 +4747,47 @@ SECTION 3
 
 
 
-╔===========================================╗
-║                       45.BATTLE CITY               ║
-╠===========================================╣
+╔==============================================================╗
+║                       45.BATTLE CITY                         ║
+╠==============================================================╣
 
-  Original:  
-  Released:  
-  Publisher: 
-  Developer: 
-  Players:   
+  Original:  Battle City (バトルシティー)
+  Released:  September 9, 1985
+  Publisher: Namco
+  Developer: Namco
+  Players:   2
 
-  Mapper:    
-  PRG:       
-  CHR:       
-  Mirroring: 
+  Mapper:    NAMCOT-3301 (0)
+  PRG:       16 kB
+  CHR:       8 kB
+  Mirroring: Horizontal
 
-  ROM:       
-  MD5:       
+  ROM:       BattleCity (Japan).nes
+  MD5:       cd4fe2e78df0696dbe652f02c19541a1
 
  ┌──────────────┐
  │ Information: │
  └──────────────┘
 
+  This entry is based on the japanese release of BattleCity. 
 
+  Copyright information on the title screen has been removed.
 
-╠===========================================╣
+╠=====================================================╣
 ║                   52-in-1 info                      ║
-╠===========================================╣
+╠=====================================================╣
 
   Location:
-  PRG:       $ - $
-  CHR:       $ - $
+  PRG:       $0E4000 - $0E7FFF
+  CHR:       $172000 - $173FFF
 
   Bootcode ($0400):
-
+  STA $BE79 (8D 79 BE) [1011 1110 | 0111 1001]
+  JMP $C070 (4C 70 C0)
 
   Reset Vector:
-
+  $(F)7FF2: 8D 4F 98 (STA $984F) [1001 1000 | 0100 1111]
+  $(F)7FFC: F2 FF    ($FFF2)
 
  ┌────────────────────────┐
  │ Changes from original: │
@@ -4794,10 +4798,22 @@ SECTION 3
  -----------
   Graphics:
  -----------
+  
+  # Title Screen - NAMCOT
+  Original: $(9)128F  60 61 62 63 64 65 66 67 68
+  52-in-1:  $(9)128F  20 20 20 20 20 20 20 20 20 
 
 
+  # Title Screen - Copyright
+                       ©     1  9  8  0     1  9  8  5     N  A  M  C  O     L  T  D  .
+  Original: $(9)12F8  40 20 31 39 38 30 20 31 39 38 35 20 4E 41 4D 43 4F 20 4C 54 44 69 
+                       A  L  L     R  I  G  H  T  S     R  E  S  E  R  V  E  D 
+  Original: $(9)1320  41 4C 4C 20 52 49 47 48 54 53 20 52 45 53 45 52 56 45 44
 
-╚===========================================╝
+  52-in-1:  $(9)12F8  20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20
+  52-in-1:  $(9)1320  20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20
+
+╚==============================================================╝
 
 
 
