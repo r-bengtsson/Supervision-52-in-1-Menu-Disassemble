@@ -67,7 +67,7 @@ SECTION 3
 41.PAC-MAN       1984  16    8   H    0   $BD75  [1 0 1 1 110101 110101]  $0D4000 - $0D7FFF   $16A000 - $16BFFF
 42.ICE CLIMBER   1985  16    8   H    0   $BDB6  [1 0 1 1 110110 110110]  $0D8000 - $0DBFFF   $16C000 - $16DFFF
 43.1989 EXERION  1985  16    8   H    0   $BDF7  [1 0 1 1 110111 110111]  $0DC000 - $0DFFFF   $16E000 - $16FFFF
-44.WRESTLE       
+44.WRESTLE       1985  16    8   V    0   $9E38  [1 0 0 1 111000 111000]  $0E0000 - $0E3FFF   $170000 - $171FFF
 
 45.BATTLE CITY    
 46.SKY DESTRYOER  
@@ -78,11 +78,13 @@ SECTION 3
 51.CIRCUS TROUPE  
 52.FANCY BROS    1985  32    8   H    0   $A394  [1 0 1 0 001110 010100]  $038000 - $03FFF0   $128000 - $129FF0
 
+
+
 |¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯|
 |                     Section x - Games                      |
 |____________________________________________________________|
 
-
+ 
 <------------------------------------------------------------>
 <------------------------ SECTION 1 ------------------------->
 <------------------------------------------------------------>
@@ -4650,43 +4652,51 @@ SECTION 3
 
 
 
-╔===========================================╗
-║                       44.WRESTLE                   ║
-╠===========================================╣
+╔==============================================================╗
+║                       44.WRESTLE                             ║
+╠==============================================================╣
 
-  Original:  
-  Released:  
-  Publisher: 
-  Developer: 
-  Players:   
+  Original:  Kinnikuman: MUSCLE Tag Match
+  Released:  November 8, 1985
+  Publisher: Bandai
+  Developer: TOSE Software
+  Players:   2
 
-  Mapper:    
-  PRG:       
-  CHR:       
-  Mirroring: 
+  Mapper:    NROM-128 (0)
+  PRG:       16 kB
+  CHR:       8 kB
+  Mirroring: Vertical
 
-  ROM:       
-  MD5:       
+  ROM:       Kinnikuman - Muscle Tag Match (Japan).nes
+  MD5:       b22e4278e0155a7c7e8acd4fb2bcc08e
 
  ┌──────────────┐
  │ Information: │
  └──────────────┘
 
+  This entry is based on the japanese release of Kinnikuman:
+  MUSCLE Tag Match. 
 
+  Copyright information and japanese text on the title screen
+  has been removed.
 
-╠===========================================╣
+╠=====================================================╣
 ║                   52-in-1 info                      ║
-╠===========================================╣
+╠=====================================================╣
 
   Location:
-  PRG:       $ - $
-  CHR:       $ - $
+  PRG:       $0E0000 - $0E3FFF
+  CHR:       $170000 - $171FFF
 
   Bootcode ($0400):
-
+  STA $9E38 (8D 38 9E) [1001 1110 | 0011 1000]
+  SEI       (78)
+  LDX #$FF  (A2 FF)
+  JMP $8003 (4C 03 80)
 
   Reset Vector:
-
+  $(8)0000  8D 4F 98 (STA $984F) [1001 1000 | 0100 1111]
+  $(F)7FFC: 00 80    ($8000)
 
  ┌────────────────────────┐
  │ Changes from original: │
@@ -4698,9 +4708,41 @@ SECTION 3
   Graphics:
  -----------
 
+  # Title Screen - Japanese Text
+  Original: $(B)3455  BC 32 27 28 29 2A 2B 28 2C 27 28 2D
+  52-in-1:  $(B)3455  BC 32 30 30 30 30 30 30 30 30 30 30
 
 
-╚===========================================╝
+  # Title Screen - Players
+                             1     P  L  A  Y  E  R        
+  Original: $(B)3461  BC 72 01 30 19 15 0A 22 0E 1B 30 30 2B 28 2C 27 28 2D
+  52-in-1:  $(B)3461  BC 72 01 30 19 15 0A 22 0E 1B 30 30 30 30 30 30 30 30
+                             2     P  L  A  Y  E  R
+  Original: $(B)3473  BC 30 02 30 19 15 0A 22 0E 1B 30 30 2B 28 2C 27 28 2D
+  52-in-1:  $(B)3473  BC 30 02 30 19 15 0A 22 0E 1B 30 30 30 30 30 30 30 30
+
+
+  # Title Screen - Copyright
+                             ©     Y  U  D  E  T  A  M  A  G  O  /  S  H  U  E  I  S  H  A  .  N  T  V  .
+  Original: $(B)3485  BC 4C C4 30 22 1E 0D 0E 1D 0A 16 0A 10 18 24 1C 11 1E 0E 12 1C 11 0A 25 17 1D 1F 25
+                             T  O  E  I     A  N  I  M  A  T  I  O  N
+  Original: $(B)34A1  BC 08 1D 18 0E 12 30 0A 17 12 16 0A 1D 12 18 17
+                                1  9  8  5     B  A  N  D  A  I
+  Original: $(B)34B1  BC 37 01 09 08 05 30 30 0B 0A 17 0D 0A 12 BC
+
+  52-in-1:  $(B)3485  BC 4C 30 30 30 30 30 30 30 30 30 30 30 30 30 30 30 30 30 30 30 30 30 30 30 30 30 30
+  52-in-1:  $(B)34A1  BC 08 30 30 30 30 30 30 30 30 30 30 30 30 30 30
+  52-in-1:  $(B)34B1  BC 37 30 30 30 30 30 30 30 30 30 30 30 30 BC
+
+
+ ---------
+  52-in-1:
+ ---------
+  # 52-in-1 - GameBoot/Reset Vector
+  Original: $(8)0000  78 A2 FF (SEI | LDX #$FF)
+  52-in-1:  $(8)0000  8D 4F 98 (STA $984F)
+
+╚==============================================================╝
 
 
 
