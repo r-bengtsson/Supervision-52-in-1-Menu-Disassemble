@@ -69,17 +69,16 @@ SECTION 3
 43.1989 EXERION  1985  16    8   H    0   $BDF7  [1 0 1 1 110111 110111]  $0DC000 - $0DFFFF   $16E000 - $16FFFF
 44.WRESTLE       1985  16    8   V    0   $9E38  [1 0 0 1 111000 111000]  $0E0000 - $0E3FFF   $170000 - $171FFF
 
-45.BATTLE CITY    
-46.SKY DESTRYOER  
-47.CHESS          
-48.BALLOON FIGHT  
-49.FORMATION Z    
-50.POOYAN         
-51.CIRCUS TROUPE  
+45.BATTLE CITY   1985  16    8   H    0   $BE79  [1 0 1 1 111001 111001]  $0E4000 - $0E7FFF   $172000 - $173FFF
+46.SKY DESTRYOER 1985  16    8   H    0   $BEBA  [1 0 1 1 111010 111010]  $0E8000 - $0EBFFF   $174000 - $175FFF
+47.CHESS         
+48.BALLOON FIGHT 
+49.FORMATION Z   
+50.POOYAN        
+51.CIRCUS TROUPE 
 52.FANCY BROS    1985  32    8   H    0   $A394  [1 0 1 0 001110 010100]  $038000 - $03FFF0   $128000 - $129FF0
 
-
-
+     
 |¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯|
 |                     Section x - Games                      |
 |____________________________________________________________|
@@ -4818,43 +4817,48 @@ SECTION 3
 
 
 
-╔===========================================╗
-║                       46.SKY DESTRYOER             ║
-╠===========================================╣
+╔==============================================================╗
+║                       46.SKY DESTRYOER                       ║
+╠==============================================================╣
 
-  Original:  
-  Released:  
-  Publisher: 
-  Developer: 
-  Players:   
+  Original:  Sky Destroyer
+  Released:  November 14, 1985
+  Publisher: Taito
+  Developer: Taito
+  Ported by: Home Data
+  Players:   2
 
-  Mapper:    
-  PRG:       
-  CHR:       
-  Mirroring: 
+  Mapper:    NROM-128 (0)
+  PRG:       16 kB
+  CHR:       8 kB
+  Mirroring: Horizontal
 
-  ROM:       
-  MD5:       
+  ROM:       Sky Destroyer (Japan).nes
+  MD5:       40dc63f927738e9da21667e1d9317f69
 
  ┌──────────────┐
  │ Information: │
  └──────────────┘
 
+  This entry is based on the japanese release of Sky Destroyer. 
 
+  Copyright information on the title screen has been removed.
 
-╠===========================================╣
+╠=====================================================╣
 ║                   52-in-1 info                      ║
-╠===========================================╣
+╠=====================================================╣
 
   Location:
-  PRG:       $ - $
-  CHR:       $ - $
+  PRG:       $0E8000 - $0EBFFF
+  CHR:       $174000 - $175FFF
 
   Bootcode ($0400):
-
+  STA $BEBA (8D BA BE) [1011 1110 | 1011 1010]
+  JMP $C000 (4C 00 C0)
 
   Reset Vector:
-
+  $(F)7FF2: 8D 4F 98 (STA $984F) [1001 1000 | 0100 1111]
+  $(F)7FFC: F2 FF    ($FFF2)
 
  ┌────────────────────────┐
  │ Changes from original: │
@@ -4866,9 +4870,12 @@ SECTION 3
   Graphics:
  -----------
 
+                       ©     T  A  I  T  O     C  O  R  P  .  1  9  8  5
+  Original: $(8)0BC4  2C 25 D7 D8 2A D7 2B 25 2D 2B 2E 2F 65 C7 C8 C9 CA
+  52-in-1:  $(9)0BC4  25 25 25 25 25 25 25 25 25 25 25 25 25 25 25 25 25
 
 
-╚===========================================╝
+╚==============================================================╝
 
 
 
