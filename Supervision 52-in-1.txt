@@ -63,8 +63,8 @@ SECTION 3
 37.BASEBALL      1983  16    8   H    0   $BCB2  [1 0 1 1 110010 110010]  $0C8000 - $0CBFFF   $164000 - $165FFF
 38.POPEYE        1982  16    8   H    0   $BCF3  [1 0 1 1 110011 110011]  $0CC000 - $0CFFFF   $166000 - $167FFF
 39.GALAGA        1985  16    8   H    0   $BD34  [1 0 1 1 110100 110100]  $0D0000 - $0D3FFF   $168000 - $169FFF
-40.GALAXIAN      
-41.PAC-MAN       
+40.GALAXIAN      1984   8    8   H    0   $B862  [1 0 1 1 100001 100010]  $086000 - $087FF0   $144000 - $145FF0
+41.PAC-MAN       1984  16    8   H    0   $BD75  [1 0 1 1 110101 110101]  $0D4000 - $0D7FFF   $16A000 - $16BFFF
 42.ICE CLIMBER   
 43.1989 EXERION  
 44.WRESTLE       
@@ -3911,8 +3911,6 @@ SECTION 3
   Copyright information on the title screen has been removed.
   NINTENDO text on team select screen has also been removed.
 
-  A BEQ has been changed in the PRG.
-
 ╠=====================================================╣
 ║                   52-in-1 info                      ║
 ╠=====================================================╣
@@ -4249,20 +4247,20 @@ SECTION 3
 
 
 
-╔===========================================╗
-║                       40.GALAXIAN                  ║
-╠===========================================╣
+╔=============================================================╗
+║                       40.GALAXIAN                           ║
+╠=============================================================╣
 
-  Original:  
-  Released:  
-  Publisher: 
-  Developer: 
-  Players:   
+  Original:  Galaxian
+  Released:  September 7, 1984
+  Publisher: NAMCO
+  Developer: NAMCO
+  Players:   2
 
-  Mapper:    
-  PRG:       
-  CHR:       
-  Mirroring: 
+  Mapper:    NAMCOT-3301
+  PRG:       8 kB
+  CHR:       8 kB
+  Mirroring: H
 
   ROM:       
   MD5:       
@@ -4271,21 +4269,27 @@ SECTION 3
  │ Information: │
  └──────────────┘
 
+  This entry refers to the exact same ROM space as 1989 Galaxian
+  but it LDA #$00 into $1A instead of $FF in the Bootcode.
+  This probably enables/disables bullt speed hack?
 
-
-╠===========================================╣
+╠=====================================================╣
 ║                   52-in-1 info                      ║
-╠===========================================╣
+╠=====================================================╣
 
   Location:
   PRG:       $ - $
   CHR:       $ - $
 
   Bootcode ($0400):
-
+  STA $B862 (8D 62 B8) [1011 1000 | 0110 0010]
+  LDA #$00  (A9 00)
+  STA $1A   (85 1A)
+  JMP $E020 (4C 20 E0)
 
   Reset Vector:
-
+  $(F)7FF2: 8D 4F 98 (STA $984F)
+  $(F)7FFC: F2 FF    ($FFF2)
 
  ┌────────────────────────┐
  │ Changes from original: │
@@ -4299,48 +4303,60 @@ SECTION 3
 
 
 
-╚===========================================╝
+╚=============================================================╝
 
 
 
 
-╔===========================================╗
-║                       41.PAC-MAN                   ║
-╠===========================================╣
+╔=============================================================╗
+║                       41.PAC-MAN                            ║
+╠=============================================================╣
 
-  Original:  
-  Released:  
-  Publisher: 
-  Developer: 
-  Players:   
+  Original:  Pac-Man (パックマン)
+  Released:  November 2, 1984
+  Publisher: Namco
+  Developer: Namco
+  Players:   2
 
-  Mapper:    
-  PRG:       
-  CHR:       
-  Mirroring: 
+  Mapper:    NAMCOT-3301 (0)
+  PRG:       16 kB
+  CHR:       8 kB
+  Mirroring: Horizontal
 
-  ROM:       
-  MD5:       
+  ROM:       Pac-Man (Japan) (En).nes
+  MD5:       40b9bd9ec1f9027f9a80bb108acd1e8b
 
  ┌──────────────┐
  │ Information: │
  └──────────────┘
 
+  This entry is based on the japanese release of Pac-Man. 
 
+  Copyright information and NAMCOT logo on the title screen
+  has been removed.
 
-╠===========================================╣
+  Spelling errors and a missing sprite is fixed on the
+  character screen.
+  
+  There seems also like there is some garbage data at some places.
+
+  CHR has been modified in some way.
+
+╠=====================================================╣
 ║                   52-in-1 info                      ║
-╠===========================================╣
+╠=====================================================╣
 
   Location:
-  PRG:       $ - $
-  CHR:       $ - $
+  PRG:       $0D4000 - $0D7FFF
+  CHR:       $16A000 - $16BFFF
 
   Bootcode ($0400):
-
+  STA $BD75 (8D 75 BD) [1011 1101 | 0111 0101]
+  JMP $C035 (4C 35 C0)
 
   Reset Vector:
-
+  $(F)3FF2: 8D 4F 98 (STA $984F) [1001 1000 | 0100 1111]
+  $(F)3FFC: F2 FF    ($FFF2)
 
  ┌────────────────────────┐
  │ Changes from original: │
@@ -4352,9 +4368,72 @@ SECTION 3
   Graphics:
  -----------
 
+  # Probably some garbage data since 52-in-1 jumps to $C035
+  Original: $(8)0033  78 D8 A9 00
+  52-in-1:  $(8)0033  8D 0F A9 00
 
 
-╚===========================================╝
+  # Title Screen - NAMCOT
+  Original: $(8)035A  22 AC 23 24 25 26 27 28 29 2A 2B FF
+  52-in-1:  $(8)035A  22 AC 20 20 20 20 20 20 20 20 20 FF
+
+
+  # Title Screen - Copyright
+                             ©     1  9  8  0     1 9  8  4     N  A  M  C  O     L  T  D  .
+  Original: $(8)0366  23 05 5D 20 31 39 38 30 20 31 39 38 34 20 4E 41 4D 43 4F 20 4C 54 44 5B FF
+                            A  L  L     R  I  G  H  T  S     R  E  S  E  R  V  E  D
+  Original: $(8)037F  23 47 41 4C 4C 20 52 49 47 48 54 53 20 52 45 53 45 52 56 45 44 FF
+
+  52-in-1:  $(8)0366  23 05 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 FF
+  52-in-1:  $(8)037F  23 47 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 FF
+
+
+  # Character Screen - 52-in-1 corrects spelling error
+                             C  H  R  A  C  T  E  R        /        N  I  C  K  N  A  M  E
+  Original: $(8)05E7  20 E6 43 48 52 41 43 54 45 52 20 20 3B 20 20 4E 49 43 4B 4E 41 4D 45 FF
+                             C  H  A  R  A  C  T  E  R     /        N  I  C  K  N  A  M  E
+  52-in-1:  $(8)05E7  20 E6 43 48 41 52 41 43 54 45 52 20 3B 20 20 4E 49 43 4B 4E 41 4D 45 FF
+
+
+  # Character Screen - Pinky, if not changed will disappear
+  Original: $(8)0626  FF
+  52-in-1:  $(8)0626  81
+
+
+  # Character Screen - NAMCOT
+  Original: $(8)067C  23 4C 23 24 25 26 27 28 29 2A 2B FF
+  52-in-1:  $(8)067C  23 4C 20 20 20 20 20 20 20 20 20 FF
+
+  # ?????
+  Original: $(A)2E20  A9 25 (LDA #$25) 
+  52-in-1:  $(A)2E20  A9 20 (LDA #$20)
+
+
+ ---------
+  52-in-1:
+ ---------
+
+  # Reset Vector
+  Original: $(8)3FFE  33 C0
+  52-in-1:  $(C)3FFE  F2 FF
+
+ ┌─────┐
+ │ CHR │
+ └─────┘
+
+  Original: $0940  F7 FB FB FD FC FC 7C 7C F0 F8 F8 FC FC FC 7C 7C
+  52-in-1:  $0940  FF FB FB FD FC FC 7C 7C F0 F8 F8 FC FC FC 7C 7C
+
+  Original: $0A70  7F F9 F9 FF FE FC FF FF 7F F9 F9 FF FE FC FF FF
+  52-in-1:  $0A70  7F F9 FF FF FE FC FF FF 7F F9 F9 FF FE FC FF FF
+
+  Original: $1970  FC 68 F8 B0 E0 80 00 00 00 00 00 00 00 00 00 00
+  52-in-1:  $1970  FF 68 F8 B0 E0 80 00 00 00 00 00 00 00 00 00 00
+
+  Original: $1A70  FC B8 B0 A0 80 00 00 00 00 00 00 00 00 00 00 00
+  52-in-1:  $1A70  FF B8 B0 A0 80 00 00 00 00 00 00 00 00 00 00 00
+
+╚==============================================================╝
 
 
 
