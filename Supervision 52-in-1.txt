@@ -65,7 +65,7 @@ SECTION 3
 39.GALAGA        1985  16    8   H    0   $BD34  [1 0 1 1 110100 110100]  $0D0000 - $0D3FFF   $168000 - $169FFF
 40.GALAXIAN      1984   8    8   H    0   $B862  [1 0 1 1 100001 100010]  $086000 - $087FF0   $144000 - $145FF0
 41.PAC-MAN       1984  16    8   H    0   $BD75  [1 0 1 1 110101 110101]  $0D4000 - $0D7FFF   $16A000 - $16BFFF
-42.ICE CLIMBER   
+42.ICE CLIMBER   1985  16    8   H    0   $BDB6  [1 0 1 1 110110 110110]  $0D8000 - $0DBFFF   $16C000 - $16DFFF
 43.1989 EXERION  
 44.WRESTLE       
 
@@ -4438,23 +4438,23 @@ SECTION 3
 
 
 
-╔===========================================╗
-║                       42.ICE CLIMBER               ║
-╠===========================================╣
+╔==============================================================╗
+║                       42.ICE CLIMBER                         ║
+╠==============================================================╣
 
-  Original:  
-  Released:  
-  Publisher: 
-  Developer: 
-  Players:   
+  Original:  Ice Climber (アイスクライマー)
+  Released:  January 30, 1985
+  Publisher: Nintendo
+  Developer: Nintendo
+  Players:   2
 
-  Mapper:    
-  PRG:       
-  CHR:       
-  Mirroring: 
+  Mapper:    NROM-128 (0)
+  PRG:       16 kB
+  CHR:       8 kB
+  Mirroring: Horizontal
 
-  ROM:       
-  MD5:       
+  ROM:       Ice Climber (Japan) (En).nes
+  MD5:       9c2798900b30c8666c00fd10a1f6b4a9
 
  ┌──────────────┐
  │ Information: │
@@ -4462,19 +4462,24 @@ SECTION 3
 
 
 
-╠===========================================╣
-║                   52-in-1 info                     ║
-╠===========================================╣
+╠=====================================================╣
+║                   52-in-1 info                      ║
+╠=====================================================╣
 
   Location:
-  PRG:       $ - $
-  CHR:       $ - $
+  PRG:       $0D8000 - $0DBFFF
+  CHR:       $16C000 - $16DFFF
 
   Bootcode ($0400):
-
+  STA $BDB6 (8D B6 BD) [1011 1101 | 1011 0110]
+  SEI       (78)
+  CLD       (D8)
+  LDA #$10  (A9 10)
+  JMP $C018 (4C 18 C0)
 
   Reset Vector:
-
+  $(8)0014: 8D 4F 98 (STA $984F) [1001 1000 | 0100 1111]
+  $(F)3FFC: 14 C0    ($C014)
 
  ┌────────────────────────┐
  │ Changes from original: │
@@ -4482,13 +4487,58 @@ SECTION 3
  │ PRG │
  └─────┘
 
- -----------
-  Graphics:
- -----------
+ ---------
+  52-in-1:
+ ---------
+
+  # 52-in-1 - GameBoot/Reset Vector
+  Original: $(8)0010  78 D8 A9 10 (SEI | CLD | LDA #$10)
+  52-in-1:  $(8)0010  8D 4F 98    (STA $984F)
+
+ ┌─────┐
+ │ CHR │
+ └─────┘
+
+  # Title Screen - Ice Climber logo
+  Original: $10A0  23 E0 60 AA 23 E8 48 50 23 F0 48 AF 20 62 01 77
+  Original: $10B0  20 63 5A 7A 20 7D 01 7C 20 82 C9 78 21 A2 01 79
+  Original: $10C0  21 A3 5A 7B 20 9D C9 7D 21 BD 01 7E 20 83 5A FD
+  Original: $10D0  20 A3 5A FD 20 C3 5A FD 20 E3 5A FD 21 03 5A FD
+  Original: $10E0  20 8B 0A 5E FD FD 60 61 61 FD 60 61 61 20 AB 0A
+  Original: $10F0  5F FD FD 5F 62 FD FD 5F 66 68 20 CB 0A 5F FD FD
+  Original: $1100  5F 63 FD FD 5F 67 69 20 EB 0A 5F FD FD 64 65 61
+  Original: $1110  FD 64 65 61 21 23 1A 60 61 61 FD 5E FD FD FD 5E
+  Original: $1120  FD 60 6A 60 6A FD 60 61 6A FD 60 61 61 FD 60 61
+  Original: $1130  6A 21 43 1A 5F 62 FD FD 5F FD FD FD 5F FD 5F 6B
+  Original: $1140  6C 6D FD 5F 6E 71 FD 5F 66 68 FD 5F 6E 71 21 63
+  Original: $1150  1A 5F 63 FD FD 5F 63 FD FD 5F FD 5F 74 75 5F FD
+  Original: $1160  5F 6F 72 FD 5F 67 69 FD 5F 76 72 21 83 1A 64 65
+  Original: $1170  61 FD 64 65 61 FD 5F FD 5F FD FD 5F FD 5F 70 73
+  Original: $1180  FD 64 65 61 FD 5F FD 5F 22 0A 0D 01 38 8D 37 33
+ 
+  52-in-1:  $10A0  23 E0 60 AA 23 E8 48 50 23 F0 48 AF 20 62 01 38
+  52-in-1:  $10B0  20 63 5A 38 20 7D 01 38 20 82 C9 38 21 A2 01 38
+  52-in-1:  $10C0  21 A3 5A 38 20 9D C9 38 21 BD 01 38 20 83 5A 38
+  52-in-1:  $10D0  20 A3 5A 38 20 C3 5A 38 20 E3 5A 38 21 03 5A 38
+  52-in-1:  $10E0  20 8B 0A 38 38 38 38 38 38 38 38 38 38 20 AB 0A
+  52-in-1:  $10F0  38 38 38 38 38 38 38 38 38 38 20 CB 0A 38 38 38
+  52-in-1:  $1100  38 38 38 38 38 38 38 20 EB 0A 38 38 38 38 38 38
+  52-in-1:  $1110  38 38 38 38 21 23 1A 38 38 38 38 38 38 38 38 38
+  52-in-1:  $1120  38 38 38 38 38 38 38 38 38 38 38 38 38 38 38 38
+  52-in-1:  $1130  38 21 43 1A 38 38 38 38 38 38 38 38 38 38 38 38
+  52-in-1:  $1140  38 38 38 38 38 38 38 38 38 38 38 38 38 38 21 63
+  52-in-1:  $1150  1A 38 38 38 38 38 38 38 38 38 38 38 38 38 38 38
+  52-in-1:  $1160  38 38 38 38 38 38 38 38 38 38 38 21 83 1A 38 38
+  52-in-1:  $1170  38 38 38 38 38 38 38 38 38 38 38 38 38 38 38 38
+  52-in-1:  $1180  38 38 38 38 38 38 38 38 22 0A 0D 01 38 8D 37 33
 
 
+  # Title Screen - Copyright
+                    ©  1  9  8  4     N  I  N  T  E  N  D  O
+  Original: $11DD  FC 01 09 08 04 38 5A 3B 5A 3A 3D 5A 35 5B
+  52-in-1:  $11DD  38 38 38 38 38 38 38 38 38 38 38 38 38 38
 
-╚===========================================╝
+╚==============================================================╝
 
 
 
