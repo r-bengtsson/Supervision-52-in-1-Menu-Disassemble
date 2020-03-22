@@ -4910,7 +4910,7 @@ SECTION 3
 
   Copyright information and logo on the title screen has been removed.
 
-  CHR has minor changes to a japanese character.
+  CHR has minor changes to a japanese character, (NameTable?).
 
 ╠=====================================================╣
 ║                   52-in-1 info                      ║
@@ -4974,11 +4974,12 @@ SECTION 3
  │ CHR │
  └─────┘
 
-  # Minor graphics change to japanese character
+  # Minor graphics change to japanese character (Nametable for copyright? © 1983)
   Original: $1E10  00 00 00 00 00 00 00 00 F8 F8 18 18 18 F8 F8 00
   Original: $1E20  00 00 00 00 00 00 00 00 00 08 3E 08 1C 3E 2A 00
-
+                                                              ©
   52-in-1:  $1E10  00 00 00 00 00 00 00 00 F8 F8 18 18 18 F8 34 1E
+                    1  9  8  3 ????
   52-in-1:  $1E20  14 15 16 17 00 00 00 00 00 08 3E 08 1C 3E 2A 00
 
 ╚==============================================================╝
@@ -5008,7 +5009,9 @@ SECTION 3
  │ Information: │
  └──────────────┘
 
+  This entry is based on the japanese release of Gomoku Narabe Renju. 
 
+  Copyright information on the title screen has been removed.
 
 ╠=====================================================╣
 ║                   52-in-1 info                      ║
@@ -5023,7 +5026,8 @@ SECTION 3
   JMP $C000 (4C 00 C0)
 
   Reset Vector:
-
+  $(F)7FF2: 8D 4F 98 (STA $984F) [1001 1000 | 0100 1111]
+  $(F)7FFC: F2 FF    ($FFF2)
 
  ┌────────────────────────┐
  │ Changes from original: │
@@ -5034,8 +5038,11 @@ SECTION 3
  -----------
   Graphics:
  -----------
-  
 
+ # Title Screen - Copyright
+                       ©  1  9  8  4     N  I  N  T  E  N  D  O
+  Original: $(9)1AA8  F4 01 09 08 04 24 17 12 17 1D 0E 17 0D 18
+  52-in-1:  $(9)1AA8  24 24 24 24 24 24 24 24 24 24 24 24 24 24
 
 ╚==============================================================╝
 
