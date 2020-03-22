@@ -4460,7 +4460,10 @@ SECTION 3
  │ Information: │
  └──────────────┘
 
+  This entry is based on the japanese release of Ice Climber. 
 
+  CHR contains nametable data and has been modified to remove
+  logo and copyright information.
 
 ╠=====================================================╣
 ║                   52-in-1 info                      ║
