@@ -4,11 +4,11 @@
   Game information is taken from NES Cart Database [bootgod.dyndns.org:7777]
   Mapper 225/255 information is taken from [wiki.nesdev.com]
 
+
+
 |¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯|
 |                Section x - Games Quicklist                 |
 |____________________________________________________________|
-
-
 
 SECTION 1
 
@@ -79,14 +79,15 @@ SECTION 3
 52.FANCY BROS    1985  32    8   H    0   $A394  [1 0 1 0 001110 010100]  $8004  $8000  $038000 - $03FFF0  $128000 - $129FF0
 
 
+
 |¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯|
 |                     Section x - Games                      |
 |____________________________________________________________|
 
- 
-<------------------------------------------------------------>
-<------------------------ SECTION 1 ------------------------->
-<------------------------------------------------------------>
+<---------------------------------------------------------------------->
+<----------------------------- SECTION 1 ------------------------------>
+<---------------------------------------------------------------------->
+
 
 ╔=============================================================╗
 ║                       01.ISLANDER                           ║
@@ -110,9 +111,6 @@ SECTION 3
  ┌──────────────┐
  │ Information: │
  └──────────────┘
-
-  This entry is based on the japanese release of
-  Takahashi Meijin no Bouken-jima (Adventure Island).
 
   Pink/White Kanji and copyright information on title screen
   has been removed.
@@ -194,8 +192,6 @@ SECTION 3
  ┌──────────────┐
  │ Information: │
  └──────────────┘
-
-  This entry is based on the japanese release of Gradius.
 
   Version information in ROM has been removed.
   Copyright and the Gradius logo has been removed
@@ -306,8 +302,6 @@ SECTION 3
  │ Information: │
  └──────────────┘
  
-  This entry is based on the japanese release of Hokuto no Ken.
-
   Copyright information in ROM and Title Screen Logo and
   copyright has been removed.
 
@@ -418,7 +412,6 @@ SECTION 3
   Original:  $(8)0000  30 31 32 33
   52-in-1:   $(8)0000  00 01 02 03
 
-
 ╚=============================================================╝
 
 
@@ -445,8 +438,6 @@ SECTION 3
  ┌──────────────┐
  │ Information: │
  └──────────────┘
-
-  This entry is based on the japanese release of Star Soldier.
 
   Copyright information on title screen has been removed.
 
@@ -530,8 +521,6 @@ SECTION 3
  ┌──────────────┐
  │ Information: │
  └──────────────┘
-
-  This entry is based on the japanese release of Goonies.
 
   Copyright information on copyright and title screen has been removed.
   The logo on the title screen has also been removed.
@@ -662,12 +651,10 @@ SECTION 3
  │ Information: │
  └──────────────┘
 
-  This entry is based on the japanese release of Kage no Densetsu.
-
   Copyright information on title screen has been removed.
 
   This ROM has been hacked a little bit more than others.
-  52-in-1 loads mapper calls into $0180 and the ROM JSR to
+  52-in-1 loads bankchange subroutine into $0180 and the ROM JSR to
   this location to perform mapper calls.
 
 ╠=====================================================╣
@@ -765,8 +752,6 @@ SECTION 3
  ┌──────────────┐
  │ Information: │
  └──────────────┘
-
-  This entry is based on the unlicensed title Tetris by Tengen.
 
   Copyright information on title and select screen has been removed.
 
@@ -896,7 +881,11 @@ SECTION 3
  │ Information: │
  └──────────────┘
 
-  This entry seems to be a hacked version of Super Mario bros.
+  This is a hacked version of Super Mario Bros.
+
+  The game is identical to 52.FANCY BROS except in the
+  mirroring. This version sets it correctly to Vertical.
+  Other than that, the two versions are identical.
 
   Copyright information and logo on title screen has been removed.
   CHR has been hacked to resemble Super Mario Bros 2j.
@@ -949,6 +938,7 @@ SECTION 3
   $(F)7FF2  LDA #$ 00  (A9 00)
   $(F)7FF4  JMP $FFEE  (4C EE FF)
 
+
  ---------
   52-in-1:
  ---------
@@ -962,6 +952,7 @@ SECTION 3
  └─────┘
 
   CHR has been hacked to resemble Super Mario Bros 2j.
+  Perhaps nametable is stored in CHR?
 
 ╚=============================================================╝
 
@@ -989,8 +980,6 @@ SECTION 3
  ┌──────────────┐
  │ Information: │
  └──────────────┘
-
-  This entry is based on the japanese release of Twin Bee.
 
   Copyright information and logo on title screen has been removed.
 
@@ -1037,7 +1026,6 @@ SECTION 3
   52-in-1:   $(8)0C60  34 04 00 00
   52-in-1:   $(8)0C60  34 19 00 00 00 00 00 00 00 00 00
 
-
  ┌─────┐
  │ CHR │
  └─────┘
@@ -1070,9 +1058,6 @@ SECTION 3
  ┌──────────────┐
  │ Information: │
  └──────────────┘
-
-  This entry is based on the japanese release of Ninja
-  Jajamaru-kun.
 
   Copyright information and logo on title screen
   has been removed.
@@ -1186,8 +1171,6 @@ SECTION 3
  ┌──────────────┐
  │ Information: │
  └──────────────┘
-
-  This entry is based on the japanese release of City Connection.
 
   Copyright information on title screen has been removed.
 
@@ -1305,8 +1288,6 @@ SECTION 3
  │ Information: │
  └──────────────┘
 
-  This entry is based on the japanese release of B-Wings.
-
   Copyright information on title screen has been removed.
 
   Security checks has been hacked which makes it into NROM.
@@ -1390,8 +1371,6 @@ SECTION 3
  │ Information: │
  └──────────────┘
 
-  This entry is based on the american/japanese release of 1942.
-
   Copyright information on title screen has been removed.
 
 ╠=====================================================╣
@@ -1465,8 +1444,6 @@ SECTION 3
  │ Information: │
  └──────────────┘
 
-  This entry is based on the japanese release of Gyrodine.
-
   Copyright information on title screen has been removed.
 
 ╠=====================================================╣
@@ -1506,7 +1483,7 @@ SECTION 3
 
 
 ╔=============================================================╗
-║                       15.FLAPPY                             ║
+║                       15.FLAPPY                             ║ <--- need to find pirate version
 ╠=============================================================╣
 
   Original:  Flappy (フラッピー)
@@ -1520,19 +1497,17 @@ SECTION 3
   CHR:       8 kB
   Mirroring: Horizontal
 
-  ROM:       Flappy (Japan).nes                       <--- need to find pirate version
+  ROM:       Flappy (Japan).nes
   MD5:       e82ef1763b81bfcab9c95c0258347512
 
  ┌──────────────┐
  │ Information: │
  └──────────────┘
-
-  This entry is based on a hack of the japanese release
-  of Flappy.
   
-  The hack is credited to "Whirlwind Manu" who released
-  a pirate version of this game. The hack enables a level select
-  cheat. [bootleggames.fandom.com/wiki/Supervision_52-in-1]
+  This is a hacked version of Flappy. The hack is credited
+  to "Whirlwind Manu" who released a pirate version of
+  this game. The hack enables a level select cheat.
+  [bootleggames.fandom.com/wiki/Supervision_52-in-1]
 
   Copyright information on title screen has been changed
   to WHIRLWIND MENU.
@@ -1994,9 +1969,6 @@ SECTION 3
  │ Information: │
  └──────────────┘
 
-  This entry is based on the japanese release of Spartan X
-  (Kung Fu).
-
   Copyright information on title screen has been removed and
   CHR has been modified to remove © character.
 
@@ -2052,7 +2024,6 @@ SECTION 3
   Original: $(F)7FFE  F0 FF        ($FFF0)
   52-in-1:  $(F)7FFE  F0 BF        ($BFF0)
 
-
  ┌─────┐
  │ CHR │
  └─────┘
@@ -2088,7 +2059,7 @@ SECTION 3
  │ Information: │
  └──────────────┘
 
-  This entry is a hack of the japanese release of Bomber Man.
+  This is a hack of the japanese release of Bomber Man.
 
   The password system has been changed to a level select screen.
 
@@ -2249,8 +2220,6 @@ SECTION 3
  │ Information: │
  └──────────────┘
 
-  This entry is based on the japanese release of Front Line.
-
   Copyright information and logo on title screen has been
   removed in CHR.
 
@@ -2308,9 +2277,9 @@ SECTION 3
 
 
 
-<------------------------------------------------------------>
-<------------------------ SECTION 2 ------------------------->
-<------------------------------------------------------------>
+<---------------------------------------------------------------------->
+<----------------------------- SECTION 2 ------------------------------>
+<---------------------------------------------------------------------->
 
 
 ╔=============================================================╗
@@ -2334,9 +2303,6 @@ SECTION 3
  ┌──────────────┐
  │ Information: │
  └──────────────┘
-
-  This entry is based on the japanese release of
-  Choujikuu Yousai Macross.
 
   Copyright information on title screen has been removed.
 
@@ -2417,10 +2383,14 @@ SECTION 3
  │ Information: │
  └──────────────┘
 
-  This entry is a hack of the japanese release of Galaxian.
+  This is a hack of the japanese release of Galaxian.
 
-  It seems like this entry seems to be put inside the 52-in-1
+  It seems like this entry resides inside the 52-in-1
   Menu 16 kB ROM space.
+
+  The game is identical to 40.GALAXIAN except in the
+  bootcode, where it loads #$FF instead of #$00 to $1A.
+  Other than that, the two versions are identical.
 
   The bullets are speed up.
   [bootleggames.fandom.com/wiki/Supervision_52-in-1]
@@ -3971,9 +3941,9 @@ SECTION 3
 
 
 
-<------------------------------------------------------------>
-<------------------------ SECTION 3 ------------------------->
-<------------------------------------------------------------>
+<---------------------------------------------------------------------->
+<----------------------------- SECTION 3 ------------------------------>
+<---------------------------------------------------------------------->
 
 ╔=============================================================╗
 ║                       37.BASE BALL                          ║
@@ -4249,7 +4219,7 @@ SECTION 3
 
 
 ╔=============================================================╗
-║                       40.GALAXIAN                           ║
+║                       40.GALAXIAN                           ║  <-------- NEEDS DEEPER ANALYSIS
 ╠=============================================================╣
 
   Original:  Galaxian
@@ -4270,8 +4240,10 @@ SECTION 3
  │ Information: │
  └──────────────┘
 
-  This entry refers to the exact same ROM space as 1989 Galaxian
-  but it LDA #$00 into $1A instead of $FF in the Bootcode.
+  The game is identical to 20.1989GALAXIAN except in the
+  bootcode, where it loads #$00 instead of #$FF to $1A.
+  Other than that, the two versions are identical.
+
   This probably enables/disables bullt speed hack?
 
 ╠=====================================================╣
@@ -4330,8 +4302,6 @@ SECTION 3
  ┌──────────────┐
  │ Information: │
  └──────────────┘
-
-  This entry is based on the japanese release of Pac-Man. 
 
   Copyright information and NAMCOT logo on the title screen
   has been removed.
@@ -4422,6 +4392,7 @@ SECTION 3
  │ CHR │
  └─────┘
 
+  # ????
   Original: $0940  F7 FB FB FD FC FC 7C 7C F0 F8 F8 FC FC FC 7C 7C
   52-in-1:  $0940  FF FB FB FD FC FC 7C 7C F0 F8 F8 FC FC FC 7C 7C
 
@@ -4460,8 +4431,6 @@ SECTION 3
  ┌──────────────┐
  │ Information: │
  └──────────────┘
-
-  This entry is based on the japanese release of Ice Climber. 
 
   CHR contains nametable data and has been modified to remove
   logo and copyright information.
@@ -4569,8 +4538,8 @@ SECTION 3
  ┌──────────────┐
  │ Information: │
  └──────────────┘
-
-  This entry is based on a hack of Exerion. 
+  
+  This is a hack of the japanese release of Exerion.
 
   Copyright information on the title screen has been removed.
 
@@ -4674,9 +4643,6 @@ SECTION 3
  │ Information: │
  └──────────────┘
 
-  This entry is based on the japanese release of Kinnikuman:
-  MUSCLE Tag Match. 
-
   Copyright information and japanese text on the title screen
   has been removed.
 
@@ -4770,8 +4736,6 @@ SECTION 3
  │ Information: │
  └──────────────┘
 
-  This entry is based on the japanese release of BattleCity. 
-
   Copyright information on the title screen has been removed.
 
 ╠=====================================================╣
@@ -4842,8 +4806,6 @@ SECTION 3
  │ Information: │
  └──────────────┘
 
-  This entry is based on the japanese release of Sky Destroyer. 
-
   Copyright information on the title screen has been removed.
 
 ╠=====================================================╣
@@ -4903,8 +4865,6 @@ SECTION 3
  ┌──────────────┐
  │ Information: │
  └──────────────┘
-
-  This entry is based on the japanese release of Gomoku Narabe Renju. 
 
   Mirroring is set to Vertical even though it is originally set to Horizontal
 
@@ -5009,8 +4969,6 @@ SECTION 3
  │ Information: │
  └──────────────┘
 
-  This entry is based on the japanese release of Gomoku Narabe Renju. 
-
   Copyright information on the title screen has been removed.
 
 ╠=====================================================╣
@@ -5070,8 +5028,6 @@ SECTION 3
  ┌──────────────┐
  │ Information: │
  └──────────────┘
-
-  This entry is based on the japanese release of Formation Z. 
 
   Copyright information on the title screen has been removed.
 
@@ -5146,8 +5102,6 @@ SECTION 3
  │ Information: │
  └──────────────┘
 
-  This entry is based on the japanese release of Pooyan. 
-
   Copyright information on the title screen has been removed.
 
 ╠=====================================================╣
@@ -5205,8 +5159,6 @@ SECTION 3
  ┌──────────────┐
  │ Information: │
  └──────────────┘
-
-  This entry is based on the japanese release of Circus Charlie. 
 
   Copyright information on the title screen has been removed,
   and the logo has been changed to the text "CIRCUS TROUPE".
@@ -5296,10 +5248,11 @@ SECTION 3
  │ Information: │
  └──────────────┘
 
-  This entry references the same space as 08.BROS. II, but with
-  Horizontal mirroring instead of Vertical.
-  
-  Mapper call: STA $A394
+  This is a hacked version of Super Mario Bros.
+
+  The game is identical to 08.BROS II except in the
+  mirroring. This version sets it incorrectly to Horizontal.
+  Other than that, the two versions are identical.
 
 ╠=====================================================╣
 ║                   52-in-1 info                      ║
@@ -5329,6 +5282,26 @@ SECTION 3
   See 08.BROS. II
 
 ╚=============================================================╝
+
+
+
+|¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯|
+|                          Appendix                          |
+|____________________________________________________________|
+
+Reset Vectors:
+
+  $8000
+  $8258
+  $BF90
+  $C000
+  $C014
+  $C184
+  $C649
+  $C66E
+  $C79E
+  $CA43
+  $FFF2
 
 
 |¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯|
