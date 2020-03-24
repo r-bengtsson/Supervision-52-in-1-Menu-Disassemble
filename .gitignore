@@ -1,9 +1,4 @@
-*.o
-*.nes
+dist/
+tmp/
 *.old
 *.code-workspace
-*.bat
-*.dbg
-./dist/*.*
-./tmp/*.*
-.gitignore
