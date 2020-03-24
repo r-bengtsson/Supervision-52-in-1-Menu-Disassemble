@@ -4,4 +4,6 @@
 *.code-workspace
 *.bat
 *.dbg
-./bin/*.*
+./dist/*.*
+./tmp/*.*
+.gitignore
