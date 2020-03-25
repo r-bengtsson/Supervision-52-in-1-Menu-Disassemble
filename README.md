@@ -2,8 +2,10 @@
 
 A disassemble and analysis of the NES multicart Supervision 52-in-1
 
+## Included Files
 
-Files
+* `Supervision 52-in-1.txt`          Description of mapper, how the menu works and differences between original game ROM and 52-in-1 variant
+
 * `.\src\52-in-1 Menu.asm`           Commented disassemble of the Supervision 52-in-1 Menu. Compiles to a 1/1 copy of the original.
 * `.\src\52-in-1 Menu.chr`           CHR file.
 * `.\src\52-in-1 Menu.cfg`           Configuration file for NROM-128/52-in-1 Menu.
