@@ -10,7 +10,7 @@
 |____________________________________________________________|
 
   The menu ROM keeps track of the current section and position in the list.
-  When you push the start button, the menu will use the section and listposition to access a bootcode for that specific entry, and load it into $0400. Then it will execute the code in $0400 and jump to the games start sequence. It also always loads a bankchange routine into $130 that is only used by 06.LEGENDRY.
+  When you push the start button, the menu will use the section and listposition to access a bootcodelist (S1 = $DA01 | S2 = $DB21 | S3 = DC41) and locate the exact start for that specific entry, and load it into $0400. Then it will execute the code in $0400 and jump to the newly loaded games start sequence. It also always loads a 15 bytes long bankchange routine into $180 that is only used by 06.LEGENDRY.
   
   When a game resets, it always points to STA $984F and changes banks to the 52-in-1 menu and executes start routine.
  
