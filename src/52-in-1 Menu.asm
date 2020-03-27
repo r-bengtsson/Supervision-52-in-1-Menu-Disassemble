@@ -2161,7 +2161,7 @@ BootGameBootSequencesSection1:
 
 
 
-; Starts at: $DA01 - $DB20 / $1A01 - $1B20
+; Starts at: $DB21 - $DC40 / $1B21 - $1C40
 BootGameBootSequencesSection2:
     ; Column 1
     ; 19.MACROSS
