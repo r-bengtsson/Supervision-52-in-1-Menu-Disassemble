@@ -10,7 +10,7 @@ A disassemble and analysis of the NES multicart Supervision 52-in-1
 Description of mapper, how the menu works and differences between original game ROM and 52-in-1 variant
 
 * `make.bat`:
-Customizable makefile for the project. Change `@set ca65="D:\NESDev\cc65\bin"` to the location of your ca65 bin folder and create directories `.\tmp` and `.\dist\` in the root of the project.
+Customizable makefile for the project. Change `@set ca65="D:\NESDev\cc65\bin"` to the location of your ca65 bin folder and create directories `.\tmp` and `.\dist\` in the root folder of the project.
 
 * `runt.bat`:
 Customizable runfile for the project. Change `@set mesen=D:\Emulators\Mesen` to the location of your emulator.
