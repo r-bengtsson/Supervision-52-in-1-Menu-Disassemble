@@ -9,29 +9,52 @@
 |          Section x - How to the menu boots a game          |
 |____________________________________________________________|
 
-  The menu ROM keeps track of the current section and position in the list.
-  When you push the start button, the menu will use the section and listposition to access a bootcodelist and locate the exact start for that specific entry, and load it into $0400. Then it will execute the code in $0400 and jump to the newly loaded games start sequence. It also always loads a 15 bytes long bankchange routine into $180 that is only used by 06.LEGENDRY.
+  The program keeps track of what section you are in, and what position in the list your marker are on.
+  When you push the start button, This happens:
+
+  1. 06.LEGENDRY bank switch routine gets loaded into RAM adress $0180 from $(D)19F2 - $1(D)A00
+  2. The program fetches current section and get the start of the game boot codes for that section. $(D)1A01, $(D)1B21, or $(D)1C41.
+  3. Current listposition are then used to increment the startposition with listposition * #$10 to get the start of the bootcode for the selected entry.
+  4. Then it loads #$10 bytes with start from the previosly determined startposition and loads it into RAM adress $0400.
+  5. The current section and listposition gets stored into CartRAM and some adresses are cleared.
+  6. Finally it executes the bootcode for the selected game from RAM $0400, which changes PRG and CHR banks and executes some init code
+     (depending on what modifications that was needed to the game) and then finally makes a jump to the ROM.
+
+  Et Voila, you are in the game.  
   
-  When a game resets, it always points to STA $984F and changes banks to the 52-in-1 menu and executes start routine.
- 
+  When you are done with the game and hit the reset button, the game will go to a modified reset vector in the game and change banks to the menu ROM space (STA $984F).
+  The menu ROM then immediatly makes a JMP to the init sequence of the menu rom. A list of reset adresses in the menu ROM can be found under Section x - Reset Vector.
+
 
 
 |¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯|
 |             Section x - How to replace a game              |
 |____________________________________________________________|
 
-  First, you'll need to separate your ROM into its PRG and CHR part.
-  The easiest way is to find an entry with the same size PRG/CHR of the game you want to add.
+  How easy it is to replace a game depends on the size and mapper of the game you want to use as a replacement.
+  The easiest way is to find an entry that has the same PRG/CHR size as the intended replacement game.
+
+  The first thing you need to change in the ROM is to place a bankswitch call to $984F (52-in-1 Menu ROM) at the reset vector of the game.
+  The best place to put the bankswitch call (8D 4F 98) is at adress $FFF2, and then change the reset vector at $FFFC to F2 FF.
+
+  If the space at $FFF2 is not available, then you have to put the bankswitch call at the original reset vector. Check the reset vector adress at $FFFC.
+  Dont forget to save the original code that already exists at the reset vector though, because you need to store that in the entries bootcode data to be loaded in
+  the boot game sequence.
   
-  You will need to do some hacking of the PRG part of the ROM.
+  The format of the bootcode is like follows:
+  1. Bankswitch call to the correct PRG/CHR adress with the correct mirroring and PRG mode, use a binary to hex converter for this.
+     Example: 8D 08 81 (STA $8108)
+  2. Init code removed at reset vector (if $FFF2 was not available).
+     Example: If you put the bankswitch call at $C000, and the old data was: 78 A9 00 (SEI | LDA #$00), then that is the data you put in the bootcode data.
+  3. Jump call to the init code of the game.
+     If you used $FFF2 for the reset vector, then just jump to the original reset vector. If you had to put it in the original reset vector, then just
+    jump to after the bankswitch routine, eg. $C003 in the example above (4C 03 C0).
   
-  For all mappers, you have to add STA $984F (8D 4F 98), which is a mapper call to change PRG/CHR space to the 52-in-1 Menu space.
-  The best place to put it is to add it to adress $FFF2 if it is empty. If there is code/data at $FFF2, then you need to use the regular reset vector. Just look at the adress $FFFC and go to the adress there and add 8D 4F 98 the. You need to save the original values though as you need them in the bootcode, which 52-in-1 uses to load the code.
-  
-  If so, then you have to add it to the reset vector.
-  
-   If you use $FFF2 for STA $984F, then you need to change the reset vector at $FFFC to $FFF2 (F2 FF).
-  
+  So the bootcode in the above example would be: 8D 08 81 78 A9 00 4C 03 C0
+
+  You can find the exact ROM adress of the bootcodes in the source code.
+
+
   
   NROM           (mapper 0)
   CNROM          (mapper 3)
@@ -47,21 +70,12 @@
   If you were lucky and could use $FFF2 for the new reset vector, then you only need to make the relevant mapper call and jump to the games original reset vector and then you're done. If you had to put the new reset vector data at the original reset vector, then you have to add the original game init code to the bootcode that gets loaded into $0400.
   
   For example, if you put the new reset vector data at $C000, and the old data was: SEI | LDA #$00 (78 A9 00), then that is the data you put in the menu roms bootcode.
-  
+
+
+
 |¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯|
 |                Section x - Games Quicklist                 |
 |____________________________________________________________|
-
-Bootcode start:
-Section 1 = $DA01
-Section 2 = $DB21
-Section 3 = $DC41
-
-Nr of games with each mapper:
-NROM:           41
-CNROM:           5
-CNROM-87:        5
-CNROM-SECURITY:  1
 
 -----------
  SECTION 1
@@ -77,7 +91,7 @@ CNROM-SECURITY:  1
   07.TETRIS        1989  32   16   V    3   $8312  [1 0 0 0 001100 010010]  $8000  $FFF2  $030000 - $037FF0  $124000 - $127FF0
   08.BROS II       1985  32    8   V    0   $8394  [1 0 0 0 001110 010100]  $8004  $8000  $038000 - $03FFF0  $128000 - $129FF0
   09.TWIN BEE      1986  32   16   H   87   $A415  [1 0 1 0 010000 010101]  $8011  $FFF2  $040000 - $047FF0  $12A000 - $12BFF0
-
+ ------------------------------------------------------------------------------------------------------------------------------
   10.NINJA 2       1985  16   16   V   87   $9496  [1 0 0 1 010010 010110]  $812F  $8000  $048000 - $04BFF0  $12C000 - $12FFF0
   11.CITY CONECT.  1985  16   16   V   87   $94D8  [1 0 0 1 010011 011000]  $8000  $FFF2  $04C000 - $04FFF0  $130000 - $133FF0
   12.B-WINGS       1985  32    8   H  185   $A51A  [1 0 1 0 010100 011010]  $8000  $FFF2  $050000 - $057FF0  $134000 - $135FF0
@@ -87,6 +101,7 @@ CNROM-SECURITY:  1
   16.SPARTAN       1985  32    8   V    0   $871E  [1 0 0 0 011100 011110]  $825C  $8258  $070000 - $077FF0  $13C000 - $13DFF0
   17.BOMBER MAN    1985  16    8   V    0   $979F  [1 0 0 1 011110 011111]  $C000  $FFF2  $078000 - $07BFF0  $13E000 - $13FFF0
   18.FRONT LINE    1985  16    8   H    0   $B7E0  [1 0 1 1 011111 100000]  $C000  $FFF2  $07C000 - $07FFF0  $140000 - $141FF0
+ ------------------------------------------------------------------------------------------------------------------------------
 
 
 -----------
@@ -103,7 +118,7 @@ CNROM-SECURITY:  1
   25.MAHJONG 2     1983  16    8   V    0   $99A7  [1 0 0 1 100110 100111]  $CA47  $CA43  $098000 - $09BFF0  $14E000 - $14FFF0
   26.MAHJONG 4     1984  16    8   V    0   $99E8  [1 0 0 1 100111 101000]  $C000  $FFF2  $09C000 - $09FFF0  $150000 - $151FF0
   27.LODE RUNNER1  1984  16    8   V    0   $9A29  [1 0 0 1 101000 101001]  $C004  $C000  $0A0000 - $0A3FF0  $152000 - $153FF0
-
+ ------------------------------------------------------------------------------------------------------------------------------
   28.LODE RUNNER2  1985  16    8   V    0   $9A69  [1 0 0 1 101001 101001]  $C004  $C000  $0A4000 - $0A7FFF  $152000 - $153FF0
   29.KING KONG 1   1983  16    8   H    0   $9AAA  [1 0 0 1 101010 101010]  $C7A2  $C79E  $0A8000 - $0ABFFF  $154000 - $155FFF
   30.KING KONG 2   1983  16    8   V    0   $BAEB  [1 0 1 1 101011 101011]  $C672  $C66E  $0AC000 - $0AFFFF  $156000 - $157FFF
@@ -113,6 +128,7 @@ CNROM-SECURITY:  1
   34.F-1 RACE      1984  16    8   V    0   $9BEF  [1 0 0 1 101111 101111]  $C005  $C000  $0BC000 - $0BFFFF  $15E000 - $15FFFF
   35.ROAD FIGHTER  1985  16    8   H    0   $BC30  [1 0 1 1 110000 110000]  $C010  $C000  $0C0000 - $0C3FFF  $160000 - $161FFF
   36.PIN BALL      1984  16    8   H    0   $BC71  [1 0 1 1 110001 110001]  $C007  $C000  $0C4000 - $0C7FFF  $162000 - $163FFF
+ ------------------------------------------------------------------------------------------------------------------------------
 
 
 -----------
@@ -128,7 +144,7 @@ CNROM-SECURITY:  1
   42.ICE CLIMBER   1985  16    8   H    0   $BDB6  [1 0 1 1 110110 110110]  $C018  $C014  $0D8000 - $0DBFFF  $16C000 - $16DFFF
   43.1989 EXERION  1985  16    8   H    0   $BDF7  [1 0 1 1 110111 110111]  $8000  $FFF2  $0DC000 - $0DFFFF  $16E000 - $16FFFF
   44.WRESTLE       1985  16    8   V    0   $9E38  [1 0 0 1 111000 111000]  $8003  $8000  $0E0000 - $0E3FFF  $170000 - $171FFF
-
+ ------------------------------------------------------------------------------------------------------------------------------
   45.BATTLE CITY   1985  16    8   H    0   $BE79  [1 0 1 1 111001 111001]  $C070  $FFF2  $0E4000 - $0E7FFF  $172000 - $173FFF
   46.SKY DESTRYOER 1985  16    8   H    0   $BEBA  [1 0 1 1 111010 111010]  $C000  $FFF2  $0E8000 - $0EBFFF  $174000 - $175FFF
   47.CHESS         1983  16    8   H    0   $9EFB  [1 0 0 1 111011 111011]  $C700  $FFF2  $0EC000 - $0EFFFF  $176000 - $177FFF
@@ -137,7 +153,16 @@ CNROM-SECURITY:  1
   50.POOYAN        1985  16    8   V    0   $9FBE  [1 0 0 1 111110 111110]  $C000  $FFF2  $0F8000 - $0FBFFF  $17C000 - $17DFFF
   51.CIRCUS TROUPE 1986  16    8   V    0   $9FFF  [1 0 0 1 111111 111111]  $C000  $FFF2  $0FC000 - $0FFFFF  $17E000 - $17FFFF
   52.FANCY BROS    1985  32    8   H    0   $A394  [1 0 1 0 001110 010100]  $8004  $8000  $038000 - $03FFF0  $128000 - $129FF0
+ ------------------------------------------------------------------------------------------------------------------------------
 
+---------------------------------
+ Number of games of each mapper:
+---------------------------------
+  NROM:           41
+  CNROM:           5
+  CNROM-87:        5
+  CNROM-SECURITY:  1
+---------------------------------
 
 
 |¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯|
@@ -5346,7 +5371,21 @@ CNROM-SECURITY:  1
 
 
 |¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯|
-|                        Reset Vectors                       |
+|                Section x - Bootcode Starts                 |
+|____________________________________________________________|
+
+06.LEGENDRY BankSwitch routine:
+$(D)19F2
+
+Bootcode locations:
+Section 1 = $(D)1A01 - $(D)1B20
+Section 2 = $(D)1B21 - $(D)1C40
+Section 3 = $(D)1C41 - $(D)1D40
+
+
+
+|¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯|
+|                  Section x - Reset Vectors                 |
 |____________________________________________________________|
 
   $8000    STA $984F (8D 4F 98) (Game)
@@ -5381,10 +5420,11 @@ CNROM-SECURITY:  1
 
   $FFF2    STA $984F
     $FFF5  JMP $90E4
-    
+
+
 
 |¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯|
-|                       End Section x                        |
+|                        End Section                         |
 |____________________________________________________________|
 
 
