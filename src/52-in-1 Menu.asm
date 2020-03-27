@@ -37,24 +37,24 @@ INES_SRAM           = 0             ; 1 = battery backed SRAM at $6000-7FFF
 AdressHigh          = $01
 AdressLow           = $00
 
-;$1B      Gets checked in NMI if equal JMP $E20C, else go to NMI_START
-;$1C      Gets checked in NMI if equal JMP $E20C, else go to NMI_START
+UNK_1B              = $1B           ; Gets checked in NMI if equal JMP $E20C, else go to NMI_START
+UNK_1C              = $1C           ; Gets checked in NMI if equal JMP $E20C, else go to NMI_START
 
-;$30 ; OAM? ListSection?
-;$31 ; OAM? ListSection?
+UNK_30              = $30           ; OAM? ListSection?
+UNK_31              = $31           ; OAM? ListSection?
 
-ListSection         = $32
-ListSection_OLD     = $3A
+ListSection         = $32           ; Stores current section
+ListSection_OLD     = $3A           ; Stores old section
 
-ListPosition        = $33
-ListPositionY       = $34
-ListPositionX       = $35
+ListPosition        = $33           ; Stores current list position
+ListPositionY       = $34           ; Stores current list position Y coords
+ListPositionX       = $35           ; Stores current list position X coords
 
-;$36
+UNK_36              = $36           ; Something with ScreenAttributesUpdate
 JoyPad_Counter      = $37           ; Counts time button has been pressed, processes button again after certain time has passed
 
-SoundByte_OLD       = $38
-SoundByte           = $39
+SoundByte_OLD       = $38           ; Last played sound
+SoundByte           = $39           ; Sound to be played
 
 
 JoyPad1             = $F5
@@ -719,13 +719,13 @@ ___LD2A5:
     CLC
     ADC #$36
 
-; Update OAM??, not sure of purpose ====================================
+; Update OAM??, not sure ====================================
 ___L12A8:
     CLD
     TAX
     AND #$0F
     ORA #$30
-    STA $30
+    STA UNK_30
     TXA
     LSR A
     LSR A
@@ -733,7 +733,7 @@ ___L12A8:
     LSR A
     AND #$0F
     ORA #$30
-    STA $31
+    STA UNK_31
     LDA ListPositionY               ; $34
     STA $0203
     CLC
@@ -746,9 +746,9 @@ ___L12A8:
     STA $0200
     STA $0204
     STA $0208
-    LDA $30
+    LDA UNK_30
     STA $0205
-    LDA $31
+    LDA UNK_31
     STA $0201
     LDA #$CF
     STA $0209
@@ -797,7 +797,7 @@ BCC ___L1312
 
 ___L1312:
     LSR A
-    ROR $36
+    ROR UNK_36
     TAX
 
 ___L1316:
@@ -816,7 +816,7 @@ BPL ___L1316
     LDY #$00
 
 ScreenAttributesUpdate:
-    LDA $36
+    LDA UNK_36
 BMI ___L1334
 
     LDA (AdressLow), Y
@@ -870,11 +870,11 @@ BCC ___L1312
 NMI:
     PHA
     LDA #$A5
-    CMP $1B                         ; If not $1B == #$A5 branch to NMI_Logic_START
+    CMP UNK_1B                      ; If not $1B == #$A5 branch to NMI_Logic_START
 BNE NMI_Logic_START
 
     LDA #$5A
-    CMP $1C                         ; If not $1C == #$5A branch to NMI_Logic_START
+    CMP UNK_1C                      ; If not $1C == #$5A branch to NMI_Logic_START
 BNE NMI_Logic_START
     PLA
     JMP $E20C                       ; Jumps to Galaxian which resides in the same 16kb PRG
@@ -1242,6 +1242,7 @@ JoyPad_Pressed_END:
     ORA #%10000000                  ; $80
     STA PPUControl_2000
 
+; Restores registers from stack
     PLA
     TAX
     PLA
@@ -1858,10 +1859,10 @@ BootGame:
     LDX #$00
 
 @BootGame_Loop:
-    LDA BootGameSequenceData, X     ; ======================================
+    LDA BootGameBankSwitchRoutine, X     ; ======================================
     STA $0180, X
 
-; BootGameSequenceData Not sure what this actually is
+; This routine is a bankswitch routine for 06.LEGENDRY
 ; $19F2 - $1A00
 ; 48 29 02 D0 05 8D 90 A2 68 60 8D 91 A2 68 60
 
@@ -1871,9 +1872,9 @@ BCC @BootGame_Loop
 
 
     LDA #$A5
-    STA $1B
+    STA UNK_1B
     LDA #$5A
-    STA $1C
+    STA UNK_1C
 
 ; Load Section to get BootSequenceData Pointer
     LDA ListSection
@@ -2055,12 +2056,12 @@ BCC @BootGameResetSound
 .segment "RODATAB"                  ; $D9F2
     .org $D9F2
 
-; Special mapper routine stored in $0180. Used in 06.LEGENDRY (more?)
+; Special mapper routine stored in $0180. Used in 06.LEGENDRY
 ; Starts at: $D9F2 - $DA00 / $19F2 - $1A00
-BootGameSequenceData:
+BootGameBankSwitchRoutine:
     .byte $48, $29, $02, $D0, $05, $8D, $90, $A2, $68, $60, $8D, $91, $A2, $68, $60
 
-; BootGameSequenceData
+; BootGameBankSwitchRoutine
 ; $19F2 - $1A00
 ; 48 29 02 D0 05 8D 90 A2 68 60 8D 91 A2 68 60
 ;
