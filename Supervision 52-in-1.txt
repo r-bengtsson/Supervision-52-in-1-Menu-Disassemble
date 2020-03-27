@@ -6,6 +6,17 @@
 
 
 |¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯|
+|          Section x - How to the menu boots a game          |
+|____________________________________________________________|
+
+  The menu ROM keeps track of the current section and position in the list.
+  When you push the start button, the menu will use the section and listposition to access a bootcode for that specific entry, and load it into $0400. Then it will execute the code in $0400 and jump to the games start sequence. It also always loads a bankchange routine into $130 that is only used by 06.LEGENDRY.
+  
+  When a game resets, it always points to STA $984F and changes banks to the 52-in-1 menu and executes start routine.
+ 
+
+
+|¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯|
 |             Section x - How to replace a game              |
 |____________________________________________________________|
 
@@ -15,17 +26,22 @@
   You will need to do some hacking of the PRG part of the ROM.
   
   For all mappers, you have to add STA $984F (8D 4F 98), which is a mapper call to change PRG/CHR space to the 52-in-1 Menu space.
-  The best way to do this is to add it to adress $FFF2 if it is empty. If so, then you have to add it to the reset vector.
+  The best place to put it is to add it to adress $FFF2 if it is empty. If there is code/data at $FFF2, then you need to use the regular reset vector. Just look at the adress $FFFC and go to the adress there and add 8D 4F 98 the. You need to save the original values though as you need them in the bootcode, which 52-in-1 uses to load the code.
   
-   and then change the reset vector at $FFFC
+  If so, then you have to add it to the reset vector.
+  
+   If you use $FFF2 for STA $984F, then you need to change the reset vector at $FFFC to $FFF2 (F2 FF). 
   
   NROM           (mapper 0)
   CNROM          (mapper 3)
   CNROM          (mapper 87)
   CNROM-SECURITY (mapper 185)
   
+  If the ROM is not NROM, then you need to do some additional changes to the code.
   
-
+  CNROM (mapper 3):
+  You need to change banktable to 00, 01, 02, 03 (if it exists) and all mapper calls has to refer the mapper call of the 52-in-1 instead, for example $8000 ($8001, $8002, $8003), $B7E0 ($B7E1, $B7E2, $B7E3) and so forth.
+  
 |¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯|
 |                Section x - Games Quicklist                 |
 |____________________________________________________________|
