@@ -10,7 +10,7 @@
 |____________________________________________________________|
 
   The menu ROM keeps track of the current section and position in the list.
-  When you push the start button, the menu will use the section and listposition to access a bootcodelist (S1 = $DA01 | S2 = $DB21 | S3 = DC41) and locate the exact start for that specific entry, and load it into $0400. Then it will execute the code in $0400 and jump to the newly loaded games start sequence. It also always loads a 15 bytes long bankchange routine into $180 that is only used by 06.LEGENDRY.
+  When you push the start button, the menu will use the section and listposition to access a bootcodelist and locate the exact start for that specific entry, and load it into $0400. Then it will execute the code in $0400 and jump to the newly loaded games start sequence. It also always loads a 15 bytes long bankchange routine into $180 that is only used by 06.LEGENDRY.
   
   When a game resets, it always points to STA $984F and changes banks to the 52-in-1 menu and executes start routine.
  
@@ -30,7 +30,8 @@
   
   If so, then you have to add it to the reset vector.
   
-   If you use $FFF2 for STA $984F, then you need to change the reset vector at $FFFC to $FFF2 (F2 FF). 
+   If you use $FFF2 for STA $984F, then you need to change the reset vector at $FFFC to $FFF2 (F2 FF).
+  
   
   NROM           (mapper 0)
   CNROM          (mapper 3)
@@ -42,9 +43,19 @@
   CNROM (mapper 3):
   You need to change banktable to 00, 01, 02, 03 (if it exists) and all mapper calls has to refer the mapper call of the 52-in-1 instead, for example $8000 ($8001, $8002, $8003), $B7E0 ($B7E1, $B7E2, $B7E3) and so forth.
   
+  When you are done adding the new reset vector data (STA $984F), you need to add the relevant code to the bootcode for that game.
+  If you were lucky and could use $FFF2 for the new reset vector, then you only need to make the relevant mapper call and jump to the games original reset vector and then you're done. If you had to put the new reset vector data at the original reset vector, then you have to add the original game init code to the bootcode that gets loaded into $0400.
+  
+  For example, if you put the new reset vector data at $C000, and the old data was: SEI | LDA #$00 (78 A9 00), then that is the data you put in the menu roms bootcode.
+  
 |¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯|
 |                Section x - Games Quicklist                 |
 |____________________________________________________________|
+
+Bootcode start:
+Section 1 = $DA01
+Section 2 = $DB21
+Section 3 = $DC41
 
 Nr of games with each mapper:
 NROM:           41
