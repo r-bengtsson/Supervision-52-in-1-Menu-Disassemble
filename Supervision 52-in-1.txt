@@ -46,8 +46,15 @@
 |                Section x - Games Quicklist                 |
 |____________________________________________________________|
 
- SECTION 1
+Nr of games with each mapper:
+NROM:           41
+CNROM:           5
+CNROM-87:        5
+CNROM-SECURITY:  1
 
+-----------
+ SECTION 1
+-----------
   GAME             YEAR  PRG  CHR MIR  MAP  Mapper [. H M O PPPPPP CCCCCC]  START  RESET  PRG ROM SPACE      CHR ROM SPACE
  ------------------------------------------------------------------------------------------------------------------------------
   01.ISLANDER      1986  32   32   V    3   $8000  [1 0 0 0 000000 000000]  $8000  $FFF2  $000000 - $007FF0  $100000 - $107FF0
@@ -71,8 +78,9 @@
   18.FRONT LINE    1985  16    8   H    0   $B7E0  [1 0 1 1 011111 100000]  $C000  $FFF2  $07C000 - $07FFF0  $140000 - $141FF0
 
 
+-----------
  SECTION 2
-
+-----------
   GAME             YEAR  PRG  CHR MIR  MAP  Mapper [. H M O PPPPPP CCCCCC]  START  RESET  PRG ROM SPACE      CHR ROM SPACE
  ------------------------------------------------------------------------------------------------------------------------------
   19.MACROSS       1985  16    8   V    0   $9821  [1 0 0 1 100000 100001]  $8004  $C000  $080000 - $083FF0  $142000 - $143FF0
@@ -96,8 +104,9 @@
   36.PIN BALL      1984  16    8   H    0   $BC71  [1 0 1 1 110001 110001]  $C007  $C000  $0C4000 - $0C7FFF  $162000 - $163FFF
 
 
+-----------
  SECTION 3
-
+-----------
   GAME             YEAR  PRG  CHR MIR  MAP  Mapper [. H M O PPPPPP CCCCCC]  START  RESET  PRG ROM SPACE      CHR ROM SPACE
  ------------------------------------------------------------------------------------------------------------------------------
   37.BASE BALL     1983  16    8   H    0   $BCB2  [1 0 1 1 110010 110010]  $C3C7  $FFF2  $0C8000 - $0CBFFF  $164000 - $165FFF
