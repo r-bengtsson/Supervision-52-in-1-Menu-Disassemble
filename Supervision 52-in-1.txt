@@ -50,27 +50,18 @@
      If you used $FFF2 for the reset vector, then just jump to the original reset vector. If you had to put it in the original reset vector, then just
     jump to after the bankswitch routine, eg. $C003 in the example above (4C 03 C0).
   
-  So the bootcode in the above example would be: 8D 08 81 78 A9 00 4C 03 C0
+  So the bootcode in the above example would be: 8D 08 81 78 A9 00 4C 03 C0 FF FF FF FF FF FF FF
 
-  You can find the exact ROM adress of the bootcodes in the source code.
-  Every bootcode is 16 bytes (#$10) long.
+  You can find the exact ROM adress of the bootcodes in the source code. Every bootcode is 16 bytes (#$10) long.
 
+  If the game is not NROM, then you'll need to do some further modifications.
+  You'll need to change all bankswitch calls to the same base adress as you put in the bootcode, in this case $8108.
+  If the game makes a direct bankswitch at, for example: $6000, $6001, $6002, $6003, then you'll need to change them to $8108, $8109, $810A, $810B.
 
-  
-  NROM           (mapper 0)
-  CNROM          (mapper 3)
-  CNROM          (mapper 87)
-  CNROM-SECURITY (mapper 185)
-  
-  If the ROM is not NROM, then you need to do some additional changes to the code.
-  
-  CNROM (mapper 3):
-  You need to change banktable to 00, 01, 02, 03 (if it exists) and all mapper calls has to refer the mapper call of the 52-in-1 instead, for example $8000 ($8001, $8002, $8003), $B7E0 ($B7E1, $B7E2, $B7E3) and so forth.
-  
-  When you are done adding the new reset vector data (STA $984F), you need to add the relevant code to the bootcode for that game.
-  If you were lucky and could use $FFF2 for the new reset vector, then you only need to make the relevant mapper call and jump to the games original reset vector and then you're done. If you had to put the new reset vector data at the original reset vector, then you have to add the original game init code to the bootcode that gets loaded into $0400.
-  
-  For example, if you put the new reset vector data at $C000, and the old data was: SEI | LDA #$00 (78 A9 00), then that is the data you put in the menu roms bootcode.
+  If the game uses a bankswitch routine that calls it indirectly, e.g. $6000, X, you'll need to change it to $8108, X.
+  You also need to find the banktable and change it to 00, 01, 02, 03. Mind the order of the banks.
+
+  When you're done with the above changes, then just copy/paste the PRG and CHR into the correct adresses in the Supervision 52-in-1 ROM and try it out!
 
 
 
@@ -173,9 +164,30 @@
 ---------------------------------
 
 
+
 |¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯|
 |                     Section x - Games                      |
 |____________________________________________________________|
+
+╔=============================================================╗
+║                           MENU                              ║
+╠=============================================================╣
+
+  Mapper:    NROM (0)
+  PRG:       16 kB
+  CHR:       8 kB
+  Mirroring: Vertical
+
+ ┌──────────────┐
+ │ Information: │
+ └──────────────┘
+
+  The menu shares PRG space with 20.1989GALAXIAN and 40.GALAXIAN.
+  RESET vector points to the menu, and the bootcode points to galaxian.
+
+  The CHR is shared with 05.GOONIES
+
+╚=============================================================╝
 
 <---------------------------------------------------------------------->
 <----------------------------- SECTION 1 ------------------------------>
