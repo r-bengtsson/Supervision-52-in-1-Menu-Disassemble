@@ -37,8 +37,8 @@ INES_SRAM           = 0             ; 1 = battery backed SRAM at $6000-7FFF
 AdressHigh          = $01
 AdressLow           = $00
 
-UNK_1B              = $1B           ; Gets checked in NMI if equal JMP $E20C, else go to NMI_START
-UNK_1C              = $1C           ; Gets checked in NMI if equal JMP $E20C, else go to NMI_START
+GalaxianCheck1      = $1B           ; Gets checked in NMI if #$A5 JMP $E20C (Galaxian Start), else go to NMI_START
+GalaxianCheck2      = $1C           ; Gets checked in NMI if #$5A JMP $E20C (Galaxian Start), else go to NMI_START
 
 UNK_30              = $30           ; OAM? ListSection?
 UNK_31              = $31           ; OAM? ListSection?
@@ -870,11 +870,11 @@ BCC ___L1312
 NMI:
     PHA
     LDA #$A5
-    CMP UNK_1B                      ; If not $1B == #$A5 branch to NMI_Logic_START
+    CMP GalaxianCheck1              ; If not $1B == #$A5 branch to NMI_Logic_START
 BNE NMI_Logic_START
 
     LDA #$5A
-    CMP UNK_1C                      ; If not $1C == #$5A branch to NMI_Logic_START
+    CMP GalaxianCheck2              ; If not $1C == #$5A branch to NMI_Logic_START
 BNE NMI_Logic_START
     PLA
     JMP $E20C                       ; Jumps to Galaxian which resides in the same 16kb PRG
@@ -1872,9 +1872,9 @@ BCC @BootGame_Loop
 
 
     LDA #$A5
-    STA UNK_1B
+    STA GalaxianCheck1
     LDA #$5A
-    STA UNK_1C
+    STA GalaxianCheck2
 
 ; Load Section to get BootSequenceData Pointer
     LDA ListSection

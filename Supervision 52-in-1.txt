@@ -2490,8 +2490,8 @@
 
   This is a hack of the japanese release of Galaxian.
 
-  It seems like this entry resides inside the 52-in-1
-  Menu 16 kB ROM space.
+  This entry resides inside the 52-in-1 Menu 16 kB ROM space
+  and needs $1B = #$A5, and $1C = #$5A to jump to galaxian NMI.
 
   The game is identical to 40.GALAXIAN except in the
   bootcode, where it loads #$FF instead of #$00 to $1A.
