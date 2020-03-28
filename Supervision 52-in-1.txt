@@ -185,6 +185,9 @@
   The menu shares PRG space with 20.1989GALAXIAN and 40.GALAXIAN.
   RESET vector points to the menu, and the bootcode points to galaxian.
 
+  These needs to be set: $1B = #$A5, and $1C = #$5A for the ROM to make
+  the jump to Galaxian NMI.
+
   The CHR is shared with 05.GOONIES
 
 ╚=============================================================╝
@@ -2481,8 +2484,8 @@
   CHR:       8 kB
   Mirroring: Horizontal
 
-  ROM:       
-  MD5:       
+  ROM:       Galaxian (Japan).nes
+  MD5:       01c1f123f436943527f50eb585025b99
 
  ┌──────────────┐
  │ Information: │
@@ -4338,8 +4341,8 @@
   CHR:       8 kB
   Mirroring: H
 
-  ROM:       
-  MD5:       
+  ROM:       Galaxian (Japan).nes
+  MD5:       01c1f123f436943527f50eb585025b99
 
  ┌──────────────┐
  │ Information: │
