@@ -2503,6 +2503,9 @@
   The bullets are speed up.
   [bootleggames.fandom.com/wiki/Supervision_52-in-1]
 
+  Alots of changes has been made to the CHR.
+  Copyright information and NAMCOT logo has been removed in CHR.
+
 ╠=====================================================╣
 ║                   52-in-1 info                      ║
 ╠=====================================================╣
@@ -2592,6 +2595,14 @@
   # Vectors
   Original: $(F)1FFA  0C E2 | 20 E0 | 20 E0
   52-in-1:  $(F)1FFA  57 D3 | F2 FF | B4 D3
+
+ ┌─────┐
+ │ CHR │
+ └─────┘
+
+  Alot of differences between original and 52-in-1 CHR
+
+  Copyright and Namcot LOGO removed in 52-in-1
 
 ╚=============================================================╝
 
