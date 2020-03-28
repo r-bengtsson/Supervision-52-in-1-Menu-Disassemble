@@ -20,7 +20,7 @@ Customizable runfile for the project. Change `@set mesen=D:\Emulators\Mesen` to 
 * `.\patches\`:
 Patches to turn the original games to the 52-in-1 variants and a "restoration" patch for the `Supervision 52-in-1 [p1].nes` ROM.
 Filenames and MD5 of original files are described in `Supervision 52-in-1.txt`.
-Patches for `20.1989GALAXIAN` and `40.GALAXIAN` Needs to be applied to `52 Games (Menu) (U) [p1].nes` (MD5: 130bfe84387010b74e1a4217cbc6bb39).
+Patches for `20.1989GALAXIAN` and `40.GALAXIAN` Needs to be applied to `52 Games (Menu) (U) [p1].nes` (`MD5: 130bfe84387010b74e1a4217cbc6bb39`).
 
 
 ### Source code and extras
