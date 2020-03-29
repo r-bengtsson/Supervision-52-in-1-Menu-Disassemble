@@ -38,17 +38,38 @@ Table file for the rom
 
 
 ### Included binaries
-* `.\src\includes\01 0000-107A.bin`:
-Contains data between $0000 - $107A. Not Menu code.
+* `.\src\includes\01 0006-0013.bin`:
+Contains data between $0006 - $0013. Not Menu code.
 
-* `.\src\includes\02 1099-10A2.bin`:
+* `.\src\includes\02 001A-0183.bin`:
+Contains data between $001A - $0183. Not Menu code.
+
+* `.\src\includes\03 018A-0257.bin`:
+Contains data between $018A - $0257. Not Menu code.
+
+* `.\src\includes\04 025E-0648.bin`:
+Contains data between $025E - $0648. Not Menu code.
+
+* `.\src\includes\05 064F-066D.bin`:
+Contains data between $064F - $066D. Not Menu code.
+
+* `.\src\includes\06 0674-079D.bin`:
+Contains data between $0674 - $079D. Not Menu code.
+
+* `.\src\includes\07 07A4-0A42.bin`:
+Contains data between $07A4 - $0A42. Not Menu code.
+
+* `.\src\includes\08 0A49-107A.bin`:
+Contains data between $0A49 - $107A. Not Menu code.
+
+* `.\src\includes\09 1099-10A2.bin`:
 Contains data between $1099 - $10A2. Not Menu code.
 
-* `.\src\includes\03 1D41-1FFF.bin`:
+* `.\src\includes\10 1D41-1FFF.bin`:
 Contains data between $1D41 - $1FFF. Not Menu code.
 
-* `.\src\includes\04 2000-3FF1.bin`:
-Contains data between $2000 - $3FF1. Hacked Galaxian.
+* `.\src\includes\11 2000-3FF1.bin`:
+Contains data between $2000 - $3FF1. Hacked version of Galaxian.
 
 
 ### Included libraries
