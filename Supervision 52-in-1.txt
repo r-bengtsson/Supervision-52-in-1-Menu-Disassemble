@@ -5498,38 +5498,38 @@ Section 3 = $(D)1C41 - $(D)1D40
 |                  Section x - Reset Vectors                 |
 |____________________________________________________________|
 
-  $8000    STA $984F (8D 4F 98) (Game)
-    $8003  JMP $90E4 (4C E4 D0) (Menu)
+  $(8)0000    STA $984F (8D 4F 98) (Game)
+    $(8)0003  JMP $D0E4 ($90E4) (4C E4 D0) (Menu)
 
-  $8258    STA $984F
-    $825B  JMP $90E4
+  $(8)0258    STA $984F
+    $(8)025B  JMP $D0E4 ($90E4)
 
-  $BF90    STA $984F
-    $BF93  more code, located in galaxian? ends with JMP $90E4
+  $(B/F)3/7F90    STA $984F
+    $(B/F))3/7F93  more code, located in galaxian? ends with JMP $(D)90E4
 
-  $C000    STA $984F
-    $C003  JMP $90E4
+  $(C)0000    STA $984F
+    $(C)0003  JMP $D0E4 ($90E4)
 
-  $C014    STA $984F
-    $C017  JMP $90E4
+  $(C)0014    STA $984F
+    $(C)0017  JMP $D0E4 ($90E4)
 
-  $C184    STA $984F
-    $C187  JMP $90E4
+  $(C)0184    STA $984F
+    $(C)0187  JMP $D0E4 ($90E4)
 
-  $C649    STA $984F
-    $C64C  JMP $90E4
+  $(C)0649    STA $984F
+    $C64C  JMP $D0E4 ($90E4)
 
-  $C66E    STA $984F
-    $C671  JMP $90E4
+  $(C)066E    STA $984F
+    $C671  JMP $D0E4 ($90E4)
 
-  $C79E    STA $984F
-    $C7A1  JMP $90E4
+  $(C)079E    STA $984F
+    $C7A1  JMP $D0E4 ($90E4)
 
-  $CA43    STA $984F
-    $CA46  JMP $90E4
+  $(C)0A43    STA $984F
+    $CA46  JMP $D0E4 ($90E4)
 
   $FFF2    STA $984F
-    $FFF5  JMP $90E4
+    $FFF5  JMP $D0E4 ($90E4)
 
 
 

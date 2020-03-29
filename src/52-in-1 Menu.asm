@@ -37,8 +37,8 @@ INES_SRAM           = 0             ; 1 = battery backed SRAM at $6000-7FFF
 AdressHigh          = $01
 AdressLow           = $00
 
-GalaxianCheck1      = $1B           ; Gets checked in NMI if #$A5 JMP $E20C (Galaxian Start), else go to NMI_START
-GalaxianCheck2      = $1C           ; Gets checked in NMI if #$5A JMP $E20C (Galaxian Start), else go to NMI_START
+BootGameCheck1      = $1B           ; Gets checked in NMI if #$A5 JMP $E20C (Galaxian Start), else go to NMI_START
+BootGameCheck2      = $1C           ; Gets checked in NMI if #$5A JMP $E20C (Galaxian Start), else go to NMI_START
 
 UNK_30              = $30           ; OAM? ListSection?
 UNK_31              = $31           ; OAM? ListSection?
@@ -84,17 +84,69 @@ OAM                 = $0200
 ; ---------------------------------
 ; ---------------------------------
 
+.segment "RESETVA"                  ; $C000
+    STA $984F
+    JMP $D0E4
+
+
+.segment "BINA"                     ; $C006
+    .incbin "./includes/01 0006-0013.bin"
+
+.segment "RESETVB"                  ; $C014
+    STA $984F
+    JMP $D0E4
+
+.segment "BINB"                     ; $C01A
+    .incbin "./includes/02 001A-0183.bin"
+
+.segment "RESETVC"                  ; $C184
+    STA $984F
+    JMP $D0E4
+
+.segment "BINC"                     ; $C18A
+    .incbin "./includes/03 018A-0257.bin"
+
+.segment "RESETVD"                  ; $C258
+    STA $984F
+    JMP $D0E4
 
 ; Include 52-in-1 data Part 1
-.segment "BINA"                     ; $C000
-.org $C000
-    .incbin "./includes/01 0000-107A.bin"
+.segment "BIND"                     ; $C25E
+    .incbin "./includes/04 025E-0648.bin"
 
+.segment "RESETVE"                  ; $C649
+    STA $984F
+    JMP $D0E4
 
+.segment "BINE"                     ; $C64F
+    .incbin "./includes/05 064F-066D.bin"
+
+.segment "RESETVF"                  ; $C66E
+    STA $984F
+    JMP $D0E4
+
+; Include 52-in-1 data Part 1
+.segment "BINF"                     ; $C674
+    .incbin "./includes/06 0674-079D.bin"
+
+.segment "RESETVG"                  ; $C79E
+    STA $984F
+    JMP $D0E4
+
+; Include 52-in-1 data Part 1
+.segment "BING"                     ; $C7A4
+    .incbin "./includes/07 07A4-0A42.bin"
+
+.segment "RESETVH"                  ; $CA43
+    STA $984F
+    JMP $D0E4
+
+; Include 52-in-1 data Part 1
+.segment "BINH"                     ; $CA49
+    .incbin "./includes/08 0A49-107A.bin"
 
 ; Start of actual menu code
 .segment "CODEA"                    ; $D07B
-.org $D07B
 
 
 ; ===================================================================================================
@@ -156,14 +208,12 @@ RTS
 
 
 ; Include 52-in-1 data Part 2
-.segment "BINB"                     ; $D099
-    .org $D099
-    .incbin "./includes/02 1099-10A2.bin"
+.segment "BINI"                     ; $D099
+    .incbin "./includes/09 1099-10A2.bin"
 
 
 ; Second part of menu code
 .segment "CODEB"                    ; $D0A3
-    .org $D0A3
 
 ; ------------------------------
 ; --------OAMSetAdress()--------
@@ -870,11 +920,11 @@ BCC ___L1312
 NMI:
     PHA
     LDA #$A5
-    CMP GalaxianCheck1              ; If not $1B == #$A5 branch to NMI_Logic_START
+    CMP BootGameCheck1              ; If not $1B == #$A5 branch to NMI_Logic_START
 BNE NMI_Logic_START
 
     LDA #$5A
-    CMP GalaxianCheck2              ; If not $1C == #$5A branch to NMI_Logic_START
+    CMP BootGameCheck2              ; If not $1C == #$5A branch to NMI_Logic_START
 BNE NMI_Logic_START
     PLA
     JMP $E20C                       ; Jumps to Galaxian which resides in the same 16kb PRG
@@ -1433,7 +1483,6 @@ RTS
 
 ; Start of menu data
 .segment "RODATAA"                  ; $D550
-    .org $D550
 
 ; Starts at: $9550 - $9553 / $1550 - $1553
 PaletteSectionColors:
@@ -1848,7 +1897,6 @@ NameTableSection3:
 
 ; Start of last portion of menu code
 .segment "CODEC"                    ; $D969
-    .org $D969
 
 ; ----------------------------------
 ; ------------BootGame()------------
@@ -1872,9 +1920,9 @@ BCC @BootGame_Loop
 
 
     LDA #$A5
-    STA GalaxianCheck1
+    STA BootGameCheck1
     LDA #$5A
-    STA GalaxianCheck2
+    STA BootGameCheck2
 
 ; Load Section to get BootSequenceData Pointer
     LDA ListSection
@@ -2054,7 +2102,6 @@ BCC @BootGameResetSound
 
 ; Last segment of menu data
 .segment "RODATAB"                  ; $D9F2
-    .org $D9F2
 
 ; Special mapper routine stored in $0180. Used in 06.LEGENDRY
 ; Starts at: $D9F2 - $DA00 / $19F2 - $1A00
@@ -2322,22 +2369,18 @@ BootGameBootSequencesSection3:
 
 
 ; Include 52-in-1 data Part 3
-.segment "BINC"                     ; $DD41
-    .org $DD41
-    .incbin "./includes/03 1D41-1FFF.bin"
+.segment "BINJ"                     ; $DD41
+    .incbin "./includes/10 1D41-1FFF.bin"
 
 ; Include 52-in-1 data Part 4 - Galaxian
-.segment "BIND"                     ; $E000
-    .org $E000
-    .incbin "./includes/04 2000-3FF1.bin"
+.segment "BINK"                     ; $E000
+    .incbin "./includes/11 2000-3FF1.bin"
 
 ; 52-in-1 specific code at $FFF2 in all games
 .segment "MULTIC"
-    .org $FFF2
 RESET:
     STA $984F                       ; Mapper Call
     JMP ROM_START                   ; Jump to beginning
-    .byte $FF, $FF                  ; Padding
 
 
 
