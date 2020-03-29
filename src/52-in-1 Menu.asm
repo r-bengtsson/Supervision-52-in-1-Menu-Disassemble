@@ -84,66 +84,93 @@ OAM                 = $0200
 ; ---------------------------------
 ; ---------------------------------
 
+; 52-in-1 Reset vector
 .segment "RESETVA"                  ; $C000
     STA $984F
     JMP $D0E4
 
 
+; 52-in-1 data
 .segment "BINA"                     ; $C006
     .incbin "./includes/01 0006-0013.bin"
 
+
+; 52-in-1 Reset vector
 .segment "RESETVB"                  ; $C014
     STA $984F
     JMP $D0E4
 
+
+; 52-in-1 data
 .segment "BINB"                     ; $C01A
     .incbin "./includes/02 001A-0183.bin"
 
+
+; 52-in-1 Reset vector
 .segment "RESETVC"                  ; $C184
     STA $984F
     JMP $D0E4
 
+
+; 52-in-1 data
 .segment "BINC"                     ; $C18A
     .incbin "./includes/03 018A-0257.bin"
 
+
+; 52-in-1 Reset vector
 .segment "RESETVD"                  ; $C258
     STA $984F
     JMP $D0E4
 
-; Include 52-in-1 data Part 1
+
+; 52-in-1 data
 .segment "BIND"                     ; $C25E
     .incbin "./includes/04 025E-0648.bin"
 
+
+; 52-in-1 Reset vector
 .segment "RESETVE"                  ; $C649
     STA $984F
     JMP $D0E4
 
+
+; 52-in-1 data
 .segment "BINE"                     ; $C64F
     .incbin "./includes/05 064F-066D.bin"
 
+
+; 52-in-1 Reset vector
 .segment "RESETVF"                  ; $C66E
     STA $984F
     JMP $D0E4
 
-; Include 52-in-1 data Part 1
+
+; 52-in-1 data
 .segment "BINF"                     ; $C674
     .incbin "./includes/06 0674-079D.bin"
 
+
+; 52-in-1 Reset vector
 .segment "RESETVG"                  ; $C79E
     STA $984F
     JMP $D0E4
 
-; Include 52-in-1 data Part 1
+
+; 52-in-1 data
 .segment "BING"                     ; $C7A4
     .incbin "./includes/07 07A4-0A42.bin"
 
+
+; 52-in-1 Reset vector
 .segment "RESETVH"                  ; $CA43
     STA $984F
     JMP $D0E4
 
-; Include 52-in-1 data Part 1
+
+; 52-in-1 data
 .segment "BINH"                     ; $CA49
     .incbin "./includes/08 0A49-107A.bin"
+
 
 ; Start of actual menu code
 .segment "CODEA"                    ; $D07B
@@ -207,7 +234,7 @@ RTS
 ; ------------------------------------------------
 
 
-; Include 52-in-1 data Part 2
+; 52-in-1 data
 .segment "BINI"                     ; $D099
     .incbin "./includes/09 1099-10A2.bin"
 
@@ -1907,7 +1934,7 @@ BootGame:
     LDX #$00
 
 @BootGame_Loop:
-    LDA BootGameBankSwitchRoutine, X     ; ======================================
+    LDA BootGameBankSwitchRoutine, X
     STA $0180, X
 
 ; This routine is a bankswitch routine for 06.LEGENDRY
@@ -2368,16 +2395,16 @@ BootGameBootSequencesSection3:
 ; 8D 94 A3 78 D8 A9 10 4C 04 80 A0 2E B1 A2 F0 22
 
 
-; Include 52-in-1 data Part 3
+; 52-in-1 data
 .segment "BINJ"                     ; $DD41
     .incbin "./includes/10 1D41-1FFF.bin"
 
-; Include 52-in-1 data Part 4 - Galaxian
+; 52-in-1 data - Galaxian
 .segment "BINK"                     ; $E000
     .incbin "./includes/11 2000-3FF1.bin"
 
-; 52-in-1 specific code at $FFF2 in all games
-.segment "MULTIC"
+; 52-in-1 Reset vector
+.segment "RESETVI"
 RESET:
     STA $984F                       ; Mapper Call
     JMP ROM_START                   ; Jump to beginning
