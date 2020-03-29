@@ -216,7 +216,6 @@
   CHR:       32 kB
   Mirroring: Vertical
 
-  [No-Intro]
   ROM:       Takahashi Meijin no Bouken-jima (Japan).nes
   MD5:       97740079707e3c797f0cf9d5230ff1cb
 
@@ -2703,8 +2702,8 @@
   CHR:       8 kB
   Mirroring: Vertical
 
-  ROM:       
-  MD5:       
+  ROM:       Star Force (Japan).nes
+  MD5:       35bfa72db30e474376578c3da5f03e29
 
  ┌──────────────┐
  │ Information: │
