@@ -1,10 +1,14 @@
 ﻿-------------------------------------------------------------------
                        Supervision 52-in-1
 -------------------------------------------------------------------
+ 
+ -----------
+    INDEX
+ -----------
 
- INDEX
-
-  - Section X - Mapper Information
+  - Section x - My 52-in-1 Story
+  - Section X - 52-in-1 Information
+  - Section X - Mapper
   - Section X - How to the Menu Boots a Game
   - Section X - How to Replace a Game
   - Section X - Menu Quicklist
@@ -15,9 +19,52 @@
   - Section X - Credits
 
 
+|¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯|
+|               Section x - My 52-in-1 Story                 |
+|____________________________________________________________|
+
+  This was probably around 1991-1992:
+  
+  Some of my friends had gotten hold of a japanese pirate carts of the various unreleased NES games such as
+  Super Mario Bros 3 and Teenage Mutant Ninja Turtles II: The Arcade Game and I naturally wanted them too.
+  One day, when I was at the local food store, there was a ad from a local guy who sold pirate carts.
+  I begged my mother to buy them for me, so she invited him to our home and she tried some of the carts he had to offer.
+  
+  Then later came my birthday, and there it was, a NES cart shaped present. Guess if I was excited!
+  When I opened the present, there was neither any Goomba stomping action, nor any footclan smashing action,
+  but this weird multicart. None of my friends had any multicarts and I was really disappointed, but I put the cart in my NES
+  and started to go through the games.
+  
+  Even my 11 old me noticed that the quality of the games was lacking, but I found some games that drew me in.
+  I had played alot of Goonies II and I was really excited when I found Goonies on the list. It was one of my favorite movies,
+  and me and my friends had made jokes about the lack of a Goonies 1.
+  Gradius was another favorite. I had of course played it before, but I prefered Life Force (which is a better game).
+  Other than that, the Japan exclusive games (like Ninja Jajamaru-kun, Ninja-Kun: Majou no Bouken), Battle City and such)
+  were the most exciting games. It all felt so exotic playing these games with japanese text in them.
+  The games I remember as really bad ones were the Mahjong ones, which I did not understand at all. I played them alot though, as
+  I guess alot of us did with bad games we owned. Formation Z was also one of the ones i really disliked.
+  
+  This weird multicart later became one of the go to carts to play between newer releases and I have alot of found memories of it.
+  Later, my friends got their own, much cooler, multicarts. One example was the Supervision 7-in-1 with Contra II, Dead Fox,
+  SWAT, Heavy Barrel and some other high quality titles. One guy one upped my 52-in-1 cart with a 110-in-1 cart.
+  
+  In the end, I made the mistake of selling the cart with all my other childhood games.
+
 
 |¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯|
-|               Section x - Mapper Information               |
+|               Section X - 52-in-1 Information              |
+|____________________________________________________________|
+
+  Most, but not all, of this information is taken from the BootlegGames wiki:
+  [https://bootleggames.fandom.com/wiki/Supervision_52-in-1]
+
+
+  The 52-in-1 pirate multicart was released probably sometime around 1989-1990.
+  There are 
+
+
+|¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯|
+|                     Section X - Mapper                     |
 |____________________________________________________________|
 
   This information is taken from the NesDev wiki:
@@ -5748,13 +5795,17 @@ Section 3 = $(D)1C41 - $(D)1D40
   * This disassembly wouldn't be possible without the help of the information on NesDev Wiki,
     specifically Mapper 225/255 information is from there [wiki.nesdev.com]
   
-  * Game information is taken from NES Cart Database [bootgod.dyndns.org:7777]
+  * 52-in-1 game information is taken from NES Cart Database [bootgod.dyndns.org:7777]
   
+  * 52-in-1 cart information is taken from BootlegsGames wiki [https://bootleggames.fandom.com/wiki/Supervision_52-in-1]
 
 
+
+|¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯|
 |¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯|
 |¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯|
 |                          End File                          |
+|____________________________________________________________|
 |____________________________________________________________|
 |____________________________________________________________|
 
