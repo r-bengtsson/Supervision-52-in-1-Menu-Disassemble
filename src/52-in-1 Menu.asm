@@ -90,7 +90,7 @@ OAM                 = $0200
     JMP $D0E4
 
 
-; 52-in-1 data
+; 52-in-1 garbage data
 .segment "BINA"                     ; $C006
     .incbin "./includes/01 0006-0013.bin"
 
@@ -101,7 +101,7 @@ OAM                 = $0200
     JMP $D0E4
 
 
-; 52-in-1 data
+; 52-in-1 garbage data
 .segment "BINB"                     ; $C01A
     .incbin "./includes/02 001A-0183.bin"
 
@@ -112,7 +112,7 @@ OAM                 = $0200
     JMP $D0E4
 
 
-; 52-in-1 data
+; 52-in-1 garbage data
 .segment "BINC"                     ; $C18A
     .incbin "./includes/03 018A-0257.bin"
 
@@ -123,7 +123,7 @@ OAM                 = $0200
     JMP $D0E4
 
 
-; 52-in-1 data
+; 52-in-1 garbage data
 .segment "BIND"                     ; $C25E
     .incbin "./includes/04 025E-0648.bin"
 
@@ -134,7 +134,7 @@ OAM                 = $0200
     JMP $D0E4
 
 
-; 52-in-1 data
+; 52-in-1 garbage data
 .segment "BINE"                     ; $C64F
     .incbin "./includes/05 064F-066D.bin"
 
@@ -145,7 +145,7 @@ OAM                 = $0200
     JMP $D0E4
 
 
-; 52-in-1 data
+; 52-in-1 garbage data
 .segment "BINF"                     ; $C674
     .incbin "./includes/06 0674-079D.bin"
 
@@ -156,7 +156,7 @@ OAM                 = $0200
     JMP $D0E4
 
 
-; 52-in-1 data
+; 52-in-1 garbage data
 .segment "BING"                     ; $C7A4
     .incbin "./includes/07 07A4-0A42.bin"
 
@@ -167,9 +167,14 @@ OAM                 = $0200
     JMP $D0E4
 
 
-; 52-in-1 data
+; 52-in-1 garbage data
 .segment "BINH"                     ; $CA49
-    .incbin "./includes/08 0A49-107A.bin"
+    .incbin "./includes/08 0A49-0FFF.bin"
+
+
+; Galaxian - Part 1
+.segment "BINI"                     ; $CA49
+    .incbin "./includes/09 1000-107A.bin"
 
 
 ; Start of actual menu code
@@ -234,9 +239,9 @@ RTS
 ; ------------------------------------------------
 
 
-; 52-in-1 data
-.segment "BINI"                     ; $D099
-    .incbin "./includes/09 1099-10A2.bin"
+; 52-in-1 garbage data
+.segment "BINJ"                     ; $D099
+    .incbin "./includes/10 1099-10A2.bin"
 
 
 ; Second part of menu code
@@ -2395,13 +2400,13 @@ BootGameBootSequencesSection3:
 ; 8D 94 A3 78 D8 A9 10 4C 04 80 A0 2E B1 A2 F0 22
 
 
-; 52-in-1 data
-.segment "BINJ"                     ; $DD41
-    .incbin "./includes/10 1D41-1FFF.bin"
+; 52-in-1 garbage data
+.segment "BINK"                     ; $DD41
+    .incbin "./includes/11 1D41-1FFF.bin"
 
-; 52-in-1 data - Galaxian
-.segment "BINK"                     ; $E000
-    .incbin "./includes/11 2000-3FF1.bin"
+; Galaxian - Part 2
+.segment "BINL"                     ; $E000
+    .incbin "./includes/12 2000-3FF1.bin"
 
 ; 52-in-1 Reset vector
 .segment "RESETVI"
