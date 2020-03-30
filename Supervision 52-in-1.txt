@@ -2,21 +2,75 @@
                        Supervision 52-in-1
 -------------------------------------------------------------------
 
-  
+ INDEX
 
-  Game information is taken from NES Cart Database [bootgod.dyndns.org:7777]
-  Mapper 225/255 information is taken from [wiki.nesdev.com]
+  - Section X - Mapper Information
+  - Section X - How to the Menu Boots a Game
+  - Section X - How to Replace a Game
+  - Section X - Menu Quicklist
+  - Section X - Menu Entries
+  - Section X - Bootcode Start Adresses
+  - Section X - Reset Vectors
+  - Section X - Bits and Adresses
+  - Section X - Credits
+
 
 
 |¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯|
-|               Section x - Mapper information               |
+|               Section x - Mapper Information               |
 |____________________________________________________________|
 
+  This information is taken from the NesDev wiki:
+  [http://wiki.nesdev.com/w/index.php/INES_Mapper_225]
+  [http://wiki.nesdev.com/w/index.php/INES_Mapper_255]
+
+  Supervision 52-in-1 multicart is assigned mapper 225, which seems to be a duplicate of mapper 255.
+  Multicarts that uses these mappers are:
+  
+  * 52-in-1  (225)
+  * 58-in-1  (225)
+  * 64-in-1  (225)
+  * 110-in-1 (255)
+
+ -----------
+  Registers
+ -----------
+  * $5800-$5803:  [.... RRRR]  RAM  (readable/writable) (16 bits of RAM -- 4 bits in each of the 4 regs)
+  * $5804-$5FFF:  mirrors $5800-5803
+  
+  * $8000-FFFF:  A~[.H M O PPPPPP CCCCCC]
+                     | | | |||||| ||||||
+                     +------------++++++ - Select 8 KiB CHR at PPU $0000
+                     | | | ||||||
+                     +-----++++++------- - Select 16 KiB PRG at CPU $8000 and $C000 if Z=1
+                     +-----+++++-------- - Select 32 KiB PRG at CPU $8000 if Z=0
+                       |-+-------------- - Select PRG bank size: 0-32K 1-16K
+                       +---------------- - Nametable mirroring: 0-PPUA10 ("vertical") 1-PPUA11 ("horizontal")
+
+
+ -----------
+  CHR setup
+ -----------
+                 $0000   $0400   $0800   $0C00   $1000   $1400   $1800   $1C00 
+               +---------------------------------------------------------------+
+  CHR Mode 0:  |                             $8000                             |
+               +---------------------------------------------------------------+
+
+
+ -----------
+  PRG setup
+ -----------
+                 $8000   $A000   $C000   $E000  
+               +-------------------------------+
+  PRG Mode 0:  |            <$8000>            |
+               +-------------------------------+
+  PRG Mode 1:  |     $8000     |     $8000     |
+               +---------------+---------------+
 
 
 
 |¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯|
-|          Section x - How to the menu boots a game          |
+|          Section X - How to the Menu Boots a Game          |
 |____________________________________________________________|
 
   The program keeps track of what section you are in, and what position in the list your marker are on.
@@ -38,7 +92,7 @@
 
 
 |¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯|
-|             Section x - How to replace a game              |
+|             Section X - How to Replace a Game              |
 |____________________________________________________________|
 
   How easy it is to replace a game depends on the size and mapper of the game you want to use as a replacement.
@@ -76,7 +130,7 @@
 
 
 |¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯|
-|                Section x - Games Quicklist                 |
+|                Section X - Menu Quicklist                  |
 |____________________________________________________________|
 
 -----------
@@ -176,7 +230,7 @@
 
 
 |¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯|
-|                     Section x - Games                      |
+|                 Section X - Menu Entries                   |
 |____________________________________________________________|
 
 ╔=============================================================╗
@@ -5487,7 +5541,7 @@
 
 
 |¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯|
-|                Section x - Bootcode Starts                 |
+|            Section X - Bootcode Start Adresses             |
 |____________________________________________________________|
 
 06.LEGENDRY BankSwitch routine:
@@ -5501,46 +5555,43 @@ Section 3 = $(D)1C41 - $(D)1D40
 
 
 |¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯|
-|                  Section x - Reset Vectors                 |
+|                  Section X - Reset Vectors                 |
 |____________________________________________________________|
 
-  $(8)0000    STA $984F (8D 4F 98) (Game)
-    $(8)0003  JMP $D0E4 ($90E4) (4C E4 D0) (Menu)
+  $(8/C)0000    STA $984F (8D 4F 98) (Game)
+    $(8/C)0003  JMP $D0E4 ($90E4) (4C E4 D0) (Menu)
+  
+  $(8/C)0014    STA $984F
+    $(8/C)0017  JMP $D0E4 ($90E4)
+  
+  $(8/C)0184    STA $984F
+    $(8/C)0187  JMP $D0E4 ($90E4)
 
-  $(8)0258    STA $984F
-    $(8)025B  JMP $D0E4 ($90E4)
+  $(8/C)0258    STA $984F
+    $(8/C)025B  JMP $D0E4 ($90E4)
+
+  $(8/C)0649    STA $984F
+    $(8/C)C64C  JMP $D0E4 ($90E4)
+
+  $(8/C)066E    STA $984F
+    $(8/C)C671  JMP $D0E4 ($90E4)
+
+  $(8/C)079E    STA $984F
+    $(8/C)C7A1  JMP $D0E4 ($90E4)
+
+  $(8/C)0A43    STA $984F
+    $(8/C)CA46  JMP $D0E4 ($90E4)
 
   $(B/F)3/7F90    STA $984F
     $(B/F))3/7F93  more code, located in galaxian? ends with JMP $(D)90E4
 
-  $(C)0000    STA $984F
-    $(C)0003  JMP $D0E4 ($90E4)
-
-  $(C)0014    STA $984F
-    $(C)0017  JMP $D0E4 ($90E4)
-
-  $(C)0184    STA $984F
-    $(C)0187  JMP $D0E4 ($90E4)
-
-  $(C)0649    STA $984F
-    $C64C  JMP $D0E4 ($90E4)
-
-  $(C)066E    STA $984F
-    $C671  JMP $D0E4 ($90E4)
-
-  $(C)079E    STA $984F
-    $C7A1  JMP $D0E4 ($90E4)
-
-  $(C)0A43    STA $984F
-    $CA46  JMP $D0E4 ($90E4)
-
-  $(F)3FF2    STA $984F
-    $(F)3FF5  JMP $D0E4 ($90E4)
+  $(7/F)3FF2    STA $984F
+    $(7/F)3FF5  JMP $D0E4 ($90E4)
 
 
 
 |¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯|
-|                Section x - Bits and adresses               |
+|                Section X - Bits and Adresses               |
 |____________________________________________________________|
 
 ----------
@@ -5688,6 +5739,17 @@ Section 3 = $(D)1C41 - $(D)1D40
   111111     $07E000 - $07FFFF
  ------------------------------
 
+
+
+|¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯|
+|                    Section X - Credits                     |
+|____________________________________________________________|
+
+  * This disassembly wouldn't be possible without the help of the information on NesDev Wiki,
+    specifically Mapper 225/255 information is from there [wiki.nesdev.com]
+  
+  * Game information is taken from NES Cart Database [bootgod.dyndns.org:7777]
+  
 
 
 |¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯|
