@@ -247,8 +247,18 @@
   
     - Add pointertable to to BootCode data instead of hard coding adresses
     
-    - Expand the custom bankswitch routine loaded into $0180 to a table for ROMS without much free space.
-      The exact adress in RAM should be customizeble and put into a pointer table, much like the above point.
+      In the original code, pointers are hardcoded and are loaded depending on what section you pressed start in.
+      BootCode data therefore NEEDS to start in the following adresses: Section 1 = $DA01, Section 2 = $DB21 and Section 3 = $DC41.
+      The code could be more flexible if there was a pointertable which were referenced instead, like the one used
+      when the menu writes list items to the nametable.
+
+
+    - Expand the custom bankswitch routine loaded into RAM $0180 to a table, for ROMS without free space for custom routine.
+    
+      The bankswitch routine loaded into RAM at the adress $0180 are only for the entry 06.LEGENDRY.
+      The function could be more useable if it was expanded to a datatable with a pointertable. Also it would be an improvment
+      if you could choose at what adress in RAM you loaded the custom function to. This would allow for more flexibility when
+      hacking games with not enough free space to fit in the ROM.
 
 
 
