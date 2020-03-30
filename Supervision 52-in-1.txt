@@ -114,10 +114,10 @@
   17.BOMBER MAN:   This hack also changes the password screen to a level select screen.
   
   20.1989GALAXIAN: This is the same game as 40.GALAXIAN, but it sets $1A to #$00 instead of #$FF in the bootcode.
-                   This speeds up the player's bullets
+                   This speeds up the player's bullets and changes logo to a red color.
   
   40.GALAXIAN:     This is the same game as 20.1989GALAXIAN, but it sets $1A to #$00 instead of #$FF in the bootcode.
-                   This starts Galaxian in normal mode.
+                   This starts Galaxian in normal mode and changes logo to a blue color.
   
   43.1989 EXERION: This hack removes the player's limit on single shots.
 
@@ -2693,11 +2693,10 @@
   and needs $1B = #$A5, and $1C = #$5A to jump to galaxian NMI.
 
   The game is identical to 40.GALAXIAN except in the
-  bootcode, where it loads #$FF instead of #$00 to $1A.
+  bootcode, where it stores #$FF instead of #$00 to $1A.
   Other than that, the two versions are identical.
 
-  The bullets are speed up.
-  [bootleggames.fandom.com/wiki/Supervision_52-in-1]
+  This enables bullet speed hack and uses a red color for the logo.
 
   Alots of changes has been made to the CHR.
   Copyright information and NAMCOT logo has been removed in CHR.
@@ -4633,10 +4632,10 @@
  └──────────────┘
 
   The game is identical to 20.1989GALAXIAN except in the
-  bootcode, where it loads #$00 instead of #$FF to $1A.
+  bootcode, where it stores #$00 instead of #$FF to $1A.
   Other than that, the two versions are identical.
 
-  This probably enables/disables bullt speed hack?
+  This disables bullet speed hack and uses a blue color for the logo.
 
 ╠=====================================================╣
 ║                   52-in-1 info                      ║
