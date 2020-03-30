@@ -2404,12 +2404,22 @@ BootGameBootSequencesSection3:
 .segment "BINK"                     ; $DD41
     .incbin "./includes/11 1D41-1FFF.bin"
 
+
 ; Galaxian - Main code
 .segment "GALAXIANB"                ; $E000
     .incbin "./includes/12 2000-3FF1.bin"
 
+
 ; 52-in-1 Reset vector
-.segment "RESETVI"
+; This needs to be uncommented if 'Galaxian - Main code' is removed.
+;.segment "RESETVI"                 ; $FF90 (1942)
+;RESET:
+;    STA $984F                      ; Mapper Call
+;    JMP ROM_START                  ; Jump to beginning
+
+
+; 52-in-1 Reset vector
+.segment "RESETVJ"                  ; $FFF2
 RESET:
     STA $984F                       ; Mapper Call
     JMP ROM_START                   ; Jump to beginning

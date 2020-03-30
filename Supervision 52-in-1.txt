@@ -115,9 +115,11 @@
   
   20.1989GALAXIAN: This is the same game as 40.GALAXIAN, but it sets $1A to #$00 instead of #$FF in the bootcode.
                    This speeds up the player's bullets and changes logo to a red color.
+                   Part of the easter egg code has been changed to include the reset vector $BF93 for 1942
   
   40.GALAXIAN:     This is the same game as 20.1989GALAXIAN, but it sets $1A to #$00 instead of #$FF in the bootcode.
                    This starts Galaxian in normal mode and changes logo to a blue color.
+                   Part of the easter egg code has been changed to include the reset vector $BF93 for 1942
   
   43.1989 EXERION: This hack removes the player's limit on single shots.
 
@@ -197,7 +199,7 @@
   Et Voila, you are in the game.  
   
   When you are done with the game and hit the reset button, the game will go to a modified reset vector in the game and change banks to the menu ROM space (STA $984F).
-  The menu ROM then immediatly makes a JMP to the init sequence of the menu rom. A list of reset adresses in the menu ROM can be found under Section x - Reset Vector.
+  The menu ROM then immediatly makes a JMP to the init sequence of the menu rom. A list of reset adresses in the menu ROM can be found under 'Part 10 - Reset Vectors'.
 
 
 
@@ -2698,6 +2700,8 @@
 
   This enables bullet speed hack and uses a red color for the logo.
 
+  Part of the easter egg code has been changed to include the reset vector $BF93 for 1942.
+
   Alots of changes has been made to the CHR.
   Copyright information and NAMCOT logo has been removed in CHR.
 
@@ -2771,10 +2775,11 @@
   $(8)0639  BCS $8649    (B0 0E)
 
 
-  # DATA ???
+  # Part of Easter egg.
   Original: $(9)1F80  FF 8D 02 40 BD D1 FF 09 08 8D 03 40 A5 01 4A 4A
   Original: $(9)1F90  4A 29 1E AA BD B2 FF 8D 06 40 BD B1 FF 09 08 8D
   
+  # $BF90 - Reset vector for 1942
   52-in-1:  $(9)1F80  FF 8D 02 40 BD D1 FF 09 08 8D 03 40 4C 51 D0 4A
   52-in-1:  $(9)1F90  8D 4F 98 AA BD B2 FF 8D 06 40 BD B1 FF 09 08 8D
 
@@ -5715,7 +5720,8 @@ Section 3 = $(D)1C41 - $(D)1D40
     $(8/C)CA46  JMP $D0E4 ($90E4)
 
   $(B/F)3/7F90    STA $984F
-    $(B/F))3/7F93  more code, located in galaxian? ends with JMP $(D)90E4
+    $(B/F))3/7F93  This codes ends in the Easter egg part of Galaxian.
+                   The code is modified compared to the original and ends with a JMP $(D)90E4
 
   $(7/F)3FF2    STA $984F
     $(7/F)3FF5  JMP $D0E4 ($90E4)
