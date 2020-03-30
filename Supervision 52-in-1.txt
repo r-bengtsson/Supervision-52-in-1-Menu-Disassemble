@@ -11,8 +11,9 @@
   - Part 03 - Mapper
   - Part 04 - How to the Menu Boots a Game
   - Part 05 - How to Replace a Game
-  - Part 06 - Menu Quicklist
-  - Part 07 - Detailed Game Information
+  - Part 06 - Possible Improvments
+  - Part 07 - Menu Quicklist
+  - Part 08 - Detailed Game Information
 
                  SECTION 1
     * 01.ISLANDER          * 10.NINJA 2
@@ -46,10 +47,10 @@
     * 43.1989 EXERION      * 51.CIRCUS TROUPE
     * 44.WRESTLE           * 52.FANCY BROS.
 
-  - Part 08 - Bootcode Start Adresses
-  - Part 09 - Reset Vectors
-  - Part 10 - Bits and Adresses
-  - Part 11 - Credits
+  - Part 09 - Bootcode Start Adresses
+  - Part 10 - Reset Vectors
+  - Part 11 - Bits and Adresses
+  - Part 12 - Credits
 
 
 
@@ -239,7 +240,20 @@
 
 
 |¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯|
-|                 Part 06 - Menu Quicklist                   |
+|              Part 06 - Possible Improvments                |
+|____________________________________________________________|
+
+  Some improvements to the menu code could be:
+  
+    - Add pointertable to to BootCode data instead of hard coding adresses
+    
+    - Expand the custom bankswitch routine loaded into $0180 to a table for ROMS without much free space.
+      The exact adress in RAM should be customizeble and put into a pointer table, much like the above point.
+
+
+
+|¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯|
+|                 Part 07 - Menu Quicklist                   |
 |____________________________________________________________|
 
 -----------
@@ -339,7 +353,7 @@
 
 
 |¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯|
-|            Part 07 - Detailed Game Information             |
+|            Part 08 - Detailed Game Information             |
 |____________________________________________________________|
 
 ╔=============================================================╗
@@ -5650,7 +5664,7 @@
 
 
 |¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯|
-|             Part 08 - Bootcode Start Adresses              |
+|             Part 09 - Bootcode Start Adresses              |
 |____________________________________________________________|
 
 06.LEGENDRY BankSwitch routine:
@@ -5664,7 +5678,7 @@ Section 3 = $(D)1C41 - $(D)1D40
 
 
 |¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯|
-|                   Part 09 - Reset Vectors                  |
+|                   Part 10 - Reset Vectors                  |
 |____________________________________________________________|
 
   $(8/C)0000    STA $984F (8D 4F 98) (Game)
@@ -5700,7 +5714,7 @@ Section 3 = $(D)1C41 - $(D)1D40
 
 
 |¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯|
-|                 Part 10 - Bits and Adresses                |
+|                 Part 11 - Bits and Adresses                |
 |____________________________________________________________|
 
 ----------
@@ -5851,7 +5865,7 @@ Section 3 = $(D)1C41 - $(D)1D40
 
 
 |¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯|
-|                     Part 11 - Credits                      |
+|                     Part 12 - Credits                      |
 |____________________________________________________________|
 
   * This disassembly wouldn't be possible without the help of the information found on NesDev Wiki.
