@@ -173,7 +173,7 @@ OAM                 = $0200
 
 
 ; Galaxian - Part 1
-.segment "BINI"                     ; $CA49
+.segment "GALAXIANA"                ; $CA49
     .incbin "./includes/09 1000-107A.bin"
 
 
@@ -2405,7 +2405,7 @@ BootGameBootSequencesSection3:
     .incbin "./includes/11 1D41-1FFF.bin"
 
 ; Galaxian - Part 2
-.segment "BINL"                     ; $E000
+.segment "GALAXIANB"                ; $E000
     .incbin "./includes/12 2000-3FF1.bin"
 
 ; 52-in-1 Reset vector
