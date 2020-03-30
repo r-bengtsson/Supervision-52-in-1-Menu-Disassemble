@@ -78,3 +78,9 @@ iNES header code with description on how to use it
 
 * `.\src\libs\IO-definitions.inc`:
 I\O Definitions.
+
+
+
+## TODO List
+  - [ ] Analyse and complete uncommented parts in .asm
+  - [ ] Analyse and compare 08.BROS. II/52.FANCY BROS. CHR-ROM
