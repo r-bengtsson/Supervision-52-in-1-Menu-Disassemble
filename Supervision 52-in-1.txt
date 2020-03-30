@@ -5719,8 +5719,8 @@ Section 3 = $(D)1C41 - $(D)1D40
   $(8/C)0A43    STA $984F
     $(8/C)CA46  JMP $D0E4 ($90E4)
 
-  $(B/F)3/7F90    STA $984F
-    $(B/F))3/7F93  This codes ends in the Easter egg part of Galaxian.
+  $(B/F)1/3/7F90    STA $984F
+    $(B/F))1/3/7F93  This codes ends in the Easter egg part of Galaxian.
                    The code is modified compared to the original and ends with a JMP $(D)90E4
 
   $(7/F)3FF2    STA $984F
