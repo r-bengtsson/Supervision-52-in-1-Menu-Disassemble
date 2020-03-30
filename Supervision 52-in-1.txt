@@ -6,21 +6,55 @@
     INDEX
  -----------
 
-  - Section x - My 52-in-1 Story
-  - Section X - 52-in-1 Information
-  - Section X - Mapper
-  - Section X - How to the Menu Boots a Game
-  - Section X - How to Replace a Game
-  - Section X - Menu Quicklist
-  - Section X - Menu Entries
-  - Section X - Bootcode Start Adresses
-  - Section X - Reset Vectors
-  - Section X - Bits and Adresses
-  - Section X - Credits
+  - Part 01 - My 52-in-1 Story
+  - Part 02 - 52-in-1 Information
+  - Part 03 - Mapper
+  - Part 04 - How to the Menu Boots a Game
+  - Part 05 - How to Replace a Game
+  - Part 06 - Menu Quicklist
+  - Part 07 - Detailed Game Information
+
+                 SECTION 1
+    * 01.ISLANDER          * 10.NINJA 2
+    * 02.GRADING           * 11.CITY CONECT.
+    * 03.P-D FIGHTING      * 12.B-WINGS
+    * 04.STAR SOLDIER      * 13.1942
+    * 05.GOONIES           * 14.GYROOINE
+    * 06.LEGENDRY          * 15.FLAPPY
+    * 07.TETRIS            * 16.SPARTAN
+    * 08.BROS. II          * 17.BOMBER MAN
+    * 09.TWIN BEE          * 18.FRONT LINE
+
+                 SECTION 2
+    * 19.MACROSS           * 28.LODE RUNNER2
+    * 20.1989GALAXIAN      * 29.KING KONG1
+    * 21.STAR FORCE        * 30.KING KONG2
+    * 22.KUNG-FU           * 31.KING KONG3
+    * 23.NINJA 1           * 32.MAPPY
+    * 24.PIPELINE          * 33.EXCITE BIKE
+    * 25.MAHJONG 2         * 34.F-1 RACE
+    * 26.MAHJONG 4         * 35.ROAD FIGHTER
+    * 27.LODE RUNNER1      * 36.PIN BALL
+
+                 SECTION 3
+    * 37.BASE BALL         * 45.BATTLE CITY
+    * 38.POPEYE            * 46.SKY DESTRYOER
+    * 39.GALAGA            * 47.CHESS
+    * 40.GALAXIAN          * 48.BALLOON FIGHT
+    * 41.PAC-MAN           * 49.FORMATION Z
+    * 42.ICE CLIMBER       * 50.POOYAN
+    * 43.1989 EXERION      * 51.CIRCUS TROUPE
+    * 44.WRESTLE           * 52.FANCY BROS.
+
+  - Part 08 - Bootcode Start Adresses
+  - Part 09 - Reset Vectors
+  - Part 10 - Bits and Adresses
+  - Part 11 - Credits
+
 
 
 |¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯|
-|               Section x - My 52-in-1 Story                 |
+|                Part 01 - My 52-in-1 Story                  |
 |____________________________________________________________|
 
   This was probably around 1991-1992:
@@ -51,20 +85,47 @@
   In the end, I made the mistake of selling the cart with all my other childhood games.
 
 
+
 |¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯|
-|               Section X - 52-in-1 Information              |
+|                Part 02 - 52-in-1 Information               |
 |____________________________________________________________|
 
-  Most, but not all, of this information is taken from the BootlegGames wiki:
-  [https://bootleggames.fandom.com/wiki/Supervision_52-in-1]
+  52-in-1 pirate multicart by Supervision, probably released sometime around 1989-1990.
 
+  There are 52 entries in the menu, but only 50 unique games.
+  Super Mario Bros. and Galaxian has two entries to the same game but with slight variations.
+  45 games has their copyright information/logo removed/changed.
+  7 games are hacks of their respective original versions.
+  
+  The menu for this multicart was the source for the menu in the Action52 multicart.
+  
+  58-in-1 also uses the same menu and has mostly the same games as 52-in-1, but 64-in-1,
+  72-in-1 and 110-in-1 uses a different menu but mostly the same games.
+  
+  The hacked games are:
+  08.BROS. II:     Super Mario Bros. with sprites from SMB2j and copyright/logo removed
+  
+  15.FLAPPY:       This hack is supposedly based on a pirate version of Flappy credited to WHIRLWIND MANU,
+                   but credited to WHIRLWIND MENU ingame [https://bootleggames.fandom.com/wiki/Supervision_52-in-1].
+                   The password screen has been changed to a level select screen.
+                   
+  
+  17.BOMBER MAN:   This hack also changes the password screen to a level select screen.
+  
+  20.1989GALAXIAN: This is the same game as 40.GALAXIAN, but it sets $1A to #$00 instead of #$FF in the bootcode.
+                   This speeds up the player's bullets
+  
+  40.GALAXIAN:     This is the same game as 20.1989GALAXIAN, but it sets $1A to #$00 instead of #$FF in the bootcode.
+                   This starts Galaxian in normal mode.
+  
+  43.1989 EXERION: This hack removes the player's limit on single shots.
 
-  The 52-in-1 pirate multicart was released probably sometime around 1989-1990.
-  There are 
+  52.FANCY BROS:   Same as 08.BROS. II, but with mirroring set to horizontal instead of vertical.
+
 
 
 |¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯|
-|                     Section X - Mapper                     |
+|                      Part 03 - Mapper                      |
 |____________________________________________________________|
 
   This information is taken from the NesDev wiki:
@@ -77,6 +138,7 @@
   * 52-in-1  (225)
   * 58-in-1  (225)
   * 64-in-1  (225)
+  * 72-in-1  (225)
   * 110-in-1 (255)
 
  -----------
@@ -117,7 +179,7 @@
 
 
 |¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯|
-|          Section X - How to the Menu Boots a Game          |
+|           Part 04 - How to the Menu Boots a Game           |
 |____________________________________________________________|
 
   The program keeps track of what section you are in, and what position in the list your marker are on.
@@ -139,7 +201,7 @@
 
 
 |¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯|
-|             Section X - How to Replace a Game              |
+|              Part 05 - How to Replace a Game               |
 |____________________________________________________________|
 
   How easy it is to replace a game depends on the size and mapper of the game you want to use as a replacement.
@@ -177,7 +239,7 @@
 
 
 |¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯|
-|                Section X - Menu Quicklist                  |
+|                 Part 06 - Menu Quicklist                   |
 |____________________________________________________________|
 
 -----------
@@ -277,7 +339,7 @@
 
 
 |¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯|
-|                 Section X - Menu Entries                   |
+|            Part 07 - Detailed Game Information             |
 |____________________________________________________________|
 
 ╔=============================================================╗
@@ -1494,7 +1556,7 @@
   Developer: Data East
   Players:   2
 
-  Mapper:    HVC-CNROM+SECURITY (185)
+  Mapper:    CNROM+SECURITY (185)
   PRG:       32 kB
   CHR:       8 kB
   Mirroring: Horizontal
@@ -3322,7 +3384,7 @@
   Developer: Hudson Soft
   Players:   2
 
-  Mapper:    RROM (0)
+  Mapper:    NROM-128 (0)
   PRG:       16 kB
   CHR:       8 kB
   Mirroring: Vertical
@@ -3589,7 +3651,7 @@
   Developer: Nintendo
   Players:   2
 
-  Mapper:    HROM (0)
+  Mapper:    NROM-128 (0)
   PRG:       16 kB
   CHR:       8 kB
   Mirroring: Vertical
@@ -3978,7 +4040,7 @@
   Developer: Nintendo
   Players:   1
 
-  Mapper:    RROM (0)
+  Mapper:    NROM-128 (0)
   PRG:       16 kB
   CHR:       8 kB
   Mirroring: Vertical
@@ -4075,7 +4137,7 @@
   Developer: Konami
   Players:   1
 
-  Mapper:    NROM-128
+  Mapper:    NROM-128 (0)
   PRG:       16 kB
   CHR:       8 kB
   Mirroring: Horizontal
@@ -4534,7 +4596,7 @@
   Developer: NAMCO
   Players:   2
 
-  Mapper:    NAMCOT-3301
+  Mapper:    NAMCOT-3301 (0)
   PRG:       8 kB
   CHR:       8 kB
   Mirroring: H
@@ -4829,7 +4891,7 @@
   Ported by: TOSE Software
   Players:   2
 
-  Mapper:    JALECO-JF-01
+  Mapper:    JALECO-JF-01 (0)
   PRG:       16 kB
   CHR:       8 kB
   Mirroring: Horizontal
@@ -5319,7 +5381,7 @@
   Developer: Hect
   Players:   2
 
-  Mapper:    JALECO-JF-02
+  Mapper:    JALECO-JF-02 (0)
   PRG:       16 kB
   CHR:       8 kB
   Mirroring: Horizontal
@@ -5450,7 +5512,7 @@
   Developer: Konami
   Players:   2
 
-  Mapper:    NROM-128(0)
+  Mapper:    NROM-128 (0)
   PRG:       16 kB
   CHR:       8 kB
   Mirroring: Vertical
@@ -5588,7 +5650,7 @@
 
 
 |¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯|
-|            Section X - Bootcode Start Adresses             |
+|             Part 08 - Bootcode Start Adresses              |
 |____________________________________________________________|
 
 06.LEGENDRY BankSwitch routine:
@@ -5602,7 +5664,7 @@ Section 3 = $(D)1C41 - $(D)1D40
 
 
 |¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯|
-|                  Section X - Reset Vectors                 |
+|                   Part 09 - Reset Vectors                  |
 |____________________________________________________________|
 
   $(8/C)0000    STA $984F (8D 4F 98) (Game)
@@ -5638,7 +5700,7 @@ Section 3 = $(D)1C41 - $(D)1D40
 
 
 |¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯|
-|                Section X - Bits and Adresses               |
+|                 Part 10 - Bits and Adresses                |
 |____________________________________________________________|
 
 ----------
@@ -5789,22 +5851,22 @@ Section 3 = $(D)1C41 - $(D)1D40
 
 
 |¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯|
-|                    Section X - Credits                     |
+|                     Part 11 - Credits                      |
 |____________________________________________________________|
 
-  * This disassembly wouldn't be possible without the help of the information on NesDev Wiki,
-    specifically Mapper 225/255 information is from there [wiki.nesdev.com]
+  * This disassembly wouldn't be possible without the help of the information found on NesDev Wiki.
+    Mapper 225/255 information is taken from there [wiki.nesdev.com]
   
-  * 52-in-1 game information is taken from NES Cart Database [bootgod.dyndns.org:7777]
+  * Game information is taken from NES Cart Database [bootgod.dyndns.org:7777]
   
-  * 52-in-1 cart information is taken from BootlegsGames wiki [https://bootleggames.fandom.com/wiki/Supervision_52-in-1]
+  * 52-in-1 cart information is partly based on BootlegsGames wiki [https://bootleggames.fandom.com/wiki/Supervision_52-in-1]
 
 
 
 |¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯|
 |¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯|
 |¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯|
-|                          End File                          |
+|                        End of File                         |
 |____________________________________________________________|
 |____________________________________________________________|
 |____________________________________________________________|
