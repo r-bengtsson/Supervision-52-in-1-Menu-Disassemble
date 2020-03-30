@@ -172,7 +172,7 @@ OAM                 = $0200
     .incbin "./includes/08 0A49-0FFF.bin"
 
 
-; Galaxian - Part 1
+; Galaxian - Extra code
 .segment "GALAXIANA"                ; $CA49
     .incbin "./includes/09 1000-107A.bin"
 
@@ -2404,7 +2404,7 @@ BootGameBootSequencesSection3:
 .segment "BINK"                     ; $DD41
     .incbin "./includes/11 1D41-1FFF.bin"
 
-; Galaxian - Part 2
+; Galaxian - Main code
 .segment "GALAXIANB"                ; $E000
     .incbin "./includes/12 2000-3FF1.bin"
 
