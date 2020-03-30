@@ -59,17 +59,20 @@ Contains data between $0674 - $079D. Not Menu code.
 * `.\src\includes\07 07A4-0A42.bin`:
 Contains data between $07A4 - $0A42. Not Menu code.
 
-* `.\src\includes\08 0A49-107A.bin`:
-Contains data between $0A49 - $107A. Not Menu code.
+* `.\src\includes\08 0A49-0FFF.bin`:
+Contains data between $0A49 - $0FFF. Not Menu code.
 
-* `.\src\includes\09 1099-10A2.bin`:
+* `.\src\includes\09 1000-107A.bin`:
+Contains data between $1000 - $107A. Galaxian - Part 1.
+
+* `.\src\includes\10 1099-10A2.bin`:
 Contains data between $1099 - $10A2. Not Menu code.
 
-* `.\src\includes\10 1D41-1FFF.bin`:
+* `.\src\includes\11 1D41-1FFF.bin`:
 Contains data between $1D41 - $1FFF. Not Menu code.
 
-* `.\src\includes\11 2000-3FF1.bin`:
-Contains data between $2000 - $3FF1. Hacked version of Galaxian.
+* `.\src\includes\12 2000-3FF1.bin`:
+Contains data between $2000 - $3FF1. Galaxian - Part 2.
 
 
 ### Included libraries
@@ -82,7 +85,8 @@ I\O Definitions.
 
 
 ## TODO List
+  - [X] Analyse included binaries 01 - 10. Are they necessary, or are the garbage code?
   - [ ] Analyse and complete uncommented parts in `52-in-1 Menu.asm`
   - [ ] Analyse and compare `08.BROS. II/52.FANCY BROS.` CHR-ROM
   - [ ] Add additional improvement suggestions to `Part 06 - Possible Improvments`?
-  - [ ] Analyse included binaries 01 - 10. Are they necessary, or are the garbage code?
+
