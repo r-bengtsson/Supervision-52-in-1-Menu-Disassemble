@@ -11,9 +11,9 @@
   - Part 03 - Mapper
   - Part 04 - How to the Menu Boots a Game
   - Part 05 - How to Replace a Game
-  - Part 06 - The disassembled source
+  - Part 06 - The Disassembled Source
   - Part 07 - Possible Improvments to the source
-  - Part 08 - Menu Quicklist
+  - Part 08 - Game Quicklist
   - Part 09 - Detailed Game Information
 
                  SECTION 1
@@ -242,14 +242,14 @@
 
 
 |¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯|
-|             Part 06 - The disassembled source              |
+|             Part 06 - The Disassembled Source              |
 |____________________________________________________________|
 
   
 
 
 |¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯|
-|        Part 07 - Possible Improvments to the source        |
+|        Part 07 - Possible Improvments to the Source        |
 |____________________________________________________________|
 
   Some improvements to the menu code could be:
@@ -272,7 +272,7 @@
 
 
 |¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯|
-|                 Part 08 - Menu Quicklist                   |
+|                 Part 08 - Game Quicklist                   |
 |____________________________________________________________|
 
 -----------
