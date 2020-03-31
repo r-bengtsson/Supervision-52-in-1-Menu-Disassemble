@@ -38,41 +38,48 @@ Table file for the rom
 
 
 ### Included binaries
-* `.\src\includes\01 0006-0013.bin`:
-Contains data between $0006 - $0013. Garbage code.
 
-* `.\src\includes\02 001A-0183.bin`:
-Contains data between $001A - $0183. Garbage code.
+#### 4 Nin Uchi Mahjong leftover code. Not needed for 52-in-1 or Galaxian.
+* `.\src\includes\4 Nin Uchi Mahjong 01 0000-0002.bin`:
+Data between $0000 - $0002.
 
-* `.\src\includes\03 018A-0257.bin`:
-Contains data between $018A - $0257. Garbage code.
+* `.\src\includes\4 Nin Uchi Mahjong 02 0006-0016.bin`:
+Data between $0006 - $0016.
 
-* `.\src\includes\04 025E-0648.bin`:
-Contains data between $025E - $0648. Garbage code.
+* `.\src\includes\4 Nin Uchi Mahjong 03 001A-0186.bin`:
+Data between $001A - $0186.
 
-* `.\src\includes\05 064F-066D.bin`:
-Contains data between $064F - $066D. Garbage code.
+* `.\src\includes\4 Nin Uchi Mahjong 04 018A-025A.binn`:
+Data between $018A - $025A.
 
-* `.\src\includes\06 0674-079D.bin`:
-Contains data between $0674 - $079D. Garbage code.
+* `.\src\includes\4 Nin Uchi Mahjong 05 025E-064B.bin`:
+Data between $025E - $064B.
 
-* `.\src\includes\07 07A4-0A42.bin`:
-Contains data between $07A4 - $0A42. Garbage code.
+* `.\src\includes\4 Nin Uchi Mahjong 06 064F-0670.bin`:
+Data between $064F - $0670.
 
-* `.\src\includes\08 0A49-0FFF.bin`:
-Contains data between $0A49 - $0FFF. Garbage code.
+* `.\src\includes\4 Nin Uchi Mahjong 07 0674-07A0.bin`:
+Data between $0674 - $07A0.
 
-* `.\src\includes\09 1000-107A.bin`:
-Contains data between $1000 - $107A. Galaxian - Extra code, hack part.
+* `.\src\includes\4 Nin Uchi Mahjong 08 07A4-0A45.bin`:
+Data between $07A4 - $0A45.
 
-* `.\src\includes\10 1099-10A2.bin`:
-Contains data between $1099 - $10A2. Garbage code.
+* `.\src\includes\4 Nin Uchi Mahjong 09 0A49-0FFF.bin`:
+Data between $0A49 - $0FFF.
 
-* `.\src\includes\11 1D41-1FFF.bin`:
-Contains data between $1D41 - $1FFF. Garbage code.
+* `.\src\includes\4 Nin Uchi Mahjong 10 1099-10A2.bin`:
+Data between $1099 - $10A2.
 
-* `.\src\includes\12 2000-3FF1.bin`:
+* `.\src\includes\4 Nin Uchi Mahjong 11 1D41-1FFF.bin`:
+Data between $1D41 - $1FFF.
+
+#### Galaxian code
+* `.\src\includes\Galaxian 01 1000-107A.asm`:
+Contains data between $1000 - $107A. Galaxian - Extra code
+
+* `.\src\includes\Galaxian 02 2000-3FF1.bin`
 Contains data between $2000 - $3FF1. Galaxian - Main code.
+
 
 
 ### Included libraries
