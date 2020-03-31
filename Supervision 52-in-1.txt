@@ -245,7 +245,76 @@
 |             Part 06 - The Disassembled Source              |
 |____________________________________________________________|
 
+ ----------------
+  File structure
+ ----------------
+  The source is organized like this in the ./src/ folder:
   
+  52-in-1 Menu.asm            - The main disassembled and commented code.
+  52-in-1 Menu.cfg            - The linker config. The memory map is configure here.
+                                All the different segments are configured here.
+  52-in-1 Menu.chr            - The CHR ROM.
+  52-in-1 Menu.tbl            - Table file for the ROM. Can be used in for example Mesen.
+  
+  Garbage code, presumable safe to remove to get extra space.
+  Only included to compile to 1:1 copy of original.
+  ./includes/01 0006-0013.bin
+  ./includes/02 001A-0183.bin
+  ./includes/03 018A-0257.bin
+  ./includes/04 025E-0648.bin
+  ./includes/05 064F-066D.bin
+  ./includes/06 0674-079D.bin
+  ./includes/07 07A4-0A42.bin
+  ./includes/08 0A49-0FFF.bin
+  ./includes/10 1099-10A2.bin
+  ./includes/11 1D41-1FFF.bin
+  
+  ./includes/09 1000-107A.bin - First part of Galaxian, extra code.
+  ./includes/12 2000-3FF1.bin - Second part of Galaxian, main code.
+  
+  ./libs/IO-definitions.inc   - Commonly used definitions
+  ./libs/iNES-header.inc      - iNES header data, needs variables set in 52-in-1 Menu.asm.
+
+
+ ------------------
+  Source structure
+ ------------------
+  The code consists of these parts
+  
+  Reset vectors               - The Reset vectors resides in the segments 'RESETVA', 'RESETVB', 'RESETVC', 'RESETVD', 'RESETVE',
+                                'RESETVF', 'RESETVG', 'RESETVH', 'RESETVI' and 'RESETVJ'.
+                                These are adresses where games go to when reset is pressed on the console.
+                                When the reset button on the console is pressed, the game will reset to the menu.
+                                This is handled via the reset vectors in the games. When reset is pressed, the code will jump
+                                to the reset vector specified at $FFFC. Normally, the games are hacked to move the reset vector to
+                                adress $FFF2, but sometimes this needs to be at the original reset vector.
+                                The code for STA $984F needs to be at the reset vector. This changes the banks to the 52-in-1 menu.
+                                The code for JMP $D0E4 (ROM_START) is located after the bankchange, which jumps to the menu init code
+                                and runs the menu.
+                                Therefore, you need to set JMP $D0E4 (ROM_START) after each reset vector in every game you add.
+                                If not, then the game will reset to itself instead of the menu.
+                                All original reset vectors are specified at 'Part 11 - Reset Vectors'.
+  
+  Garbage data                - The Garbage data resides in the segments 'GARBAGEA', 'GARBAGEB', 'GARBAGEC', 'GARBAGED', 'GARBAGEE',
+                                'GARBAGEF', 'GARBAGEG', 'GARBAGEH', 'GARBAGEI' and 'GARBAGEJ'.
+                                Leftover code from the Hudson Soft game used to hack to the 52-in-1 menu. There are no vital code/data
+                                in these includes as far as I can tell, and should be safe to remove to free some extra space if
+                                you would like to expand the code.
+
+  Galaxian code               - The Galaxian resides in the segments 'GALAXIANA' and 'GALAXIANB'.
+                                Since both the 52-in-1 menu and Galaxian has a small code size, they both fit perfectly within the
+                                NROM-128 format, which is 16kB. The main Galaxian code (12 2000-3FF1.bin) are located between
+                                $2000-$3FF1, and they both share the reset vectors.
+                                Galaxian also uses the same NMI start as the menu. One of the first things the menu does when it runs
+                                the boot sequence for a game is to store #$A5 to $1B, and #$5A to $1C. When Galaxian enters the
+                                52-in-1 menu's NMI, it checks whether those values has been set. If so, then NMI knows it has booted
+                                a game and jumps to Galaxians NMI. It really doesn't care which game has been booted, but it
+                                doesn't matter since Galaxian is the only game that coresides in the same ROM space as the menu.
+                                Extra Galaxian code (09 1000-107A.bin) are located at $1000 - $107A.
+
+  Menu code                   - The source code for the menu resides in segments 'CODEA', 'CODEB', 'CODEC', 'RODATAA', 'RODATAB',
+                                'VECTORS' and 'TILES'.
+
 
 
 |¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯|
