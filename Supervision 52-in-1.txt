@@ -11,9 +11,10 @@
   - Part 03 - Mapper
   - Part 04 - How to the Menu Boots a Game
   - Part 05 - How to Replace a Game
-  - Part 06 - Possible Improvments
-  - Part 07 - Menu Quicklist
-  - Part 08 - Detailed Game Information
+  - Part 06 - The disassembled source
+  - Part 07 - Possible Improvments to the source
+  - Part 08 - Menu Quicklist
+  - Part 09 - Detailed Game Information
 
                  SECTION 1
     * 01.ISLANDER          * 10.NINJA 2
@@ -47,10 +48,10 @@
     * 43.1989 EXERION      * 51.CIRCUS TROUPE
     * 44.WRESTLE           * 52.FANCY BROS.
 
-  - Part 09 - Bootcode Start Adresses
-  - Part 10 - Reset Vectors
-  - Part 11 - Bits and Adresses
-  - Part 12 - Credits
+  - Part 10 - Bootcode Start Adresses
+  - Part 11 - Reset Vectors
+  - Part 12 - Bits and Adresses
+  - Part 13 - Credits
 
 
 
@@ -93,33 +94,32 @@
 
   52-in-1 pirate multicart by Supervision, probably released sometime around 1989-1990.
 
-  There are 52 entries in the menu, but only 50 unique games.
-  Super Mario Bros. and Galaxian has two entries to the same game but with slight variations.
-  45 games has their copyright information/logo removed/changed.
-  7 games are hacks of their respective original versions.
-  
   The menu for this multicart was the source for the menu in the Action52 multicart.
   
   58-in-1 also uses the same menu and has mostly the same games as 52-in-1, but 64-in-1,
   72-in-1 and 110-in-1 uses a different menu but mostly the same games.
-  
+
+  There are 52 entries in the menu, but only 50 unique games.
+  Super Mario Bros. and Galaxian has two entries to the same game but with slight variations.
+  45 games has their copyright information/logo removed/changed.
+  7 games are hacks of their respective original versions.
+    
   The hacked games are:
-  08.BROS. II:     Super Mario Bros. with sprites from SMB2j and copyright/logo removed
+  08.BROS. II:     Super Mario Bros. with sprites from SMB2j and copyright/logo removed.
   
   15.FLAPPY:       This hack is supposedly based on a pirate version of Flappy credited to WHIRLWIND MANU,
                    but credited to WHIRLWIND MENU ingame [https://bootleggames.fandom.com/wiki/Supervision_52-in-1].
                    The password screen has been changed to a level select screen.
                    
-  
   17.BOMBER MAN:   This hack also changes the password screen to a level select screen.
   
   20.1989GALAXIAN: This is the same game as 40.GALAXIAN, but it sets $1A to #$00 instead of #$FF in the bootcode.
                    This speeds up the player's bullets and changes logo to a red color.
-                   Part of the easter egg code has been changed to include the reset vector $BF93 for 1942
+                   Part of the easter egg code has been changed to include the reset vector $BF93 for 1942.
   
   40.GALAXIAN:     This is the same game as 20.1989GALAXIAN, but it sets $1A to #$00 instead of #$FF in the bootcode.
                    This starts Galaxian in normal mode and changes logo to a blue color.
-                   Part of the easter egg code has been changed to include the reset vector $BF93 for 1942
+                   Part of the easter egg code has been changed to include the reset vector $BF93 for 1942.
   
   43.1989 EXERION: This hack removes the player's limit on single shots.
 
@@ -242,7 +242,14 @@
 
 
 |¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯|
-|              Part 06 - Possible Improvments                |
+|             Part 06 - The disassembled source              |
+|____________________________________________________________|
+
+  
+
+
+|¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯|
+|        Part 07 - Possible Improvments to the source        |
 |____________________________________________________________|
 
   Some improvements to the menu code could be:
@@ -265,7 +272,7 @@
 
 
 |¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯|
-|                 Part 07 - Menu Quicklist                   |
+|                 Part 08 - Menu Quicklist                   |
 |____________________________________________________________|
 
 -----------
@@ -365,7 +372,7 @@
 
 
 |¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯|
-|            Part 08 - Detailed Game Information             |
+|            Part 09 - Detailed Game Information             |
 |____________________________________________________________|
 
 ╔=============================================================╗
@@ -5678,7 +5685,7 @@
 
 
 |¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯|
-|             Part 09 - Bootcode Start Adresses              |
+|             Part 10 - Bootcode Start Adresses              |
 |____________________________________________________________|
 
 06.LEGENDRY BankSwitch routine:
@@ -5692,7 +5699,7 @@ Section 3 = $(D)1C41 - $(D)1D40
 
 
 |¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯|
-|                   Part 10 - Reset Vectors                  |
+|                   Part 11 - Reset Vectors                  |
 |____________________________________________________________|
 
   $(8/C)0000    STA $984F (8D 4F 98) (Game)
@@ -5729,7 +5736,7 @@ Section 3 = $(D)1C41 - $(D)1D40
 
 
 |¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯|
-|                 Part 11 - Bits and Adresses                |
+|                 Part 12 - Bits and Adresses                |
 |____________________________________________________________|
 
 ----------
@@ -5880,7 +5887,7 @@ Section 3 = $(D)1C41 - $(D)1D40
 
 
 |¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯|
-|                     Part 12 - Credits                      |
+|                     Part 13 - Credits                      |
 |____________________________________________________________|
 
   * This disassembly wouldn't be possible without the help of the information found on NesDev Wiki.
