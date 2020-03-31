@@ -5771,34 +5771,58 @@ Section 3 = $(D)1C41 - $(D)1D40
 |                   Part 11 - Reset Vectors                  |
 |____________________________________________________________|
 
+  06.LEGENDRY, 08. BROS. II, 10.NINJA 2, 15.FLAPPY, 19.MACROSS, 21.STAR FORCE, 23.NINJA 1, 24.PIPELINE, 27.LODE RUNNER1,
+  28.LODE RUNNER2, 31.KING KONG 3, 32.MAPPY, 34.F-1 RACE, 35.ROAD FIGHTER, 36.PIN BALL, 39.GALAGA, 44.WRESTLE,
+  49.FORMATION Z, 52.FANCY BROS
   $(8/C)0000    STA $984F (8D 4F 98) (Game)
     $(8/C)0003  JMP $D0E4 ($90E4) (4C E4 D0) (Menu)
-  
+
+
+  42.ICE CLIMBER
   $(8/C)0014    STA $984F
     $(8/C)0017  JMP $D0E4 ($90E4)
-  
+
+
+  33.EXCITE BIKE
   $(8/C)0184    STA $984F
     $(8/C)0187  JMP $D0E4 ($90E4)
 
+
+  16.SPARTAN
   $(8/C)0258    STA $984F
     $(8/C)025B  JMP $D0E4 ($90E4)
 
+
+  38.POPEYE
   $(8/C)0649    STA $984F
     $(8/C)C64C  JMP $D0E4 ($90E4)
 
+
+  30.KING KONG 2
   $(8/C)066E    STA $984F
     $(8/C)C671  JMP $D0E4 ($90E4)
 
+
+  29.KING KONG 1
   $(8/C)079E    STA $984F
     $(8/C)C7A1  JMP $D0E4 ($90E4)
 
+
+  25.MAHJONG 2
   $(8/C)0A43    STA $984F
     $(8/C)CA46  JMP $D0E4 ($90E4)
 
+
+  13.1942
   $(B/F)1/3/7F90    STA $984F
     $(B/F))1/3/7F93  This codes ends in the Easter egg part of Galaxian.
-                   The code is modified compared to the original and ends with a JMP $(D)90E4
+                     The code is modified compared to the original and ends with a JMP $(D)90E4
 
+
+  01.ISLANDER, 02.GRADING, 03.P-D FIGHTING, 04.STAR SOLDIER, 05.GOONIES, 07.TETRIS, 09.TWIN BEE, 11.CITY CONECT.,
+  12.B-WINGS, 14.GYROOINE, 17.BOMBER MAN, 18.FRONT LINE, 20.1989GALAXIAN, 22.KUNG-FU, 26.MAHJONG 4, 37.BASE BALL,
+  40.GALAXIAN, 41.PAC-MAN, 43.1989 EXERION, 45.BATTLE CITY, 46.SKY DESTRYOER, 47.CHESS, 48.BALLOON FIGHT, 50.POOYAN,
+  51.CIRCUS TROUPE
   $(7/F)3FF2    STA $984F
     $(7/F)3FF5  JMP $D0E4 ($90E4)
 
