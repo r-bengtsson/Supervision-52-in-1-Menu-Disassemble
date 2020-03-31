@@ -105,68 +105,68 @@ OAM                 = $0200
 ; 06.LEGENDRY, 08. BROS. II, 10.NINJA 2, 15.FLAPPY, 19.MACROSS, 21.STAR FORCE, 23.NINJA 1, 24.PIPELINE, 27.LODE RUNNER1,
 ; 28.LODE RUNNER2, 31.KING KONG 3, 32.MAPPY, 34.F-1 RACE, 35.ROAD FIGHTER, 36.PIN BALL, 39.GALAGA, 44.WRESTLE,
 ; 49.FORMATION Z, 52.FANCY BROS
-.segment "RESETVA"                  ; $8/C000
-    STA $984F
+.segment "RESETVA"                  ; $8/C003
+    ;STA $984F
     JMP ROM_START                   ; $D0E4
 
 
 ; 52-in-1 Reset vector
 ; 42.ICE CLIMBER
-.segment "RESETVB"                  ; $8/C014
-    STA $984F
+.segment "RESETVB"                  ; $8/C017
+;    STA $984F
     JMP ROM_START                   ; $D0E4
 
 
 ; 52-in-1 Reset vector
 ; 33.EXCITE BIKE
-.segment "RESETVC"                  ; $8/C184
-    STA $984F
+.segment "RESETVC"                  ; $8/C187
+;    STA $984F
     JMP ROM_START                   ; $D0E4
 
 
 ; 52-in-1 Reset vector
 ; 16.SPARTAN
-.segment "RESETVD"                  ; $8/C258
-    STA $984F
+.segment "RESETVD"                  ; $8/C25B
+;    STA $984F
     JMP ROM_START                   ; $D0E4
 
 
 ; 52-in-1 Reset vector
 ; 38.POPEYE
-.segment "RESETVE"                  ; $8/C649
-    STA $984F
+.segment "RESETVE"                  ; $8/C64C
+;    STA $984F
     JMP ROM_START                   ; $D0E4
 
 
 ; 52-in-1 Reset vector
 ; 30.KING KONG 2
-.segment "RESETVF"                  ; $8/C66E
-    STA $984F
+.segment "RESETVF"                  ; $8/C671
+;    STA $984F
     JMP ROM_START                   ; $D0E4
 
 
 ; 52-in-1 Reset vector
 ; 29.KING KONG 1
-.segment "RESETVG"                  ; $8/C79E
-    STA $984F
+.segment "RESETVG"                  ; $8/C7A1
+;    STA $984F
     JMP ROM_START                   ; $D0E4
 
 
 ; 52-in-1 Reset vector
 ; 25.MAHJONG 2
-.segment "RESETVH"                  ; $8/CA43
-    STA $984F
+.segment "RESETVH"                  ; $8/CA46
+;    STA $984F
     JMP ROM_START                   ; $D0E4
 
 
 ; 52-in-1 Reset vector
-; This needs to be uncommented if 'Galaxian' part of rom is removed.
+; JMP $ROM_START needs to be uncommented if 'Galaxian' part of rom is removed.
 ; The reason is to keep 1942 reset vector compability
 ; 13.1942
-;.segment "RESETVI"                 ; $3/7/B/FF90 (1942)
+;.segment "RESETVI"                 ; $3/7/B/FF93 (1942)
 ;RESET:
 ;    STA $984F                      ; Mapper Call
-;    JMP ROM_START                  ; Jump to beginning
+;    JMP ROM_START                  ; $D0E4
 
 
 ; 52-in-1 Reset vector
@@ -177,7 +177,7 @@ OAM                 = $0200
 .segment "RESETVJ"                  ; $3/7/B/FFF2
 RESET:
     STA $984F                       ; Mapper Call
-    JMP ROM_START                   ; Jump to beginning
+    JMP ROM_START                   ; $D0E4
 
 
 ; ===================================================================================================
@@ -199,55 +199,58 @@ RESET:
 ; Just remember that you need to uncomment segment "RESETVI" $FF90 for
 ; the reset vector to work with 1942.
 
+; Garbage data
+.segment "GARBAGEA"                     ; $C000
+    .incbin "./includes/Garbage 01 0000-0002.bin"
 
 ; Garbage data
-.segment "GARBAGEA"                     ; $C006
-    .incbin "./includes/01 0006-0013.bin"
-
-
-; Garbage data
-.segment "GARBAGEB"                     ; $C01A
-    .incbin "./includes/02 001A-0183.bin"
+.segment "GARBAGEB"                     ; $C006
+    .incbin "./includes/Garbage 02 0006-0016.bin"
 
 
 ; Garbage data
-.segment "GARBAGEC"                     ; $C18A
-    .incbin "./includes/03 018A-0257.bin"
+.segment "GARBAGEC"                     ; $C01A
+    .incbin "./includes/Garbage 03 001A-0186.bin"
 
 
 ; Garbage data
-.segment "GARBAGED"                     ; $C25E
-    .incbin "./includes/04 025E-0648.bin"
+.segment "GARBAGED"                     ; $C18A
+    .incbin "./includes/Garbage 04 018A-025A.bin"
 
 
 ; Garbage data
-.segment "GARBAGEE"                     ; $C64F
-    .incbin "./includes/05 064F-066D.bin"
+.segment "GARBAGEE"                     ; $C25E
+    .incbin "./includes/Garbage 05 025E-064B.bin"
 
 
 ; Garbage data
-.segment "GARBAGEF"                     ; $C674
-    .incbin "./includes/06 0674-079D.bin"
+.segment "GARBAGEF"                     ; $C64F
+    .incbin "./includes/Garbage 06 064F-0670.bin"
 
 
 ; Garbage data
-.segment "GARBAGEG"                     ; $C7A4
-    .incbin "./includes/07 07A4-0A42.bin"
+.segment "GARBAGEG"                     ; $C674
+    .incbin "./includes/Garbage 07 0674-07A0.bin"
 
 
 ; Garbage data
-.segment "GARBAGEH"                     ; $CA49
-    .incbin "./includes/08 0A49-0FFF.bin"
+.segment "GARBAGEH"                     ; $C7A4
+    .incbin "./includes/Garbage 08 07A4-0A45.bin"
 
 
 ; Garbage data
-.segment "GARBAGEI"                     ; $D099
-    .incbin "./includes/10 1099-10A2.bin"
+.segment "GARBAGEI"                     ; $CA49
+    .incbin "./includes/Garbage 09 0A49-0FFF.bin"
 
 
 ; Garbage data
-.segment "GARBAGEJ"                     ; $DD41
-    .incbin "./includes/11 1D41-1FFF.bin"
+.segment "GARBAGEJ"                     ; $D099
+    .incbin "./includes/Garbage 10 1099-10A2.bin"
+
+
+; Garbage data
+.segment "GARBAGEK"                     ; $DD41
+    .incbin "./includes/Garbage 11 1D41-1FFF.bin"
 
 
 
@@ -263,12 +266,12 @@ RESET:
 
 ; Galaxian - Extra code
 .segment "GALAXIANA"                ; $CA49
-    .incbin "./includes/09 1000-107A.bin"
+    .incbin "./includes/Galaxian 01 1000-107A.bin"
 
 
 ; Galaxian - Main code
 .segment "GALAXIANB"                ; $E000
-    .incbin "./includes/12 2000-3FF1.bin"
+    .incbin "./includes/Galaxian 02 2000-3FF1.bin"
 
 
 

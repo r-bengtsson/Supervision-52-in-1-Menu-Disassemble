@@ -211,12 +211,19 @@
   The easiest way is to find an entry that has the same PRG/CHR size as the intended replacement game.
 
   The first thing you need to change in the ROM is to place a bankswitch call to $984F (52-in-1 Menu ROM) at the reset vector of the game.
-  The best place to put the bankswitch call (8D 4F 98) is at adress $FFF2, and then change the reset vector at $FFFC to F2 FF.
+  The best place to put the bankswitch call is at adress $FFF2, and then change the reset vector at $FFFC to F2 FF.
+  The bankswitch call is STA $984F (8D 4F 98)
+
+  After you have put the bankswitch call in the game, then you need to add a JMP to the start of the menu code in the 52-in-1 ROM space.
+  The place you add it is exactly 3 bytes after the last byte of the bankswitch call in the game ROM space.
+  If you put the bankswitch call at $FFF2 as described above, then the jump routine needs to start at $FFF5.
+  The jump code is JMP $D0E4 (4C E4 D0).
 
   If the space at $FFF2 is not available, then you have to put the bankswitch call at the original reset vector. Check the reset vector adress at $FFFC.
   Dont forget to save the original code that already exists at the reset vector though, because you need to store that in the entries bootcode data to be loaded in
   the boot game sequence.
-  
+
+
   The format of the bootcode is like follows:
   1. Bankswitch call to the correct PRG/CHR adress with the correct mirroring and PRG mode, use a binary to hex converter for this.
      Example: 8D 08 81 (STA $8108)
@@ -256,24 +263,26 @@
   52-in-1 Menu.chr            - The CHR ROM.
   52-in-1 Menu.tbl            - Table file for the ROM. Can be used in for example Mesen.
   
-  Garbage code, presumable safe to remove to get extra space.
+  Garbage code, presumable safe to remove to get extra space. Leftovers from 4 Nin Uchi Mahjong (Japan).nes that was hacked
+  to create the 52-in-1 Menu.
   Only included to compile to 1:1 copy of original.
-  ./includes/01 0006-0013.bin
-  ./includes/02 001A-0183.bin
-  ./includes/03 018A-0257.bin
-  ./includes/04 025E-0648.bin
-  ./includes/05 064F-066D.bin
-  ./includes/06 0674-079D.bin
-  ./includes/07 07A4-0A42.bin
-  ./includes/08 0A49-0FFF.bin
-  ./includes/10 1099-10A2.bin
-  ./includes/11 1D41-1FFF.bin
+  ./includes/Garbage 01 0000-0002.bin
+  ./includes/Garbage 02 0006-0016.bin
+  ./includes/Garbage 03 001A-0186.bin
+  ./includes/Garbage 04 018A-025A.bin
+  ./includes/Garbage 05 025E-064B.bin
+  ./includes/Garbage 06 064F-0670.bin
+  ./includes/Garbage 07 0674-07A0.bin
+  ./includes/Garbage 08 07A4-0A45.bin
+  ./includes/Garbage 09 0A49-0FFF.bin
+  ./includes/Garbage 10 1099-10A2.bin
+  ./includes/Garbage 11 1D41-1FFF.bin
   
-  ./includes/09 1000-107A.bin - First part of Galaxian, extra code.
-  ./includes/12 2000-3FF1.bin - Second part of Galaxian, main code.
+  ./includes/Galaxian 01 1000-107A.bin - First part of Galaxian, extra code.
+  ./includes/Galaxian 02 2000-3FF1.bin - Second part of Galaxian, main code.
   
-  ./libs/IO-definitions.inc   - Commonly used definitions
-  ./libs/iNES-header.inc      - iNES header data, needs variables set in 52-in-1 Menu.asm.
+  ./libs/IO-definitions.inc            - Commonly used definitions
+  ./libs/iNES-header.inc               - iNES header data, needs variables set in 52-in-1 Menu.asm.
 
 
  ------------------
@@ -283,6 +292,7 @@
   
   Reset vectors               - The Reset vectors resides in the segments 'RESETVA', 'RESETVB', 'RESETVC', 'RESETVD', 'RESETVE',
                                 'RESETVF', 'RESETVG', 'RESETVH', 'RESETVI' and 'RESETVJ'.
+                                
                                 These are adresses where games go to when reset is pressed on the console.
                                 When the reset button on the console is pressed, the game will reset to the menu.
                                 This is handled via the reset vectors in the games. When reset is pressed, the code will jump
@@ -297,21 +307,23 @@
                                 All original reset vectors are specified at 'Part 11 - Reset Vectors'.
   
   Garbage data                - The Garbage data resides in the segments 'GARBAGEA', 'GARBAGEB', 'GARBAGEC', 'GARBAGED', 'GARBAGEE',
-                                'GARBAGEF', 'GARBAGEG', 'GARBAGEH', 'GARBAGEI' and 'GARBAGEJ'.
-                                Probably leftover code from the Hudson Soft game used to hack to the 52-in-1 menu.
+                                'GARBAGEF', 'GARBAGEG', 'GARBAGEH', 'GARBAGEI', 'GARBAGEJ' and 'GARBAGEK'.
+                                
+                                Leftover code from the Hudson Soft title 4 Nin Uchi Mahjong used to hack to the 52-in-1 menu.
                                 There are no vital code/data in these includes as far as I can tell, and should be safe to remove
                                 to free some extra space if you would like to expand the code.
 
   Galaxian code               - The Galaxian resides in the segments 'GALAXIANA' and 'GALAXIANB'.
+                                
                                 Since both the 52-in-1 menu and Galaxian has a small code size, they both fit perfectly within the
-                                NROM-128 format, which is 16kB. The main Galaxian code (12 2000-3FF1.bin) are located between
+                                NROM-128 format, which is 16kB. The main Galaxian code (Galaxian 02 2000-3FF1.bin) are located between
                                 $2000-$3FF1, and they both share the reset vectors.
                                 Galaxian also uses the same NMI start as the menu. One of the first things the menu does when it runs
                                 the boot sequence for a game is to store #$A5 to $1B, and #$5A to $1C. When Galaxian enters the
                                 52-in-1 menu's NMI, it checks whether those values has been set. If so, then NMI knows it has booted
                                 a game and jumps to Galaxians NMI. It really doesn't care which game has been booted, but it
                                 doesn't matter since Galaxian is the only game that coresides in the same ROM space as the menu.
-                                Extra Galaxian code (09 1000-107A.bin) are located at $1000 - $107A.
+                                Extra Galaxian code (Galaxian 01 1000-107A.bin) are located at $1000 - $107A.
 
   Menu code                   - The source code for the menu resides in segments 'CODEA', 'CODEB', 'CODEC', 'RODATAA', 'RODATAB',
                                 'VECTORS' and 'TILES'.
