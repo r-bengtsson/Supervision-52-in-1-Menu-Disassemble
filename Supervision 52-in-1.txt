@@ -278,7 +278,7 @@
   ./includes/Garbage 10 1099-10A2.bin
   ./includes/Garbage 11 1D41-1FFF.bin
   
-  ./includes/Galaxian 01 1000-107A.bin - First part of Galaxian, extra code.
+  ./includes/Galaxian 01 1000-107A.asm - First part of Galaxian, extra code. Disassembled.
   ./includes/Galaxian 02 2000-3FF1.bin - Second part of Galaxian, main code.
   
   ./libs/IO-definitions.inc            - Commonly used definitions
@@ -323,7 +323,7 @@
                                 52-in-1 menu's NMI, it checks whether those values has been set. If so, then NMI knows it has booted
                                 a game and jumps to Galaxians NMI. It really doesn't care which game has been booted, but it
                                 doesn't matter since Galaxian is the only game that coresides in the same ROM space as the menu.
-                                Extra Galaxian code (Galaxian 01 1000-107A.bin) are located at $1000 - $107A.
+                                Extra Galaxian code (Galaxian 01 1000-107A.asm) are located at $1000 - $107A.
 
   Menu code                   - The source code for the menu resides in segments 'CODEA', 'CODEB', 'CODEC', 'RODATAA', 'RODATAB',
                                 'VECTORS' and 'TILES'.

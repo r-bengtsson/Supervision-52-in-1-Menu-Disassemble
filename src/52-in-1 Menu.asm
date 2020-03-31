@@ -88,7 +88,7 @@ PPUCNTRLByte        = $FF           ;
 ; -------------------
 
 .segment "OAM"
-OAM                 = $0200
+OAM                 = $0200         ;
 
 
 ; ===================================================================================================
@@ -106,7 +106,7 @@ OAM                 = $0200
 ; 28.LODE RUNNER2, 31.KING KONG 3, 32.MAPPY, 34.F-1 RACE, 35.ROAD FIGHTER, 36.PIN BALL, 39.GALAGA, 44.WRESTLE,
 ; 49.FORMATION Z, 52.FANCY BROS
 .segment "RESETVA"                  ; $8/C003
-    ;STA $984F
+;    STA $984F
     JMP ROM_START                   ; $D0E4
 
 
@@ -266,7 +266,7 @@ RESET:
 
 ; Galaxian - Extra code
 .segment "GALAXIANA"                ; $CA49
-    .incbin "./includes/Galaxian 01 1000-107A.bin"
+    .include "./includes/Galaxian 01 1000-107A.asm"
 
 
 ; Galaxian - Main code
