@@ -188,69 +188,69 @@ RESET:
 
 
 ; ===================================================================================================
-; Binary includes: Garbage data
+; Binary includes: 4 Nin Uchi Mahjong leftovers
 ; ===================================================================================================
 
-; Included binaries that are named 'Garbage data'
-; are completly safe to remove (I havent found any dependency in them atleast).
+; These included binaries are completly safe to remove
+; (I havent found any dependency in them atleast).
 ; They are included for the source to compile to a 1:1 copy of the original
 ;
 ; If you want to remove Galaxian, just remove the two included Galaxian parts.
 ; Just remember that you need to uncomment segment "RESETVI" $FF90 for
 ; the reset vector to work with 1942.
 
-; Garbage data
-.segment "GARBAGEA"                     ; $C000
-    .incbin "./includes/Garbage 01 0000-0002.bin"
+; 4 Nin Uchi Mahjong data
+.segment "MAHJONGA"                     ; $C000
+    .incbin "./includes/4 Nin Uchi Mahjong 01 0000-0002.bin"
 
-; Garbage data
-.segment "GARBAGEB"                     ; $C006
-    .incbin "./includes/Garbage 02 0006-0016.bin"
-
-
-; Garbage data
-.segment "GARBAGEC"                     ; $C01A
-    .incbin "./includes/Garbage 03 001A-0186.bin"
+; 4 Nin Uchi Mahjong data
+.segment "MAHJONGB"                     ; $C006
+    .incbin "./includes/4 Nin Uchi Mahjong 02 0006-0016.bin"
 
 
-; Garbage data
-.segment "GARBAGED"                     ; $C18A
-    .incbin "./includes/Garbage 04 018A-025A.bin"
+; 4 Nin Uchi Mahjong data
+.segment "MAHJONGC"                     ; $C01A
+    .incbin "./includes/4 Nin Uchi Mahjong 03 001A-0186.bin"
 
 
-; Garbage data
-.segment "GARBAGEE"                     ; $C25E
-    .incbin "./includes/Garbage 05 025E-064B.bin"
+; 4 Nin Uchi Mahjong data
+.segment "MAHJONGD"                     ; $C18A
+    .incbin "./includes/4 Nin Uchi Mahjong 04 018A-025A.bin"
 
 
-; Garbage data
-.segment "GARBAGEF"                     ; $C64F
-    .incbin "./includes/Garbage 06 064F-0670.bin"
+; 4 Nin Uchi Mahjong data
+.segment "MAHJONGE"                     ; $C25E
+    .incbin "./includes/4 Nin Uchi Mahjong 05 025E-064B.bin"
 
 
-; Garbage data
-.segment "GARBAGEG"                     ; $C674
-    .incbin "./includes/Garbage 07 0674-07A0.bin"
+; 4 Nin Uchi Mahjong data
+.segment "MAHJONGF"                     ; $C64F
+    .incbin "./includes/4 Nin Uchi Mahjong 06 064F-0670.bin"
 
 
-; Garbage data
-.segment "GARBAGEH"                     ; $C7A4
-    .incbin "./includes/Garbage 08 07A4-0A45.bin"
+; 4 Nin Uchi Mahjong data
+.segment "MAHJONGG"                     ; $C674
+    .incbin "./includes/4 Nin Uchi Mahjong 07 0674-07A0.bin"
 
 
-; Garbage data
-.segment "GARBAGEI"                     ; $CA49
-    .incbin "./includes/Garbage 09 0A49-0FFF.bin"
+; 4 Nin Uchi Mahjong data
+.segment "MAHJONGH"                     ; $C7A4
+    .incbin "./includes/4 Nin Uchi Mahjong 08 07A4-0A45.bin"
 
 
-; Garbage data
-.segment "GARBAGEJ"                     ; $D099
-    .incbin "./includes/Garbage 10 1099-10A2.bin"
+; 4 Nin Uchi Mahjong data
+.segment "MAHJONGI"                     ; $CA49
+    .incbin "./includes/4 Nin Uchi Mahjong 09 0A49-0FFF.bin"
 
 
-; Garbage data
-.segment "GARBAGEK"                     ; $DD41
-    .incbin "./includes/Garbage 11 1D41-1FFF.bin"
+; 4 Nin Uchi Mahjong data
+.segment "MAHJONGJ"                     ; $D099
+    .incbin "./includes/4 Nin Uchi Mahjong 10 1099-10A2.bin"
+
+
+; 4 Nin Uchi Mahjong data
+.segment "MAHJONGK"                     ; $DD41
+    .incbin "./includes/4 Nin Uchi Mahjong 11 1D41-1FFF.bin"
 
 
 

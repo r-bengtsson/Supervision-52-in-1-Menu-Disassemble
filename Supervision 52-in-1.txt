@@ -263,20 +263,19 @@
   52-in-1 Menu.chr            - The CHR ROM.
   52-in-1 Menu.tbl            - Table file for the ROM. Can be used in for example Mesen.
   
-  Garbage code, presumable safe to remove to get extra space. Leftovers from 4 Nin Uchi Mahjong (Japan).nes that was hacked
-  to create the 52-in-1 Menu.
-  Only included to compile to 1:1 copy of original.
-  ./includes/Garbage 01 0000-0002.bin
-  ./includes/Garbage 02 0006-0016.bin
-  ./includes/Garbage 03 001A-0186.bin
-  ./includes/Garbage 04 018A-025A.bin
-  ./includes/Garbage 05 025E-064B.bin
-  ./includes/Garbage 06 064F-0670.bin
-  ./includes/Garbage 07 0674-07A0.bin
-  ./includes/Garbage 08 07A4-0A45.bin
-  ./includes/Garbage 09 0A49-0FFF.bin
-  ./includes/Garbage 10 1099-10A2.bin
-  ./includes/Garbage 11 1D41-1FFF.bin
+  Leftovers from 4 Nin Uchi Mahjong (Japan).nes that probably was use as a base for the menu code.
+  This code is presumable safe to remove to get extra space and is only included to compile to 1:1 copy of original.
+  ./includes/4 Nin Uchi Mahjong 01 0000-0002.bin
+  ./includes/4 Nin Uchi Mahjong 02 0006-0016.bin
+  ./includes/4 Nin Uchi Mahjong 03 001A-0186.bin
+  ./includes/4 Nin Uchi Mahjong 04 018A-025A.bin
+  ./includes/4 Nin Uchi Mahjong 05 025E-064B.bin
+  ./includes/4 Nin Uchi Mahjong 06 064F-0670.bin
+  ./includes/4 Nin Uchi Mahjong 07 0674-07A0.bin
+  ./includes/4 Nin Uchi Mahjong 08 07A4-0A45.bin
+  ./includes/4 Nin Uchi Mahjong 09 0A49-0FFF.bin
+  ./includes/4 Nin Uchi Mahjong 10 1099-10A2.bin
+  ./includes/4 Nin Uchi Mahjong 11 1D41-1FFF.bin
   
   ./includes/Galaxian 01 1000-107A.asm - First part of Galaxian, extra code. Disassembled.
   ./includes/Galaxian 02 2000-3FF1.bin - Second part of Galaxian, main code.
@@ -306,12 +305,14 @@
                                 in the actual game, not the menu.
                                 All original reset vectors are specified at 'Part 11 - Reset Vectors'.
   
-  Garbage data                - The Garbage data resides in the segments 'GARBAGEA', 'GARBAGEB', 'GARBAGEC', 'GARBAGED', 'GARBAGEE',
-                                'GARBAGEF', 'GARBAGEG', 'GARBAGEH', 'GARBAGEI', 'GARBAGEJ' and 'GARBAGEK'.
+
+4 Nin Uchi Mahjong data       - The leftover data resides in the segments 'MAHJONGA', 'MAHJONGB', 'MAHJONGC', 'MAHJONGD', 'MAHJONGE',
+                                'MAHJONGF', 'MAHJONGG', 'MAHJONGH', 'MAHJONGI', 'MAHJONGJ' and 'MAHJONGK'.
                                 
                                 Leftover code from the Hudson Soft title 4 Nin Uchi Mahjong used to hack to the 52-in-1 menu.
                                 There are no vital code/data in these includes as far as I can tell, and should be safe to remove
                                 to free some extra space if you would like to expand the code.
+
 
   Galaxian code               - The Galaxian resides in the segments 'GALAXIANA' and 'GALAXIANB'.
                                 
@@ -324,6 +325,7 @@
                                 a game and jumps to Galaxians NMI. It really doesn't care which game has been booted, but it
                                 doesn't matter since Galaxian is the only game that coresides in the same ROM space as the menu.
                                 Extra Galaxian code (Galaxian 01 1000-107A.asm) are located at $1000 - $107A.
+
 
   Menu code                   - The source code for the menu resides in segments 'CODEA', 'CODEB', 'CODEC', 'RODATAA', 'RODATAB',
                                 'VECTORS' and 'TILES'.
