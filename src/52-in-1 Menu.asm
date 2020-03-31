@@ -101,6 +101,96 @@ OAM                 = $0200
 ; Reset vectors and binary includes
 ; ===================================================================================================
 
+; 52-in-1 Reset vector
+; 06.LEGENDRY, 08. BROS. II, 10.NINJA 2, 15.FLAPPY, 19.MACROSS, 21.STAR FORCE, 23.NINJA 1, 24.PIPELINE, 27.LODE RUNNER1,
+; 28.LODE RUNNER2, 31.KING KONG 3, 32.MAPPY, 34.F-1 RACE, 35.ROAD FIGHTER, 36.PIN BALL, 39.GALAGA, 44.WRESTLE,
+; 49.FORMATION Z, 52.FANCY BROS
+.segment "RESETVA"                  ; $8/C000
+    STA $984F
+    JMP ROM_START                   ; $D0E4
+
+
+; 52-in-1 Reset vector
+; 42.ICE CLIMBER
+.segment "RESETVB"                  ; $8/C014
+    STA $984F
+    JMP ROM_START                   ; $D0E4
+
+
+; 52-in-1 Reset vector
+; 33.EXCITE BIKE
+.segment "RESETVC"                  ; $8/C184
+    STA $984F
+    JMP ROM_START                   ; $D0E4
+
+
+; 52-in-1 Reset vector
+; 16.SPARTAN
+.segment "RESETVD"                  ; $8/C258
+    STA $984F
+    JMP ROM_START                   ; $D0E4
+
+
+; 52-in-1 Reset vector
+; 38.POPEYE
+.segment "RESETVE"                  ; $8/C649
+    STA $984F
+    JMP ROM_START                   ; $D0E4
+
+
+; 52-in-1 Reset vector
+; 30.KING KONG 2
+.segment "RESETVF"                  ; $8/C66E
+    STA $984F
+    JMP ROM_START                   ; $D0E4
+
+
+; 52-in-1 Reset vector
+; 29.KING KONG 1
+.segment "RESETVG"                  ; $8/C79E
+    STA $984F
+    JMP ROM_START                   ; $D0E4
+
+
+; 52-in-1 Reset vector
+; 25.MAHJONG 2
+.segment "RESETVH"                  ; $8/CA43
+    STA $984F
+    JMP ROM_START                   ; $D0E4
+
+
+; 52-in-1 Reset vector
+; This needs to be uncommented if 'Galaxian' part of rom is removed.
+; The reason is to keep 1942 reset vector compability
+; 13.1942
+;.segment "RESETVI"                 ; $3/7/B/FF90 (1942)
+;RESET:
+;    STA $984F                      ; Mapper Call
+;    JMP ROM_START                  ; Jump to beginning
+
+
+; 52-in-1 Reset vector
+; 01.ISLANDER, 02.GRADING, 03.P-D FIGHTING, 04.STAR SOLDIER, 05.GOONIES, 07.TETRIS, 09.TWIN BEE, 11.CITY CONECT.,
+; 12.B-WINGS, 14.GYROOINE, 17.BOMBER MAN, 18.FRONT LINE, 20.1989GALAXIAN, 22.KUNG-FU, 26.MAHJONG 4, 37.BASE BALL,
+; 40.GALAXIAN, 41.PAC-MAN, 43.1989 EXERION, 45.BATTLE CITY, 46.SKY DESTRYOER, 47.CHESS, 48.BALLOON FIGHT, 50.POOYAN,
+; 51.CIRCUS TROUPE
+.segment "RESETVJ"                  ; $3/7/B/FFF2
+RESET:
+    STA $984F                       ; Mapper Call
+    JMP ROM_START                   ; Jump to beginning
+
+
+; ===================================================================================================
+; ===================================================================================================
+; ===================================================================================================
+
+
+
+
+; ===================================================================================================
+; Binary includes: Garbage data
+; ===================================================================================================
+
 ; Included binaries that are named 'Garbage data'
 ; are completly safe to remove (I havent found any dependency in them atleast).
 ; They are included for the source to compile to a 1:1 copy of the original
@@ -109,21 +199,10 @@ OAM                 = $0200
 ; Just remember that you need to uncomment segment "RESETVI" $FF90 for
 ; the reset vector to work with 1942.
 
-; 52-in-1 Reset vector
-.segment "RESETVA"                  ; $C000
-    STA $984F
-    JMP $D0E4
-
 
 ; Garbage data
 .segment "GARBAGEA"                     ; $C006
     .incbin "./includes/01 0006-0013.bin"
-
-
-; 52-in-1 Reset vector
-.segment "RESETVB"                  ; $C014
-    STA $984F
-    JMP $D0E4
 
 
 ; Garbage data
@@ -131,21 +210,9 @@ OAM                 = $0200
     .incbin "./includes/02 001A-0183.bin"
 
 
-; 52-in-1 Reset vector
-.segment "RESETVC"                  ; $C184
-    STA $984F
-    JMP $D0E4
-
-
 ; Garbage data
 .segment "GARBAGEC"                     ; $C18A
     .incbin "./includes/03 018A-0257.bin"
-
-
-; 52-in-1 Reset vector
-.segment "RESETVD"                  ; $C258
-    STA $984F
-    JMP $D0E4
 
 
 ; Garbage data
@@ -153,21 +220,9 @@ OAM                 = $0200
     .incbin "./includes/04 025E-0648.bin"
 
 
-; 52-in-1 Reset vector
-.segment "RESETVE"                  ; $C649
-    STA $984F
-    JMP $D0E4
-
-
 ; Garbage data
 .segment "GARBAGEE"                     ; $C64F
     .incbin "./includes/05 064F-066D.bin"
-
-
-; 52-in-1 Reset vector
-.segment "RESETVF"                  ; $C66E
-    STA $984F
-    JMP $D0E4
 
 
 ; Garbage data
@@ -175,21 +230,9 @@ OAM                 = $0200
     .incbin "./includes/06 0674-079D.bin"
 
 
-; 52-in-1 Reset vector
-.segment "RESETVG"                  ; $C79E
-    STA $984F
-    JMP $D0E4
-
-
 ; Garbage data
 .segment "GARBAGEG"                     ; $C7A4
     .incbin "./includes/07 07A4-0A42.bin"
-
-
-; 52-in-1 Reset vector
-.segment "RESETVH"                  ; $CA43
-    STA $984F
-    JMP $D0E4
 
 
 ; Garbage data
@@ -197,12 +240,36 @@ OAM                 = $0200
     .incbin "./includes/08 0A49-0FFF.bin"
 
 
+; Garbage data
+.segment "GARBAGEI"                     ; $D099
+    .incbin "./includes/10 1099-10A2.bin"
+
+
+; Garbage data
+.segment "GARBAGEJ"                     ; $DD41
+    .incbin "./includes/11 1D41-1FFF.bin"
+
+
+
+; ===================================================================================================
+; ===================================================================================================
+; ===================================================================================================
+
+
+
+; ===================================================================================================
+; Galaxian
+; ===================================================================================================
+
 ; Galaxian - Extra code
 .segment "GALAXIANA"                ; $CA49
     .incbin "./includes/09 1000-107A.bin"
 
 
-; ----------------------------------
+; Galaxian - Main code
+.segment "GALAXIANB"                ; $E000
+    .incbin "./includes/12 2000-3FF1.bin"
+
 
 
 ; ===================================================================================================
@@ -270,22 +337,6 @@ RTS
 
 
 ; ------------------------------------------------
-
-; ===================================================================================================
-; ===================================================================================================
-; ===================================================================================================
-
-
-; ===================================================================================================
-; Binary include
-; ===================================================================================================
-
-; This one is safe to remove
-
-; Garbage data
-.segment "GARBAGEI"                     ; $D099
-    .incbin "./includes/10 1099-10A2.bin"
-
 
 ; ===================================================================================================
 ; ===================================================================================================
@@ -2482,43 +2533,6 @@ BootGameBootSequencesSection3:
 ; 8D BE 9F 4C 00 C0 9C A2 00 20 FC F6 B0 12 E6 9C
 ; 8D FF 9F 4C 00 C0 09 E6 9C A2 00 20 FC F6 90 08
 ; 8D 94 A3 78 D8 A9 10 4C 04 80 A0 2E B1 A2 F0 22
-
-; ===================================================================================================
-; ===================================================================================================
-; ===================================================================================================
-
-
-; ===================================================================================================
-; More included binaries and reset vectors
-; ===================================================================================================
-
-; This one is safe to remove
-
-; Garbage data
-.segment "GARBAGEJ"                     ; $DD41
-    .incbin "./includes/11 1D41-1FFF.bin"
-
-
-; Galaxian - Main code
-.segment "GALAXIANB"                ; $E000
-    .incbin "./includes/12 2000-3FF1.bin"
-
-
-; 52-in-1 Reset vector
-; This needs to be uncommented if 'Galaxian' part of rom is removed.
-; The reason is to keep 1942 reset vector compability
-;.segment "RESETVI"                 ; $FF90 (1942)
-;RESET:
-;    STA $984F                      ; Mapper Call
-;    JMP ROM_START                  ; Jump to beginning
-
-
-; 52-in-1 Reset vector
-.segment "RESETVJ"                  ; $FFF2
-RESET:
-    STA $984F                       ; Mapper Call
-    JMP ROM_START                   ; Jump to beginning
-
 
 ; ===================================================================================================
 ; ===================================================================================================
