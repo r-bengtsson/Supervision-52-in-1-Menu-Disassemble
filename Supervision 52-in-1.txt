@@ -290,16 +290,17 @@
                                 adress $FFF2, but sometimes this needs to be at the original reset vector.
                                 The code for STA $984F needs to be at the reset vector. This changes the banks to the 52-in-1 menu.
                                 The code for JMP $D0E4 (ROM_START) is located after the bankchange, which jumps to the menu init code
-                                and runs the menu.
-                                Therefore, you need to set JMP $D0E4 (ROM_START) after each reset vector in every game you add.
-                                If not, then the game will reset to itself instead of the menu.
+                                and runs the menu. Therefore, you need to set JMP $D0E4 (ROM_START) after each reset vector in every
+                                game you add. If not, then the game will reset to itself instead of the menu.
+                                I added STA $984F code before the JMP, but the code will not execute since the STA code resides
+                                in the actual game, not the menu.
                                 All original reset vectors are specified at 'Part 11 - Reset Vectors'.
   
   Garbage data                - The Garbage data resides in the segments 'GARBAGEA', 'GARBAGEB', 'GARBAGEC', 'GARBAGED', 'GARBAGEE',
                                 'GARBAGEF', 'GARBAGEG', 'GARBAGEH', 'GARBAGEI' and 'GARBAGEJ'.
-                                Leftover code from the Hudson Soft game used to hack to the 52-in-1 menu. There are no vital code/data
-                                in these includes as far as I can tell, and should be safe to remove to free some extra space if
-                                you would like to expand the code.
+                                Probably leftover code from the Hudson Soft game used to hack to the 52-in-1 menu.
+                                There are no vital code/data in these includes as far as I can tell, and should be safe to remove
+                                to free some extra space if you would like to expand the code.
 
   Galaxian code               - The Galaxian resides in the segments 'GALAXIANA' and 'GALAXIANB'.
                                 Since both the 52-in-1 menu and Galaxian has a small code size, they both fit perfectly within the
