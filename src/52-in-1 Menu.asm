@@ -116,7 +116,7 @@ OAM                 = $0200
 
 
 ; Garbage data
-.segment "BINA"                     ; $C006
+.segment "GARBAGEA"                     ; $C006
     .incbin "./includes/01 0006-0013.bin"
 
 
@@ -127,7 +127,7 @@ OAM                 = $0200
 
 
 ; Garbage data
-.segment "BINB"                     ; $C01A
+.segment "GARBAGEB"                     ; $C01A
     .incbin "./includes/02 001A-0183.bin"
 
 
@@ -138,7 +138,7 @@ OAM                 = $0200
 
 
 ; Garbage data
-.segment "BINC"                     ; $C18A
+.segment "GARBAGEC"                     ; $C18A
     .incbin "./includes/03 018A-0257.bin"
 
 
@@ -149,7 +149,7 @@ OAM                 = $0200
 
 
 ; Garbage data
-.segment "BIND"                     ; $C25E
+.segment "GARBAGED"                     ; $C25E
     .incbin "./includes/04 025E-0648.bin"
 
 
@@ -160,7 +160,7 @@ OAM                 = $0200
 
 
 ; Garbage data
-.segment "BINE"                     ; $C64F
+.segment "GARBAGEE"                     ; $C64F
     .incbin "./includes/05 064F-066D.bin"
 
 
@@ -171,7 +171,7 @@ OAM                 = $0200
 
 
 ; Garbage data
-.segment "BINF"                     ; $C674
+.segment "GARBAGEF"                     ; $C674
     .incbin "./includes/06 0674-079D.bin"
 
 
@@ -182,7 +182,7 @@ OAM                 = $0200
 
 
 ; Garbage data
-.segment "BING"                     ; $C7A4
+.segment "GARBAGEG"                     ; $C7A4
     .incbin "./includes/07 07A4-0A42.bin"
 
 
@@ -193,7 +193,7 @@ OAM                 = $0200
 
 
 ; Garbage data
-.segment "BINH"                     ; $CA49
+.segment "GARBAGEH"                     ; $CA49
     .incbin "./includes/08 0A49-0FFF.bin"
 
 
@@ -283,7 +283,7 @@ RTS
 ; This one is safe to remove
 
 ; Garbage data
-.segment "BINJ"                     ; $D099
+.segment "GARBAGEI"                     ; $D099
     .incbin "./includes/10 1099-10A2.bin"
 
 
@@ -2495,7 +2495,7 @@ BootGameBootSequencesSection3:
 ; This one is safe to remove
 
 ; Garbage data
-.segment "BINK"                     ; $DD41
+.segment "GARBAGEJ"                     ; $DD41
     .incbin "./includes/11 1D41-1FFF.bin"
 
 
