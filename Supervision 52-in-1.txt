@@ -309,7 +309,7 @@
 4 Nin Uchi Mahjong data       - The leftover data resides in the segments 'MAHJONGA', 'MAHJONGB', 'MAHJONGC', 'MAHJONGD', 'MAHJONGE',
                                 'MAHJONGF', 'MAHJONGG', 'MAHJONGH', 'MAHJONGI', 'MAHJONGJ' and 'MAHJONGK'.
                                 
-                                Leftover code from the Hudson Soft title 4 Nin Uchi Mahjong used to hack to the 52-in-1 menu.
+                                Leftover code from the Hudson Soft title 4 Nin Uchi Mahjong used as a base for the 52-in-1 menu.
                                 There are no vital code/data in these includes as far as I can tell, and should be safe to remove
                                 to free some extra space if you would like to expand the code.
 
