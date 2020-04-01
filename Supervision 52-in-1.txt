@@ -125,6 +125,8 @@
 
   52.FANCY BROS:   Same as 08.BROS. II, but with mirroring set to horizontal instead of vertical.
 
+  The 52-in-1 menu uses CHR bank 2 of 05.GOONIES
+
 
 
 |¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯|
@@ -478,7 +480,7 @@
   These needs to be set: $1B = #$A5, and $1C = #$5A for the ROM to make
   the jump to Galaxian NMI.
 
-  The CHR is shared with 05.GOONIES
+  The CHR is bank 2 of 05.GOONIES CHR.
 
 ╚=============================================================╝
 

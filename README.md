@@ -7,7 +7,7 @@ A disassemble and analysis of the NES multicart Supervision 52-in-1
 ## Files
 
 * `Supervision 52-in-1.txt`:
-Description of mapper, how the menu works and differences between original game ROM and 52-in-1 variant
+Description of mapper, how the menu works and differences between original game ROM and 52-in-1 variants
 
 * `make.bat`:
 Customizable makefile for the project. Change `@set ca65="D:\NESDev\cc65\bin"` to the location of your ca65 bin folder and create directories `.\tmp` and `.\dist\` in the root folder of the project.
@@ -18,7 +18,7 @@ Customizable runfile for the project. Change `@set mesen=D:\Emulators\Mesen` to 
 
 ### Patches
 * `.\patches\`:
-Patches to turn the original games to the 52-in-1 variants and a "restoration" patch for the `Supervision 52-in-1 [p1].nes` ROM.
+Patches to turn the original games to the 52-in-1 variants and a "restoration" patch for the `Supervision 52-in-1 [p1].nes` ROM (`MD5: 9c23d89727a49a61d5aea3d7cd299b7a`).
 Filenames and MD5 of original files are described in `Supervision 52-in-1.txt`.
 Patches for `20.1989GALAXIAN` and `40.GALAXIAN` Needs to be applied to `52 Games (Menu) (U) [p1].nes` (`MD5: 130bfe84387010b74e1a4217cbc6bb39`).
 
@@ -28,7 +28,7 @@ Patches for `20.1989GALAXIAN` and `40.GALAXIAN` Needs to be applied to `52 Games
 Commented disassemble of the Supervision 52-in-1 Menu. Compiles to a 1/1 copy of the original.
 
 * `.\src\52-in-1 Menu.chr`:
-CHR file. This files contains alot of unused tiles.
+CHR file. This is CHR bank 2 of 05.GOONIES, and resides in the CHR ROM at $1E000 - $1FFFF.
 
 * `.\src\52-in-1 Menu.cfg`:
 Configuration file for NROM-128/52-in-1 Menu.
