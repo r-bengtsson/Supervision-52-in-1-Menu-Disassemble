@@ -133,9 +133,10 @@
 |                      Part 03 - Mapper                      |
 |____________________________________________________________|
 
-  This information is taken from the NesDev wiki:
+  This information is mostly taken from the NesDev wiki:
   [http://wiki.nesdev.com/w/index.php/INES_Mapper_225]
   [http://wiki.nesdev.com/w/index.php/INES_Mapper_255]
+  [https://nesdev.com/225.txt]
 
   Supervision 52-in-1 multicart is assigned mapper 225, which seems to be a duplicate of mapper 255.
   Multicarts that uses these mappers are:
@@ -146,20 +147,32 @@
   * 72-in-1  (225)
   * 110-in-1 (255)
 
+  - This mapper differs from other mappers in that it is not the value, but the adress (between $8000 - $FFFF)
+    that controls the bankswitching, as described in the 'Registers' part.
+  - At powerup, the first 32 kB from the PRG ROM is loaded into $8000,
+    and the first 8 kB from the CHR ROM gets loaded into PPU $0000.
+  - The first thing the program does is to execute the reset code at $FFF2, which contains:
+    STA $984F [1 0 0 1 100001 001111]
+    This changes the PRG bank to the 16 kB between $084000 - $087FF0 (same as Galaxian),
+    and the CHR bank to the 8 kB between $11E000 - $11FFF0 (same as Goonies bank 2).
+  - Vertical mirroring is probably set at powerup.
+
+
  -----------
   Registers
  -----------
   * $5800-$5803:  [.... RRRR]  RAM  (readable/writable) (16 bits of RAM -- 4 bits in each of the 4 regs)
   * $5804-$5FFF:  mirrors $5800-5803
   
-  * $8000-FFFF:  A~[.H M O PPPPPP CCCCCC]
-                     | | | |||||| ||||||
-                     +------------++++++ - Select 8 KiB CHR at PPU $0000
-                     | | | ||||||
-                     +-----++++++------- - Select 16 KiB PRG at CPU $8000 and $C000 if Z=1
-                     +-----+++++-------- - Select 32 KiB PRG at CPU $8000 if Z=0
-                       |-+-------------- - Select PRG bank size: 0-32K 1-16K
-                       +---------------- - Nametable mirroring: 0-PPUA10 ("vertical") 1-PPUA11 ("horizontal")
+  * $8000-FFFF:  [1 H M Z PPPPPP CCCCCC]
+                  | | | | |||||| ||||||
+                  | +------------++++++ - Select 8 KiB CHR at PPU $0000
+                  | | | | ||||||
+                  | +-----++++++------- - Select 16 KiB PRG at CPU $8000 and $C000 if Z=1
+                  | +-----+++++-------- - Select 32 KiB PRG at CPU $8000 if Z=0
+                  |   |-+-------------- - Select PRG bank size: 0-32K 1-16K
+                  |   +---------------- - Nametable mirroring: 0-PPUA10 ("vertical") 1-PPUA11 ("horizontal")
+                  +-------------------- - Always 1
 
 
  -----------
@@ -180,7 +193,6 @@
                +-------------------------------+
   PRG Mode 1:  |     $8000     |     $8000     |
                +---------------+---------------+
-
 
 
 |¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯|
@@ -469,6 +481,10 @@
   PRG:       16 kB
   CHR:       8 kB
   Mirroring: Vertical
+
+  Location:
+  PRG:       $084000 - $087FF0
+  CHR:       $11E000 - $11FFF0
 
  ┌──────────────┐
  │ Information: │
@@ -2997,7 +3013,7 @@
 ╠=====================================================╣
 
   Location:
-  PRG:       $086000 - $087FF0
+  PRG:       $084000 - $087FF0
   CHR:       $144000 - $145FF0
 
   Bootcode ($0400):
@@ -4934,7 +4950,7 @@
 ╠=====================================================╣
 
   Location:
-  PRG:       $084000 - $087FFF
+  PRG:       $084000 - $087FF0
   CHR:       $144000 - $145FFF
 
   Bootcode ($0400):
