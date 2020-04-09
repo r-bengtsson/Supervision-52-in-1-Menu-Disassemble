@@ -3002,6 +3002,8 @@
   Other than that, the two versions are identical.
 
   This enables bullet speed hack and uses a red color for the logo.
+  
+  Code has been added "outside" of the normal 8kB Galaxian ROM space, see 'Galaxian 01 1000-107A.asm'
 
   Part of the easter egg code has been changed to include the reset vector $BF93 for 1942.
 
@@ -3035,7 +3037,7 @@
  -----------
   Graphics:
  -----------
-  # Before Title Screen #1
+  # Before Title Screen #1 (Jump to extra code at $9000)
   Original: $(8)002F  A2 00 8A 95 00
   $(8)002F  LDX #$00     (A2 00)
   $(8)0031  TXA          (84)
@@ -3054,7 +3056,7 @@
   $(8)0177  JSR $D045    (20 45 D0)
 
 
-  # During Game?
+  # During Game? (Jump to extra code at $901D)
   Original: $(8)05A8  A5 4C 3D A0 E5
   $(8)05A8  LDA $4C      (A5 4C)
   $(8)05AA  AND $E5A0, X (3D A0 E5)
@@ -3063,7 +3065,7 @@
   $(8)05A8  JMP $901D    (4C 1D D0)
 
 
-  # Gameplay - Shot routine
+  # Gameplay - Shot routine  (Jump to extra code at $900E)
   Original: $(8)0630  AD 80 02 38 E9 04 8D 80 02 B0 0E
   $(8)0630  LDA $0280    (AD 80 02)
   $(8)0633  SEC          (38)
