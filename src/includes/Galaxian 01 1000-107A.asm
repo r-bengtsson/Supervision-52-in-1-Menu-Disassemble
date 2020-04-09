@@ -1,5 +1,4 @@
 ; Galaxian - Extra code
-.segment "GALAXIANA"                ; $CA49
 ; $9000
 ___F1000:
     LDX #$20
