@@ -586,9 +586,9 @@ ___L918B:
 
 InitializeGame:                     ; Needs Name Change?=================
     LDA #$05
-    STA $5FF0
+    STA $5FF0                       ; Store to CartRAM
     LDA #$0A
-    STA $5FF1
+    STA $5FF1                       ; Store to CartRAM
 
 ; Initialize NameTablePointerData to Position #$00 for backgrounddata
     LDA #$00                                
@@ -600,9 +600,9 @@ InitializeGame:                     ; Needs Name Change?=================
 
     JSR UpdateListSectionPosition
 
-    JSR ScreenAttributesInit
-    JSR LoadPalettes
-    JSR LoadScreenAttributes
+    JSR ScreenAttributesSet
+    JSR PaletteRAMtoPPU
+    JSR ScreenAttributesRAMtoPPU
 
 
     LDA #$00
@@ -766,27 +766,31 @@ RTS
 
 
 
-; ------------------------------
-; --------LoadPalettes()--------
-; ------------------------------
+; ---------------------------------
+; --------PaletteRAMtoPPU()--------
+; ---------------------------------
 
-LoadPalettes:                       ; Perhaps Change name? ==============
-
+PaletteRAMtoPPU:
     LDX #$00
 
+; Sets PPUAddress to write to ($3F00 Palette RAM)
+
+    ; MSB
     LDA #$3F
     STA PPUAddr_2006
 
+    ; LSB
     LDA #$00
     STA PPUAddr_2006
 
 
-@LoadPalettes_Loop:
+; Stores Palette from RAM $0300, X to PPU
+@PaletteRAMtoPPU_Loop:
     LDA $0300, X
     STA PPUData_2007
     INX
     CPX #$14
-BCC @LoadPalettes_Loop
+BCC @PaletteRAMtoPPU_Loop
 
 RTS
 
@@ -795,24 +799,31 @@ RTS
 
 
 
-; --------------------------------------
-; --------LoadScreenAttributes()--------
-; --------------------------------------
+; ------------------------------------------
+; --------ScreenAttributesRAMtoPPU()--------
+; ------------------------------------------
 
-LoadScreenAttributes:
-
+ScreenAttributesRAMtoPPU:
     LDX #$00
+
+; Sets PPUAddress to write to ($23C0 NameTable 0 Attributes part)
+
+    ; MSB
     LDA #$23
     STA PPUAddr_2006
+
+    ; LSB
     LDA #$C0
     STA PPUAddr_2006
 
-@LoadScreenAttributes_Loop:
+
+; Stores Screen Attributes from RAM $03C0, X to PPU
+@ScreenAttributesRAMtoPPU_Loop:
     LDA $03C0,X
     STA PPUData_2007
     INX
     CPX #$40
-BCC @LoadScreenAttributes_Loop
+BCC @ScreenAttributesRAMtoPPU_Loop
 
 RTS
 
@@ -950,49 +961,49 @@ RTS
 
 
 ; --------------------------------------------
-; -----------ScreenAttributesInit()-----------
+; -----------ScreenAttributesSet()-----------
 ; --------------------------------------------
-; Stuff happening here im not 100% sure of
-ScreenAttributesInit:
+ScreenAttributesSet:
     LDX #$10
     LDA #$00
 
-; Reset Screen Attributes
-@ScreenAttributesClear:
+; Reset ScreenAttributes to $00 with start at $03D0 (List text) since top part is bricks
+@ScreenAttributesReset:
     STA $03C0, X
     INX
     CPX #$30
-BCC @ScreenAttributesClear
+BCC @ScreenAttributesReset
 
-; Not sure
-@ScreenAttributesInitializeStore:   ; NAME? ============================
+; Resets $03F0 - $03F7 to (AND with $F0), since that part is shared between bottom bricks and text
+@ScreenAttributesResetBottom:
     LDA $03C0, X
-    AND #$F0
+    AND #%11110000                  ; $F0
     STA $03C0, X
     INX
     CPX #$38
-BCC @ScreenAttributesInitializeStore
+BCC @ScreenAttributesResetBottom
 
-; Load ListSection and check if it Section = 3, if so branch
+; Load ListSection and check if it Section = 3, if so branch (because of different nr of ListPositions)
     LDA ListSection
     CMP #$03
 BEQ ___L1348
 
-    LDY #$D0
+; Check if ListPosition is in left Column (Section 1 - 2)
+    LDY #$D0                        ; AdressLow if in left column
     LDA ListPosition
     CMP #$09
-BCC ___L1312
-
-    LDY #$D4
+BCC ScreenAttributesChangeAttributes
+; Or right Column (Section 1 - 2)
+    LDY #$D4                        ; AdressLow if in right column
     SBC #$09
 
-___L1312:
-    LSR A
-    ROR UNK_36
+ScreenAttributesChangeAttributes:
+    LSR A ; LSR ListPosition that is loaded into A
+    ROR UNK_36                      ; $36
     TAX
 
 ___L1316:
-BEQ @ScreenAttributesSetAdress
+BEQ ScreenAttributesSetAdress
     CLC
     TYA
     ADC #$08
@@ -1000,24 +1011,27 @@ BEQ @ScreenAttributesSetAdress
     DEX
 BPL ___L1316
 
-@ScreenAttributesSetAdress:
+; Sets adress to $03D0 or $03D4 depending on left or right column
+ScreenAttributesSetAdress:
     STY AdressLow
     LDA #$03
     STA AdressHigh
     LDY #$00
 
 ScreenAttributesUpdate:
-    LDA UNK_36
-BMI ___L1334
+    LDA UNK_36                      ; $36
+BMI ScreenAttributesUpdateBottomQuadrant
 
+; Top Quadrant
     LDA (AdressLow), Y
-    ORA #$05
+    ORA #%00000101                  ; $05
     STA (AdressLow), Y
 BNE PaletteColorSectionChange
 
-___L1334:
+; Bottom Quadrant
+ScreenAttributesUpdateBottomQuadrant:
     LDA (AdressLow), Y
-    ORA #$50
+    ORA #%01010000                   ; $50
     STA (AdressLow), Y
 
 ; Change single palette color for each section (S1=RED, S2=GREEN, S3=BLUE)
@@ -1038,16 +1052,18 @@ RTS
 ; 00 16 1A 12 PaletteSectionColors
 
 
+; If ListSection is 3 and in left column (fewer listpositions than section 1 and 2)
 ___L1348:
-    LDY #$D0
+    LDY #$D0                        ; AdressLow if in left column
     LDA ListPosition
     CMP #$08
-BCC ___L1312
+BCC ScreenAttributesChangeAttributes
 
-    LDY #$D4
+; Or right column
+    LDY #$D4                        ; AdressLow if in right column
     SBC #$08
     CLC
-BCC ___L1312
+BCC ScreenAttributesChangeAttributes
 
 
 ; --------------------------------------------
@@ -1064,19 +1080,23 @@ BCC ___L1312
 ; ===================================================================================================
 
 NMI:
-    PHA
+; A Check to see if $1B == #$A5 and $1C == #$5A has been set in BootGame Routine
+; If they are set, then NMI jumps to Galaxian NMI instead of 52-in-1 menu NMI
+    PHA                             ; Push A to stack
     LDA #$A5
-    CMP BootGameCheck1              ; If not $1B == #$A5 branch to NMI_Logic_START
-BNE NMI_Logic_START
+    CMP BootGameCheck1              ; If $1B not #$A5 branch to NMI_52in1 
+BNE NMI_52in1
 
     LDA #$5A
-    CMP BootGameCheck2              ; If not $1C == #$5A branch to NMI_Logic_START
-BNE NMI_Logic_START
-    PLA
+    CMP BootGameCheck2              ; If $1C not #$5A branch to NMI_52in1
+BNE NMI_52in1
+    PLA                             ; Retrieve A from Stack
     JMP $E20C                       ; Jumps to Galaxian which resides in the same 16kb PRG
 
-NMI_Logic_START:
-; Save Y and X to stack and pull them at NMI end
+
+; Start of the menu NMI
+NMI_52in1:
+; Save Y and X to stack and pull them at NMI end (A gets pushed to stack above)
     TYA
     PHA
     TXA
@@ -1098,11 +1118,11 @@ BEQ JoyPadHandleButtonPresses
     CMP ListSection_OLD
 BEQ PPUUpdateAttributesPalettes
 
-; Else store new section into ListSection_OLD
+; Else store new section into ListSection_OLD and clear NameTable
     STA ListSection_OLD
     JSR PPUClearNT
 
-; Reset A to #$00 to start RLE Decoder fresh
+; Reset A to #$00 to start loading background to nametable
     LDA #$00
     JSR RLEDecoder
 
@@ -1111,10 +1131,10 @@ BEQ PPUUpdateAttributesPalettes
     JSR RLEDecoder
 
 
-PPUUpdateAttributesPalettes:
-    JSR ScreenAttributesInit
-    JSR LoadPalettes
-    JSR LoadScreenAttributes
+PPUUpdateAttributesPalettes: ; Not sure if correctly named
+    JSR ScreenAttributesSet
+    JSR PaletteRAMtoPPU
+    JSR ScreenAttributesRAMtoPPU
 
     LDA #$00
     STA PPUScroll_2005              ; Write 1: X Scroll
@@ -2086,6 +2106,8 @@ BootGame:
 BCC @BootGame_Loop
 
 
+; Set values to $1B and $1C. This gets checked in NMI
+; If they are set, NMI skips 52-in-1 menu NMI and goes to galaxians NMI instead.
     LDA #$A5
     STA BootGameCheck1
     LDA #$5A
@@ -2222,7 +2244,7 @@ BCC @BootGameLoadBoodCodeToRAM_Loop
 ; Don't know whats happening here, storing listposition to CartRAM?
     LDA ListPosition
     TAY
-    STA $5FF2
+    STA $5FF2                       ; Store to CartRAM
     TYA
     LSR A
     LSR A
@@ -2233,7 +2255,7 @@ BCC @BootGameLoadBoodCodeToRAM_Loop
     LDA ListSection
     ASL A
     ORA AdressLow
-    STA $5FF3
+    STA $5FF3                       ; Store to CartRAM
 
 ; Resets MSB/LSB to 0
     LDA #$00
