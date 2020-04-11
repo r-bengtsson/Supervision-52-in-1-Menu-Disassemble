@@ -38,44 +38,79 @@ INES_SRAM           = 0             ; 1 = battery backed SRAM at $6000-7FFF
 
 
 ; ===================================================================================================
+; Constants
+; ===================================================================================================
+
+; Last Section
+ConstLastSection                                    = $03
+
+
+; Column Sizes
+ConstListPositionColumnSize                         = $09
+ConstListPositionColumnSizeLastSection              = $08
+
+
+; Game Boot Sequences Starting Adresses
+;Section 1 Boot Sequences
+ConstBootGameBootSequencesStartSection1AdressLow    = $01
+ConstBootGameBootSequencesStartSection1AdressHigh   = $DA
+
+;Section 2 Boot Sequences
+ConstBootGameBootSequencesStartSection2AdressLow    = $21
+ConstBootGameBootSequencesStartSection2AdressHigh   = $DB
+
+;Section 3 Boot Sequences
+ConstBootGameBootSequencesStartSection3AdressLow    = $41
+ConstBootGameBootSequencesStartSection3AdressHigh   = $DC
+
+
+; Galaxian NMI Start
+ConstGalaxianNMI                                    = $E20C
+; ===================================================================================================
+; ===================================================================================================
+; ===================================================================================================
+
+
+
+; ===================================================================================================
 ; ZeroPage and OAM
 ; ===================================================================================================
 
-.segment "ZEROPAGE"                 ; $0000 - $00FF
+.segment "ZEROPAGE"                   ; $0000 - $00FF
 
-AdressHigh          = $01           ; MSB (Most Significant Bytte)
-AdressLow           = $00           ; LSB (Least Significant Byte)
+ZPAdressLow           = $00           ; LSB (Least Significant Byte)
+ZPAdressHigh          = $01           ; MSB (Most Significant Bytte)
 
-BootGameCheck1      = $1B           ; Gets checked in NMI before $1C, if #$A5 then check $1C
-BootGameCheck2      = $1C           ; Gets checked in NMI after $1B, if #$5A JMP $E20C (Galaxian Start), else go to NMI_START
+ZPBootGameCheck1      = $1B           ; Gets checked in NMI before $1C, if #$A5 then check $1C
+ZPBootGameCheck2      = $1C           ; Gets checked in NMI after $1B, if #$5A JMP $E20C (Galaxian Start), else go to NMI_START
 
-UNK_30              = $30           ; OAM? ListSection?
-UNK_31              = $31           ; OAM? ListSection?
+ZPUNK_30              = $30           ; OAM? ListSection?
+ZPUNK_31              = $31           ; OAM? ListSection?
 
-ListSection         = $32           ; Stores current section
-ListSection_OLD     = $3A           ; Stores old section
+ZPListSection         = $32           ; Stores current section
+ZPListSection_OLD     = $3A           ; Stores old section
 
-ListPosition        = $33           ; Stores current list position
-ListPositionY       = $34           ; Stores current list position Y coords
-ListPositionX       = $35           ; Stores current list position X coords
+ZPListPosition        = $33           ; Stores current list position
+ZPListPositionY       = $34           ; Stores current list position Y coords
+ZPListPositionX       = $35           ; Stores current list position X coords
 
-UNK_36              = $36           ; Something with ScreenAttributesUpdate
-JoyPad_Counter      = $37           ; Counts time button has been pressed, processes button again after certain time has passed
+ZPUNK_36              = $36           ; Something with ScreenAttributesUpdate
 
-SoundByte_OLD       = $38           ; Last played sound
-SoundByte           = $39           ; Sound to be played
-
-
-JoyPad1             = $F5           ; 
-JoyPad1_OLD         = $F3           ; 
-JoyPad2             = $F6           ; 
-JoyPad2_OLD         = $F4           ; 
-
-JoyPad_Pressed      = $F7           ; Not sure if correct
+ZPSoundByte_OLD       = $38           ; Last played sound
+ZPSoundByte           = $39           ; Sound to be played
 
 
-PPUMASKByte         = $FE           ; 
-PPUCNTRLByte        = $FF           ; 
+ZPJoyPad1             = $F5           ; 
+ZPJoyPad1_OLD         = $F3           ; 
+ZPJoyPad2             = $F6           ; 
+ZPJoyPad2_OLD         = $F4           ; 
+
+ZPJoyPad_Pressed      = $F7           ; Not sure if correct
+
+ZPJoyPad_Counter      = $37           ; Counts time button has been pressed, processes button again after certain time has passed
+
+ZPPPUMASKByte         = $FE           ; 
+ZPPPUCNTRLByte        = $FF           ; 
 
 
 ; ---------------------------------
@@ -295,10 +330,10 @@ RESET:
 
 ; Enables background
 PPUBackgroundEnable: 
-    LDA PPUMASKByte
+    LDA ZPPPUMASKByte
     ;     BGRsbMmG
     ORA #%00001000                  ; #$08 (Bitwise OR with A, eg. "BitJoiner")
-    STA PPUMASKByte
+    STA ZPPPUMASKByte
     STA PPUMask_2001
 RTS
 
@@ -313,10 +348,10 @@ RTS
 
 ; Disables Background and Sprites
 PPUBackgroundSpriteDisable:
-    LDA PPUMASKByte
+    LDA ZPPPUMASKByte
     ;     BGRsbMmG
     AND #%11100111                  ; $E7
-    STA PPUMASKByte
+    STA ZPPPUMASKByte
     STA PPUMask_2001
 RTS
 
@@ -331,10 +366,10 @@ RTS
 
 ; Disable TileSelect
 PPUBackgroundTileSelectDisable:
-    LDA PPUCNTRLByte
+    LDA ZPPPUCNTRLByte
     ;     VPHBSINN
     AND #%11101111                  ; #$EF
-    STA PPUCNTRLByte
+    STA ZPPPUCNTRLByte
     STA PPUControl_2000
 RTS
 
@@ -457,28 +492,28 @@ BPL @vblankwait1
 
     ; Set adress $0700
     LDY #$07
-    STY AdressHigh
+    STY ZPAdressHigh
     LDY #$00
-    STY AdressLow
+    STY ZPAdressLow
     TYA
 
 ; Clear internal RAM from $0000 to $07FF
 @clrmem:
-    STA (AdressLow), Y
+    STA (ZPAdressLow), Y
     INY
-; Loops AdressLow
+; Loops ZPAdressLow
 BNE @clrmem
 
-    DEC AdressHigh
-; Loops AdressHigh
+    DEC ZPAdressHigh
+; Loops ZPAdressHigh
 BPL @clrmem
 
     ;     VPHBSINN
     LDA #%00010000                  ; #$10
-    STA PPUCNTRLByte
+    STA ZPPPUCNTRLByte
     ;     BGRsbMmG
     LDA #%00000110                  ; #$06
-    STA PPUMASKByte
+    STA ZPPPUMASKByte
     STA PPUMask_2001
 
     ; Reset Scroll
@@ -514,22 +549,22 @@ BCC @LoadAttributeTable
 
 ; AttributeTableData
 ; $1554 - $1593
-; AA AA AA AA AA AA AA AA AA AA A0 A0 A0 A0 AA AA
-; 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-; 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-; F0 F0 F0 F0 F0 F0 F0 F0 FF FF FF FF FF FF FF FF
+; AA AA AA AA AA AA AA AA AA AA A0 A0 A0 A0 AA AA <--- Top Bricks + Section x
+; 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 <--- List
+; 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 <--- List
+; F0 F0 F0 F0 F0 F0 F0 F0 FF FF FF FF FF FF FF FF <--- List + Bottom Bricks
 
     JSR PPUOAMClear
 
     ; Initialize Start Section to #$01
     LDA #$01
-    STA ListSection
-    STA ListSection_OLD
-    ; Initialize ListPosition to #$04
+    STA ZPListSection
+    STA ZPListSection_OLD
+    ; Initialize ZPListPosition to #$04
     LDA #$04
-    STA ListPosition
+    STA ZPListPosition
 
-    ; What doest it do here? Restore ListSection and ListPosition from CartRAM???===================================
+    ; What does it do here? Restore ZPListSection and ZPListPosition from CartRAM???===================================
     LDA $5FF0                       ; Load from CartRAM
     AND #$0F
     CMP #$05
@@ -542,7 +577,7 @@ BNE InitializeGame ; Change NAME? ==============================
 
     LDA $5FF2                       ; Load from CartRAM
     AND #$0F
-    STA AdressLow
+    STA ZPAdressLow
     LDA $5FF3                       ; Load from CartRAM
     TAY
     AND #$01
@@ -550,23 +585,23 @@ BNE InitializeGame ; Change NAME? ==============================
     ASL A
     ASL A
     ASL A
-    ORA AdressLow
-    STA AdressLow
+    ORA ZPAdressLow
+    STA ZPAdressLow
     TYA
     AND #$06
     LSR A
 BNE ___L9171
 
-    ; Initialize ListSection to Section 1
+    ; Initialize ZPListSection to Section 1
     LDA #$01
 
 ___L9171:
-    STA ListSection
-    STA ListSection_OLD
-    CMP #$03
+    STA ZPListSection
+    STA ZPListSection_OLD
+    CMP #ConstLastSection           ; $03
 BEQ ___L9183
 
-    LDA AdressLow
+    LDA ZPAdressLow
     CMP #$12
 BCC ___L918B
 
@@ -574,14 +609,14 @@ BCC ___L918B
 BNE ___L918B
 
 ___L9183:
-    LDA AdressLow
+    LDA ZPAdressLow
     CMP #$10
 BCC ___L918B
 
     LDA #$04
 
 ___L918B:
-    STA ListPosition
+    STA ZPListPosition
 
 
 InitializeGame:                     ; Needs Name Change?=================
@@ -595,7 +630,7 @@ InitializeGame:                     ; Needs Name Change?=================
     JSR RLEDecoder
 
 ; Get current section and decode it to the NameTable (#$01 Section 1, #$02 Section 2, #$03 Section 3)
-    LDA ListSection
+    LDA ZPListSection
     JSR RLEDecoder
 
     JSR UpdateListSectionPosition
@@ -612,9 +647,9 @@ InitializeGame:                     ; Needs Name Change?=================
     JSR PPUBackgroundTileSelectDisable
     JSR PPUBackgroundEnable
 
-    LDA PPUCNTRLByte
+    LDA ZPPPUCNTRLByte
     ORA #$80
-    STA PPUCNTRLByte
+    STA ZPPPUCNTRLByte
     STA PPUControl_2000
 
 ; Main loop to make sure CPU doesn't go on to Subroutines/NMI Vector
@@ -644,17 +679,17 @@ RLEDecoder:
     ASL A                           ; Shifts bits Left #$00 = #$00, #$01 = #$02, #$02 = #$04, #$03 = #$06
     TAX
     LDA NameTablePointerData, X
-    STA AdressLow
+    STA ZPAdressLow
 
     INX
     LDA NameTablePointerData, X
-    STA AdressHigh
+    STA ZPAdressHigh
 
     LDY #$00                        ; Reset Y index for next part
 
 ; Load first byte of newly set adress (MSB+LSB) and check value
 RLEControlByteCheck:
-    LDA (AdressLow), Y
+    LDA (ZPAdressLow), Y
 BMI RLEControlByteFF
 
 ; PointerData
@@ -698,12 +733,12 @@ BNE @RLEControlByteFD               ; if not $FE, check if $FD
 
     ; Increase MSB position and store MSB to PPUAddress register, 1nd write
     JSR RLEIncreasePointerPosition
-    LDA (AdressLow), Y
+    LDA (ZPAdressLow), Y
     STA PPUAddr_2006
 
     ; Increase LSB position and store LSB to PPUAddress register, 2nd write
     JSR RLEIncreasePointerPosition
-    LDA (AdressLow), Y
+    LDA (ZPAdressLow), Y
     STA PPUAddr_2006
 
 ; Increase byte position again and do RLE Control Byte Check on next byte
@@ -720,12 +755,12 @@ BNE RLEStoretoPPUData               ; If new byte is not $FD, assume it is a til
 
     ; Increase pointer position and loads first byte after $FD to A and transfer to X as index
     JSR RLEIncreasePointerPosition
-    LDA (AdressLow), Y
+    LDA (ZPAdressLow), Y
     TAX
     ; Increases pointer again
     JSR RLEIncreasePointerPosition
     ; Load actual tile to A
-    LDA (AdressLow), Y
+    LDA (ZPAdressLow), Y
 
 ; Store to PPU until X = #$00
 @RLEControlByteFDStorePPU_Loop:
@@ -749,14 +784,14 @@ RLEIncreasePointerPosition:
 
     ; Adds 1 to LSB
     CLC
-    LDA AdressLow
+    LDA ZPAdressLow
     ADC #$01
-    STA AdressLow
+    STA ZPAdressLow
 
     ; Adds to MSB only if Carry is set
-    LDA AdressHigh
+    LDA ZPAdressHigh
     ADC #$00
-    STA AdressHigh
+    STA ZPAdressHigh
     CLC
 
 RTS
@@ -837,16 +872,16 @@ RTS
 ; -------------------------------------------
 
 UpdateListSectionPosition:
-; Load ListSection and check if it is Section 3 and if so, branch (because lesser entries in list)
-    LDA ListSection
-    CMP #$03
+; Load ZPListSection and check if it is Section 3 and if so, branch (because lesser entries in list)
+    LDA ZPListSection
+    CMP #ConstLastSection                            ; $03
 BEQ UpdateListSectionPositionSection3
-; Check to see if ListPosition is in Column 2, if not then branch. If yes, then substract with #$09
-    LDA ListPosition
-    CMP #$09
+; Check to see if ZPListPosition is in Column 2, if not then branch. If yes, then substract with #$09
+    LDA ZPListPosition
+    CMP #ConstListPositionColumnSize                 ; #$09
 BCC UpdateListPositionColumn1
 
-    SBC #$09
+    SBC #ConstListPositionColumnSize
 
 ; If in Column 2, set Y Position to #$80 (right side)
 UpdateListPositionColumn2:
@@ -861,40 +896,40 @@ UpdateListPositionColumn1:
 
 ; Store new X/Y positions
 UpdateListPositionNewXY:
-    STA ListPositionY
+    STA ZPListPositionY
     LDA #$40
-    STA ListPositionX
+    STA ZPListPositionX
     TXA
 
 ; Add #$10 to X Position for each in ListPosition to get X coordinates
 UpdateListPositionAddToX:
-BEQ ___L128A                        ; Branch to next part when done
+BEQ ___L128A                                        ; Branch to next part when done
 
     CLC
     LDA #$10
-    ADC ListPositionX
-    STA ListPositionX
+    ADC ZPListPositionX
+    STA ZPListPositionX
     DEX
-BPL UpdateListPositionAddToX                ; Loop back if there is still positive value in ListPosition (X)
+BPL UpdateListPositionAddToX                        ; Loop back if there is still positive value in ListPosition (X)
 
 
-; If ListSection 3
+; If ZPListSection 3 / Last Section
 ; Check to see if ListPosition is in Column 2, if not then branch. If yes, then substract with #$08
 UpdateListSectionPositionSection3:
-    LDA ListPosition
-    CMP #$08
+    LDA ZPListPosition
+    CMP #ConstListPositionColumnSizeLastSection     ; #$08
 ; If in Column 1, Branch. Else substract with #$08
 BCC UpdateListPositionColumn1
 
-    SBC #$08
+    SBC #ConstListPositionColumnSizeLastSection     ; #$08
     CLC
 BCC UpdateListPositionColumn2
 
 ; Next Part not sure what this does =================================
 ___L128A:
-    LDX ListPosition
+    LDX ZPListPosition
     INX
-    SED                             ; SEt Decimal
+    SED                                             ; SEt Decimal
     LDA #$00
 
 ; Loop: Adds 1 to A until X = 0
@@ -905,7 +940,7 @@ ___L1290:
 BNE ___L1290
 
 ; If Section = 1, Branch
-    LDX ListSection
+    LDX ZPListSection
     CPX #$01
 BEQ ___L12A8
 
@@ -927,7 +962,7 @@ ___L12A8:
     TAX
     AND #$0F
     ORA #$30
-    STA UNK_30
+    STA ZPUNK_30                    ; $30
     TXA
     LSR A
     LSR A
@@ -935,8 +970,8 @@ ___L12A8:
     LSR A
     AND #$0F
     ORA #$30
-    STA UNK_31
-    LDA ListPositionY               ; $34
+    STA ZPUNK_31                    ; $31
+    LDA ZPListPositionY             ; $34
     STA $0203
     CLC
     ADC #$08
@@ -944,13 +979,13 @@ ___L12A8:
     CLC
     ADC #$08
     STA $020B
-    LDA ListPositionX               ; $35
+    LDA ZPListPositionX             ; $35
     STA $0200
     STA $0204
     STA $0208
-    LDA UNK_30
+    LDA ZPUNK_30                    ; $30
     STA $0205
-    LDA UNK_31
+    LDA ZPUNK_31                    ; $31
     STA $0201
     LDA #$CF
     STA $0209
@@ -983,23 +1018,23 @@ BCC @ScreenAttributesReset
     CPX #$38
 BCC @ScreenAttributesResetBottom
 
-; Load ListSection and check if it Section = 3, if so branch (because of different nr of ListPositions)
-    LDA ListSection
-    CMP #$03
+; Load ZPListSection and check if it Section = 3, if so branch (because of different nr of ListPositions)
+    LDA ZPListSection
+    CMP #ConstLastSection           ; $03
 BEQ ___L1348
 
-; Check if ListPosition is in left Column (Section 1 - 2)
-    LDY #$D0                        ; AdressLow if in left column
-    LDA ListPosition
-    CMP #$09
+; Check if ZPListPosition is in left Column (Section 1 - 2)
+    LDY #$D0                        ; ZPAdressLow if in left column
+    LDA ZPListPosition
+    CMP #ConstListPositionColumnSize
 BCC ScreenAttributesChangeAttributes
 ; Or right Column (Section 1 - 2)
-    LDY #$D4                        ; AdressLow if in right column
-    SBC #$09
+    LDY #$D4                        ; ZPAdressLow if in right column
+    SBC #ConstListPositionColumnSize
 
 ScreenAttributesChangeAttributes:
-    LSR A ; LSR ListPosition that is loaded into A
-    ROR UNK_36                      ; $36
+    LSR A ; LSR ZPListPosition that is loaded into A
+    ROR ZPUNK_36                      ; $36
     TAX
 
 ___L1316:
@@ -1013,55 +1048,55 @@ BPL ___L1316
 
 ; Sets adress to $03D0 or $03D4 depending on left or right column
 ScreenAttributesSetAdress:
-    STY AdressLow
+    STY ZPAdressLow
     LDA #$03
-    STA AdressHigh
+    STA ZPAdressHigh
     LDY #$00
 
 ScreenAttributesUpdate:
-    LDA UNK_36                      ; $36
+    LDA ZPUNK_36                                          ; $36
 BMI ScreenAttributesUpdateBottomQuadrant
 
 ; Top Quadrant
-    LDA (AdressLow), Y
-    ORA #%00000101                  ; $05
-    STA (AdressLow), Y
+    LDA (ZPAdressLow), Y
+    ORA #%00000101                                      ; $05
+    STA (ZPAdressLow), Y
 BNE PaletteColorSectionChange
 
 ; Bottom Quadrant
 ScreenAttributesUpdateBottomQuadrant:
-    LDA (AdressLow), Y
-    ORA #%01010000                   ; $50
-    STA (AdressLow), Y
+    LDA (ZPAdressLow), Y
+    ORA #%01010000                                      ; $50
+    STA (ZPAdressLow), Y
 
 ; Change single palette color for each section (S1=RED, S2=GREEN, S3=BLUE)
 PaletteColorSectionChange:
     INY
     CPY #$04
 BCC ScreenAttributesUpdate
-    LDX ListSection
+    LDX ZPListSection
     LDA PaletteSectionColors,X
-    STA $030A                       ; swap palette color of top brick color
+    STA $030A                                           ; swap palette color of top brick color
 RTS
 
 ; Palettechange for sections, change only color position 2
 ; $D550 - $D552 / €1550 - $1552 ????????????
-; $D550, X(ListSection 1) = 16	Red
-; $D550, X(ListSection 2) = 1A  Green
-; $D550, X(ListSection 3) = 12  Blue
+; $D550, X(ZPListSection 1) = 16	Red
+; $D550, X(ZPListSection 2) = 1A  Green
+; $D550, X(ZPListSection 3) = 12  Blue
 ; 00 16 1A 12 PaletteSectionColors
 
 
-; If ListSection is 3 and in left column (fewer listpositions than section 1 and 2)
+; If ZPListSection is 3 / Last Section, and in left column (fewer listpositions than section 1 and 2)
 ___L1348:
-    LDY #$D0                        ; AdressLow if in left column
-    LDA ListPosition
-    CMP #$08
+    LDY #$D0                                            ; ZPAdressLow if in left column
+    LDA ZPListPosition
+    CMP #ConstListPositionColumnSizeLastSection         ; #$08
 BCC ScreenAttributesChangeAttributes
 
 ; Or right column
-    LDY #$D4                        ; AdressLow if in right column
-    SBC #$08
+    LDY #$D4                                            ; ZPAdressLow if in right column
+    SBC #ConstListPositionColumnSizeLastSection         ; #$08
     CLC
 BCC ScreenAttributesChangeAttributes
 
@@ -1084,14 +1119,14 @@ NMI:
 ; If they are set, then NMI jumps to Galaxian NMI instead of 52-in-1 menu NMI
     PHA                             ; Push A to stack
     LDA #$A5
-    CMP BootGameCheck1              ; If $1B not #$A5 branch to NMI_52in1 
+    CMP ZPBootGameCheck1            ; If $1B not #$A5 branch to NMI_52in1 
 BNE NMI_52in1
 
     LDA #$5A
-    CMP BootGameCheck2              ; If $1C not #$5A branch to NMI_52in1
+    CMP ZPBootGameCheck2            ; If $1C not #$5A branch to NMI_52in1
 BNE NMI_52in1
     PLA                             ; Retrieve A from Stack
-    JMP $E20C                       ; Jumps to Galaxian which resides in the same 16kb PRG
+    JMP ConstGalaxianNMI            ; $E20C, Jumps to Galaxian which resides in the same 16kb PRG
 
 
 ; Start of the menu NMI
@@ -1101,7 +1136,7 @@ NMI_52in1:
     PHA
     TXA
     PHA
-    LDA PPUCNTRLByte
+    LDA ZPPPUCNTRLByte
 ; Disable NMI?
     AND #%01111111                  ; $7F
     STA PPUControl_2000
@@ -1110,24 +1145,24 @@ NMI_52in1:
     JSR PPUBackgroundEnable
 
     JSR PlaySoundRoutine
-    LDA SoundByte_OLD
+    LDA ZPSoundByte_OLD
 BEQ JoyPadHandleButtonPresses
 
-; If ListSection has not changed compared to ListSection_OLD Do not change Section
-    LDA ListSection
-    CMP ListSection_OLD
+; If ZPListSection has not changed compared to ZPListSection_OLD Do not change Section
+    LDA ZPListSection
+    CMP ZPListSection_OLD
 BEQ PPUUpdateAttributesPalettes
 
-; Else store new section into ListSection_OLD and clear NameTable
-    STA ListSection_OLD
+; Else store new section into ZPListSection_OLD and clear NameTable
+    STA ZPListSection_OLD
     JSR PPUClearNT
 
 ; Reset A to #$00 to start loading background to nametable
     LDA #$00
     JSR RLEDecoder
 
-; Load ListSection into A to get pointers for that section
-    LDA ListSection
+; Load ZPListSection into A to get pointers for that section
+    LDA ZPListSection
     JSR RLEDecoder
 
 
@@ -1144,25 +1179,25 @@ PPUUpdateAttributesPalettes: ; Not sure if correctly named
 JoyPadHandleButtonPresses:
 ; Reset sound byte to #$00 for no sound
     LDA #$00
-    STA SoundByte
-    STA SoundByte_OLD
+    STA ZPSoundByte
+    STA ZPSoundByte_OLD
 
-; Poll JoyPad and store data to variables JoyPad1 and JoyPad2
+; Poll JoyPad and store data to variables ZPJoyPad1 and ZPJoyPad2
     JSR JoyPadRoutine
 
 ; Check if SELECT, START, UP, DOWN, LEFT, RIGHT have been pressed, and branch if one of them have
-    LDA JoyPad1
+    LDA ZPJoyPad1
     AND #%00111111                  ; $3F
 BNE JoyPad_ResetContinouslyPressCounter
 
 ; Check if SELECT, UP, DOWN, LEFT, RIGHT have been pressed previously, and branch if one of them have
-    LDA JoyPad_Pressed
+    LDA ZPJoyPad_Pressed 
     AND #%00101111                  ; $2F
 BNE JoyPad_HoldUntilProcessingNextPress
 
 ; If no button has been pressed, store #$00 into $37 and go to END
     LDA #$00
-    STA JoyPad_Counter
+    STA ZPJoyPad_Counter
 
 JoyPadGoToEND:
     JMP JoyPad_Pressed_END
@@ -1177,8 +1212,8 @@ JoyPadGoToEND:
 ; First repeat button process = slow
 ; after that = faster
 JoyPad_HoldUntilProcessingNextPress:
-    INC JoyPad_Counter
-    LDA JoyPad_Counter
+    INC ZPJoyPad_Counter
+    LDA ZPJoyPad_Counter
     CMP #$28                        ; When $37 is $28 Process continously held button again
 BEQ JoyPad_SetJoyPad1toPressed
 
@@ -1186,17 +1221,17 @@ BEQ JoyPad_SetJoyPad1toPressed
 BCC JoyPadGoToEND
 
     LDA #$28
-    STA JoyPad_Counter
+    STA ZPJoyPad_Counter
 
-; Set JoyPad1 to Pressed button and start processing button presses
+; Set ZPJoyPad1 to Pressed button and start processing button presses
 JoyPad_SetJoyPad1toPressed:
-    LDA JoyPad_Pressed
-    STA JoyPad1
+    LDA ZPJoyPad_Pressed 
+    STA ZPJoyPad1
 BNE JoyPad_Pressed_RIGHT
 
 JoyPad_ResetContinouslyPressCounter:
     LDA #$00
-    STA JoyPad_Counter
+    STA ZPJoyPad_Counter
 
 ; ------------------------------
 
@@ -1208,41 +1243,41 @@ JoyPad_ResetContinouslyPressCounter:
 
 ; Check if Right is pressed, if not continue
 JoyPad_Pressed_RIGHT:
-    LDA JoyPad1
+    LDA ZPJoyPad1
     AND #JOYPAD_RIGHT               ; %00000001 / $01
 BEQ JoyPad_Pressed_LEFT
 
 ; What to do if RIGHT button pressed
 ; Play cursor move sound #$01
     LDA #$01
-    STA SoundByte
+    STA ZPSoundByte
 
-; Get current ListPosition and ListSection. If ListSection is 3, add less to ListPosition (Since there are fewer entries)
-    LDA ListPosition
-    LDX ListSection
-    CPX #$03
+; Get current ZPListPosition and ZPListSection. If ZPListSection is 3, add less to ZPListPosition (Since there are fewer entries)
+    LDA ZPListPosition
+    LDX ZPListSection
+    CPX #ConstLastSection                               ; $03
 BEQ JoyPad_Pressed_RIGHT_Section3
 
 ; If ListPosition already is in the right column (ListPosition higher than #$09), then continue to next buttoncheck
-    CMP #$09
+    CMP #ConstListPositionColumnSize                    ; #$09
 BCS JoyPad_Pressed_LEFT
 
 ; If Listposition is in the left column, then add #$09 to move cursor to the right side.
-    ADC #$09
-    STA ListPosition
+    ADC #ConstListPositionColumnSize                    ; #$09
+    STA ZPListPosition
 BNE JoyPad_Pressed_LEFT
 
 ; ------------------
 ;  IF IN SECTION 3.
 ; ------------------
-; Only if in Section 3. If ListPosition already is in the right column (ListPosition higher than #$08), then continue to next buttoncheck
+; Only if in Section 3 / Last Section. If ListPosition already is in the right column (ListPosition higher than #$08), then continue to next buttoncheck
 JoyPad_Pressed_RIGHT_Section3:
-    CMP #$08
+    CMP #ConstListPositionColumnSizeLastSection         ; #$08
 BCS JoyPad_Pressed_LEFT
 
-; Only if in Section 3. If Listposition is in the left column, then add #$08 to move cursor to the right side.
-    ADC #$08
-    STA ListPosition
+; Only if in Section 3 / Last Section. If Listposition is in the left column, then add #$08 to move cursor to the right side.
+    ADC #ConstListPositionColumnSizeLastSection         ; #$08
+    STA ZPListPosition
 
 ; ------------------------------
 
@@ -1253,43 +1288,43 @@ BCS JoyPad_Pressed_LEFT
 ; ------------------------------
 
 JoyPad_Pressed_LEFT:
-    LDA JoyPad1
+    LDA ZPJoyPad1
     AND #JOYPAD_LEFT                ; %00000010 / $02
 BEQ JoyPad_Pressed_UP
 
 ; What to do if LEFT button pressed
 ; Play cursor move sound #$01
     LDA #$01
-    STA SoundByte
+    STA ZPSoundByte
 
-; Get current ListPosition and ListSection. If ListSection is 3, substract less to ListPosition (Since there are fewer entries)
-    LDA ListPosition
-    LDX ListSection
-    CPX #$03
+; Get current ZPListPositionX and ZPListSection. If ZPListSection is 3, substract less to ListPosition (Since there are fewer entries)
+    LDA ZPListPosition
+    LDX ZPListSection
+    CPX #ConstLastSection                               ; $03
 BEQ JoyPad_Pressed_LEFT_Section3
 
 ; If ListPosition already is in the left column (ListPosition lower than #$09), then continue to next buttoncheck
-    CMP #$09
+    CMP #ConstListPositionColumnSize                    ; #$09
 BCC JoyPad_Pressed_UP
 
 ; If Listposition is in the right column, then substract #$09 to move cursor to the left side.
     SEC
-    SBC #$09
-    STA ListPosition
+    SBC #ConstListPositionColumnSize                    ; #$09
+    STA ZPListPosition
 BCS JoyPad_Pressed_UP
 
 ; ------------------
 ;  IF IN SECTION 3.
 ; ------------------
-; Only if in Section 3. If ListPosition already is in the left column (ListPosition lower than #$08), then continue to next buttoncheck
+; Only if in Section 3 / Last Section. If ListPosition already is in the left column (ListPosition lower than #$08), then continue to next buttoncheck
 JoyPad_Pressed_LEFT_Section3:
-    CMP #$08
+    CMP #ConstListPositionColumnSizeLastSection         ; #$08
 BCC JoyPad_Pressed_UP
 
-; Only if in Section 3. If Listposition is in the right column, then substract #$08 to move cursor to the left side.
+; Only if in Section 3 / Last Section. If Listposition is in the right column, then substract #$08 to move cursor to the left side.
     SEC
-    SBC #$08
-    STA ListPosition
+    SBC #ConstListPositionColumnSizeLastSection         ; #$08
+    STA ZPListPosition
 
 ; ------------------------------
 
@@ -1300,20 +1335,20 @@ BCC JoyPad_Pressed_UP
 ; ------------------------------
 
 JoyPad_Pressed_UP:
-    LDA JoyPad1
-    AND #JOYPAD_UP                  ; %00001000 / $08
+    LDA ZPJoyPad1
+    AND #JOYPAD_UP                                      ; %00001000 / $08
 BEQ JoyPad_Pressed_DOWN
 
 ; What to do if UP button pressed
 ; Play cursor move sound #$01
     LDA #$01
-    STA SoundByte
+    STA ZPSoundByte
 
-; Get current ListPosition and ListSection. If ListSection is 3, last ListPosition is a lower number (Since there are fewer entries)
-    LDA ListPosition
-    LDY #$10                        ; Section 3
-    LDX ListSection
-    CPX #$03
+; Get current ListPosition and ZPListSection. If ZPListSection is 3, last ListPosition is a lower number (Since there are fewer entries)
+    LDA ZPListPosition
+    LDY #$10                                            ; Section 3
+    LDX ZPListSection
+    CPX #ConstLastSection                               ; $03
 BEQ JoyPad_Pressed_UP_FirstPosition
 ; If not Section 3, ListPosition total is #$12
     LDY #$12
@@ -1324,11 +1359,11 @@ JoyPad_Pressed_UP_FirstPosition:
 BNE JoyPad_Pressed_UP_ListPositionDecrease
 
 ; Store #$10 or #$12 to listposition to wrap around
-    STY ListPosition
+    STY ZPListPosition
 
 ; Decrease ListPosition
 JoyPad_Pressed_UP_ListPositionDecrease:
-    DEC ListPosition
+    DEC ZPListPosition
 
 ; ------------------------------
 
@@ -1339,19 +1374,19 @@ JoyPad_Pressed_UP_ListPositionDecrease:
 ; ------------------------------
 
 JoyPad_Pressed_DOWN:
-    LDA JoyPad1
+    LDA ZPJoyPad1
     AND #JOYPAD_DOWN                ; %00000100 / $04
 BEQ JoyPad_Pressed_SELECT
 
 ; What to do if DOWN button pressed
 ; Play cursor move sound #$01
     LDA #$01
-    STA SoundByte
+    STA ZPSoundByte
 
-; Get current ListPosition and ListSection. If ListSection is 3, first ListPosition is a lower number (Since there are fewer entries)
-    LDA ListPosition
-    LDX ListSection
-    CPX #$03
+; Get current ListPosition and ZPListSection. If ZPListSection is 3, first ListPosition is a lower number (Since there are fewer entries)
+    LDA ZPListPosition
+    LDX ZPListSection
+    CPX #ConstLastSection           ; $03
 BEQ JoyPad_Pressed_DOWN_Section3
 
 ; If Not Section 3, and listposition is or over #$11, then set ListPosition to #$FF and increaste for A = #$00
@@ -1369,11 +1404,11 @@ BCC JoyPad_Pressed_DOWN_ListPositionIncrease
 ; If at max Listposition, set A to #$FF and increase with one for A = #$00
 JoyPad_Pressed_DOWN_ListPositionSetFF:
     LDA #$FF
-    STA ListPosition
+    STA ZPListPosition
 
 ; Increase ListPosition
 JoyPad_Pressed_DOWN_ListPositionIncrease:
-    INC ListPosition
+    INC ZPListPosition
 
 ; ------------------------------
 
@@ -1384,33 +1419,33 @@ JoyPad_Pressed_DOWN_ListPositionIncrease:
 ; ------------------------------
 
 JoyPad_Pressed_SELECT:
-    LDA JoyPad1
+    LDA ZPJoyPad1
     AND #JOYPAD_SELECT              ; %00100000 / $20
 BEQ JoyPad_Pressed_START
 
 ; What to do if SELECT button pressed
 ; Play select sound #$02
     LDA #$02
-    STA SoundByte
-; Increase ListSection and if it goes over 3, then it resets to 1
-    INC ListSection
-    LDA ListSection
+    STA ZPSoundByte
+; Increase ZPListSection and if it goes over 3, then it resets to 1
+    INC ZPListSection
+    LDA ZPListSection
     CMP #$04
 BCC JoyPad_Pressed_SELECT_Section3
 
     LDA #$01
-    STA ListSection
+    STA ZPListSection
 
 ; If Section is #$03 and Listposition is over #$0F, then set ListPosition to #$0F
 JoyPad_Pressed_SELECT_Section3:
-    CMP #$03
+    CMP #ConstLastSection           ; $03
 BNE JoyPad_Pressed_START
 
     LDA #$0F
-    CMP ListPosition
+    CMP ZPListPosition
 BCS JoyPad_Pressed_START
 
-    STA ListPosition
+    STA ZPListPosition
 
 ; ------------------------------
 
@@ -1421,20 +1456,20 @@ BCS JoyPad_Pressed_START
 ; ------------------------------
 
 JoyPad_Pressed_START:
-    LDA JoyPad1
+    LDA ZPJoyPad1
     AND #JOYPAD_START               ; #%00010000 / $10
 BEQ JoyPad_Pressed_END
 
 ; What to do if START button pressed
 ; Play select sound #$02 and start PlaySoundRoutine
     LDA #$02
-    STA SoundByte
+    STA ZPSoundByte
     JSR PlaySoundRoutine
 
 JoyPad_Pressed_START_DoubleCheck:
 ; Double check that pressed button is Start ??
     JSR JoyPadRoutine
-    LDA JoyPad_Pressed
+    LDA ZPJoyPad_Pressed
     ;AND 
     AND #JOYPAD_START               ; #%00010000 / $10
 BNE JoyPad_Pressed_START_DoubleCheck
@@ -1453,7 +1488,7 @@ JoyPad_Pressed_END:
     JSR UpdateListSectionPosition
     JSR OAMSetAdress
 
-    LDA PPUCNTRLByte
+    LDA ZPPPUCNTRLByte
 ; Enable NMI
     ORA #%10000000                  ; $80
     STA PPUControl_2000
@@ -1498,11 +1533,11 @@ RTI                                 ; Return from NMI
 ; ----------------------------------
 
 PlaySoundRoutine:
-    LDA SoundByte
+    LDA ZPSoundByte
 BEQ @PlaySoundRoutine_END
 
 @PlaySoundCursor:
-    ; Check if SoundByte = 01 (cursor sound), if not then check if byte is 02 (select sound)
+    ; Check if ZPSoundByte = 01 (cursor sound), if not then check if byte is 02 (select sound)
     CMP #$01
 BNE @PlaySoundSelect
 
@@ -1521,7 +1556,7 @@ BEQ @PlaySoundEndSound
 
 
 @PlaySoundSelect:
-    ; Check if SoundByte = 02 (select sound), if not then reset SoundByte to #$00
+    ; Check if ZPSoundByte = 02 (select sound), if not then reset ZPSoundByte to #$00
     CMP #$02
 BNE @PlaySoundByteReset
 
@@ -1539,11 +1574,11 @@ BNE @PlaySoundByteReset
 
 @PlaySoundEndSound:
     LDA #$FF
-    STA SoundByte_OLD
+    STA ZPSoundByte_OLD
 
 @PlaySoundByteReset:
     LDA #$00
-    STA SoundByte
+    STA ZPSoundByte
 
 @PlaySoundRoutine_END:
 RTS
@@ -1561,28 +1596,28 @@ JoyPadRoutine:
 
 ; Check if JoyPad buttons have been pressed since last check ??
 JoyPad_ButtonPressChangeCheck:
-    LDY JoyPad1
-    LDA JoyPad2
+    LDY ZPJoyPad1
+    LDA ZPJoyPad2
 
     PHA
     JSR JoyPad_Poll
     PLA
 
-    CMP JoyPad2
+    CMP ZPJoyPad2
     BNE JoyPad_ButtonPressChangeCheck
 
-    CPY JoyPad1
+    CPY ZPJoyPad1
     BNE JoyPad_ButtonPressChangeCheck
 
     LDX #$01
 
 @JoyPad_PressesReleases:            ; Correct Name?=====================
-    LDA JoyPad1, X
+    LDA ZPJoyPad1, X
     TAY
-    EOR JoyPad_Pressed, X           ; Not Sure?
-    AND JoyPad1, X
-    STA JoyPad1, X
-    STY JoyPad_Pressed, X
+    EOR ZPJoyPad_Pressed , X           ; Not Sure?
+    AND ZPJoyPad1, X
+    STA ZPJoyPad1, X
+    STY ZPJoyPad_Pressed , X
     DEX
 BPL @JoyPad_PressesReleases
 
@@ -1616,32 +1651,32 @@ JoyPad_Poll:
 ; Controller #1
     LDA CTRL1_4016
     LSR A
-    ROL JoyPad1
+    ROL ZPJoyPad1
 
     LSR A
-    ROL JoyPad1_OLD
+    ROL ZPJoyPad1_OLD
 
 ; Controller #2
     LDA CTRL2_4017
     LSR A
-    ROL JoyPad2
+    ROL ZPJoyPad2
 
     LSR A
-    ROL JoyPad2_OLD
+    ROL ZPJoyPad2_OLD
 
 ;Loop 8 times for all buttons
     DEX
 BNE @JoyPad_Poll_Loop
 
 ; Controller #1
-    LDA JoyPad1_OLD
-    ORA JoyPad1
-    STA JoyPad1
+    LDA ZPJoyPad1_OLD
+    ORA ZPJoyPad1
+    STA ZPJoyPad1
 
 ; Controller #2
-    LDA JoyPad2_OLD
-    ORA JoyPad2
-    STA JoyPad2
+    LDA ZPJoyPad2_OLD
+    ORA ZPJoyPad2
+    STA ZPJoyPad2
 RTS
 
 ; ---------------------------------
@@ -1716,31 +1751,29 @@ NameTablePointerData:
 
 ; Starts at: $D5BC - $D637 / $15BC - $1637
 ; $FE = [Set NameTable adress with PPUAdress_2006], [MSB], [LSB]
-; $FD = [Store tiles to NameTable at previously set adress], [Number of Tiles to store], [Background tile to store]
+; $FD = [Store tiles to NameTable at previously set adress], [Number of repetitions], [Background tile to store]
 ; $FF = End Tileset
 ; If not any of above, assume the data is a Background tile
 NameTableBackgroundMenuTiles:
-    ; Set NameTable Adress to $2000
+    ; STARTBYTES
     .byte $FE, $20, $00
-
     ; Top Bricktiles $61 and $00
-    .byte $FD, $67, $61
-    .byte $FD, $11, $00
-    .byte $FD, $0F, $61
-    .byte $FD, $11, $00
-    .byte $FD, $0F, $61
-    .byte $FD, $11, $00
-    .byte $FD, $28, $61
+    .byte $FD, $67, $61             ; Tile 61, 67 times
+    .byte $FD, $11, $00             ; Tile 00, 11 times
+    .byte $FD, $0F, $61             ; Tile 61, 0F times
+    .byte $FD, $11, $00             ; Tile 00, 11 times
+    .byte $FD, $0F, $61             ; Tile 61, 0F times
+    .byte $FD, $11, $00             ; Tile 00, 11 times
+    .byte $FD, $28, $61             ; Tile 61, 28 times
 
-    ; Set NameTable Adress to $2360
+    ; STARTBYTES
     .byte $FE, $23, $60
-
     ; Bottom BrickTiles $AC & $AD
     .byte $AC, $AD, $AC, $AD, $AC, $AD, $AC, $AD, $AC, $AD, $AC, $AD, $AC, $AD, $AC, $AD, $AC, $AD, $AC, $AD, $AC, $AD, $AC, $AD, $AC, $AD, $AC, $AD, $AC, $AD, $AC, $AD
     .byte $AD, $AC, $AD, $AC, $AD, $AC, $AD, $AC, $AD, $AC, $AD, $AC, $AD, $AC, $AD, $AC, $AD, $AC, $AD, $AC, $AD, $AC, $AD, $AC, $AD, $AC, $AD, $AC, $AD, $AC, $AD, $AC
     .byte $AC, $AD, $AC, $AD, $AC, $AD, $AC, $AD, $AC, $AD, $AC, $AD, $AC, $AD, $AC, $AD, $AC, $AD, $AC, $AD, $AC, $AD, $AC, $AD, $AC, $AD, $AC, $AD, $AC, $AD, $AC, $AD
 
-    ; End Tileset
+    ; ENDBYTE
     .byte $FF
 
 ; BackgroundMenuTiles
@@ -1759,86 +1792,89 @@ NameTableBackgroundMenuTiles:
 
 ; Starts at: $D638 - $D743 / $1638 - $1743
 NameTableSection1:
+    ; STARTBYTES
     .byte $FE, $20, $8B
     ;       S    E    C    T    I    O    N         1
     .byte $53, $45, $43, $54, $49, $4F, $4E, $00, $31
 
 
     ; Column 1
+    ; STARTBYTES
     .byte $FE, $21, $00
     ;       0    1    .    I   S     L    A    N    D    E    R
     .byte $30, $31, $CF, $49, $53, $4C, $41, $4E, $44, $45, $52
-
+    ; STARTBYTES
     .byte $FE, $21, $40
     ;       0    2    .    G    R    A    D    I    N    G
     .byte $30, $32, $CF, $47, $52, $41, $44, $49, $4E, $47
-
+    ; STARTBYTES
     .byte $FE, $21, $80
     ;       0    3    .    P    -    D         F    I    G    H    T    I    N    G  <-- MAX LENGTH
     .byte $30, $33, $CF, $50, $5B, $44, $00, $46, $49, $47, $48, $54, $49, $4E, $47
-
+    ; STARTBYTES
     .byte $FE, $21, $C0
     ;       0    4    .    S    T    A    R         S    O    L    D    I    E    R  <-- MAX LENGTH
     .byte $30, $34, $CF, $53, $54, $41, $52, $00, $53, $4F, $4C, $44, $49, $45, $52
-
+    ; STARTBYTES
     .byte $FE, $22, $00
     ;       0    5    .    G    O    O    N    I    E    S
     .byte $30, $35, $CF, $47, $4F, $4F, $4E, $49, $45, $53
-
+    ; STARTBYTES
     .byte $FE, $22, $40
     ;       0    6    .    L    E    G    E    N    D    R    Y
     .byte $30, $36, $CF, $4C, $45, $47, $45, $4E, $44, $52, $59
-
+    ; STARTBYTES
     .byte $FE, $22, $80
     ;       0    7    .    T    E    T    R    I    S
     .byte $30, $37, $CF, $54, $45, $54, $52, $49, $53
-
+    ; STARTBYTES
     .byte $FE, $22, $C0
     ;       0    8    .    B    R    O    S    .         I    I
     .byte $30, $38, $CF, $42, $52, $4F, $53, $CF, $00, $49, $49
-
+    ; STARTBYTES
     .byte $FE, $23, $00
     ;       0    9    .    T    W    I    N         B    E    E
     .byte $30, $39, $CF, $54, $57, $49, $4E, $00, $42, $45, $45
 
 
     ; Column 2
+    ; STARTBYTES
     .byte $FE, $21, $10
     ;       1    0    .    N    I    N    J    A         2
     .byte $31, $30, $CF, $4E, $49, $4E, $4A, $41, $00, $32
-
+    ; STARTBYTES
     .byte $FE, $21, $50
     ;       1    1    .    C    I    T    Y         C    O    N    E    C    T    .  <-- MAX LENGTH
     .byte $31, $31, $CF, $43, $49, $54, $59, $00, $43, $4F, $4E, $45, $43, $54, $CF
-
+    ; STARTBYTES
     .byte $FE, $21, $90
     ;       1    2    .    B    -    W    I    N    G    S
     .byte $31, $32, $CF, $42, $5B, $57, $49, $4E, $47, $53
-
+    ; STARTBYTES
     .byte $FE, $21, $D0
     ;       1    3    .    1    9    4    2
     .byte $31, $33, $CF, $31, $39, $34, $32
-
+    ; STARTBYTES
     .byte $FE, $22, $10
     ;       1    4    .    G    Y    R    O    O    I    N   E
     .byte $31, $34, $CF, $47, $59, $52, $4F, $4F, $49, $4E, $45
-
+    ; STARTBYTES
     .byte $FE, $22, $50
     ;       1    5    .    F    L    A    P    P    Y
     .byte $31, $35, $CF, $46, $4C, $41, $50, $50, $59
-
+    ; STARTBYTES
     .byte $FE, $22, $90
     ;       1    6    .    S    P    A    R    T    A    N
     .byte $31, $36, $CF, $53, $50, $41, $52, $54, $41, $4E
-
+    ; STARTBYTES
     .byte $FE, $22, $D0
     ;       1    7    .    B    O    M    B    E    R         M    A    N
     .byte $31, $37, $CF, $42, $4F, $4D, $42, $45, $52, $00, $4D, $41, $4E
-
+    ; STARTBYTES
     .byte $FE, $23, $10
     ;       1    8    .    F    R    O    N    T         L    I    N    E
     .byte $31, $38, $CF, $46, $52, $4F, $4E, $54, $00, $4C, $49, $4E, $45
-
+    ; ENDBYTE
     .byte $FF
 
 ; NameTableSection1
@@ -1866,86 +1902,89 @@ NameTableSection1:
 
 ; Starts at: $D744 - $D866 / $1744 - $1866
 NameTableSection2:
+    ; STARTBYTES
     .byte $FE, $20, $8B
     ;       S    E    C    T    I    O    N         2
     .byte $53, $45, $43, $54, $49, $4F, $4E, $00, $32
 
 
     ; Column 1
+    ; STARTBYTES
     .byte $FE, $21, $00
     ;       1    9    .    M    A    C    R    O    S    S
     .byte $31, $39, $CF, $4D, $41, $43, $52, $4F, $53, $53
-
+    ; STARTBYTES
     .byte $FE, $21, $40
     ;       2    0    .    1    9    8    9    G    A    L    A    X    I    A    N
     .byte $32, $30, $CF, $31, $39, $38, $39, $47, $41, $4C, $41, $58, $49, $41, $4E
-
+    ; STARTBYTES
     .byte $FE, $21, $80
     ;       2    1    .    S    T    A    R         F    O    R    C    E
     .byte $32, $31, $CF, $53, $54, $41, $52, $00, $46, $4F, $52, $43, $45
-
+    ; STARTBYTES
     .byte $FE, $21, $C0
     ;       2    2    .    K    U    N    G    -    F    U
     .byte $32, $32, $CF, $4B, $55, $4E, $47, $5B, $46, $55
-
+    ; STARTBYTES
     .byte $FE, $22, $00
     ;       2    3    .    N    I    N    J    A         1
     .byte $32, $33, $CF, $4E, $49, $4E, $4A, $41, $00, $31
-
+    ; STARTBYTES
     .byte $FE, $22, $40
     ;       2    4    .    P    I    P    E    L    I    N    E
     .byte $32, $34, $CF, $50, $49, $50, $45, $4C, $49, $4E, $45
-
+    ; STARTBYTES
     .byte $FE, $22, $80
     ;       2    5    .    M    A    H    J    O    N    G         2
     .byte $32, $35, $CF, $4D, $41, $48, $4A, $4F, $4E, $47, $00, $32
-
+    ; STARTBYTES
     .byte $FE, $22, $C0
     ;       2    6    .    M    A    H    J    O    N    G         4
     .byte $32, $36, $CF, $4D, $41, $48, $4A, $4F, $4E, $47, $00, $34
-
+    ; STARTBYTES
     .byte $FE, $23, $00
     ;       2    7    .    L    O    D    E         R    U    N    N    E    R    1
     .byte $32, $37, $CF, $4C, $4F, $44, $45, $00, $52, $55, $4E, $4E, $45, $52, $31
 
 
     ; Column 2
+    ; STARTBYTES
     .byte $FE, $21, $10
     ;       2    8    .    L    O    D    E         R    U    N    N    E    R    2
     .byte $32, $38, $CF, $4C, $4F, $44, $45, $00, $52, $55, $4E, $4E, $45, $52, $32
-
+    ; STARTBYTES
     .byte $FE, $21, $50
     ;       2    9    .    K    I    N    G         K    O    N    G         1
     .byte $32, $39, $CF, $4B, $49, $4E, $47, $00, $4B, $4F, $4E, $47, $00, $31
-
+    ; STARTBYTES
     .byte $FE, $21, $90
     ;       3    0    .    K    I    N    G         K    O    N    G         2
     .byte $33, $30, $CF, $4B, $49, $4E, $47, $00, $4B, $4F, $4E, $47, $00, $32
-
+    ; STARTBYTES
     .byte $FE, $21, $D0
     ;       3    1    .    K    I    N    G         K    O    N    G         3
     .byte $33, $31, $CF, $4B, $49, $4E, $47, $00, $4B, $4F, $4E, $47, $00, $33
-
+    ; STARTBYTES
     .byte $FE, $22, $10
     ;       3    2    .    M    A    P    P    Y
     .byte $33, $32, $CF, $4D, $41, $50, $50, $59
-
+    ; STARTBYTES
     .byte $FE, $22, $50
     ;       3    3    .    E    X    C    I    T    E         B    I    K    E
     .byte $33, $33, $CF, $45, $58, $43, $49, $54, $45, $00, $42, $49, $4B, $45
-
+    ; STARTBYTES
     .byte $FE, $22, $90
     ;       3    4    .    F    -    1         R    A    C    E
     .byte $33, $34, $CF, $46, $5B, $31, $00, $52, $41, $43, $45
-
+    ; STARTBYTES
     .byte $FE, $22, $D0
     ;       3    5    .    R    O    A    D         F    I    G    H    T    E    R
     .byte $33, $35, $CF, $52, $4F, $41, $44, $00, $46, $49, $47, $48, $54, $45, $52
-
+    ; STARTBYTES
     .byte $FE, $23, $10
     ;       3    6    .    P    I    N         B    A    L    L
     .byte $33, $36, $CF, $50, $49, $4E, $00, $42, $41, $4C, $4C
-
+    ; ENDBYTE
     .byte $FF
 
 
@@ -1975,78 +2014,81 @@ NameTableSection2:
 
 ; Starts at: $D867 - $D968 / $1867 - $1968
 NameTableSection3:
+    ; STARTBYTES
     .byte $FE, $20, $8B
     ;       S    E    C    T    I    O    N         3
     .byte $53, $45, $43, $54, $49, $4F, $4E, $00, $33
 
 
     ; Column 1
+    ; STARTBYTES
     .byte $FE, $21, $00
     ;       3    7    .    B    A    S    E         B    A    L    L
     .byte $33, $37, $CF, $42, $41, $53, $45, $00, $42, $41, $4C, $4C
-
+    ; STARTBYTES
     .byte $FE, $21, $40
     ;       3    8    .    P    O    P    E    Y    E
     .byte $33, $38, $CF, $50, $4F, $50, $45, $59, $45
-
+    ; STARTBYTES
     .byte $FE, $21, $80
     ;       3    9    .    G    A    L    A    G    A
     .byte $33, $39, $CF, $47, $41, $4C, $41, $47, $41
-
+    ; STARTBYTES
     .byte $FE, $21, $C0
     ;       4    0    .    G    A    L    A    X    I    A    N
     .byte $34, $30, $CF, $47, $41, $4C, $41, $58, $49, $41, $4E
-
+    ; STARTBYTES
     .byte $FE, $22, $00
     ;       4    1    .    P    A    C    -    M    A    N
     .byte $34, $31, $CF, $50, $41, $43, $5B, $4D, $41, $4E
-
+    ; STARTBYTES
     .byte $FE, $22, $40
     ;       4    2    .    I    C    E         C    L    I    M    B    E    R
     .byte $34, $32, $CF, $49, $43, $45, $00, $43, $4C, $49, $4D, $42, $45, $52
-
+    ; STARTBYTES
     .byte $FE, $22, $80
     ;       4    3    .    1    9    8    9         E    X    E    R    I    O    N
     .byte $34, $33, $CF, $31, $39, $38, $39, $00, $45, $58, $45, $52, $49, $4F, $4E
-
+    ; STARTBYTES
     .byte $FE, $22, $C0
     ;       4    4    .    W    R    E    S    T    L    E
     .byte $34, $34, $CF, $57, $52, $45, $53, $54, $4C, $45
     
 
     ; Column 2
+    ; STARTBYTES
     .byte $FE, $21, $10
     ;       4    5    .    B    A    T    T    L    E         C    I    T    Y
     .byte $34, $35, $CF, $42, $41, $54, $54, $4C, $45, $00, $43, $49, $54, $59
-
+    ; STARTBYTES
     .byte $FE, $21, $50
     ;       4    6    .    S    K    Y         D    E    S    T    R    Y    O    E    R
     .byte $34, $36, $CF, $53, $4B, $59, $00, $44, $45, $53, $54, $52, $59, $4F, $45, $52
-
+    ; STARTBYTES
     .byte $FE, $21, $90
     ;       4    7    .    C    H    E    S    S
     .byte $34, $37, $CF, $43, $48, $45, $53, $53
-
+    ; STARTBYTES
     .byte $FE, $21, $D0
     ;       4    8    .    B    A    L    L    O    O    N         F    I    G    H    T
     .byte $34, $38, $CF, $42, $41, $4C, $4C, $4F, $4F, $4E, $00, $46, $49, $47, $48, $54
-
+    ; STARTBYTES
     .byte $FE, $22, $10
     ;       4    9    .    F    O    R    M    A    T    I    O    N         Z
     .byte $34, $39, $CF, $46, $4F, $52, $4D, $41, $54, $49, $4F, $4E, $00, $5A
-
+    ; STARTBYTES
     .byte $FE, $22, $50
     ;       5    0    .    P    O    O    Y    A    N
     .byte $35, $30, $CF, $50, $4F, $4F, $59, $41, $4E
-
+    ; STARTBYTES
     .byte $FE, $22, $90
     ;       5    1    .    C    I    R    C    U    S         T    R    O    U    P    E
     .byte $35, $31, $CF, $43, $49, $52, $43, $55, $53, $00, $54, $52, $4F, $55, $50, $45
-
+    ; STARTBYTES
     .byte $FE, $22, $D0
     ;       5    2    .    F    A    N    C    Y         B    R    O    S    .
     .byte $35, $32, $CF, $46, $41, $4E, $43, $59, $00, $42, $52, $4F, $53, $CF
-
+    ; ENDBYTE
     .byte $FF
 
 
@@ -2109,21 +2151,21 @@ BCC @BootGame_Loop
 ; Set values to $1B and $1C. This gets checked in NMI
 ; If they are set, NMI skips 52-in-1 menu NMI and goes to galaxians NMI instead.
     LDA #$A5
-    STA BootGameCheck1
+    STA ZPBootGameCheck1
     LDA #$5A
-    STA BootGameCheck2
+    STA ZPBootGameCheck2
 
 ; Load Section to get BootSequenceData Pointer
-    LDA ListSection
+    LDA ZPListSection
     CMP #$01
 BNE @BootGameSection2
 
 ; If Section 1, start at $DA01. Why not use pointers here?
 @BootGameSection1:
-    LDA #$01
-    STA AdressLow
-    LDA #$DA
-    STA AdressHigh
+    LDA #ConstBootGameBootSequencesStartSection1AdressLow    ; $01
+    STA ZPAdressLow
+    LDA #ConstBootGameBootSequencesStartSection1AdressHigh   ; $DA
+    STA ZPAdressHigh
 BNE @BootGameSection_END
 
 ; Section 1 BootCodes
@@ -2154,10 +2196,10 @@ BNE @BootGameSection_END
     CMP #$02
 BNE @BootGameSection3
 
-    LDA #$21
-    STA AdressLow
-    LDA #$DB
-    STA AdressHigh
+    LDA #ConstBootGameBootSequencesStartSection2AdressLow    ; $21
+    STA ZPAdressLow
+    LDA #ConstBootGameBootSequencesStartSection2AdressHigh   ; $DB
+    STA ZPAdressHigh
 BNE @BootGameSection_END
 
 ; Section 2 BootCodes
@@ -2185,10 +2227,10 @@ BNE @BootGameSection_END
 
 ; If Section 3, start at $DC41
 @BootGameSection3:
-    LDA #$41
-    STA AdressLow
-    LDA #$DC
-    STA AdressHigh
+    LDA #ConstBootGameBootSequencesStartSection3AdressLow    ; $41
+    STA ZPAdressLow
+    LDA #ConstBootGameBootSequencesStartSection3AdressHigh   ; $DC
+    STA ZPAdressHigh
 
 ; Section 3 BootCodes
 ;  ($DC41 - $DD40 / $1C41 - $1D40)
@@ -2213,19 +2255,19 @@ BNE @BootGameSection_END
 
 ; After establishing BootSequenceData pointer, get ListPosition to get Data position
 @BootGameSection_END:
-    LDX ListPosition
+    LDX ZPListPosition
 
-; Increase AdressLow by #$10 (16) each ListPosition to get BootSequenceData for the correct game
+; Increase ZPAdressLow by #$10 (16) each ListPosition to get BootSequenceData for the correct game
 @BootGameGetDataPosition:
 BEQ @BootGameLoadBoodCodeToRAM
 
     CLC
     LDA #$10
-    ADC AdressLow
-    STA AdressLow
+    ADC ZPAdressLow
+    STA ZPAdressLow
     LDA #$00
-    ADC AdressHigh
-    STA AdressHigh
+    ADC ZPAdressHigh
+    STA ZPAdressHigh
     DEX
 BPL @BootGameGetDataPosition
 
@@ -2234,7 +2276,7 @@ BPL @BootGameGetDataPosition
     LDY #$00   ; Reset Y to 0
 
 @BootGameLoadBoodCodeToRAM_Loop:
-    LDA (AdressLow), Y
+    LDA (ZPAdressLow), Y
     STA $0400, Y
     INY
     CPY #$10
@@ -2242,7 +2284,7 @@ BCC @BootGameLoadBoodCodeToRAM_Loop
 
 
 ; Don't know whats happening here, storing listposition to CartRAM?
-    LDA ListPosition
+    LDA ZPListPosition
     TAY
     STA $5FF2                       ; Store to CartRAM
     TYA
@@ -2251,16 +2293,16 @@ BCC @BootGameLoadBoodCodeToRAM_Loop
     LSR A
     LSR A
     AND #$01
-    STA AdressLow
-    LDA ListSection
+    STA ZPAdressLow
+    LDA ZPListSection
     ASL A
-    ORA AdressLow
+    ORA ZPAdressLow
     STA $5FF3                       ; Store to CartRAM
 
 ; Resets MSB/LSB to 0
     LDA #$00
-    STA AdressLow
-    STA AdressHigh
+    STA ZPAdressLow
+    STA ZPAdressHigh
     LDX #$00
     TXA
 
