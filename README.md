@@ -12,7 +12,7 @@ Description of mapper, how the menu works and differences between original game 
 * `make.bat`:
 Customizable makefile for the project. Change `@set ca65="D:\NESDev\cc65\bin"` to the location of your ca65 bin folder and create directories `.\tmp` and `.\dist\` in the root folder of the project.
 
-* `runt.bat`:
+* `run.bat`:
 Customizable runfile for the project. Change `@set mesen=D:\Emulators\Mesen` to the location of your emulator.
 
 
@@ -21,6 +21,11 @@ Customizable runfile for the project. Change `@set mesen=D:\Emulators\Mesen` to 
 Patches to turn the original games to the 52-in-1 variants and a "restoration" patch for the `Supervision 52-in-1 [p1].nes` ROM (`MD5: 9c23d89727a49a61d5aea3d7cd299b7a`).
 Filenames and MD5 of original files are described in `Supervision 52-in-1.txt`.
 Patches for `20.1989GALAXIAN` and `40.GALAXIAN` Needs to be applied to `52 Games (Menu) (U) [p1].nes` (`MD5: 130bfe84387010b74e1a4217cbc6bb39`).
+
+
+### PCB
+* `.\pcb\`:
+Contains traced pictures of the 1024kB version of the 110-in-1 cart (taken from NESDEV Forums thread `Mapper 255`, pictures by `nesrocks`).
 
 
 ### Source code and extras

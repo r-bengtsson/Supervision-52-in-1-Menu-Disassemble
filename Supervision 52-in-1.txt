@@ -6214,11 +6214,19 @@ Section 3 = $(D)1C41 - $(D)1D40
 |____________________________________________________________|
 
   * This disassembly wouldn't be possible without the help of the information found on NesDev Wiki.
-    Mapper 225/255 information is taken from there [wiki.nesdev.com]
+    Mapper 225/255 information is taken from there
+    [wiki.nesdev.com]
   
-  * Game information is taken from NES Cart Database [bootgod.dyndns.org:7777]
+  * Game information is taken from NES Cart Database
+    [bootgod.dyndns.org:7777]
   
-  * 52-in-1 cart information is partly based on BootlegsGames wiki [https://bootleggames.fandom.com/wiki/Supervision_52-in-1]
+  * 52-in-1 cart information is partly based on BootlegsGames wiki
+    [https://bootleggames.fandom.com/wiki/Supervision_52-in-1]
+
+  * Information and pictures of PCBs are borrowed from the thread 'Mapper 255' at the NESDEV forum.
+    [https://forums.nesdev.com/viewtopic.php?f=3&t=12647]
+  
+  * PCB images of the 1024kB version of the 110-in-1 cart used to trace datalines are by nesrocks.
 
 
 
