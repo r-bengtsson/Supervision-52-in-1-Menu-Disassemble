@@ -93,11 +93,3 @@ iNES header code with description on how to use it
 
 * `.\src\libs\IO-definitions.inc`:
 I\O Definitions.
-
-
-
-## TODO List
-  - [ ] Add schematics and gerber files for PCB
-  - [ ] `ScreenAttributesSet()` in `52-in-1 Menu.asm` needs to be analysed further
-  - [ ] `___L12A8:` in `52-in-1 Menu.asm` needs to be analysed further
-  - [ ] `Row 2228 - 2242` in `52-in-1 Menu.asm` needs to be analysed further

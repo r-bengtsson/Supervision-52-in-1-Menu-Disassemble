@@ -2,3 +2,4 @@ dist/
 tmp/
 *.old
 *.code-workspace
+TODO.txt
